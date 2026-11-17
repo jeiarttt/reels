@@ -12,7 +12,7 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
   const hookFrames = Math.round(hookSecOf(script) * FPS);
   const ctaFrames = Math.round(ctaSecOf(script) * FPS);
   const total = script.scenes.length + 2;
-  const bgProps = {dim: 0.3, veil: 0, fade: 3};
+  const bgProps = {dim: script.bgDim ?? 0.3, veil: 0, fade: 3};
 
   let cursor = 0;
   const blocks: React.ReactNode[] = [];
@@ -37,7 +37,7 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
   script.scenes.forEach((s, i) => {
     const frames = Math.round(s.t * FPS);
     const kind = s.kind ?? 'text';
-    const common = {index: i + 1, total, frames, label: s.label, sticker: s.sticker, sfx: s.sfx};
+    const common = {index: i + 1, total, frames, label: s.label, sticker: s.sticker, sfx: s.sfx, tone: s.tone};
     blocks.push(
       <Sequence key={`s${i}`} from={cursor} durationInFrames={frames}>
         <Background bg={pick(script, s.bg)} frames={frames} {...bgProps} />

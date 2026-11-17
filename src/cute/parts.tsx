@@ -229,8 +229,9 @@ const DOODLES: Record<DoodleKind, {d: string; vb: string}> = {
 };
 
 /** 손으로 그린 듯한 흰 선 낙서. 선을 그리는 효과 대신 부드럽게 커지며 나타난다(점·깨짐 방지) */
-export const Doodle: React.FC<{kind: DoodleKind; size?: number; rotate?: number; delay?: number; style?: React.CSSProperties}> = ({
+export const Doodle: React.FC<{kind: DoodleKind; size?: number; rotate?: number; delay?: number; color?: string; style?: React.CSSProperties}> = ({
   kind,
+  color = '#fff',
   size = 96,
   rotate = 0,
   delay = 12,
@@ -254,7 +255,7 @@ export const Doodle: React.FC<{kind: DoodleKind; size?: number; rotate?: number;
         ...style,
       }}
     >
-      <path d={dd.d} fill="none" stroke="#fff" strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />
+      <path d={dd.d} fill="none" stroke={color} strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 };

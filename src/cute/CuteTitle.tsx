@@ -1,7 +1,7 @@
 import React from 'react';
 import {Easing, interpolate, useCurrentFrame} from 'remotion';
 import {parse} from '../components/Words';
-import {BLUE, HILITE, TITLE_FONT} from './theme';
+import {BLUE, HILITE, NAVY, TITLE_FONT} from './theme';
 
 type Seg = {text: string; accent: boolean; word: number};
 
@@ -83,7 +83,7 @@ export const CuteTitle: React.FC<{text: string; size?: number; startFrame?: numb
 
 
 /** 사진 위에 바로 놓는 큼직한 흰 글자 제목. 강조 구간만 파란 칩 + 흰 글자 */
-export const RawTitle: React.FC<{text: string; size?: number; startFrame?: number}> = ({text, size = 150, startFrame = 0}) => {
+export const RawTitle: React.FC<{text: string; size?: number; startFrame?: number; dark?: boolean}> = ({text, size = 150, startFrame = 0, dark = false}) => {
   const frame = useCurrentFrame();
   const lines = parse(text);
   let base = 0;
@@ -100,9 +100,9 @@ export const RawTitle: React.FC<{text: string; size?: number; startFrame?: numbe
               fontSize: size,
               lineHeight: 1.18,
               letterSpacing: '-0.01em',
-              color: '#fff',
+              color: dark ? NAVY : '#fff',
               whiteSpace: 'nowrap',
-              textShadow: '0 6px 26px rgba(8,16,60,0.45)',
+              textShadow: dark ? '0 2px 16px rgba(255,255,255,0.85)' : '0 6px 26px rgba(8,16,60,0.45)',
               transform: `rotate(${li % 2 ? 1.2 : -1.4}deg)`,
             }}
           >
@@ -117,7 +117,7 @@ export const RawTitle: React.FC<{text: string; size?: number; startFrame?: numbe
                     whiteSpace: 'pre',
                     opacity: p,
                     transform: `translateY(${(1 - p) * 24}px)`,
-                    ...(sg.accent ? {color: HILITE} : {}),
+                    ...(sg.accent ? {color: dark ? BLUE : HILITE} : {}),
                   }}
                 >
                   {sg.accent ? sg.text.trim() : sg.text}

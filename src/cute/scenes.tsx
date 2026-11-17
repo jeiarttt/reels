@@ -7,7 +7,7 @@ import {CuteTitle, RawTitle} from './CuteTitle';
 import {Doodle, LabelBox, NavyTag, NumTag, Paper, Pill, Sfx, StickerImg, useFadeOut, Washi} from './parts';
 import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
-type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string};
+type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string; tone?: 'light' | 'dark'};
 
 const usePop = (delay = 0) => {
   const frame = useCurrentFrame();
@@ -50,7 +50,8 @@ export const CuteCover: React.FC<{
 };
 
 /** 큰 글자 컷: 종이 없이 사진 위에 바로 */
-export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx}) => {
+export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx, tone}) => {
+  const dark = tone === 'dark';
   const out = useFadeOut(frames);
   const odd = index % 2 === 1;
   return (
@@ -62,16 +63,18 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, la
           bottom: 0,
           left: 0,
           right: 0,
-          background: 'radial-gradient(ellipse at 50% 50%, rgba(10,20,60,0.36) 0%, rgba(10,20,60,0) 62%)',
+          background: dark
+            ? 'radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.0) 0%, rgba(255,255,255,0) 62%)'
+            : 'radial-gradient(ellipse at 50% 50%, rgba(10,20,60,0.36) 0%, rgba(10,20,60,0) 62%)',
         }}
       />
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 120, right: 120}}>
         <Pill text={label} tilt={odd ? -2 : 2} />
         <div style={{height: 22}} />
-        <RawTitle text={text} size={84} startFrame={8} />
+        <RawTitle text={text} size={84} startFrame={8} dark={dark} />
       </div>
-      <Doodle kind={odd ? 'sparkle' : 'heart'} size={88} rotate={odd ? 10 : -8} delay={16} style={{right: 110, top: 640}} />
-      <Doodle kind={odd ? 'swirl' : 'star'} size={odd ? 140 : 76} rotate={-6} delay={22} style={{left: 120, top: 1270}} />
+      <Doodle kind={odd ? 'sparkle' : 'heart'} color={dark ? BLUE : '#fff'} size={88} rotate={odd ? 10 : -8} delay={16} style={{right: 110, top: 640}} />
+      <Doodle kind={odd ? 'swirl' : 'star'} color={dark ? BLUE : '#fff'} size={odd ? 140 : 76} rotate={-6} delay={22} style={{left: 120, top: 1270}} />
       {sticker && <StickerImg name={sticker} size={330} rotate={-8} style={{left: 64, top: 1230}} />}
       {sfx && <Sfx text={sfx} rotate={7} style={{left: 420, top: 1290}} />}
     </AbsoluteFill>

@@ -15,6 +15,8 @@ export type TableData = {head: string[]; rows: string[][]};
 export type Scene = {
   t: number;
   kind?: 'text' | 'cards' | 'table';
+  /** 귀여운 테마: 밝은 배경이면 'dark'(진한 남색 글자). 기본 'light'(흰 글자) */
+  tone?: 'light' | 'dark';
   label?: string;
   /** 귀여운 테마: stickers/ 안 파일 이름(확장자 제외)과 의성어 태그 */
   sticker?: string;
@@ -49,6 +51,8 @@ export type Script = {
   ctaLabel?: string;
   cta: string;
   ctaBg?: Bg;
+  /** 귀여운 테마: 배경 어둡기(0~0.6). 밝은 사진이면 낮춘다. 기본 0.3 */
+  bgDim?: number;
   accentColor?: string;
   status: 'pending' | 'confirmed';
   disclaimer_overlay?: string;
