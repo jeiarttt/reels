@@ -431,8 +431,8 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={34} style={{right: 110, top: 520}} />
-      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1300}} />}
-      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1350}} />}
+      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1420}} />}
+      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1470}} />}
     </AbsoluteFill>
   );
 };
