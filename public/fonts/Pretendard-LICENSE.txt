@@ -1,0 +1,6 @@
+Pretendard
+Copyright (c) Kil Hyung-jin (orioncactus). Licensed under the SIL Open Font License, Version 1.1.
+Source: https://github.com/orioncactus/pretendard
+License text: https://openfontlicense.org/open-font-license-official-text/
+
+※ 이 고지는 공식 OFL 전문을 대체하지 않습니다. 재배포 시 원 저장소의 LICENSE 전문을 함께 포함하세요.
