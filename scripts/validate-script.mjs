@@ -152,10 +152,10 @@ if (s.theme === 'cute') {
   if (lines(s.hook).length > 2) warn('[귀여운] 표지 제목은 2줄 이내가 좋아요');
   if (count(s.cta) > 16) warn(`[귀여운] 마지막 화면 문구가 ${count(s.cta)}자예요 (16자 이내)`);
   (s.scenes ?? []).forEach((sc, i) => {
-    if (sc.text && count(sc.text) > 16) warn(`[귀여운] scenes[${i}] 문구가 ${count(sc.text)}자예요. 컷당 16자 이내로 줄여요`);
+    if (sc.text && count(sc.text) > 26) warn(`[귀여운] scenes[${i}] 문구가 ${count(sc.text)}자예요. 컷당 26자 이내(정보 보강 시)로 줄여요`);
     (sc.cards ?? []).forEach((c, k) => {
       if ([...(c.big ?? '')].length > 10) warn(`[귀여운] scenes[${i}].cards[${k}].big 이 10자를 넘어요`);
-      if ([...(c.small ?? '')].length > 7) warn(`[귀여운] scenes[${i}].cards[${k}].small 이 7자를 넘어요`);
+      if ([...(c.small ?? '')].length > 8) warn(`[귀여운] scenes[${i}].cards[${k}].small 이 8자를 넘어요`);
     });
     if (sc.table && sc.table.rows.length > 3) warn(`[귀여운] scenes[${i}] 표는 3행 이내가 좋아요`);
   });

@@ -8,30 +8,122 @@
   "hookSec": 3,
   "ctaSec": 3,
   "hookLabel": "📣 2027 예산안 기준",
-  "hook": "2027 청년 혜택\n[[6가지]] 정리!",
-  "hookBg": { "src": "stock/lifestyle-monstera-window.jpg", "position": "62% 50%" },
+  "hook": "2027 청년 혜택\n[[6가지]] 정리했어요",
+  "hookBg": {
+    "src": "stock/lifestyle-monstera-window.jpg",
+    "position": "62% 50%"
+  },
   "hookSticker": "kitten-orange",
   "hookSfx": "두근!",
   "scenes": [
-    { "t": 3, "kind": "text", "label": "💰 청년미래적금", "text": "우대형 기여금\n12% → [[15%]] 예정", "bg": { "src": "stock/lifestyle-plant-window.jpg" } },
-    { "t": 3, "kind": "text", "label": "🎭 청년문화패스", "text": "만 19~34세로\n확대 예정", "bg": { "src": "stock/lifestyle-desk-notebook.jpg" } },
-    { "t": 3, "kind": "text", "label": "🎓 첫경력 프로젝트", "text": "대학생 6만 명에게\n첫 경력 기회", "bg": { "src": "stock/lifestyle-warm-curtain.jpg" } },
-    { "t": 4, "kind": "cards", "label": "💼 취업지원 확대", "cards": [
-      { "big": "K-뉴딜 아카데미", "small": "교육 확대", "emoji": "📚" },
-      { "big": "최대 720만 원", "small": "기업에 지급", "emoji": "🏢" } ],
-      "bg": { "src": "stock/lifestyle-window-plants-street.jpg" }, "sticker": "chihuahua", "sfx": "잠깐!" },
-    { "t": 3, "kind": "text", "label": "🎒 지방대 장학금", "text": "지방국립대 신입생\n등록금 전액 지원", "bg": { "src": "stock/lifestyle-plant-window.jpg" } },
-    { "t": 3, "kind": "text", "label": "🏠 공공임대", "text": "신규 보편형 임대\n50% 이상 청년에게", "bg": { "src": "stock/lifestyle-warm-curtain.jpg" } }
+    {
+      "t": 3.8,
+      "kind": "cards",
+      "label": "💰 청년미래적금, 오를 예정이에요",
+      "cards": [
+        {
+          "big": "12% → 15%",
+          "small": "우대형 기여금",
+          "emoji": "📈"
+        },
+        {
+          "big": "월 최대 7.5만원",
+          "small": "정부 지원",
+          "emoji": "💸"
+        }
+      ],
+      "bg": {
+        "src": "stock/lifestyle-plant-window.jpg"
+      }
+    },
+    {
+      "t": 3.3,
+      "kind": "text",
+      "label": "🎭 청년문화패스",
+      "text": "[[만 19~34세]]로\n확대될 예정이에요\n체육활동도 쓸 수 있어요",
+      "bg": {
+        "src": "stock/lifestyle-desk-notebook.jpg"
+      }
+    },
+    {
+      "t": 3.3,
+      "kind": "text",
+      "label": "🎓 첫경력 프로젝트",
+      "text": "대학생 6만 명이\n학점 인정 인턴학기로\n첫 경력을 쌓아요",
+      "bg": {
+        "src": "stock/lifestyle-warm-curtain.jpg"
+      }
+    },
+    {
+      "t": 3.5,
+      "kind": "text",
+      "label": "💼 취업지원이 늘어나요",
+      "text": "직무교육을 늘리고\n채용 기업엔 최대\n720만 원을 지급해요",
+      "bg": {
+        "src": "stock/lifestyle-window-plants-street.jpg"
+      },
+      "sticker": "chihuahua",
+      "sfx": "잠깐!"
+    },
+    {
+      "t": 3.8,
+      "kind": "cards",
+      "label": "🎒 지방대 장학금이 늘어요",
+      "cards": [
+        {
+          "big": "등록금 전액",
+          "small": "국립대 신입생",
+          "emoji": "🎓"
+        },
+        {
+          "big": "4천 → 1만 명",
+          "small": "지역인재장학금",
+          "emoji": "✨"
+        }
+      ],
+      "bg": {
+        "src": "stock/lifestyle-plant-window.jpg"
+      }
+    },
+    {
+      "t": 3.8,
+      "kind": "cards",
+      "label": "🏠 청년 공공임대가 늘어요",
+      "cards": [
+        {
+          "big": "10.6만 호",
+          "small": "지금 7.1만",
+          "emoji": "🏘️"
+        },
+        {
+          "big": "50% 이상",
+          "small": "신규 보편형",
+          "emoji": "🔑"
+        }
+      ],
+      "bg": {
+        "src": "stock/lifestyle-warm-curtain.jpg"
+      }
+    }
   ],
   "ctaLabel": "💙 저장 필수",
   "cta": "2027 혜택 6가지\n[[저장]]해 두세요",
-  "ctaBg": { "src": "stock/lifestyle-monstera-window.jpg", "position": "62% 50%" },
+  "ctaBg": {
+    "src": "stock/lifestyle-monstera-window.jpg",
+    "position": "62% 50%"
+  },
   "ctaSticker": "hamster-snack",
   "ctaSfx": "저장!",
   "accentColor": "#2457F5",
   "status": "pending",
   "caption": "내년에 청년이라면 챙겨볼 만한 6가지를 모았어요 💙 모두 2027년 정부 예산안 기준이라, 국회 심의(12월 초 확정 예정)를 거쳐 달라질 수 있어요.\n\n💰 청년미래적금: 우대형 기여금 12%→15% 안(비수도권 중소기업 재직자는 25%로 제시됨, 최종 요건은 확인 필요)\n🎭 청년문화패스: 만 19~34세로 확대, 지원액은 수도권 10만 원·비수도권 15만 원 안(지금보다 금액은 줄어든 안이에요), 영화·도서·체육활동까지\n🎓 대학생 6만 명 대상 첫 경력 프로젝트(인턴학기)\n💼 K-뉴딜 아카데미 등 직무교육 확대. 청년 채용 기업 지원금 최대 720만 원은 기업에 지급돼요\n🎒 지방국립대 신입생 등록금 전액 지원, 지방 사립대 지역인재장학금 4천 명→1만 명\n🏠 새로 도입하는 보편형 공공임대 물량의 50% 이상을 청년층에 공급할 계획\n\n(2026년 11월 기준 · 예산안이라 변경될 수 있어요)",
-  "hashtags": ["#청년혜택", "#2027예산안", "#청년미래적금", "#상경러", "#청년문화패스"],
+  "hashtags": [
+    "#청년혜택",
+    "#2027예산안",
+    "#청년미래적금",
+    "#상경러",
+    "#청년문화패스"
+  ],
   "sources": [
     "https://www.korea.kr/news/policyNewsView.do?newsId=148970791",
     "https://www.korea.kr/news/policyNewsView.do?newsId=148971276",
@@ -46,6 +138,7 @@
     "청년문화패스 지원액(수도권 10만/비수도권 15만)은 현행보다 낮아 영상에서 뺌",
     "보편형 공공임대 50%: 정책뉴스 문장 확인, 적용 범위(신규 물량 기준) 원문 확인 필요",
     "720만 원은 기업 지원금(청년 개인 아님)이며 K-뉴딜 5만 명 수치는 출처가 엇갈려 뺌",
-    "Pexels 사진·스티커 라이선스 고지 파일 동봉"
+    "Pexels 사진·스티커 라이선스 고지 파일 동봉",
+    "청년 공공임대 7.1만→10.6만 호, 월 최대 6만→7.5만 원, 지역인재장학금 4천→1만 명, 인턴학기 학점 인정, 체육활동: 공식 보도 문장 대조 완료(원문 직접 열람은 못 함)"
   ]
 }
