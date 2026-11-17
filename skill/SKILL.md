@@ -39,5 +39,6 @@ description: 자막 카드뉴스형 인스타 릴스 대본(JSON)을 주제와 �
 | 폰트, 장면 형식, 글자 효과, 위치 | `references/design.md` |
 | 배경 사진·영상을 고르고 받을 때 | `references/stock.md` |
 | 계정 정체성·해시태그·캡션 톤 | `references/account.md` |
+| 문구·구성·검수 보고를 어떻게 쓸지 헷갈릴 때 | `references/examples.md` (좋은 예와 나쁜 예) |
 
 영상 한 편을 만들 때는 위 표에서 필요한 파일만 읽는다. 단, **제작을 끝내기 전에 `references/facts.md`의 검수 체크리스트는 반드시 읽고 확인한다.**
