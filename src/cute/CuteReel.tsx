@@ -12,7 +12,6 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
   const hookFrames = Math.round(hookSecOf(script) * FPS);
   const ctaFrames = Math.round(ctaSecOf(script) * FPS);
   const total = script.scenes.length + 2;
-  const showDisclaimer = script.status !== 'confirmed' && !!script.disclaimer_overlay;
   const bgProps = {dim: 0.04, veil: 0.1, fade: 3};
 
   let cursor = 0;
@@ -27,7 +26,6 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
         label={script.hookLabel}
         text={script.hook}
         brand={script.brand}
-        disclaimer={showDisclaimer ? script.disclaimer_overlay : undefined}
         sticker={script.hookSticker}
         sfx={script.hookSfx}
         frames={hookFrames}

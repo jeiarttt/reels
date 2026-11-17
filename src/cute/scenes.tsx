@@ -4,7 +4,7 @@ import type {CardItem, TableData} from '../types';
 import {Words, wordCount} from '../components/Words';
 import {Disclaimer} from '../components/Disclaimer';
 import {CuteTitle} from './CuteTitle';
-import {LabelBox, Pill, ProgressDots, Sfx, StickerImg, useFadeOut} from './parts';
+import {LabelBox, Pill, Sfx, StickerImg, useFadeOut} from './parts';
 import {BLUE, CONTENT_TOP, NAVY, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
 type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string};
@@ -32,7 +32,6 @@ export const CuteCover: React.FC<{
   const tag = interpolate(frame, [0, 14], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   return (
     <AbsoluteFill style={{opacity: out}}>
-      <ProgressDots index={index} total={total} />
       {brand && (
         <AbsoluteFill style={{alignItems: 'center', paddingTop: 150}}>
           <div style={{opacity: tag}}>
@@ -64,7 +63,6 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, total, fra
   const pop = usePop(4);
   return (
     <AbsoluteFill style={{opacity: out}}>
-      <ProgressDots index={index} total={total} />
       <div style={{position: 'absolute', top: CONTENT_TOP, left: 64, right: 64, textAlign: 'center'}}>
         <Pill text={label} tilt={-2} />
         <div
@@ -120,7 +118,6 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, total,
   const out = useFadeOut(frames);
   return (
     <AbsoluteFill style={{opacity: out}}>
-      <ProgressDots index={index} total={total} />
       <div style={{position: 'absolute', top: CONTENT_TOP, left: 84, right: 84, textAlign: 'center'}}>
         <Pill text={label} tilt={2} />
         <div style={{display: 'flex', flexDirection: 'column', gap: 40}}>
@@ -196,7 +193,6 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, total, f
   const head = usePop(10);
   return (
     <AbsoluteFill style={{opacity: out}}>
-      <ProgressDots index={index} total={total} />
       <div style={{position: 'absolute', top: CONTENT_TOP, left: 72, right: 72, textAlign: 'center'}}>
         <Pill text={label} tilt={-2} />
         <div
@@ -257,7 +253,6 @@ export const CuteCta: React.FC<Common & {text: string}> = ({index, total, frames
   const beat = 1 + Math.sin(frame / 5) * 0.035;
   return (
     <AbsoluteFill style={{opacity: out}}>
-      <ProgressDots index={index} total={total} />
       <div style={{position: 'absolute', top: CONTENT_TOP - 20, left: 0, right: 0, textAlign: 'center'}}>
         {label && (
           <div style={{height: 150, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>

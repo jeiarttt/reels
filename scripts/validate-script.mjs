@@ -35,7 +35,10 @@ else if (!s.verify_before_post.some((v) => /공식/.test(v)))
 // ── 상태·면책 ──
 if (s.status !== 'pending' && s.status !== 'confirmed') err('status 는 pending 또는 confirmed 여야 해요');
 if (s.status === 'confirmed') warn('status 가 confirmed 예요. 사람이 공식 공고로 확인했을 때만 바꿔요');
-if (s.status !== 'confirmed' && !s.disclaimer_overlay) err('status 가 pending 인데 disclaimer_overlay 가 없어요');
+if (s.theme === 'cute') {
+  // 귀여운 버전은 영상에 면책 문구를 넣지 않는 대신, 캡션에 기준 시점 문구가 있어야 한다
+  if (s.status !== 'confirmed' && !/기준/.test(s.caption ?? '')) err('[귀여운] 영상에 면책 문구가 없으니 캡션 마지막 줄에 "(○○년 ○월 기준 · 변경될 수 있어요)"를 넣어요');
+} else if (s.status !== 'confirmed' && !s.disclaimer_overlay) err('status 가 pending 인데 disclaimer_overlay 가 없어요');
 
 // ── 장면 ──
 const bodyTexts = [];
