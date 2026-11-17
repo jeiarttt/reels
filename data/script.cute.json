@@ -1,135 +1,51 @@
 {
-  "id": "20261117-청년미래적금-2차-cute",
+  "id": "20261117-2027-청년혜택-6가지-cute",
   "mode": "card_news",
   "theme": "cute",
   "style": "photo",
   "backgroundSrc": "",
   "brand": "2030 상경러 · 청년 혜택",
   "hookSec": 3,
-  "ctaSec": 3.5,
-  "hookLabel": "📣 계좌 개설 마감 임박",
-  "hook": "청년미래적금 2차\n[[11/27(금)]]까지!",
-  "hookBg": {
-    "src": "stock/lifestyle-monstera-window.jpg",
-    "position": "62% 50%"
-  },
-  "hookSticker": "cat-shocked",
-  "hookSfx": "헉!",
+  "ctaSec": 3,
+  "hookLabel": "📣 2027 예산안 기준",
+  "hook": "2027 청년 혜택\n[[6가지]] 정리!",
+  "hookBg": { "src": "stock/lifestyle-monstera-window.jpg", "position": "62% 50%" },
+  "hookSticker": "kitten-orange",
+  "hookSfx": "두근!",
   "scenes": [
-    {
-      "t": 3.5,
-      "kind": "text",
-      "label": "💌 대상은요",
-      "text": "심사 통과한 분만\n개설할 수 있어요",
-      "bg": {
-        "src": "stock/lifestyle-plant-window.jpg"
-      }
-    },
-    {
-      "t": 4.5,
-      "kind": "cards",
-      "label": "✅ 핵심 조건",
-      "cards": [
-        {
-          "big": "만 19~34세",
-          "small": "가입 대상",
-          "emoji": "🙋"
-        },
-        {
-          "big": "월 최대 50만 원",
-          "small": "납입 한도",
-          "emoji": "💸"
-        },
-        {
-          "big": "3년",
-          "small": "만기",
-          "emoji": "⏳"
-        }
-      ],
-      "bg": {
-        "src": "stock/lifestyle-desk-notebook.jpg"
-      }
-    },
-    {
-      "t": 4,
-      "kind": "table",
-      "label": "📅 일정",
-      "table": {
-        "head": [
-          "단계",
-          "기간"
-        ],
-        "rows": [
-          [
-            "심사",
-            "10월 19일~11월 13일"
-          ],
-          [
-            "계좌 개설",
-            "11월 16일~27일\n(주말 제외)"
-          ]
-        ]
-      },
-      "bg": {
-        "src": "stock/lifestyle-warm-curtain.jpg"
-      }
-    },
-    {
-      "t": 3,
-      "kind": "text",
-      "label": "⚠️ 도약계좌 갈아탈 땐",
-      "text": "미래적금 먼저\n개설해요!",
-      "bg": {
-        "src": "stock/lifestyle-window-plants-street.jpg"
-      }
-    },
-    {
-      "t": 3.5,
-      "kind": "text",
-      "label": "📌 그다음",
-      "text": "같은 기간 안에\n[[특별중도해지]] 신청!",
-      "bg": {
-        "src": "stock/lifestyle-plant-window.jpg"
-      },
-      "sticker": "chihuahua",
-      "sfx": "잠깐!"
-    }
+    { "t": 3, "kind": "text", "label": "💰 청년미래적금", "text": "우대형 기여금\n12% → [[15%]] 예정", "bg": { "src": "stock/lifestyle-plant-window.jpg" } },
+    { "t": 3, "kind": "text", "label": "🎭 청년문화패스", "text": "만 19~34세로\n확대 예정", "bg": { "src": "stock/lifestyle-desk-notebook.jpg" } },
+    { "t": 3, "kind": "text", "label": "🎓 첫경력 프로젝트", "text": "대학생 6만 명에게\n첫 경력 기회", "bg": { "src": "stock/lifestyle-warm-curtain.jpg" } },
+    { "t": 4, "kind": "cards", "label": "💼 취업지원 확대", "cards": [
+      { "big": "K-뉴딜 아카데미", "small": "교육 확대", "emoji": "📚" },
+      { "big": "최대 720만 원", "small": "기업에 지급", "emoji": "🏢" } ],
+      "bg": { "src": "stock/lifestyle-window-plants-street.jpg" }, "sticker": "chihuahua", "sfx": "잠깐!" },
+    { "t": 3, "kind": "text", "label": "🎒 지방대 장학금", "text": "지방국립대 신입생\n등록금 전액 지원", "bg": { "src": "stock/lifestyle-plant-window.jpg" } },
+    { "t": 3, "kind": "text", "label": "🏠 공공임대", "text": "신규 보편형 임대\n50% 이상 청년에게", "bg": { "src": "stock/lifestyle-warm-curtain.jpg" } }
   ],
   "ctaLabel": "💙 저장 필수",
-  "cta": "[[저장]]하고\n마감 전에 확인!",
-  "ctaBg": {
-    "src": "stock/lifestyle-monstera-window.jpg",
-    "position": "62% 50%"
-  },
-  "ctaSticker": "dog-happy",
-  "ctaSfx": "화이팅!",
+  "cta": "2027 혜택 6가지\n[[저장]]해 두세요",
+  "ctaBg": { "src": "stock/lifestyle-monstera-window.jpg", "position": "62% 50%" },
+  "ctaSticker": "hamster-snack",
+  "ctaSfx": "저장!",
   "accentColor": "#2457F5",
   "status": "pending",
-  "caption": "마감 날짜는 두근두근 😳 2차 심사를 통과했다면 계좌 개설은 11월 27일(금)까지예요! 청년도약계좌에서 갈아타려면 미래적금 계좌를 먼저 열고, 같은 개설 기간 안에 도약계좌 특별중도해지까지 신청해야 해요. 해지 방식에 따라 혜택이 달라질 수 있으니 꼭 확인하세요 💙\n(2026년 11월 기준 · 변경될 수 있어요)",
-  "hashtags": [
-    "#청년미래적금",
-    "#2030재테크",
-    "#상경러",
-    "#청년혜택",
-    "#적금"
-  ],
+  "caption": "내년에 청년이라면 챙겨볼 만한 6가지를 모았어요 💙 모두 2027년 정부 예산안 기준이라, 국회 심의(12월 초 확정 예정)를 거쳐 달라질 수 있어요.\n\n💰 청년미래적금: 우대형 기여금 12%→15% 안(비수도권 중소기업 재직자는 25%로 제시됨, 최종 요건은 확인 필요)\n🎭 청년문화패스: 만 19~34세로 확대, 지원액은 수도권 10만 원·비수도권 15만 원 안(지금보다 금액은 줄어든 안이에요), 영화·도서·체육활동까지\n🎓 대학생 6만 명 대상 첫 경력 프로젝트(인턴학기)\n💼 K-뉴딜 아카데미 등 직무교육 확대. 청년 채용 기업 지원금 최대 720만 원은 기업에 지급돼요\n🎒 지방국립대 신입생 등록금 전액 지원, 지방 사립대 지역인재장학금 4천 명→1만 명\n🏠 새로 도입하는 보편형 공공임대 물량의 50% 이상을 청년층에 공급할 계획\n\n(2026년 11월 기준 · 예산안이라 변경될 수 있어요)",
+  "hashtags": ["#청년혜택", "#2027예산안", "#청년미래적금", "#상경러", "#청년문화패스"],
   "sources": [
-    "https://www.fsc.go.kr/no010101/87880",
-    "https://www.fsc.go.kr/no010101/87106",
-    "https://www.kinfa.or.kr/financialProduct/youthFutureSavings.do",
-    "https://www.korea.kr/news/reporterView.do?newsId=148973168"
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148970791",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148971276",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148971501",
+    "https://www.fsc.go.kr/no010101/87627",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148972497"
   ],
   "verify_before_post": [
-    "공식 기관 자료로 확인(2026-11-17, 금융위원회 fsc.go.kr·정책브리핑 korea.kr·서민금융진흥원 kinfa.or.kr 검색 결과 기준): 가입신청 10/7~10/16, 가입심사 10/19~11/13, 계좌개설 11/16~11/27 → 영상 일정과 일치",
-    "공식 자료로 확인: 가입 대상 만 19~34세(계좌개설일 기준), 월 최대 50만 원, 3년 → 영상과 일치",
-    "공식 자료로 확인: 심사를 통과해 가입 가능 안내를 받은 사람만 계좌 개설 가능 → 영상 '심사 통과한 분만'과 일치",
-    "한계: 위 확인은 공식 기관 페이지가 검색 결과로 확인된 것이며, 페이지 원문을 직접 열어 보지는 못함(이 환경의 네트워크 제한). 게시 직전에 fsc.go.kr·kinfa.or.kr 원문 한 번 더 확인 권장",
-    "영상에서 제외한 내용: 6%·12%(일반형·우대형 정부 기여금)와 소득 기준은 회차별로 달라 혼동 위험이 있어 제외. 2차 가입신청은 10/16에 이미 마감됨(신규 신청 불가, 심사 통과자만 개설)",
-    "최종 대본 검수(2026-11-17): 갈아타기 문구를 근거와 같은 강도('달라질 수도')로 완화, 마지막 화면 '개설'→'확인'으로 바꿔 자격 없는 사람에게 개설을 권하는 것처럼 보이지 않게 함",
-    "게시일 기준 마감(11월 27일)이 지나지 않았는지 확인",
-    "영상에는 '변경될 수 있어요' 면책 문구를 넣지 않음(사용자 요청). 기준 시점·변경 가능성은 캡션 마지막 줄에 표기 — 게시할 때 캡션을 빼먹지 않기",
-    "최종 검수(2026-11-17, 공식 기관 자료 검색 결과 기준): 계좌 개설 11/16(월)~11/27(금), 토·일 제외(공휴일 언급은 없어 '주말 제외'로만 표기) → 일정 컷·표지 '(금)'과 일치",
-    "최종 검수: 갈아타기는 '미래적금 계좌를 먼저 개설 → 같은 계좌개설 기간 안에 도약계좌 특별중도해지 신청', 기간 내 해지를 안 하면 도약계좌는 유지되고 미래적금은 납입 중지 → 갈아타기 두 컷과 일치. '해지'가 아니라 '특별중도해지'로 써서 일반 해지(기여금·비과세 불가)와 구분",
-    "표지만 짧은 날짜 표기 '11/27(금)'을 사용(한 줄에 들어가게). 다른 컷은 '11월 27일'"
+    "공식 기관(정책브리핑·금융위) 페이지가 검색 결과로 확인된 내용이며, 원문은 이 환경에서 직접 열람하지 못함",
+    "전부 2027년 정부 예산안 기준. 국회 확정(12월 초 예정) 후 달라질 수 있음",
+    "비수도권 중소기업 재직자 25%: 검색마다 확인 여부가 엇갈려 영상에서 뺌(캡션에만 '제시됨'으로 표기). 원문 확인 필요",
+    "청년문화패스 지원액(수도권 10만/비수도권 15만)은 현행보다 낮아 영상에서 뺌",
+    "보편형 공공임대 50%: 정책뉴스 문장 확인, 적용 범위(신규 물량 기준) 원문 확인 필요",
+    "720만 원은 기업 지원금(청년 개인 아님)이며 K-뉴딜 5만 명 수치는 출처가 엇갈려 뺌",
+    "Pexels 사진·스티커 라이선스 고지 파일 동봉"
   ]
 }
