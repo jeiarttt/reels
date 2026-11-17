@@ -24,7 +24,7 @@ description: 자막 카드뉴스형 인스타 릴스 대본(JSON)을 주제와 �
 6. **렌더 전에 `npm run validate`로 대본을 자동 검사한다.** 오류(ERROR)가 있으면 고친 뒤 다시 돌리고, 경고(WARN)는 읽고 필요한 것만 고친다. `npm run render:job`도 오류가 있으면 렌더를 시작하지 않는다.
 7. `verify_before_post`로 게시 전에 사람이 확인할 항목을 낸다.
 8. 렌더까지 끝나면 Notion 행을 '제작완료'로 바꾸고 대본·캡션·검수 목록을 정리한다(Notion을 쓸 수 있을 때, `references/notion.md`).
-9. **영상을 보낼 때마다 마지막에 항상** 커버 이미지(`./scripts/make-cover.sh <id> data/script.json`)와 게시글(캡션) 핵심 5~8줄, 올리기 전 확인할 것 2~3개를 함께 전달한다.
+9. **영상을 보낼 때마다 마지막에 항상** 커버 이미지(`./scripts/make-cover.sh <id> data/script.json`)와 게시글(캡션) 핵심 3~5줄, 올리기 전 확인할 것 2~3개를 함께 전달한다.
 
 ## 장면 구성 패턴
 - 정보·혜택형: 후킹 → 핵심 조건 3~4개 → 신청·확인 방법 → CTA
