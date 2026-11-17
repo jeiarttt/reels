@@ -3,8 +3,8 @@ import {AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConf
 import type {CardItem, TableData} from '../types';
 import {Words, wordCount} from '../components/Words';
 import {Disclaimer} from '../components/Disclaimer';
-import {CuteTitle} from './CuteTitle';
-import {LabelBox, NumTag, Paper, Pill, Sfx, StickerImg, useFadeOut, Washi} from './parts';
+import {CuteTitle, RawTitle} from './CuteTitle';
+import {Doodle, LabelBox, NavyTag, NumTag, Paper, Pill, Sfx, StickerImg, useFadeOut, Washi} from './parts';
 import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
 type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string};
@@ -15,7 +15,7 @@ const usePop = (delay = 0) => {
   return Math.max(spring({frame: frame - delay, fps, config: {damping: 11, stiffness: 140}}), 0);
 };
 
-/** 표지 */
+/** 표지: 사진 위에 바로 놓는 큰 글자 + 말풍선 라벨 + 어두운 태그 + 흰 선 낙서 */
 export const CuteCover: React.FC<{
   index: number;
   total: number;
@@ -26,60 +26,52 @@ export const CuteCover: React.FC<{
   sticker?: string;
   sfx?: string;
   frames: number;
-}> = ({index, total, label, text, brand, disclaimer, sticker, sfx, frames}) => {
+}> = ({label, text, brand, sticker, sfx, frames}) => {
   const out = useFadeOut(frames);
-  const frame = useCurrentFrame();
-  const tag = interpolate(frame, [0, 14], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   return (
     <AbsoluteFill style={{opacity: out}}>
-      {brand && (
-        <AbsoluteFill style={{alignItems: 'center', paddingTop: 150}}>
-          <div style={{opacity: tag}}>
-            <LabelBox
-              size={42}
-              padX={38}
-              padY={16}
-              style={{background: PAPER, color: BLUE, border: `4px dashed ${BLUE}`, borderRadius: 12, boxShadow: '0 8px 18px rgba(20,40,120,0.2)', transform: 'rotate(-1.5deg)'}}
-            >
-              {brand}
-            </LabelBox>
+      <div style={{position: 'absolute', top: 560, left: 0, right: 0, textAlign: 'center'}}>
+        <Pill text={label} tilt={-3} align="left" />
+        <div style={{height: 24}} />
+        <RawTitle text={text} size={126} startFrame={label ? 6 : 0} />
+        {brand && (
+          <div style={{marginTop: 44}}>
+            <NavyTag text={brand} />
           </div>
-        </AbsoluteFill>
-      )}
-      <div style={{position: 'absolute', top: CONTENT_TOP + 60, left: 0, right: 0, textAlign: 'center'}}>
-        <Pill text={label} tilt={-3} />
-        <div style={{position: 'relative'}}>
-          <Washi style={{left: 70, top: -8}} rotate={-12} w={170} tone="yellow" />
-          <Washi style={{right: 70, bottom: -6}} rotate={-8} w={170} tone="pink" />
-          <CuteTitle text={text} size={132} startFrame={label ? 6 : 0} />
-        </div>
+        )}
       </div>
-      {sticker && <StickerImg name={sticker} size={400} rotate={9} style={{right: 30, top: 230}} />}
-      {sfx && <Sfx text={sfx} rotate={-9} style={{right: 390, top: 270}} />}
-      {disclaimer && <Disclaimer text={disclaimer} />}
+      <Doodle kind="sparkle" size={96} rotate={8} delay={14} style={{left: 70, top: 1230}} />
+      <Doodle kind="heart" size={92} rotate={-10} delay={20} style={{right: 90, top: 1250}} />
+      <Doodle kind="swirl" size={150} rotate={-4} delay={26} style={{right: 330, top: 1210}} />
+      {sticker && <StickerImg name={sticker} size={400} rotate={9} style={{right: 30, top: 200}} />}
+      {sfx && <Sfx text={sfx} rotate={-9} style={{right: 390, top: 240}} />}
     </AbsoluteFill>
   );
 };
 
-/** 줄 노트 메모 */
+/** 큰 글자 컷: 종이 없이 사진 위에 바로 */
 export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx}) => {
   const out = useFadeOut(frames);
-  const pop = usePop(4);
+  const odd = index % 2 === 1;
   return (
     <AbsoluteFill style={{opacity: out}}>
-      <div style={{position: 'absolute', top: CONTENT_TOP, left: 64, right: 64, textAlign: 'center'}}>
-        <Pill text={label} tilt={-2} />
-        <Paper tilt={-1} lineGap={114} linePad={56} pad="56px 40px 60px" pop={pop} num={index}>
-          <Words
-            text={text}
-            accent={BLUE}
-            accentStyle={{background: `linear-gradient(transparent 52%, ${MARKER} 52% 90%, transparent 90%)`, padding: '0 6px'}}
-            startFrame={8}
-            stagger={3}
-            style={{color: NAVY, fontFamily: TITLE_FONT, fontWeight: 400, fontSize: 88, lineHeight: '114px', letterSpacing: '-0.01em'}}
-          />
-        </Paper>
+      <div
+        style={{
+          position: 'absolute',
+          top: CONTENT_TOP - 120,
+          left: 0,
+          right: 0,
+          height: 620,
+          background: 'radial-gradient(ellipse at 50% 55%, rgba(10,20,60,0.36) 0%, rgba(10,20,60,0) 68%)',
+        }}
+      />
+      <div style={{position: 'absolute', top: CONTENT_TOP, left: 50, right: 50, textAlign: 'center'}}>
+        <Pill text={label} tilt={odd ? -2 : 2} />
+        <div style={{height: 22}} />
+        <RawTitle text={text} size={88} startFrame={8} />
       </div>
+      <Doodle kind={odd ? 'sparkle' : 'heart'} size={88} rotate={odd ? 10 : -8} delay={16} style={{right: 80, top: CONTENT_TOP - 70}} />
+      <Doodle kind={odd ? 'swirl' : 'star'} size={odd ? 140 : 76} rotate={-6} delay={22} style={{left: 90, top: CONTENT_TOP + 560}} />
       {sticker && <StickerImg name={sticker} size={330} rotate={-8} style={{left: 64, top: 1230}} />}
       {sfx && <Sfx text={sfx} rotate={7} style={{left: 420, top: 1290}} />}
     </AbsoluteFill>
@@ -93,19 +85,20 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames
     <AbsoluteFill style={{opacity: out}}>
       <div style={{position: 'absolute', top: CONTENT_TOP, left: 84, right: 84, textAlign: 'center'}}>
         <Pill text={label} tilt={2} />
-        <div style={{display: 'flex', flexDirection: 'column', gap: 40}}>
+        <div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
           {cards.map((c, i) => (
-            <Card key={i} c={c} i={i} num={i === 0 ? index : undefined} />
+            <Card key={i} c={c} i={i} />
           ))}
         </div>
       </div>
+      <Doodle kind="sparkle" size={84} rotate={10} delay={30} style={{right: 70, top: CONTENT_TOP - 60}} />
       {sticker && <StickerImg name={sticker} size={270} rotate={12} style={{right: 40, top: 330}} />}
       {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 400}} />}
     </AbsoluteFill>
   );
 };
 
-const Card: React.FC<{c: CardItem; i: number; num?: number}> = ({c, i, num}) => {
+const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
   const pop = usePop(16 + i * 9);
   return (
     <div
@@ -114,17 +107,15 @@ const Card: React.FC<{c: CardItem; i: number; num?: number}> = ({c, i, num}) => 
         display: 'flex',
         alignItems: 'center',
         gap: 36,
-        background: PAPER,
-        borderRadius: 14,
-        padding: '38px 46px',
+        background: '#fff',
+        borderRadius: 34,
+        padding: '34px 46px',
         boxShadow: PAPER_SHADOW,
         textAlign: 'left',
         transform: `translateY(${(1 - pop) * 40}px) rotate(${i % 2 ? 1.2 : -1.2}deg)`,
         opacity: Math.min(pop, 1),
       }}
     >
-      <Washi style={{left: '50%', top: -26, marginLeft: -85}} rotate={i % 2 ? 4 : -3} w={170} tone={i % 2 ? 'yellow' : 'blue'} />
-      {num !== undefined && <NumTag n={num} style={{left: -22, top: -44}} />}
       <div
         style={{
           width: 128,
@@ -212,29 +203,27 @@ const Row: React.FC<{r: string[]; i: number; last: boolean}> = ({r, i, last}) =>
 };
 
 /** 마지막 화면 */
-export const CuteCta: React.FC<Common & {text: string}> = ({index, total, frames, label, text, sticker, sfx}) => {
+export const CuteCta: React.FC<Common & {text: string}> = ({frames, label, text, sticker, sfx}) => {
   const out = useFadeOut(frames);
-  const frame = useCurrentFrame();
-  const beat = 1 + Math.sin(frame / 5) * 0.035;
   return (
     <AbsoluteFill style={{opacity: out}}>
+      <div
+        style={{
+          position: 'absolute',
+          top: CONTENT_TOP - 140,
+          left: 0,
+          right: 0,
+          height: 620,
+          background: 'radial-gradient(ellipse at 50% 55%, rgba(10,20,60,0.36) 0%, rgba(10,20,60,0) 68%)',
+        }}
+      />
       <div style={{position: 'absolute', top: CONTENT_TOP - 20, left: 0, right: 0, textAlign: 'center'}}>
-        {label && (
-          <div style={{height: 150, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
-            <div style={{transform: `scale(${beat})`}}>
-              <LabelBox
-                size={62}
-                padX={56}
-                padY={22}
-                style={{background: POSTIT, color: BLUE, borderRadius: 8, boxShadow: '0 14px 26px rgba(20,30,80,0.3)'}}
-              >
-                {label}
-              </LabelBox>
-            </div>
-          </div>
-        )}
-        <CuteTitle text={text} size={102} startFrame={8} />
+        <Pill text={label} tilt={-2} />
+        <div style={{height: 22}} />
+        <RawTitle text={text} size={112} startFrame={8} />
       </div>
+      <Doodle kind="arrow" size={150} rotate={20} delay={20} style={{right: 90, top: CONTENT_TOP + 520}} />
+      <Doodle kind="sparkle" size={84} rotate={-6} delay={14} style={{left: 80, top: CONTENT_TOP - 70}} />
       {sticker && <StickerImg name={sticker} size={320} rotate={-9} style={{left: 56, top: 1290}} />}
       {sfx && <Sfx text={sfx} rotate={8} style={{left: 400, top: 1330}} />}
     </AbsoluteFill>

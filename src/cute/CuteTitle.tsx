@@ -80,3 +80,53 @@ export const CuteTitle: React.FC<{text: string; size?: number; startFrame?: numb
     </div>
   );
 };
+
+
+/** 사진 위에 바로 놓는 큼직한 흰 글자 제목. 강조 구간만 파란 칩 + 흰 글자 */
+export const RawTitle: React.FC<{text: string; size?: number; startFrame?: number}> = ({text, size = 150, startFrame = 0}) => {
+  const frame = useCurrentFrame();
+  const lines = parse(text);
+  let base = 0;
+  return (
+    <div style={{textAlign: 'center', wordBreak: 'keep-all'}}>
+      {lines.map((words, li) => {
+        const segs = segments(words, base);
+        base += words.length;
+        return (
+          <div
+            key={li}
+            style={{
+              fontFamily: TITLE_FONT,
+              fontSize: size,
+              lineHeight: 1.18,
+              letterSpacing: '-0.01em',
+              color: '#fff',
+              whiteSpace: 'nowrap',
+              textShadow: '0 6px 26px rgba(8,16,60,0.45)',
+              transform: `rotate(${li % 2 ? 1.2 : -1.4}deg)`,
+            }}
+          >
+            {segs.map((sg, k) => {
+              const start = startFrame + sg.word * 4;
+              const p = interpolate(frame, [start, start + 12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+              return (
+                <span
+                  key={k}
+                  style={{
+                    display: 'inline-block',
+                    whiteSpace: 'pre',
+                    opacity: p,
+                    transform: `translateY(${(1 - p) * 24}px)`,
+                    ...(sg.accent ? {background: BLUE, borderRadius: 26, padding: '0 22px 8px', margin: '0 6px', textShadow: 'none'} : {}),
+                  }}
+                >
+                  {sg.accent ? sg.text.trim() : sg.text}
+                </span>
+              );
+            })}
+          </div>
+        );
+      })}
+    </div>
+  );
+};

@@ -184,24 +184,71 @@ export const Paper: React.FC<{
   </div>
 );
 
-/** 라벨: 노란 포스트잇 */
-export const Pill: React.FC<{text?: string; tilt?: number}> = ({text, tilt = -2}) => {
+/** 라벨: 파란 말풍선 (꼬리 달림) */
+export const Pill: React.FC<{text?: string; tilt?: number; align?: 'center' | 'left'}> = ({text, tilt = -2, align = 'center'}) => {
   const frame = useCurrentFrame();
   if (!text) return null;
   const p = interpolate(frame, [0, 8], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   return (
-    <div style={{height: 118, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
-      <div style={{opacity: p, transform: `translateY(${(1 - p) * 14}px) rotate(${tilt}deg)`}}>
+    <div style={{height: 132, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'center', alignItems: 'flex-start', paddingLeft: align === 'left' ? 90 : 0}}>
+      <div style={{position: 'relative', opacity: p, transform: `translateY(${(1 - p) * 14}px) rotate(${tilt}deg)`}}>
+        <div style={{position: 'absolute', left: 64, bottom: -14, width: 44, height: 44, background: BLUE, borderRadius: 8, transform: 'rotate(45deg)'}} />
         <LabelBox
-          size={50}
-          padX={40}
-          padY={20}
-          style={{background: POSTIT, color: BLUE, borderRadius: 8, boxShadow: '0 10px 18px rgba(20,30,80,0.26), inset 0 -10px 14px rgba(255,200,0,0.18)'}}
+          size={52}
+          padX={44}
+          padY={22}
+          style={{position: 'relative', background: BLUE, color: '#fff', borderRadius: 46, boxShadow: '0 10px 22px rgba(10,20,80,0.32)'}}
         >
           {text}
         </LabelBox>
       </div>
     </div>
+  );
+};
+
+/** 어두운 알약 태그 (작은 분류 표시) */
+export const NavyTag: React.FC<{text: string; tilt?: number; size?: number}> = ({text, tilt = -1.5, size = 44}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [10, 20], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  return (
+    <div style={{display: 'inline-block', opacity: p, transform: `translateY(${(1 - p) * 12}px) rotate(${tilt}deg)`}}>
+      <LabelBox size={size} padX={42} padY={18} style={{background: NAVY, color: '#E6EEFF', borderRadius: 999, boxShadow: '0 8px 18px rgba(10,20,60,0.3)'}}>
+        {text}
+      </LabelBox>
+    </div>
+  );
+};
+
+type DoodleKind = 'sparkle' | 'heart' | 'swirl' | 'arrow' | 'star';
+const DOODLES: Record<DoodleKind, {d: string; vb: string}> = {
+  sparkle: {d: 'M50 8V92 M13 29L87 71 M13 71L87 29', vb: '0 0 100 100'},
+  heart: {d: 'M50 88 C12 60 8 30 30 20 C42 15 50 26 50 32 C50 26 58 15 70 20 C92 30 88 60 50 88Z', vb: '0 0 100 100'},
+  swirl: {d: 'M6 34 C26 6 44 60 68 30 S104 12 124 34', vb: '0 0 130 70'},
+  arrow: {d: 'M6 54 C36 14 76 84 116 40 M96 22 L118 40 L94 56', vb: '0 0 130 90'},
+  star: {d: 'M50 10 L61 38 L91 40 L68 59 L76 88 L50 72 L24 88 L32 59 L9 40 L39 38Z', vb: '0 0 100 100'},
+};
+
+/** 손으로 그린 듯한 흰 선 낙서. 그려지듯 나타난다 */
+export const Doodle: React.FC<{kind: DoodleKind; size?: number; rotate?: number; delay?: number; style?: React.CSSProperties}> = ({
+  kind,
+  size = 96,
+  rotate = 0,
+  delay = 12,
+  style,
+}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [delay, delay + 14], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const wob = Math.sin(frame / 12 + delay) * 3;
+  const dd = DOODLES[kind];
+  return (
+    <svg
+      viewBox={dd.vb}
+      width={size}
+      height={size}
+      style={{position: 'absolute', overflow: 'visible', transform: `rotate(${rotate + wob}deg)`, filter: 'drop-shadow(0 3px 6px rgba(10,20,60,0.4))', ...style}}
+    >
+      <path d={dd.d} pathLength={1} fill="none" stroke="#fff" strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={1} strokeDashoffset={1 - p} />
+    </svg>
   );
 };
 
