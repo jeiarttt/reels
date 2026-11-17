@@ -190,7 +190,7 @@ export const Pill: React.FC<{text?: string; tilt?: number; align?: 'center' | 'l
   if (!text) return null;
   const p = interpolate(frame, [0, 8], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   return (
-    <div style={{height: 132, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'center', alignItems: 'flex-start', paddingLeft: align === 'left' ? 90 : 0}}>
+    <div style={{height: 132, display: 'flex', justifyContent: align === 'left' ? 'flex-start' : 'center', alignItems: 'flex-start', paddingLeft: 0}}>
       <div style={{position: 'relative', opacity: p, transform: `translateY(${(1 - p) * 14}px) rotate(${tilt}deg)`}}>
         <div style={{position: 'absolute', left: 64, bottom: -14, width: 44, height: 44, background: BLUE, borderRadius: 8, transform: 'rotate(45deg)'}} />
         <LabelBox
