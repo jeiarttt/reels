@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "remotion studio src/index.ts",
     "render:job": "node scripts/render-job.mjs",
+    "validate": "node scripts/validate-script.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
