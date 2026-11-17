@@ -1,7 +1,9 @@
-// 사용법: npm run render:job -- <job-id> [--force] [--skip-validate] [--script=data/script.cute.json]
+// 사용법: npm run render:job -- <job-id> [--force] [--skip-validate] [--script=data/script.cute.json] [--out-dir=폴더] [--dry-run]
 // data/script.json 의 id 와 같은 job 을 out/<id>.mp4 로 렌더한다.
 import {spawnSync} from 'node:child_process';
 import {existsSync, readFileSync, mkdirSync, writeFileSync} from 'node:fs';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
 
 const args = process.argv.slice(2);
 const force = args.includes('--force');
@@ -26,8 +28,14 @@ if (!args.includes('--skip-validate')) {
     process.exit(1);
   }
 }
-mkdirSync('out', {recursive: true});
-const out = `out/${id}.mp4`;
+const outDirArg = args.find((a) => a.startsWith('--out-dir='));
+const outDir = outDirArg ? outDirArg.slice('--out-dir='.length) : 'out';
+mkdirSync(outDir, {recursive: true});
+const out = join(outDir, `${id}.mp4`);
+if (args.includes('--dry-run')) {
+  console.log(`[dry-run] 대본: ${scriptPath}\n[dry-run] 출력: ${out}`);
+  process.exit(0);
+}
 if (existsSync(out) && !force) {
   console.error(`${out} 가 이미 있어요. 덮어쓰려면 --force 를 붙이세요.`);
   process.exit(1);
@@ -39,8 +47,9 @@ const chromeCandidates = [
 ].filter(Boolean);
 const browser = chromeCandidates.find((p) => existsSync(p));
 
-writeFileSync('out/.props.json', JSON.stringify({script}));
-const cli = ['remotion', 'render', 'src/index.ts', 'Reel', out, '--codec=h264', '--crf=20', '--concurrency=2', '--props=out/.props.json'];
+const propsPath = join(tmpdir(), `reels-props-${id}.json`);
+writeFileSync(propsPath, JSON.stringify({script}));
+const cli = ['remotion', 'render', 'src/index.ts', 'Reel', out, '--codec=h264', '--crf=20', '--concurrency=2', `--props=${propsPath}`];
 if (browser) cli.push(`--browser-executable=${browser}`, '--chromium-options=no-sandbox'); // 샌드박스 환경용
 const r = spawnSync('npx', cli, {stdio: 'inherit'});
 process.exit(r.status ?? 1);
