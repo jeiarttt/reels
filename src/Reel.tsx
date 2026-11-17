@@ -4,9 +4,9 @@ import {loadFont} from '@remotion/fonts';
 import type {Bg, Script} from './types';
 import {Background} from './components/Background';
 import {TextScene} from './components/TextScene';
+import {CoverScene} from './components/CoverScene';
 import {CardsScene} from './components/CardsScene';
 import {TableScene} from './components/TableScene';
-import {Disclaimer} from './components/Disclaimer';
 import {CTA_SEC, FPS, HOOK_SEC} from './Root';
 
 // 폰트 규칙: 큰 제목(첫 화면·마지막 화면)은 히피체, 내용·작은 정보성 글은 Pretendard.
@@ -42,8 +42,15 @@ export const Reel: React.FC<{script: Script}> = ({script}) => {
 
   blocks.push(
     <Sequence key="hook" from={cursor} durationInFrames={hookFrames}>
-      <Background bg={pickBg(script, script.hookBg)} frames={hookFrames} dim={0.28} />
-      <TextScene label={script.hookLabel} text={script.hook} accent={accent} size={128} hook title />
+      <Background bg={pickBg(script, script.hookBg)} frames={hookFrames} dim={0.12} />
+      <CoverScene
+        label={script.hookLabel}
+        text={script.hook}
+        brand={script.brand}
+        disclaimer={showDisclaimer ? script.disclaimer_overlay : undefined}
+        accent={accent}
+        size={128}
+      />
     </Sequence>,
   );
   cursor += hookFrames;
@@ -76,7 +83,6 @@ export const Reel: React.FC<{script: Script}> = ({script}) => {
   return (
     <AbsoluteFill style={{backgroundColor: '#0b1020', fontFamily: `'${FONT_BODY}', sans-serif`}}>
       {blocks}
-      {showDisclaimer && <Disclaimer text={script.disclaimer_overlay!} />}
     </AbsoluteFill>
   );
 };

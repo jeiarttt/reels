@@ -28,6 +28,8 @@ export type Script = {
   style?: 'photo';
   /** 내가 준 이미지/영상으로 전체 배경을 덮어쓸 때. public/user/ 에 넣고 "user/파일명" */
   backgroundSrc?: string;
+  /** 표지 위쪽 채널 태그(선택). 예: "2030 상경러 · 청년 혜택" */
+  brand?: string;
   hookLabel?: string;
   hook: string;
   hookBg?: Bg;

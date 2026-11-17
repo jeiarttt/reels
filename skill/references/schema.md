@@ -5,7 +5,8 @@
 - `id`, `mode`: "card_news"
 - `style`: "photo"(사진·영상 배경, 모든 장면 가운데 정렬) 또는 생략(네이비 카드)
 - `backgroundSrc`: 사용자가 준 이미지·영상으로 **전체 배경을 덮어쓸 때만** 채운다. public/user/ 에 넣고 "user/파일명". 비워두면 장면별 `bg`(스톡)를 쓴다
-- `hookLabel`(선택), `hook`, `hookBg`: 첫 화면(3.5초)
+- `brand`(선택): 표지 위쪽 채널 태그. 예: "2030 상경러 · 청년 혜택"(`references/account.md`의 정체성에 맞춘다)
+- `hookLabel`(선택), `hook`, `hookBg`: 표지(첫 화면, 3.5초)
 - `scenes[]`: `{ t(초), kind, label(선택), bg, ... }` 5~6개, 장면당 4~7초
   - `kind: "text"`(기본): `text`
   - `kind: "cards"`: 요약 카드 `cards: [{ big, small }]` 3~4개 (핵심 숫자·기간·금액)
