@@ -146,7 +146,7 @@ if ((all.match(/\[\[/g) ?? []).length !== (all.match(/\]\]/g) ?? []).length) err
 
 // ── 귀여운 테마: 컷당 글자를 최소로 (첫 컷이 가장 중요) ──
 if (s.theme === 'cute') {
-  const count = (t = '') => [...strip(t).replace(/\s+/g, '')].length;
+  const count = (t = '') => [...strip(t).replace(/[\s!?.,~()/·:\-]+/g, '')].length; // 공백·문장부호는 읽는 부담이 아니라서 세지 않는다
   const hookN = count(s.hook);
   if (hookN > 18) warn(`[귀여운] 표지 제목이 ${hookN}자예요. 1초 안에 읽히게 18자 이내로 줄여요`);
   if (lines(s.hook).length > 2) warn('[귀여운] 표지 제목은 2줄 이내가 좋아요');
