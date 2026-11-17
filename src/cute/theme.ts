@@ -6,3 +6,6 @@ export const SKY_TEXT = '#CFE0FF'; // 파랑 바 위 보조 글자
 export const TITLE_FONT = "'Hippie', 'Pretendard', sans-serif";
 export const SOFT_SHADOW = '0 22px 54px rgba(30,70,200,0.28)';
 export const CONTENT_TOP = 600;
+
+/** 히피체는 글자 잉크의 중심이 줄 상자 중심보다 위/아래로 치우쳐 있다. 측정값(em)으로 보정한다. */
+export const HIPPIE_SHIFT_EM = 0.05;

@@ -23,11 +23,12 @@ description: 귀여운 스타일의 인스타 릴스 카드뉴스(JSON 대본 + 
 2. **컷을 먼저 줄인다**: 정보를 컷으로 나누고, 컷마다 "이 컷의 단 하나의 메시지"만 남긴다. 나머지는 캡션으로 보낸다. (`references/cute-writing.md`)
 3. 스티커를 놓을 곳을 정한다: 표지, 그리고 사람이 놓치면 안 되는 곳(마감·주의). (`references/stickers.md`)
 4. `data/script.cute.json`에 대본을 쓴다(`"theme": "cute"`). 형식은 기본 스킬 `references/schema.md` + 아래 추가 항목.
-5. `npm run validate -- data/script.cute.json`으로 검사(귀여운 테마 전용 경고 포함).
-6. 정지 화면으로 표지·말풍선·카드·체크 메모·마지막 화면을 확인한다.
-7. `npm run render:job -- <id> --force --script=data/script.cute.json`
-8. 렌더 후 화면 검수와 내용 검수를 하고 결과를 보고한다.
-9. 귀여운 버전 전용 Notion DB에 완료 처리(`references/notion.md`). **기본 버전 DB에는 쓰지 않는다.**
+5. **제작 직전 최종 검수**: 영상의 모든 내용을 공식 기관 자료로 다시 확인하고, 문구 강도·자격 한정·시점을 점검한 대조표를 채팅에 보여 준다. 수정이 필요하면 고치고 다시 검수한다. (`references/final-review.md`) **이 검수를 통과하기 전에는 렌더하지 않는다.**
+6. `npm run validate -- data/script.cute.json`으로 검사(귀여운 테마 전용 경고 포함).
+7. 정지 화면으로 표지·말풍선·카드·체크 메모·마지막 화면을 확인한다(라벨 글자가 도형 한가운데인지 포함).
+8. `npm run render:job -- <id> --force --script=data/script.cute.json`
+9. 렌더 후 화면 검수와 내용 검수를 하고 결과를 보고한다.
+10. 귀여운 버전 전용 Notion DB에 완료 처리(`references/notion.md`). **기본 버전 DB에는 쓰지 않는다.**
 
 ## 대본 JSON 추가 항목 (기본 포맷에 더해)
 - `theme`: "cute" (필수)
@@ -43,6 +44,7 @@ description: 귀여운 스타일의 인스타 릴스 카드뉴스(JSON 대본 + 
 | 문구·말투·컷 구성 | `references/cute-writing.md` |
 | 레이아웃·색·폰트·여백 | `references/cute-design.md` |
 | 스티커를 고르고 쓰고 만들 때 | `references/stickers.md` |
+| **렌더 직전 최종 검수(사실·문구)** | `references/final-review.md` |
 | 렌더 후 Notion 완료 처리 | `references/notion.md` |
 | 깃 작업 규칙 | `references/git.md` |
 

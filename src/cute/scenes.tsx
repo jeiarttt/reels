@@ -4,7 +4,7 @@ import type {CardItem, TableData} from '../types';
 import {Words, wordCount} from '../components/Words';
 import {Disclaimer} from '../components/Disclaimer';
 import {CuteTitle} from './CuteTitle';
-import {Pill, ProgressDots, Sfx, StickerImg, useFadeOut} from './parts';
+import {LabelBox, Pill, ProgressDots, Sfx, StickerImg, useFadeOut} from './parts';
 import {BLUE, CONTENT_TOP, NAVY, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
 type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string};
@@ -35,22 +35,15 @@ export const CuteCover: React.FC<{
       <ProgressDots index={index} total={total} />
       {brand && (
         <AbsoluteFill style={{alignItems: 'center', paddingTop: 150}}>
-          <div
-            style={{
-              opacity: tag,
-              background: '#fff',
-              color: BLUE,
-              border: `5px solid ${BLUE}`,
-              borderRadius: 999,
-              padding: '8px 36px 14px',
-              fontFamily: TITLE_FONT,
-              fontSize: 42,
-              fontWeight: 400,
-              letterSpacing: '-0.01em',
-              boxShadow: '0 8px 18px rgba(20,40,120,0.2)',
-            }}
-          >
-            {brand}
+          <div style={{opacity: tag}}>
+            <LabelBox
+              size={42}
+              padX={38}
+              padY={16}
+              style={{background: '#fff', color: BLUE, border: `5px solid ${BLUE}`, borderRadius: 999, boxShadow: '0 8px 18px rgba(20,40,120,0.2)'}}
+            >
+              {brand}
+            </LabelBox>
           </div>
         </AbsoluteFill>
       )}
@@ -267,23 +260,16 @@ export const CuteCta: React.FC<Common & {text: string}> = ({index, total, frames
       <ProgressDots index={index} total={total} />
       <div style={{position: 'absolute', top: CONTENT_TOP - 20, left: 0, right: 0, textAlign: 'center'}}>
         {label && (
-          <div style={{height: 150, display: 'flex', justifyContent: 'center'}}>
-            <div
-              style={{
-                transform: `scale(${beat})`,
-                background: '#fff',
-                color: BLUE,
-                border: `6px solid ${BLUE}`,
-                borderRadius: 999,
-                padding: '12px 56px 20px',
-                fontFamily: TITLE_FONT,
-                fontSize: 62,
-                fontWeight: 400,
-                letterSpacing: '-0.01em',
-                boxShadow: SOFT_SHADOW,
-              }}
-            >
-              {label}
+          <div style={{height: 150, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
+            <div style={{transform: `scale(${beat})`}}>
+              <LabelBox
+                size={62}
+                padX={56}
+                padY={22}
+                style={{background: '#fff', color: BLUE, border: `6px solid ${BLUE}`, borderRadius: 999, boxShadow: SOFT_SHADOW}}
+              >
+                {label}
+              </LabelBox>
             </div>
           </div>
         )}

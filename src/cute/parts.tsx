@@ -1,6 +1,36 @@
 import React from 'react';
 import {AbsoluteFill, Easing, Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
-import {BLUE, NAVY, TITLE_FONT} from './theme';
+import {BLUE, HIPPIE_SHIFT_EM, NAVY, TITLE_FONT} from './theme';
+
+/**
+ * 라벨 상자: 줄 높이 1 + 위아래 대칭 여백 + 히피체 보정 → 글자가 도형 한가운데 온다.
+ * (모든 라벨·태그는 이 상자를 쓴다. 높이를 바깥에서 늘리지 않는다.)
+ */
+export const LabelBox: React.FC<{
+  size: number;
+  padX: number;
+  padY: number;
+  style?: React.CSSProperties;
+  children: React.ReactNode;
+}> = ({size, padX, padY, style, children}) => (
+  <div
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: `${padY}px ${padX}px`,
+      fontFamily: TITLE_FONT,
+      fontSize: size,
+      fontWeight: 400,
+      lineHeight: 1,
+      letterSpacing: '-0.01em',
+      whiteSpace: 'nowrap',
+      ...style,
+    }}
+  >
+    <span style={{display: 'inline-block', lineHeight: 1, transform: `translateY(${size * HIPPIE_SHIFT_EM}px)`}}>{children}</span>
+  </div>
+);
 
 /** 상단 진행 점 (현재 페이지 / 전체) */
 export const ProgressDots: React.FC<{index: number; total: number}> = ({index, total}) => (
@@ -69,23 +99,15 @@ export const Sfx: React.FC<{text: string; rotate?: number; style?: React.CSSProp
   const {fps} = useVideoConfig();
   const s = spring({frame: frame - delay, fps, config: {damping: 8, stiffness: 170}});
   return (
-    <div
-      style={{
-        position: 'absolute',
-        transform: `rotate(${rotate}deg) scale(${Math.max(s, 0)})`,
-        background: BLUE,
-        color: '#fff',
-        border: '6px solid #fff',
-        borderRadius: 40,
-        padding: '6px 28px 14px',
-        fontFamily: TITLE_FONT,
-        fontSize: 54,
-        boxShadow: '0 10px 24px rgba(20,40,120,0.3)',
-        whiteSpace: 'nowrap',
-        ...style,
-      }}
-    >
-      {text}
+    <div style={{position: 'absolute', transform: `rotate(${rotate}deg) scale(${Math.max(s, 0)})`, ...style}}>
+      <LabelBox
+        size={54}
+        padX={30}
+        padY={16}
+        style={{background: BLUE, color: '#fff', border: '6px solid #fff', borderRadius: 40, boxShadow: '0 10px 24px rgba(20,40,120,0.3)'}}
+      >
+        {text}
+      </LabelBox>
     </div>
   );
 };
@@ -97,23 +119,21 @@ export const Pill: React.FC<{text?: string; tilt?: number}> = ({text, tilt = -2}
   const p = interpolate(frame, [0, 8], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   return (
     <div style={{height: 118, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
-      <div
-        style={{
-          opacity: p,
-          transform: `translateY(${(1 - p) * 14}px) rotate(${tilt}deg)`,
-          background: '#fff',
-          color: BLUE,
-          border: `5px solid ${BLUE}`,
-          borderRadius: 999,
-          padding: '8px 38px 14px',
-          fontFamily: TITLE_FONT,
-          fontSize: 50,
-          fontWeight: 400,
-          letterSpacing: '-0.01em',
-          boxShadow: '0 8px 20px rgba(20,40,120,0.2)',
-        }}
-      >
-        {text}
+      <div style={{opacity: p, transform: `translateY(${(1 - p) * 14}px) rotate(${tilt}deg)`}}>
+        <LabelBox
+          size={50}
+          padX={40}
+          padY={20}
+          style={{
+            background: '#fff',
+            color: BLUE,
+            border: `5px solid ${BLUE}`,
+            borderRadius: 999,
+            boxShadow: '0 8px 20px rgba(20,40,120,0.2)',
+          }}
+        >
+          {text}
+        </LabelBox>
       </div>
     </div>
   );
