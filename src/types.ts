@@ -11,10 +11,14 @@ export type Bg = {
 
 export type CardItem = {big: string; small?: string; /** 귀여운 테마의 카드 아이콘 */ emoji?: string};
 export type TableData = {head: string[]; rows: string[][]};
+/** 귀여운 테마 'stat' 컷: 큰 숫자 하나 (gauge 0~100 이면 고리 게이지) */
+export type StatData = {big: string; sub?: string; emoji?: string; gauge?: number};
+/** 귀여운 테마 'compare' 컷: 되는 것 / 안 되는 것 두 칸 비교 */
+export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: string; rightItems: string[]};
 
 export type Scene = {
   t: number;
-  kind?: 'text' | 'cards' | 'table';
+  kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid';
   /** 귀여운 테마: 밝은 배경이면 'dark'(진한 남색 글자). 기본 'light'(흰 글자) */
   tone?: 'light' | 'dark';
   label?: string;
@@ -24,6 +28,8 @@ export type Scene = {
   text?: string;
   cards?: CardItem[];
   table?: TableData;
+  stat?: StatData;
+  compare?: CompareData;
   bg?: Bg;
 };
 

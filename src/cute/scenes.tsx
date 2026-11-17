@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, Easing, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import type {CardItem, TableData} from '../types';
+import type {CardItem, CompareData, StatData, TableData} from '../types';
 import {Words, wordCount} from '../components/Words';
 import {Disclaimer} from '../components/Disclaimer';
 import {CuteTitle, RawTitle} from './CuteTitle';
@@ -230,6 +230,248 @@ export const CuteCta: React.FC<Common & {text: string}> = ({frames, label, text,
       {sticker && <StickerImg name={sticker} size={320} rotate={-9} style={{left: 56, top: 1290}} />}
       {sfx && <Sfx text={sfx} rotate={8} style={{left: 400, top: 1330}} />}
     </AbsoluteFill>
+  );
+};
+
+const FLEX_CENTER: React.CSSProperties = {
+  position: 'absolute',
+  top: 0,
+  bottom: 0,
+  left: 120,
+  right: 120,
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  textAlign: 'center',
+};
+
+const DANGER = '#FF5A5F';
+
+/** 세로 단계: 번호 동그라미가 점선으로 이어지는 타임라인 (방법·절차용) */
+export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label, cards, sticker, sfx, tone}) => {
+  const out = useFadeOut(frames);
+  const frame = useCurrentFrame();
+  const dark = tone === 'dark';
+  const line = interpolate(frame, [10, 10 + cards.length * 12], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={FLEX_CENTER}>
+        <Pill text={label} tilt={-2} />
+        <div style={{height: 10}} />
+        <div style={{position: 'relative', display: 'flex', flexDirection: 'column', gap: 30}}>
+          <div
+            style={{
+              position: 'absolute',
+              left: 46,
+              top: 60,
+              bottom: 60,
+              width: 8,
+              borderRadius: 4,
+              background: `repeating-linear-gradient(to bottom, ${dark ? BLUE : '#fff'} 0 14px, transparent 14px 26px)`,
+              opacity: 0.9,
+              transform: `scaleY(${line})`,
+              transformOrigin: 'top',
+            }}
+          />
+          {cards.map((c, i) => (
+            <StepRow key={i} c={c} i={i} />
+          ))}
+        </div>
+      </div>
+      <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={30} style={{right: 110, top: 520}} />
+      {sticker && <StickerImg name={sticker} size={270} rotate={12} style={{right: 40, top: 330}} />}
+      {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 400}} />}
+    </AbsoluteFill>
+  );
+};
+
+const StepRow: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
+  const pop = usePop(14 + i * 12);
+  return (
+    <div style={{position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: 26, opacity: Math.min(pop, 1), transform: `translateX(${(1 - pop) * -40}px)`}}>
+      <div style={{flex: '0 0 100px', display: 'flex', justifyContent: 'center'}}>
+        <LabelBox
+          size={58}
+          padX={0}
+          padY={0}
+          style={{width: 100, height: 100, borderRadius: '50%', background: BLUE, color: '#fff', border: '6px solid #fff', boxShadow: '0 8px 18px rgba(10,20,80,0.3)'}}
+        >
+          {i + 1}
+        </LabelBox>
+      </div>
+      <div
+        style={{
+          flex: 1,
+          background: '#fff',
+          borderRadius: 34,
+          padding: '26px 34px',
+          boxShadow: SOFT_SHADOW,
+          textAlign: 'left',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 22,
+          wordBreak: 'keep-all',
+        }}
+      >
+        <div style={{flex: 1}}>
+          <div style={{color: BLUE, fontWeight: 900, fontSize: 54, lineHeight: 1.1, letterSpacing: -1.5}}>{c.big}</div>
+          {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 36, marginTop: 6}}>{c.small}</div>}
+        </div>
+        <div style={{fontSize: 64}}>{c.emoji ?? ''}</div>
+      </div>
+    </div>
+  );
+};
+
+/** 큰 숫자 하나 (게이지 고리 선택): 핵심 수치·날짜·나이를 크게 보여줄 때 */
+export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, stat, sticker, sfx, tone}) => {
+  const out = useFadeOut(frames);
+  const frame = useCurrentFrame();
+  const dark = tone === 'dark';
+  const pop = usePop(6);
+  const R = 262;
+  const C = 2 * Math.PI * R;
+  const g = stat.gauge ?? 0;
+  const prog = interpolate(frame, [12, 46], [0, g / 100], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const bigSize = [...stat.big].length <= 3 ? 210 : [...stat.big].length <= 5 ? 160 : 118;
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={FLEX_CENTER}>
+        <Pill text={label} tilt={2} />
+        <div style={{height: 14}} />
+        <div style={{position: 'relative', width: 600, height: 600, margin: '0 auto', transform: `scale(${0.85 + 0.15 * pop})`, opacity: Math.min(pop, 1)}}>
+          <svg width={600} height={600} viewBox="0 0 600 600" style={{position: 'absolute', left: 0, top: 0}}>
+            <circle cx={300} cy={300} r={R} fill="none" stroke={dark ? 'rgba(36,87,245,0.2)' : 'rgba(255,255,255,0.45)'} strokeWidth={34} strokeDasharray={g ? undefined : '3 26'} strokeLinecap="round" />
+            {g > 0 && (
+              <circle
+                cx={300}
+                cy={300}
+                r={R}
+                fill="none"
+                stroke={BLUE}
+                strokeWidth={34}
+                strokeLinecap="round"
+                strokeDasharray={C}
+                strokeDashoffset={C * (1 - prog)}
+                transform="rotate(-90 300 300)"
+              />
+            )}
+          </svg>
+          <div
+            style={{
+              position: 'absolute',
+              left: 52,
+              top: 52,
+              width: 496,
+              height: 496,
+              borderRadius: '50%',
+              background: '#fff',
+              boxShadow: SOFT_SHADOW,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              wordBreak: 'keep-all',
+            }}
+          >
+            {stat.emoji && <div style={{fontSize: 78, lineHeight: 1, marginBottom: 6}}>{stat.emoji}</div>}
+            <div style={{fontFamily: TITLE_FONT, fontSize: bigSize, lineHeight: 1.05, color: BLUE, letterSpacing: '-0.02em'}}>{stat.big}</div>
+            {stat.sub && <div style={{color: NAVY, fontWeight: 800, fontSize: 40, marginTop: 10, lineHeight: 1.3, whiteSpace: 'pre-line', maxWidth: 380}}>{stat.sub}</div>}
+          </div>
+        </div>
+      </div>
+      <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={90} rotate={8} delay={26} style={{right: 100, top: 420}} />
+      <Doodle kind="heart" color={dark ? BLUE : '#fff'} size={80} rotate={-10} delay={32} style={{left: 110, top: 1390}} />
+      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1280}} />}
+      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1330}} />}
+    </AbsoluteFill>
+  );
+};
+
+/** 두 칸 비교: 되는 것 / 안 되는 것 */
+export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, label, compare, sticker, sfx, tone}) => {
+  const out = useFadeOut(frames);
+  const dark = tone === 'dark';
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={FLEX_CENTER}>
+        <Pill text={label} tilt={-2} />
+        <div style={{height: 14}} />
+        <div style={{display: 'flex', gap: 34, alignItems: 'stretch'}}>
+          <ComparePanel ok title={compare.leftTitle} items={compare.leftItems} delay={10} />
+          <ComparePanel title={compare.rightTitle} items={compare.rightItems} delay={22} />
+        </div>
+      </div>
+      <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={34} style={{right: 110, top: 520}} />
+      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1300}} />}
+      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1350}} />}
+    </AbsoluteFill>
+  );
+};
+
+const ComparePanel: React.FC<{ok?: boolean; title: string; items: string[]; delay: number}> = ({ok, title, items, delay}) => {
+  const pop = usePop(delay);
+  const col = ok ? BLUE : DANGER;
+  return (
+    <div style={{flex: 1, background: '#fff', borderRadius: 38, padding: '0 0 28px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
+      <div style={{background: col, color: '#fff', padding: '4px 0 0'}}>
+        <LabelBox size={50} padX={20} padY={22} style={{display: 'flex', width: '100%'}}>
+          {ok ? '✅' : '❌'} {title}
+        </LabelBox>
+      </div>
+      <div style={{display: 'flex', flexDirection: 'column', gap: 18, padding: '26px 28px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
+        {items.map((it, k) => (
+          <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: 36, lineHeight: 1.2}}>
+            <span style={{color: col, fontWeight: 900, fontSize: 40}}>{ok ? '✓' : '✕'}</span>
+            <span>{it}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/** 격자 타일(2열): 항목 4~6개를 한눈에 */
+export const CuteGrid: React.FC<Common & {cards: CardItem[]}> = ({frames, label, cards, sticker, sfx, tone}) => {
+  const out = useFadeOut(frames);
+  const dark = tone === 'dark';
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={FLEX_CENTER}>
+        <Pill text={label} tilt={2} />
+        <div style={{height: 10}} />
+        <div style={{display: 'flex', flexWrap: 'wrap', gap: 26, justifyContent: 'center'}}>
+          {cards.map((c, i) => (
+            <GridTile key={i} c={c} i={i} />
+          ))}
+        </div>
+      </div>
+      <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={30} style={{right: 100, top: 480}} />
+      {sticker && <StickerImg name={sticker} size={260} rotate={12} style={{right: 40, top: 300}} />}
+      {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 380}} />}
+    </AbsoluteFill>
+  );
+};
+
+const GridTile: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
+  const pop = usePop(10 + i * 7);
+  return (
+    <div
+      style={{
+        width: 400,
+        background: '#fff',
+        borderRadius: 34,
+        padding: '26px 24px 24px',
+        boxShadow: SOFT_SHADOW,
+        opacity: Math.min(pop, 1),
+        transform: `translateY(${(1 - pop) * 40}px) rotate(${i % 2 ? 1 : -1}deg)`,
+        wordBreak: 'keep-all',
+      }}
+    >
+      <div style={{width: 92, height: 92, borderRadius: '50%', background: POSTIT, margin: '0 auto 10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 54}}>{c.emoji ?? '⭐'}</div>
+      <div style={{color: BLUE, fontWeight: 900, fontSize: 50, lineHeight: 1.1, letterSpacing: -1.5}}>{c.big}</div>
+      {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 32, marginTop: 6}}>{c.small}</div>}
+    </div>
   );
 };
 

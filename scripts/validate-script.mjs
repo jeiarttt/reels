@@ -19,7 +19,7 @@ try {
 const strip = (t = '') => t.replace(/\[\[|\]\]/g, '');
 const lines = (t = '') => strip(t).split('\n');
 const FORBIDDEN = ['무조건', '100%', '누구나', '반드시 받', '확실히', '대박', '충격', '절대 손해'];
-const KINDS = ['text', 'cards', 'table'];
+const KINDS = ['text', 'cards', 'table', 'steps', 'stat', 'compare', 'grid'];
 
 // ── 필수 항목 ──
 for (const k of ['id', 'mode', 'hook', 'cta', 'status', 'caption']) if (!s[k]) err(`필수 항목 없음: ${k}`);
@@ -85,6 +85,24 @@ if (!s.backgroundSrc) {
       else if ([...x.big].length > 12) warn(`${w}.cards[${k}]: big 이 ${[...x.big].length}자예요 (10자 안팎)`);
       bodyTexts.push(x.big ?? '', x.small ?? '');
     });
+  }
+  if (kind === 'steps' || kind === 'grid') {
+    const c = sc.cards ?? [];
+    if (kind === 'steps' && (c.length < 2 || c.length > 4)) warn(`${w}: 단계는 2~4개가 좋아요 (현재 ${c.length})`);
+    if (kind === 'grid' && (c.length < 4 || c.length > 6)) warn(`${w}: 격자는 4~6개가 좋아요 (현재 ${c.length})`);
+    c.forEach((x, k) => {
+      if (!x.big) err(`${w}.cards[${k}]: big 이 비어 있어요`);
+      bodyTexts.push(x.big ?? '', x.small ?? '');
+    });
+  }
+  if (kind === 'stat') {
+    if (!sc.stat || !sc.stat.big) err(`${w}: stat.big 이 필요해요`);
+    else bodyTexts.push(sc.stat.big, sc.stat.sub ?? '');
+  }
+  if (kind === 'compare') {
+    const c = sc.compare;
+    if (!c || !c.leftItems?.length || !c.rightItems?.length) err(`${w}: compare.leftItems / rightItems 가 필요해요`);
+    else bodyTexts.push(c.leftTitle, c.rightTitle, ...c.leftItems, ...c.rightItems);
   }
   if (kind === 'table') {
     const t = sc.table;

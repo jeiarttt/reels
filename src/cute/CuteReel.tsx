@@ -3,7 +3,7 @@ import {AbsoluteFill, Sequence} from 'remotion';
 import type {Bg, Script} from '../types';
 import {Background} from '../components/Background';
 import {ctaSecOf, FPS, hookSecOf} from '../Root';
-import {CuteBubble, CuteCards, CuteCover, CuteCta, CuteList} from './scenes';
+import {CuteBubble, CuteCards, CuteCompare, CuteCover, CuteCta, CuteGrid, CuteList, CuteStat, CuteSteps} from './scenes';
 
 const pick = (script: Script, bg?: Bg): Bg | undefined => (script.backgroundSrc ? {src: script.backgroundSrc} : bg);
 
@@ -43,6 +43,14 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
         <Background bg={pick(script, s.bg)} frames={frames} {...bgProps} />
         {kind === 'cards' && s.cards ? (
           <CuteCards {...common} cards={s.cards} />
+        ) : kind === 'steps' && s.cards ? (
+          <CuteSteps {...common} cards={s.cards} />
+        ) : kind === 'grid' && s.cards ? (
+          <CuteGrid {...common} cards={s.cards} />
+        ) : kind === 'stat' && s.stat ? (
+          <CuteStat {...common} stat={s.stat} />
+        ) : kind === 'compare' && s.compare ? (
+          <CuteCompare {...common} compare={s.compare} />
         ) : kind === 'table' && s.table ? (
           <CuteList {...common} table={s.table} />
         ) : (

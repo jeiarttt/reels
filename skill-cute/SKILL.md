@@ -25,6 +25,7 @@ description: 귀여운 스타일의 인스타 릴스 카드뉴스(JSON 대본 + 
 ## 작업 순서
 1. 주제·핵심 메시지 한 줄·대상 파악 → 기본 스킬 순서 3(사실 확인)·4(후킹-본문 일치)를 똑같이 한다.
 2. **컷을 먼저 줄인다**: 정보를 컷으로 나누고, 컷마다 "이 컷의 단 하나의 메시지"만 남긴다. 나머지는 캡션으로 보낸다. (`references/cute-writing.md`)
+2-1. **컷마다 내용에 맞는 레이아웃**을 고른다(text·cards·steps·stat·compare·grid·table, `references/cute-design.md`의 "컷 레이아웃 고르기"). 글자 컷과 카드만 반복하지 않는다.
 3-1. **배경 사진은 영상마다 주제에 맞는 심플하고 밝은 사진으로** 고른다(`references/cute-design.md`의 "배경 사진 고르기").
 3. 스티커를 놓을 곳을 정한다: 표지, 그리고 사람이 놓치면 안 되는 곳(마감·주의). (`references/stickers.md`)
 4. `data/script.cute.json`에 대본을 쓴다(`"theme": "cute"`). 형식은 기본 스킬 `references/schema.md` + 아래 추가 항목.

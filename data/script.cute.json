@@ -18,18 +18,22 @@
   "scenes": [
     {
       "t": 3.8,
-      "kind": "text",
-      "label": "🍎 카카오뱅크 11월 16일부터",
-      "text": "체크카드를 애플 지갑에\n추가해 쓸 수 있어요",
+      "kind": "stat",
+      "label": "🍎 카카오뱅크 애플페이 시작",
+      "stat": {
+        "big": "11/16",
+        "sub": "체크카드를\n애플 지갑에 추가",
+        "emoji": "🗓️"
+      },
+      "tone": "dark",
       "bg": {
         "src": "stock/simple-bright-iphone-white.jpg",
         "position": "100% 50%"
-      },
-      "tone": "dark"
+      }
     },
     {
       "t": 4.6,
-      "kind": "cards",
+      "kind": "steps",
       "label": "✅ 이렇게 하면 돼요",
       "cards": [
         {
@@ -55,29 +59,37 @@
     },
     {
       "t": 4.0,
-      "kind": "cards",
+      "kind": "stat",
       "label": "💸 청년이라면",
-      "cards": [
-        {
-          "big": "만 19~34세",
-          "small": "청년 해당",
-          "emoji": "🙋"
-        },
-        {
-          "big": "교통비 30%",
-          "small": "환급 혜택",
-          "emoji": "💰"
-        }
-      ],
+      "stat": {
+        "big": "30%",
+        "sub": "교통비 환급\n만 19~34세",
+        "emoji": "🚇",
+        "gauge": 30
+      },
       "bg": {
         "src": "stock/simple-sky-pale.jpg"
       }
     },
     {
       "t": 3.6,
-      "kind": "text",
-      "label": "⚠️ 알아두세요",
-      "text": "줍줍·착붙 신용카드는\n애플페이가 안 돼요",
+      "kind": "compare",
+      "label": "⚠️ 애플페이 되는 카드는?",
+      "compare": {
+        "leftTitle": "되는 카드",
+        "leftItems": [
+          "The 체크카드",
+          "프렌즈 체크카드",
+          "모임 체크카드",
+          "개인사업자 체크카드",
+          "mini카드"
+        ],
+        "rightTitle": "안 되는 카드",
+        "rightItems": [
+          "줍줍 신용카드",
+          "착붙 신용카드"
+        ]
+      },
       "bg": {
         "src": "stock/simple-bright-card-tap.jpg",
         "position": "85% 50%"
@@ -87,14 +99,18 @@
     },
     {
       "t": 3.4,
-      "kind": "text",
+      "kind": "stat",
       "label": "📌 하나 더",
-      "text": "만 14세 이상부터\n등록할 수 있어요",
+      "stat": {
+        "big": "14세+",
+        "sub": "Apple Pay 등록·이용",
+        "emoji": "🙋"
+      },
+      "tone": "dark",
       "bg": {
         "src": "stock/simple-bright-iphone-white.jpg",
         "position": "0% 50%"
-      },
-      "tone": "dark"
+      }
     }
   ],
   "ctaLabel": "💙 놓치기 전에 저장",
