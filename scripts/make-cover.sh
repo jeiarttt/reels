@@ -7,9 +7,8 @@ ID="${1:?대본 id가 필요해요}"
 SCRIPT="${2:-data/script.json}"
 FRAME="${3:-60}"
 cd "$(dirname "$0")/.."
-node scripts/render-job.mjs "$ID" --script="$SCRIPT" --dry-run >/dev/null 2>&1 || true
-PROPS="/tmp/reels-props-${ID}.json"
-[ -f "$PROPS" ] || { echo "props 파일이 없어요: $PROPS"; exit 1; }
+PROPS="/tmp/reels-props-cover-${ID}.json"
+node -e 'const fs=require("fs");const s=JSON.parse(fs.readFileSync(process.argv[1],"utf8"));fs.writeFileSync(process.argv[2],JSON.stringify({script:s}))' "$SCRIPT" "$PROPS"
 CH="${CHROME:-/opt/pw-browsers/chromium-1243/chrome-linux64/chrome}"
 EXTRA=()
 [ -x "$CH" ] && EXTRA=(--browser-executable="$CH" --chromium-options=no-sandbox)

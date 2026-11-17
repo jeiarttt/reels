@@ -377,12 +377,42 @@ export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, st
             {stat.sub && <div style={{color: NAVY, fontWeight: 800, fontSize: 40, marginTop: 10, lineHeight: 1.3, whiteSpace: 'pre-line', maxWidth: 380}}>{stat.sub}</div>}
           </div>
         </div>
+        {stat.chips && (
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, marginTop: 20}}>
+            {stat.chips.map((c, k) => (
+              <StatChip key={k} text={c} i={k} />
+            ))}
+          </div>
+        )}
       </div>
-      <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={90} rotate={8} delay={26} style={{right: 100, top: 420}} />
-      <Doodle kind="heart" color={dark ? BLUE : '#fff'} size={80} rotate={-10} delay={32} style={{left: 110, top: 1390}} />
+      <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={90} rotate={8} delay={26} style={{left: 110, top: 440}} />
+      <Doodle kind="heart" color={dark ? BLUE : '#fff'} size={80} rotate={-10} delay={32} style={{right: 120, top: 1470}} />
       {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1280}} />}
       {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1330}} />}
     </AbsoluteFill>
+  );
+};
+
+const StatChip: React.FC<{text: string; i: number}> = ({text, i}) => {
+  const pop = usePop(24 + i * 8);
+  return (
+    <div
+      style={{
+        background: '#fff',
+        color: NAVY,
+        fontWeight: 800,
+        fontSize: 42,
+        lineHeight: 1.2,
+        padding: '14px 36px',
+        borderRadius: 999,
+        boxShadow: SOFT_SHADOW,
+        whiteSpace: 'nowrap',
+        opacity: Math.min(pop, 1),
+        transform: `translateY(${(1 - pop) * 24}px)`,
+      }}
+    >
+      {text}
+    </div>
   );
 };
 
@@ -395,9 +425,9 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
       <div style={FLEX_CENTER}>
         <Pill text={label} tilt={-2} />
         <div style={{height: 14}} />
-        <div style={{display: 'flex', gap: 34, alignItems: 'stretch'}}>
-          <ComparePanel ok neutral={compare.neutral} title={compare.leftTitle} items={compare.leftItems} delay={10} />
-          <ComparePanel neutral={compare.neutral} title={compare.rightTitle} items={compare.rightItems} delay={22} />
+        <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 26 : 34, alignItems: 'stretch'}}>
+          <ComparePanel ok stack={compare.stack} neutral={compare.neutral} title={compare.leftTitle} items={compare.leftItems} delay={10} />
+          <ComparePanel stack={compare.stack} neutral={compare.neutral} title={compare.rightTitle} items={compare.rightItems} delay={22} />
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={34} style={{right: 110, top: 520}} />
@@ -407,20 +437,20 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
   );
 };
 
-const ComparePanel: React.FC<{ok?: boolean; neutral?: boolean; title: string; items: string[]; delay: number}> = ({ok, neutral, title, items, delay}) => {
+const ComparePanel: React.FC<{ok?: boolean; neutral?: boolean; stack?: boolean; title: string; items: string[]; delay: number}> = ({ok, neutral, stack, title, items, delay}) => {
   const pop = usePop(delay);
   const col = neutral ? (ok ? BLUE : '#14B8A6') : ok ? BLUE : DANGER;
   return (
-    <div style={{flex: 1, background: '#fff', borderRadius: 38, padding: '0 0 28px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
+    <div style={{flex: stack ? 'none' : 1, background: '#fff', borderRadius: 38, padding: '0 0 28px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
       <div style={{background: col, color: '#fff', padding: '4px 0 0'}}>
         <LabelBox size={50} padX={20} padY={22} style={{display: 'flex', width: '100%'}}>
           {neutral ? '' : ok ? '✅ ' : '❌ '}{title}
         </LabelBox>
       </div>
-      <div style={{display: 'flex', flexDirection: 'column', gap: 18, padding: '26px 28px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
+      <div style={{display: 'flex', flexDirection: stack ? 'row' : 'column', flexWrap: stack ? 'wrap' : 'nowrap', gap: stack ? '14px 34px' : 18, padding: '26px 34px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
         {items.map((it, k) => (
-          <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: 36, lineHeight: 1.2}}>
-            <span style={{color: col, fontWeight: 900, fontSize: 40}}>{neutral ? '•' : ok ? '✓' : '✕'}</span>
+          <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: stack ? 42 : 36, lineHeight: 1.2, whiteSpace: 'nowrap'}}>
+            <span style={{color: col, fontWeight: 900, fontSize: stack ? 44 : 40}}>{neutral ? '•' : ok ? '✓' : '✕'}</span>
             <span>{it}</span>
           </div>
         ))}
@@ -474,8 +504,8 @@ const GridTile: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
 };
 
 const DECO_POS: Record<string, React.CSSProperties> = {
-  tl: {left: 70, top: 320},
-  tr: {right: 70, top: 320},
+  tl: {left: 70, top: 230},
+  tr: {right: 70, top: 230},
   bl: {left: 70, bottom: 300},
   br: {right: 70, bottom: 300},
 };

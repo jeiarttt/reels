@@ -68,15 +68,19 @@
       "label": "💸 청년이라면",
       "stat": {
         "big": "30%",
-        "sub": "교통비 환급\n만 19~34세\n월 15회 이상 이용",
+        "sub": "교통비 환급",
         "emoji": "🚇",
-        "gauge": 30
+        "gauge": 30,
+        "chips": [
+          "만 19~34세 청년",
+          "월 15회 이상 이용"
+        ]
       },
       "bg": {
         "src": "stock/simple-sky-pale.jpg"
       },
       "deco": "train",
-      "decoPos": "br"
+      "decoPos": "tr"
     },
     {
       "t": 3.6,
@@ -95,7 +99,8 @@
         "rightItems": [
           "줍줍 신용카드",
           "착붙 신용카드"
-        ]
+        ],
+        "stack": true
       },
       "bg": {
         "src": "stock/simple-bright-card-tap.jpg",
@@ -119,7 +124,7 @@
         "position": "0% 50%"
       },
       "deco": "phone",
-      "decoPos": "br"
+      "decoPos": "tr"
     }
   ],
   "ctaLabel": "💙 놓치기 전에 저장",

@@ -90,7 +90,7 @@
       },
       "tone": "dark",
       "deco": "cap",
-      "decoPos": "br"
+      "decoPos": "tr"
     },
     {
       "t": 3.6,
@@ -145,14 +145,17 @@
       "label": "🏠 청년 공공임대가 늘어요",
       "stat": {
         "big": "10.6만 호",
-        "sub": "청년 공공임대 공급\n신규 보편형의\n50% 이상은 청년",
-        "emoji": "🏠"
+        "sub": "청년 공공임대 공급",
+        "emoji": "🏠",
+        "chips": [
+          "신규 보편형의 50% 이상은 청년"
+        ]
       },
       "bg": {
         "src": "stock/simple-corner-sky.jpg"
       },
       "deco": "house",
-      "decoPos": "br"
+      "decoPos": "tr"
     }
   ],
   "ctaLabel": "💙 놓치기 전에 저장",

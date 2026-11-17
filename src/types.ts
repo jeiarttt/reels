@@ -12,9 +12,9 @@ export type Bg = {
 export type CardItem = {big: string; small?: string; /** 귀여운 테마의 카드 아이콘 */ emoji?: string};
 export type TableData = {head: string[]; rows: string[][]};
 /** 귀여운 테마 'stat' 컷: 큰 숫자 하나 (gauge 0~100 이면 고리 게이지) */
-export type StatData = {big: string; sub?: string; emoji?: string; gauge?: number};
+export type StatData = {big: string; sub?: string; emoji?: string; gauge?: number; /** 원 아래 알약(조건 문구) */ chips?: string[]};
 /** 귀여운 테마 'compare' 컷: 되는 것 / 안 되는 것 두 칸 비교 */
-export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: string; rightItems: string[]; /** true면 ✅/❌ 없이 두 대상을 나란히 보여줌 */ neutral?: boolean};
+export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: string; rightItems: string[]; /** true면 ✅/❌ 없이 두 대상을 나란히 보여줌 */ neutral?: boolean; /** true면 두 칸을 위아래로 쌓아 글자를 크게 */ stack?: boolean};
 
 export type Scene = {
   t: number;
