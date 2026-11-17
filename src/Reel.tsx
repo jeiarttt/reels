@@ -59,7 +59,7 @@ export const Reel: React.FC<{script: Script}> = ({script}) => {
         ) : kind === 'table' && s.table ? (
           <TableScene label={s.label} text={s.text} table={s.table} accent={accent} frames={frames} />
         ) : (
-          <TextScene label={s.label} text={s.text ?? ''} accent={accent} frames={frames} />
+          <TextScene label={s.label} text={s.text ?? ''} accent={accent} frames={frames} size={86} title />
         )}
       </Sequence>,
     );

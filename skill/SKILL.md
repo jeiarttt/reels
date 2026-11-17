@@ -49,13 +49,13 @@ description: 자막 카드뉴스형 인스타 릴스 대본(JSON)을 주제와 �
 - **사용자가 영상·이미지를 주면** 그 파일을 `public/user/`에 넣고, 전체를 바꾸려면 `backgroundSrc`, 장면별로 바꾸려면 해당 장면 `bg.src`를 "user/파일명"으로 지정한다. 사용자 파일이 스톡보다 항상 우선한다.
 
 ## 폰트 규칙
-- **큰 제목(첫 화면 `hook`, 마지막 화면 `cta`)은 히피체**, **본문·라벨·카드·표·면책 문구 같은 내용과 작은 정보성 글은 Pretendard**로 쓴다.
-- 히피체 제목은 자간 -1%(`letter-spacing: -0.01em`)를 적용한다. 히피체는 굵기가 하나(400)뿐이라, 굵게 보이도록 같은 색 외곽선(`-webkit-text-stroke: 0.035em currentColor`)을 얹는다. 제목 크기는 첫 화면 116px, 마지막 화면 102px. Pretendard는 400/700/800/900을 쓴다.
+- **모든 장면의 큰 제목 문구(첫 화면 `hook`, 중간 장면 `text`, 마지막 화면 `cta`, 카드·표 장면의 제목 `text`)는 히피체**, **라벨·카드 안 숫자와 설명·표 셀·면책 문구 같은 작은 정보성 글은 Pretendard**로 쓴다.
+- 히피체 제목은 자간 -1%(`letter-spacing: -0.01em`)를 적용한다. 히피체는 굵기가 하나(400)뿐이라, 굵게 보이도록 같은 색 외곽선(`-webkit-text-stroke: 0.035em currentColor`)을 얹는다. 제목 크기는 첫 화면 116px, 마지막 화면 102px, 중간 장면 86px(카드·표 제목 74px/72px). Pretendard는 400/700/800/900을 쓴다.
 - 폰트 파일은 `public/fonts/`에 둔다.
   - 히피체: `hippie.woff2` — `@font-face { font-family: 'Hippie'; src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/2610081905@hippie/hippie/hippie_히피체.woff2') format('woff2'); font-weight: 400; }` 에서 받은 파일 (주소의 한글은 `%ED%9E%88%ED%94%BC%EC%B2%B4`로 인코딩해서 받는다)
   - Pretendard: npm `pretendard` 패키지의 `dist/web/static/woff2/Pretendard-{Regular,Bold,ExtraBold,Black}.woff2`
 - 라이선스: 히피체는 SIL OFL 1.1(눈누 안내 기준 개인·상업 이용 무료, © AI올컷), Pretendard는 SIL OFL 1.1. 영상에 쓰는 것은 문제없지만 **폰트 파일을 저장소·배포물에 포함할 때는 저작권 고지와 라이선스를 함께 둔다**(`public/fonts/*-LICENSE.txt`). 폰트 파일 단독 판매·본인 제작처럼 재배포는 금지.
-- 장면 본문 큰 글씨(`text`)는 Pretendard ExtraBold(800). 히피체로 바꾸고 싶은 제목이 있으면 사용자에게 먼저 확인한다.
+- 중간 장면 문구도 히피체다. 한 줄이 길면(공백 포함 14자 초과) 화면 폭 920px를 넘길 수 있으니 `\n`으로 나눈다.
 
 ## 세로 위치
 - 모든 장면의 내용 블록은 화면 정중앙보다 **약 70px 위**에 둔다(하단 `padding-bottom: 140px`). 하단 면책 문구·플랫폼 UI와 겹치지 않게 하기 위해서다.

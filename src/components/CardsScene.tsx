@@ -24,7 +24,7 @@ export const CardsScene: React.FC<{
             text={text}
             accent={accent}
             startFrame={6}
-            style={{color: '#fff', fontWeight: 900, fontSize: 60, lineHeight: 1.35, marginBottom: 48, textShadow: '0 4px 24px rgba(0,0,0,.5)'}}
+            style={{color: '#fff', fontFamily: "'Hippie', 'Pretendard', sans-serif", fontWeight: 400, WebkitTextStroke: '0.035em currentColor', letterSpacing: '-0.01em', fontSize: 74, lineHeight: 1.35, marginBottom: 48, textShadow: '0 4px 24px rgba(0,0,0,.5)'}}
           />
         )}
         <div style={{display: 'flex', flexDirection: 'column', gap: 26}}>

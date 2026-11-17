@@ -37,7 +37,7 @@ export const TableScene: React.FC<{
             text={text}
             accent={accent}
             startFrame={6}
-            style={{color: '#fff', fontWeight: 900, fontSize: 58, lineHeight: 1.35, marginBottom: 44, textShadow: '0 4px 24px rgba(0,0,0,.5)'}}
+            style={{color: '#fff', fontFamily: "'Hippie', 'Pretendard', sans-serif", fontWeight: 400, WebkitTextStroke: '0.035em currentColor', letterSpacing: '-0.01em', fontSize: 72, lineHeight: 1.35, marginBottom: 44, textShadow: '0 4px 24px rgba(0,0,0,.5)'}}
           />
         )}
         <div style={{borderRadius: 32, overflow: 'hidden', border: '2px solid rgba(255,255,255,0.28)', background: 'rgba(8,12,28,0.55)'}}>
