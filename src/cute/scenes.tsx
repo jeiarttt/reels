@@ -154,17 +154,14 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, 
         <div
           style={{
             position: 'relative',
-            background: PAPER,
-            borderRadius: 14,
+            background: '#fff',
+            borderRadius: 34,
             boxShadow: PAPER_SHADOW,
             transform: `translateY(${(1 - head) * 44}px) rotate(-1deg)`,
             opacity: Math.min(head, 1),
           }}
         >
-          <Washi style={{left: 36, top: -26}} rotate={-6} />
-          <Washi style={{right: 36, top: -26}} rotate={5} tone="yellow" w={150} />
-          <NumTag n={index} style={{left: -22, top: -44}} />
-          <div style={{display: 'flex', justifyContent: 'center', gap: 22, padding: '40px 0 0'}}>
+          <div style={{display: 'flex', justifyContent: 'center', gap: 22, padding: '34px 0 0'}}>
             {Array.from({length: 7}).map((_, k) => (
               <div key={k} style={{width: 24, height: 24, borderRadius: '50%', background: '#cfd8f0', boxShadow: 'inset 0 3px 5px rgba(20,30,80,0.35)'}} />
             ))}
@@ -398,8 +395,8 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
         <Pill text={label} tilt={-2} />
         <div style={{height: 14}} />
         <div style={{display: 'flex', gap: 34, alignItems: 'stretch'}}>
-          <ComparePanel ok title={compare.leftTitle} items={compare.leftItems} delay={10} />
-          <ComparePanel title={compare.rightTitle} items={compare.rightItems} delay={22} />
+          <ComparePanel ok neutral={compare.neutral} title={compare.leftTitle} items={compare.leftItems} delay={10} />
+          <ComparePanel neutral={compare.neutral} title={compare.rightTitle} items={compare.rightItems} delay={22} />
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={34} style={{right: 110, top: 520}} />
@@ -409,20 +406,20 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
   );
 };
 
-const ComparePanel: React.FC<{ok?: boolean; title: string; items: string[]; delay: number}> = ({ok, title, items, delay}) => {
+const ComparePanel: React.FC<{ok?: boolean; neutral?: boolean; title: string; items: string[]; delay: number}> = ({ok, neutral, title, items, delay}) => {
   const pop = usePop(delay);
-  const col = ok ? BLUE : DANGER;
+  const col = neutral ? (ok ? BLUE : '#14B8A6') : ok ? BLUE : DANGER;
   return (
     <div style={{flex: 1, background: '#fff', borderRadius: 38, padding: '0 0 28px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
       <div style={{background: col, color: '#fff', padding: '4px 0 0'}}>
         <LabelBox size={50} padX={20} padY={22} style={{display: 'flex', width: '100%'}}>
-          {ok ? '✅' : '❌'} {title}
+          {neutral ? '' : ok ? '✅ ' : '❌ '}{title}
         </LabelBox>
       </div>
       <div style={{display: 'flex', flexDirection: 'column', gap: 18, padding: '26px 28px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
         {items.map((it, k) => (
           <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: 36, lineHeight: 1.2}}>
-            <span style={{color: col, fontWeight: 900, fontSize: 40}}>{ok ? '✓' : '✕'}</span>
+            <span style={{color: col, fontWeight: 900, fontSize: 40}}>{neutral ? '•' : ok ? '✓' : '✕'}</span>
             <span>{it}</span>
           </div>
         ))}

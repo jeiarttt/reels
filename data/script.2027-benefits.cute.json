@@ -1,0 +1,182 @@
+{
+  "id": "20261117-2027-청년혜택-6가지-cute",
+  "mode": "card_news",
+  "theme": "cute",
+  "style": "photo",
+  "backgroundSrc": "",
+  "brand": "2030 상경러 · 청년 혜택",
+  "hookSec": 2.4,
+  "ctaSec": 2.2,
+  "hookLabel": "📣 2027 예산안 기준",
+  "hook": "2027 청년 혜택\n[[6가지]] 정리했어요",
+  "hookBg": {
+    "src": "stock/simple-bright-sky-lamp.jpg",
+    "position": "50% 50%"
+  },
+  "hookSticker": "kitten-orange",
+  "hookSfx": "두근!",
+  "scenes": [
+    {
+      "t": 3.8,
+      "kind": "table",
+      "label": "💰 청년미래적금, 오를 예정이에요",
+      "table": {
+        "head": [
+          "구분",
+          "기여금"
+        ],
+        "rows": [
+          [
+            "우대형",
+            "12% → 15%\n월 최대 7.5만 원"
+          ],
+          [
+            "지방 중소 재직",
+            "납입금의 25% 지원"
+          ]
+        ]
+      },
+      "bg": {
+        "src": "stock/simple-sky-pale.jpg"
+      }
+    },
+    {
+      "t": 3.8,
+      "kind": "grid",
+      "label": "🎭 청년문화패스 확대 예정",
+      "cards": [
+        {
+          "big": "만 19~34세",
+          "small": "확대 예정",
+          "emoji": "🙋"
+        },
+        {
+          "big": "영화·도서·체육",
+          "small": "사용 분야 확대",
+          "emoji": "🎬"
+        },
+        {
+          "big": "수도권 10만 원",
+          "small": "국비 기준",
+          "emoji": "💸"
+        },
+        {
+          "big": "비수도권 15만 원",
+          "small": "국비 기준",
+          "emoji": "💸"
+        }
+      ],
+      "bg": {
+        "src": "stock/simple-bright-card-tap.jpg",
+        "position": "35% 50%"
+      }
+    },
+    {
+      "t": 3.0,
+      "kind": "stat",
+      "label": "🎓 첫경력 프로젝트",
+      "stat": {
+        "big": "6만 명",
+        "sub": "대학생 인턴학기\n학점 인정",
+        "emoji": "🎓"
+      },
+      "bg": {
+        "src": "stock/simple-bright-iphone-white.jpg",
+        "position": "0% 50%"
+      },
+      "tone": "dark"
+    },
+    {
+      "t": 3.6,
+      "kind": "compare",
+      "label": "💼 취업지원이 늘어나요",
+      "compare": {
+        "leftTitle": "청년",
+        "leftItems": [
+          "K-뉴딜 아카데미",
+          "1만 → 5만 명"
+        ],
+        "rightTitle": "채용 기업",
+        "rightItems": [
+          "최대 720만 원",
+          "지원금 지급"
+        ],
+        "neutral": true
+      },
+      "bg": {
+        "src": "stock/simple-sky-deep.jpg"
+      },
+      "sticker": "chihuahua",
+      "sfx": "잠깐!"
+    },
+    {
+      "t": 3.2,
+      "kind": "cards",
+      "label": "🎒 지방대 장학금이 늘어요",
+      "cards": [
+        {
+          "big": "등록금 전액",
+          "small": "국립대 4년간",
+          "emoji": "🎓"
+        },
+        {
+          "big": "4천 → 1만 명",
+          "small": "지역인재장학금",
+          "emoji": "✨"
+        }
+      ],
+      "bg": {
+        "src": "stock/simple-cloud-teal.jpg"
+      }
+    },
+    {
+      "t": 3.0,
+      "kind": "stat",
+      "label": "🏠 청년 공공임대가 늘어요",
+      "stat": {
+        "big": "10.6만 호",
+        "sub": "청년 공공임대 공급\n신규 보편형의\n50% 이상은 청년",
+        "emoji": "🏠"
+      },
+      "bg": {
+        "src": "stock/simple-corner-sky.jpg"
+      }
+    }
+  ],
+  "ctaLabel": "💙 놓치기 전에 저장",
+  "cta": "2027 혜택 6가지\n[[저장]]해 두세요",
+  "ctaBg": {
+    "src": "stock/simple-bright-sky-lamp.jpg",
+    "position": "80% 50%"
+  },
+  "ctaSticker": "hamster-snack",
+  "ctaSfx": "저장!",
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "caption": "내년에 청년이라면 챙겨볼 만한 6가지를 모았어요 💙 모두 2027년 정부 예산안 기준이라, 국회 심의(12월 초 확정 예정)를 거쳐 달라질 수 있어요.\n\n💰 청년미래적금: 우대형 기여금 12%→15%(월 최대 7.5만 원), 지방 소재 중소기업에 재직 중인 청년은 본인 납입금의 25% 지원(금융위 예산안 기준)\n🎭 청년문화패스: 만 19~34세로 확대, 매년 지원받는 안. 지원액은 수도권 10만 원·비수도권 15만 원 안(지금보다 금액은 줄어든 안이에요), 영화·도서·체육활동까지\n🎓 대학생 6만 명 대상 첫 경력 프로젝트(인턴학기)\n💼 K-뉴딜 아카데미 1만 명→5만 명 확대. 청년 채용 기업 지원금 최대 720만 원은 기업에 지급돼요\n🎒 지방국립대 신입생 4년간 등록금 전액 지원, 지방 사립대 지역인재장학금 4천 명→1만 명\n🏠 새로 도입하는 보편형 공공임대 물량의 50% 이상을 청년층에 공급할 계획\n\n(2026년 11월 기준 · 예산안이라 변경될 수 있어요)",
+  "hashtags": [
+    "#청년혜택",
+    "#2027예산안",
+    "#청년미래적금",
+    "#상경러",
+    "#청년문화패스"
+  ],
+  "sources": [
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148970791",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148971276",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148971501",
+    "https://www.fsc.go.kr/no010101/87627",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148972497"
+  ],
+  "verify_before_post": [
+    "공식 기관(정책브리핑·금융위) 페이지가 검색 결과로 확인된 내용이며, 원문은 이 환경에서 직접 열람하지 못함",
+    "전부 2027년 정부 예산안 기준. 국회 확정(12월 초 예정) 후 달라질 수 있음",
+    "청년문화패스 지원액(수도권 10만/비수도권 15만)은 현행보다 낮아 영상에서 뺌",
+    "720만 원은 기업 지원금(청년 개인 아님)이며 K-뉴딜 5만 명 수치는 출처가 엇갈려 뺌",
+    "Pexels 사진·스티커 라이선스 고지 파일 동봉",
+    "청년 공공임대 7.1만→10.6만 호, 월 최대 6만→7.5만 원, 지역인재장학금 4천→1만 명, 인턴학기 학점 인정, 체육활동: 공식 보도 문장 대조 완료(원문 직접 열람은 못 함)",
+    "원문 직접 확인(2026-11-17): 금융위 보도자료(fsc.go.kr/no010101/87627) '지방 소재 중소기업에 재직 중인 청년이 청년미래적금을 가입할 경우 본인 납입금의 25%를 지원', 우대형 12%→15%(월 최대 6만→7.5만원), 소급 적용 계획. 정책브리핑(148970791) '새로 도입하는 양질의 보편형 공공임대주택 물량 가운데 50% 이상을 청년층에 공급'. 정책브리핑(148970973) '청년 공공임대주택 10만 6000호를 공급'",
+    "'지금 7.1만 호'는 원문에서 못 찾아 영상에서 뺌. 25%는 '비수도권'이 아니라 '지방 소재 중소기업' 표현으로 통일"
+  ],
+  "bgDim": 0.14
+}

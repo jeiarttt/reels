@@ -14,7 +14,7 @@ export type TableData = {head: string[]; rows: string[][]};
 /** 귀여운 테마 'stat' 컷: 큰 숫자 하나 (gauge 0~100 이면 고리 게이지) */
 export type StatData = {big: string; sub?: string; emoji?: string; gauge?: number};
 /** 귀여운 테마 'compare' 컷: 되는 것 / 안 되는 것 두 칸 비교 */
-export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: string; rightItems: string[]};
+export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: string; rightItems: string[]; /** true면 ✅/❌ 없이 두 대상을 나란히 보여줌 */ neutral?: boolean};
 
 export type Scene = {
   t: number;
