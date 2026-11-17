@@ -14,7 +14,7 @@ export const Background: React.FC<{bg?: Bg; frames: number; dim?: number}> = ({b
     extrapolateRight: 'clamp',
   });
 
-  const fill: React.CSSProperties = {width: '100%', height: '100%', objectFit: 'cover'};
+  const fill: React.CSSProperties = {width: '100%', height: '100%', objectFit: 'cover', objectPosition: bg?.position ?? 'center'};
 
   return (
     <AbsoluteFill style={{opacity: fade, backgroundColor: '#0b1020'}}>

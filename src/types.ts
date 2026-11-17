@@ -5,6 +5,8 @@ export type Bg = {
   type?: 'image' | 'video';
   /** 영상 재생 시작 지점(초) */
   startFrom?: number;
+  /** 세로로 잘릴 때 보여줄 위치. 예: "68% 50%" (기본 가운데) */
+  position?: string;
 };
 
 export type CardItem = {big: string; small?: string};
