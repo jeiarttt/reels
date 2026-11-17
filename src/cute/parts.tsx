@@ -228,7 +228,7 @@ const DOODLES: Record<DoodleKind, {d: string; vb: string}> = {
   star: {d: 'M50 10 L61 38 L91 40 L68 59 L76 88 L50 72 L24 88 L32 59 L9 40 L39 38Z', vb: '0 0 100 100'},
 };
 
-/** 손으로 그린 듯한 흰 선 낙서. 그려지듯 나타난다 */
+/** 손으로 그린 듯한 흰 선 낙서. 선을 그리는 효과 대신 부드럽게 커지며 나타난다(점·깨짐 방지) */
 export const Doodle: React.FC<{kind: DoodleKind; size?: number; rotate?: number; delay?: number; style?: React.CSSProperties}> = ({
   kind,
   size = 96,
@@ -237,17 +237,24 @@ export const Doodle: React.FC<{kind: DoodleKind; size?: number; rotate?: number;
   style,
 }) => {
   const frame = useCurrentFrame();
-  const p = interpolate(frame, [delay, delay + 14], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
-  const wob = Math.sin(frame / 12 + delay) * 3;
+  const {fps} = useVideoConfig();
+  const pop = Math.max(spring({frame: frame - delay, fps, config: {damping: 14, stiffness: 120}}), 0);
   const dd = DOODLES[kind];
   return (
     <svg
       viewBox={dd.vb}
       width={size}
       height={size}
-      style={{position: 'absolute', overflow: 'visible', transform: `rotate(${rotate + wob}deg)`, filter: 'drop-shadow(0 3px 6px rgba(10,20,60,0.4))', ...style}}
+      style={{
+        position: 'absolute',
+        overflow: 'visible',
+        opacity: Math.min(pop * 1.4, 1),
+        transform: `rotate(${rotate}deg) scale(${0.6 + 0.4 * pop})`,
+        filter: 'drop-shadow(0 3px 6px rgba(10,20,60,0.4))',
+        ...style,
+      }}
     >
-      <path d={dd.d} pathLength={1} fill="none" stroke="#fff" strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={1} strokeDashoffset={1 - p} />
+      <path d={dd.d} fill="none" stroke="#fff" strokeWidth={9} strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 };

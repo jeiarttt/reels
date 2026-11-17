@@ -1,7 +1,7 @@
 import React from 'react';
 import {Easing, interpolate, useCurrentFrame} from 'remotion';
 import {parse} from '../components/Words';
-import {BLUE, TITLE_FONT} from './theme';
+import {BLUE, HILITE, TITLE_FONT} from './theme';
 
 type Seg = {text: string; accent: boolean; word: number};
 
@@ -117,7 +117,7 @@ export const RawTitle: React.FC<{text: string; size?: number; startFrame?: numbe
                     whiteSpace: 'pre',
                     opacity: p,
                     transform: `translateY(${(1 - p) * 24}px)`,
-                    ...(sg.accent ? {background: BLUE, borderRadius: 26, padding: '0 22px 8px', margin: '0 6px', textShadow: 'none'} : {}),
+                    ...(sg.accent ? {color: HILITE} : {}),
                   }}
                 >
                   {sg.accent ? sg.text.trim() : sg.text}

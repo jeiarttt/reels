@@ -15,3 +15,6 @@ export const PAPER = '#FFFDF4'; // 크림색 종이
 export const POSTIT = '#FFF0A0'; // 포스트잇 노랑
 export const MARKER = 'rgba(255,226,64,0.78)'; // 형광펜 노랑
 export const PAPER_SHADOW = '0 18px 40px rgba(20,30,80,0.30)';
+
+// 큰 글자 강조색 (어두운 사진 위에서 잘 읽히는 버터 옐로우)
+export const HILITE = '#FFE45C';
