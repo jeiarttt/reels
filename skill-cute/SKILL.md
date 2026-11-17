@@ -36,6 +36,7 @@ description: 귀여운 스타일의 인스타 릴스 카드뉴스(JSON 대본 + 
 9. 렌더 후 화면 검수와 내용 검수를 하고 결과를 보고한다.
 10. 귀여운 버전 전용 Notion DB에 완료 처리(`references/notion.md`). **기본 버전 DB에는 쓰지 않는다.**
 11. **영상을 보낼 때마다 마지막에 항상** 아래 둘을 함께 전달한다(`references/handoff.md`): ① **커버 이미지**(`./scripts/make-cover.sh <id> data/script.cute.json`로 만든 PNG를 파일로 전송) ② **게시글(캡션) 핵심 몇 줄**과 올리기 전 확인할 것 2~3개.
+12. **총정리 페이지**(릴스 뒤 자동 DM·리틀리 링크용): 영상 주제에 나온 항목만, 신청 방법·조건·일정·자주 묻는 질문을 사실만으로 모아 Notion 하위 페이지로 만든다(`references/summary-guide.md`). 영상·커버·게시글과 함께 항상 마지막에 전달한다.
 
 ## 대본 JSON 추가 항목 (기본 포맷에 더해)
 - `theme`: "cute" (필수)
@@ -53,6 +54,7 @@ description: 귀여운 스타일의 인스타 릴스 카드뉴스(JSON 대본 + 
 | 스티커를 고르고 쓰고 만들 때 | `references/stickers.md` |
 | **렌더 직전 최종 검수(사실·문구)** | `references/final-review.md` |
 | 영상 전달 때 커버·게시글 정리 | `references/handoff.md` |
+| 영상 뒤 총정리 페이지 | `references/summary-guide.md` |
 | 렌더 후 Notion 완료 처리 | `references/notion.md` |
 | 깃 작업 규칙 | `references/git.md` |
 

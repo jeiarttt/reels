@@ -25,6 +25,7 @@ description: 자막 카드뉴스형 인스타 릴스 대본(JSON)을 주제와 �
 7. `verify_before_post`로 게시 전에 사람이 확인할 항목을 낸다.
 8. 렌더까지 끝나면 Notion 행을 '제작완료'로 바꾸고 대본·캡션·검수 목록을 정리한다(Notion을 쓸 수 있을 때, `references/notion.md`).
 9. **영상을 보낼 때마다 마지막에 항상** 커버 이미지(`./scripts/make-cover.sh <id> data/script.json`)와 게시글(캡션) 핵심 3~5줄, 올리기 전 확인할 것 2~3개를 함께 전달한다.
+10. **총정리 페이지**: 릴스 뒤 자동 DM 링크용으로, 영상에 나온 항목만 신청 방법·조건·일정·자주 묻는 질문을 사실만으로 모은 Notion 하위 페이지를 마지막에 만든다(자세한 기준은 `skill-cute/references/summary-guide.md`).
 
 ## 장면 구성 패턴
 - 정보·혜택형: 후킹 → 핵심 조건 3~4개 → 신청·확인 방법 → CTA
