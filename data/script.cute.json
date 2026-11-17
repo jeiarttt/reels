@@ -10,8 +10,7 @@
   "hookLabel": "📣 2027 예산안 기준",
   "hook": "2027 청년 혜택\n[[6가지]] 정리했어요",
   "hookBg": {
-    "src": "stock/lifestyle-monstera-window.jpg",
-    "position": "62% 50%"
+    "src": "stock/simple-sky-blue.jpg"
   },
   "hookSticker": "kitten-orange",
   "hookSfx": "두근!",
@@ -38,7 +37,7 @@
         }
       ],
       "bg": {
-        "src": "stock/lifestyle-plant-window.jpg"
+        "src": "stock/simple-sky-pale.jpg"
       }
     },
     {
@@ -47,7 +46,7 @@
       "label": "🎭 청년문화패스",
       "text": "[[만 19~34세]]까지\n매년 받는 안이에요\n체육활동도 쓸 수 있어요",
       "bg": {
-        "src": "stock/lifestyle-desk-notebook.jpg"
+        "src": "stock/simple-sky-deep.jpg"
       }
     },
     {
@@ -56,7 +55,7 @@
       "label": "🎓 첫경력 프로젝트",
       "text": "대학생 6만 명이\n학점 인정 인턴학기로\n첫 경력을 쌓아요",
       "bg": {
-        "src": "stock/lifestyle-warm-curtain.jpg"
+        "src": "stock/simple-desk-gray.jpg"
       }
     },
     {
@@ -76,7 +75,7 @@
         }
       ],
       "bg": {
-        "src": "stock/lifestyle-window-plants-street.jpg"
+        "src": "stock/simple-desk-white.jpg"
       },
       "sticker": "chihuahua",
       "sfx": "잠깐!"
@@ -98,7 +97,7 @@
         }
       ],
       "bg": {
-        "src": "stock/lifestyle-plant-window.jpg"
+        "src": "stock/simple-cloud-teal.jpg"
       }
     },
     {
@@ -118,15 +117,14 @@
         }
       ],
       "bg": {
-        "src": "stock/lifestyle-warm-curtain.jpg"
+        "src": "stock/simple-corner-sky.jpg"
       }
     }
   ],
   "ctaLabel": "💙 놓치기 전에 저장",
   "cta": "2027 혜택 6가지\n[[저장]]해 두세요",
   "ctaBg": {
-    "src": "stock/lifestyle-monstera-window.jpg",
-    "position": "62% 50%"
+    "src": "stock/simple-sky-blue.jpg"
   },
   "ctaSticker": "hamster-snack",
   "ctaSfx": "저장!",
