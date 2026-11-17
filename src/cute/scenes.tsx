@@ -42,9 +42,11 @@ export const CuteCover: React.FC<{
               color: BLUE,
               border: `5px solid ${BLUE}`,
               borderRadius: 999,
-              padding: '10px 34px',
-              fontSize: 36,
-              fontWeight: 900,
+              padding: '8px 36px 14px',
+              fontFamily: TITLE_FONT,
+              fontSize: 42,
+              fontWeight: 400,
+              letterSpacing: '-0.01em',
               boxShadow: '0 8px 18px rgba(20,40,120,0.2)',
             }}
           >
@@ -273,9 +275,11 @@ export const CuteCta: React.FC<Common & {text: string}> = ({index, total, frames
                 color: BLUE,
                 border: `6px solid ${BLUE}`,
                 borderRadius: 999,
-                padding: '16px 52px',
-                fontSize: 54,
-                fontWeight: 900,
+                padding: '12px 56px 20px',
+                fontFamily: TITLE_FONT,
+                fontSize: 62,
+                fontWeight: 400,
+                letterSpacing: '-0.01em',
                 boxShadow: SOFT_SHADOW,
               }}
             >

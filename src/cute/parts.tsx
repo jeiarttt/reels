@@ -105,10 +105,11 @@ export const Pill: React.FC<{text?: string; tilt?: number}> = ({text, tilt = -2}
           color: BLUE,
           border: `5px solid ${BLUE}`,
           borderRadius: 999,
-          padding: '10px 36px',
-          fontSize: 42,
-          fontWeight: 900,
-          letterSpacing: -0.5,
+          padding: '8px 38px 14px',
+          fontFamily: TITLE_FONT,
+          fontSize: 50,
+          fontWeight: 400,
+          letterSpacing: '-0.01em',
           boxShadow: '0 8px 20px rgba(20,40,120,0.2)',
         }}
       >
