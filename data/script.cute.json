@@ -1,0 +1,121 @@
+{
+  "id": "20261117-청년미래적금-2차-cute",
+  "mode": "card_news",
+  "theme": "cute",
+  "style": "photo",
+  "backgroundSrc": "",
+  "brand": "2030 상경러 · 청년 혜택",
+  "hookSec": 3,
+  "ctaSec": 3.5,
+  "hookLabel": "📣 계좌 개설 마감 임박",
+  "hook": "청년미래적금 2차\n[[11월 27일]]까지!",
+  "hookBg": {
+    "src": "stock/lifestyle-monstera-window.jpg",
+    "position": "62% 50%"
+  },
+  "hookSticker": "cat-shocked",
+  "hookSfx": "헉!",
+  "scenes": [
+    {
+      "t": 3.5,
+      "kind": "text",
+      "label": "💌 대상은요",
+      "text": "심사 통과한 분만\n개설할 수 있어요",
+      "bg": {
+        "src": "stock/lifestyle-plant-window.jpg"
+      }
+    },
+    {
+      "t": 4.5,
+      "kind": "cards",
+      "label": "✅ 핵심 조건",
+      "cards": [
+        {
+          "big": "만 19~34세",
+          "small": "가입 대상",
+          "emoji": "🙋"
+        },
+        {
+          "big": "월 최대 50만 원",
+          "small": "납입 한도",
+          "emoji": "💸"
+        },
+        {
+          "big": "3년",
+          "small": "만기",
+          "emoji": "⏳"
+        }
+      ],
+      "bg": {
+        "src": "stock/lifestyle-desk-notebook.jpg"
+      }
+    },
+    {
+      "t": 4,
+      "kind": "table",
+      "label": "📅 일정",
+      "table": {
+        "head": [
+          "단계",
+          "기간"
+        ],
+        "rows": [
+          [
+            "심사",
+            "10월 19일~11월 13일"
+          ],
+          [
+            "계좌 개설",
+            "11월 16일~27일"
+          ]
+        ]
+      },
+      "bg": {
+        "src": "stock/lifestyle-warm-curtain.jpg"
+      }
+    },
+    {
+      "t": 3.5,
+      "kind": "text",
+      "label": "⚠️ 갈아탈 땐",
+      "text": "[[해지 방식]]에 따라\n혜택이 달라져요",
+      "bg": {
+        "src": "stock/lifestyle-window-plants-street.jpg"
+      },
+      "sticker": "chihuahua",
+      "sfx": "잠깐!"
+    }
+  ],
+  "ctaLabel": "💙 저장 필수",
+  "cta": "[[저장]]하고\n마감 전에 개설!",
+  "ctaBg": {
+    "src": "stock/lifestyle-monstera-window.jpg",
+    "position": "62% 50%"
+  },
+  "ctaSticker": "dog-happy",
+  "ctaSfx": "화이팅!",
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "disclaimer_overlay": "2026년 11월 기준 · 변경될 수 있어요",
+  "caption": "마감 날짜는 두근두근 😳 2차 심사를 통과했다면 계좌 개설은 11월 27일까지예요! 갈아탈 때는 해지 방식에 따라 혜택이 달라질 수 있으니 꼭 확인하세요 💙\n(2026년 11월 기준 · 변경될 수 있어요)",
+  "hashtags": [
+    "#청년미래적금",
+    "#2030재테크",
+    "#상경러",
+    "#청년혜택",
+    "#적금"
+  ],
+  "sources": [
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148973168",
+    "https://biz.sbs.co.kr/amp/article/20000337472",
+    "https://gobang.kr/contents/8221"
+  ],
+  "verify_before_post": [
+    "계좌 개설 11월 16일~27일, 가입 심사 10월 19일~11월 13일 (공식 공지로 재확인. 이 작업에서는 언론 보도로만 확인, korea.kr 열람 못 함)",
+    "가입 대상 만 19~34세, 월 최대 50만 원, 3년 (공식 공지로 재확인)",
+    "갈아타기: 해지 방식에 따라 혜택이 달라질 수 있다는 내용을 단정 없이 표현했는지 확인",
+    "6%·12%(금리인지 기여금인지 출처마다 다름)와 소득요건은 영상에서 제외함",
+    "게시일 기준 마감(11월 27일)이 지나지 않았는지 확인",
+    "스티커 사진은 Pexels(상업 이용 가능)를 오려서 사용 / 히피체·Pretendard(SIL OFL 1.1) 고지 파일 동봉"
+  ]
+}

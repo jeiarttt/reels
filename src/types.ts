@@ -9,13 +9,16 @@ export type Bg = {
   position?: string;
 };
 
-export type CardItem = {big: string; small?: string};
+export type CardItem = {big: string; small?: string; /** 귀여운 테마의 카드 아이콘 */ emoji?: string};
 export type TableData = {head: string[]; rows: string[][]};
 
 export type Scene = {
   t: number;
   kind?: 'text' | 'cards' | 'table';
   label?: string;
+  /** 귀여운 테마: stickers/ 안 파일 이름(확장자 제외)과 의성어 태그 */
+  sticker?: string;
+  sfx?: string;
   text?: string;
   cards?: CardItem[];
   table?: TableData;
@@ -25,6 +28,15 @@ export type Scene = {
 export type Script = {
   id: string;
   mode: 'card_news';
+  /** 'cute' 면 귀여운 디자인(스티커·말풍선·이모지 카드)으로 렌더 */
+  theme?: 'cute';
+  /** 표지·마지막 화면 길이(초). 기본 3.5 / 4 */
+  hookSec?: number;
+  ctaSec?: number;
+  hookSticker?: string;
+  hookSfx?: string;
+  ctaSticker?: string;
+  ctaSfx?: string;
   style?: 'photo';
   /** 내가 준 이미지/영상으로 전체 배경을 덮어쓸 때. public/user/ 에 넣고 "user/파일명" */
   backgroundSrc?: string;

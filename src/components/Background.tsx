@@ -6,7 +6,7 @@ const isVideo = (bg: Bg) =>
   bg.type ? bg.type === 'video' : /\.(mp4|mov|webm|m4v)$/i.test(bg.src);
 
 /** 배경 사진/영상 + 천천히 확대(켄 번즈) + 가독성용 어두운 오버레이 */
-export const Background: React.FC<{bg?: Bg; frames: number; dim?: number}> = ({bg, frames, dim = 0.55}) => {
+export const Background: React.FC<{bg?: Bg; frames: number; dim?: number; veil?: number}> = ({bg, frames, dim = 0.55, veil = 0}) => {
   const frame = useCurrentFrame();
   const scale = interpolate(frame, [0, frames], [1.0, 1.09], {extrapolateRight: 'clamp'});
   const fade = interpolate(frame, [0, 8, frames - 8, frames], [0, 1, 1, 0], {
@@ -35,6 +35,7 @@ export const Background: React.FC<{bg?: Bg; frames: number; dim?: number}> = ({b
           )}) 100%)`,
         }}
       />
+      {veil > 0 && <AbsoluteFill style={{background: `rgba(255,255,255,${veil})`}} />}
     </AbsoluteFill>
   );
 };

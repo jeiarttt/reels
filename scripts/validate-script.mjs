@@ -131,13 +131,38 @@ if (yearInHook && bodyTexts.join(' ').match(/미공고/)) err(`후킹이 ${yearI
 const all = [s.hook, s.caption, ...bodyTexts].join(' ');
 for (const f of FORBIDDEN) if (all.includes(f)) err(`금지·과장 표현 "${f}" 이 들어 있어요`);
 const emoji = /\p{Extended_Pictographic}/u;
-(s.scenes ?? []).forEach((sc, i) => {
-  if (emoji.test([sc.text, sc.label].join(' '))) warn(`scenes[${i}]: 이모지는 첫 화면과 캡션에서만 써요`);
-});
-if (emoji.test(s.cta ?? '')) warn('cta 에 이모지가 있어요');
+if (s.theme !== 'cute') {
+  (s.scenes ?? []).forEach((sc, i) => {
+    if (emoji.test([sc.text, sc.label].join(' '))) warn(`scenes[${i}]: 이모지는 첫 화면과 캡션에서만 써요`);
+  });
+  if (emoji.test(s.cta ?? '')) warn('cta 에 이모지가 있어요');
+}
 const hl = ([s.hook, ...bodyTexts].join(' ').match(/\[\[/g) ?? []).length;
 if (hl > 3) err(`[[ ]] 강조가 ${hl}곳이에요. 전체 3곳 이내로 줄여요 (핵심 숫자·단어만)`);
 if ((all.match(/\[\[/g) ?? []).length !== (all.match(/\]\]/g) ?? []).length) err('[[ ]] 짝이 맞지 않아요');
+
+// ── 귀여운 테마: 컷당 글자를 최소로 (첫 컷이 가장 중요) ──
+if (s.theme === 'cute') {
+  const count = (t = '') => [...strip(t).replace(/\s+/g, '')].length;
+  const hookN = count(s.hook);
+  if (hookN > 18) warn(`[귀여운] 표지 제목이 ${hookN}자예요. 1초 안에 읽히게 18자 이내로 줄여요`);
+  if (lines(s.hook).length > 2) warn('[귀여운] 표지 제목은 2줄 이내가 좋아요');
+  if (count(s.cta) > 16) warn(`[귀여운] 마지막 화면 문구가 ${count(s.cta)}자예요 (16자 이내)`);
+  (s.scenes ?? []).forEach((sc, i) => {
+    if (sc.text && count(sc.text) > 16) warn(`[귀여운] scenes[${i}] 문구가 ${count(sc.text)}자예요. 컷당 16자 이내로 줄여요`);
+    (sc.cards ?? []).forEach((c, k) => {
+      if ([...(c.big ?? '')].length > 10) warn(`[귀여운] scenes[${i}].cards[${k}].big 이 10자를 넘어요`);
+      if ([...(c.small ?? '')].length > 7) warn(`[귀여운] scenes[${i}].cards[${k}].small 이 7자를 넘어요`);
+    });
+    if (sc.table && sc.table.rows.length > 3) warn(`[귀여운] scenes[${i}] 표는 3행 이내가 좋아요`);
+  });
+  if (!s.hookSticker) warn('[귀여운] 표지 스티커(hookSticker)가 없어요');
+  const stickers = [s.hookSticker, ...(s.scenes ?? []).map((x) => x.sticker), s.ctaSticker].filter(Boolean);
+  if (stickers.length > 3) warn(`[귀여운] 스티커가 ${stickers.length}개예요. 필요하거나 강조할 곳에만, 3개 이내로 써요`);
+  if (new Set(stickers).size !== stickers.length) warn('[귀여운] 같은 스티커를 여러 번 쓰고 있어요');
+  const total = (s.hookSec ?? 3.5) + (s.scenes ?? []).reduce((a, b) => a + (b.t ?? 0), 0) + (s.ctaSec ?? 4);
+  if (total > 28) warn(`[귀여운] 전체 길이가 ${total.toFixed(1)}초예요. 20~25초 안팎이 좋아요`);
+}
 
 // ── 출력 ──
 console.log(`검사 대상: ${path}  (id: ${s.id ?? '-'})`);
