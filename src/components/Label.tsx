@@ -1,6 +1,11 @@
 import React from 'react';
 import {Easing, interpolate, useCurrentFrame} from 'remotion';
 
+/** 모든 장면에서 라벨·제목이 시작하는 위치를 같게 맞춘다(화면 정중앙보다 조금 위). */
+export const LABEL_TOP = 560;
+/** 라벨 칸 높이. 라벨이 없는 장면도 같은 높이를 비워 제목 시작 위치를 동일하게 유지한다. */
+export const LABEL_SLOT = 120;
+
 export const Label: React.FC<{text?: string; accent: string}> = ({text, accent}) => {
   const frame = useCurrentFrame();
   if (!text) return null;
@@ -17,10 +22,15 @@ export const Label: React.FC<{text?: string; accent: string}> = ({text, accent})
         color: '#101522',
         fontWeight: 900,
         fontSize: 40,
-        marginBottom: 48,
       }}
     >
       {text}
     </div>
   );
 };
+
+export const LabelSlot: React.FC<{text?: string; accent: string}> = ({text, accent}) => (
+  <div style={{height: LABEL_SLOT, display: 'flex', alignItems: 'flex-start', justifyContent: 'center'}}>
+    <Label text={text} accent={accent} />
+  </div>
+);

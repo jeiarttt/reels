@@ -1,12 +1,12 @@
 import React from 'react';
 import {AbsoluteFill, Easing, interpolate, useCurrentFrame} from 'remotion';
-import {Label} from './Label';
+import {LabelSlot, LABEL_TOP} from './Label';
 import {Words, wordCount} from './Words';
 import {Disclaimer} from './Disclaimer';
 
 /**
- * 표지(첫 화면): 위에 채널 태그, 아래쪽에 큰 제목 + 강조 줄, 맨 아래에 면책 문구.
- * 사진이 위쪽에 넓게 보이고, 제목이 앉는 아래쪽에는 그라데이션을 깔아 읽기 쉽게 한다.
+ * 표지(첫 화면): 위에 채널 태그, 중간보다 조금 위에 큰 제목 + 강조 줄, 맨 아래에 면책 문구.
+ * 제목 시작 위치는 다른 장면과 같다(LABEL_TOP).
  */
 export const CoverScene: React.FC<{
   label?: string;
@@ -27,11 +27,11 @@ export const CoverScene: React.FC<{
 
   return (
     <AbsoluteFill>
-      {/* 제목이 앉는 아래쪽을 받쳐 주는 그라데이션 */}
+      {/* 제목이 앉는 가운데 영역을 받쳐 주는 그라데이션 */}
       <AbsoluteFill
         style={{
           background:
-            'linear-gradient(0deg, rgba(6,10,24,0.62) 0%, rgba(6,10,24,0.34) 38%, rgba(6,10,24,0) 62%)',
+            'linear-gradient(180deg, rgba(6,10,24,0.08) 0%, rgba(6,10,24,0.30) 42%, rgba(6,10,24,0.38) 100%)',
         }}
       />
 
@@ -55,9 +55,9 @@ export const CoverScene: React.FC<{
         </AbsoluteFill>
       )}
 
-      <AbsoluteFill style={{justifyContent: 'flex-end', alignItems: 'center', padding: '0 70px 330px'}}>
-        <div style={{textAlign: 'center'}}>
-          <Label text={label} accent={accent} />
+      <AbsoluteFill>
+        <div style={{position: 'absolute', top: LABEL_TOP, left: 0, right: 0, padding: '0 70px', textAlign: 'center'}}>
+          <LabelSlot text={label} accent={accent} />
           <Words
             text={text}
             accent={accent}

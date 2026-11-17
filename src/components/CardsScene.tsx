@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Easing, interpolate, useCurrentFrame} from 'remotion';
 import type {CardItem} from '../types';
-import {Label} from './Label';
+import {LabelSlot, LABEL_TOP} from './Label';
 import {Words, wordCount} from './Words';
 
 /** 요약 카드: 핵심 숫자 3~4개를 카드로 하나씩 등장 */
@@ -16,9 +16,9 @@ export const CardsScene: React.FC<{
   const out = interpolate(frame, [frames - 8, frames], [1, 0], {extrapolateLeft: 'clamp'});
   const titleEnd = text ? 6 + wordCount(text) * 3 + 10 : 6;
   return (
-    <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '0 88px 140px', opacity: out}}>
-      <div style={{width: '100%', textAlign: 'center'}}>
-        <Label text={label} accent={accent} />
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={{position: 'absolute', top: LABEL_TOP, left: 0, right: 0, padding: '0 88px', textAlign: 'center'}}>
+        <LabelSlot text={label} accent={accent} />
         {text && (
           <Words
             text={text}

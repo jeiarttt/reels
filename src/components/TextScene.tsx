@@ -1,6 +1,6 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
-import {Label} from './Label';
+import {LabelSlot, LABEL_TOP} from './Label';
 import {Words} from './Words';
 
 export const TextScene: React.FC<{
@@ -16,9 +16,9 @@ export const TextScene: React.FC<{
   const frame = useCurrentFrame();
   const out = frames ? interpolate(frame, [frames - 8, frames], [1, 0], {extrapolateLeft: 'clamp'}) : 1;
   return (
-    <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '0 80px 140px', opacity: out}}>
-      <div style={{textAlign: 'center'}}>
-        <Label text={label} accent={accent} />
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={{position: 'absolute', top: LABEL_TOP, left: 0, right: 0, padding: '0 80px', textAlign: 'center'}}>
+        <LabelSlot text={label} accent={accent} />
         <Words
           text={text}
           accent={accent}

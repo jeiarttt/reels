@@ -1,7 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Easing, interpolate, useCurrentFrame} from 'remotion';
 import type {TableData} from '../types';
-import {Label} from './Label';
+import {LabelSlot, LABEL_TOP} from './Label';
 import {Words, wordCount} from './Words';
 
 /** 비교표: 머리글 → 행이 위에서부터 차례로 등장 */
@@ -29,9 +29,9 @@ export const TableScene: React.FC<{
     return {opacity: p, transform: `translateY(${(1 - p) * 20}px)`};
   };
   return (
-    <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '0 76px 140px', opacity: out}}>
-      <div style={{width: '100%', textAlign: 'center'}}>
-        <Label text={label} accent={accent} />
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={{position: 'absolute', top: LABEL_TOP, left: 0, right: 0, padding: '0 76px', textAlign: 'center'}}>
+        <LabelSlot text={label} accent={accent} />
         {text && (
           <Words
             text={text}
