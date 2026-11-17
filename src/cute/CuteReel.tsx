@@ -13,7 +13,7 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
   const ctaFrames = Math.round(ctaSecOf(script) * FPS);
   const total = script.scenes.length + 2;
   const showDisclaimer = script.status !== 'confirmed' && !!script.disclaimer_overlay;
-  const bgProps = {dim: 0.04, veil: 0.1};
+  const bgProps = {dim: 0.04, veil: 0.1, fade: 3};
 
   let cursor = 0;
   const blocks: React.ReactNode[] = [];

@@ -95,7 +95,6 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, total, fra
               fontSize: 88,
               lineHeight: 1.3,
               letterSpacing: '-0.01em',
-              WebkitTextStroke: '0.03em currentColor',
             }}
           />
           {sticker && (

@@ -47,7 +47,6 @@ export const CuteTitle: React.FC<{text: string; size?: number; startFrame?: numb
                 fontSize: size,
                 lineHeight: 1.22,
                 letterSpacing: '-0.01em',
-                WebkitTextStroke: '0.03em currentColor',
                 boxShadow: '0 12px 28px rgba(20,40,160,0.35)',
                 whiteSpace: 'nowrap',
               }}

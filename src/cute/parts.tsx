@@ -80,7 +80,6 @@ export const Sfx: React.FC<{text: string; rotate?: number; style?: React.CSSProp
         padding: '6px 28px 14px',
         fontFamily: TITLE_FONT,
         fontSize: 54,
-        WebkitTextStroke: '0.03em currentColor',
         boxShadow: '0 10px 24px rgba(20,40,120,0.3)',
         whiteSpace: 'nowrap',
         ...style,
@@ -95,13 +94,13 @@ export const Sfx: React.FC<{text: string; rotate?: number; style?: React.CSSProp
 export const Pill: React.FC<{text?: string; tilt?: number}> = ({text, tilt = -2}) => {
   const frame = useCurrentFrame();
   if (!text) return null;
-  const p = interpolate(frame, [0, 12], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.back(1.8))});
+  const p = interpolate(frame, [0, 8], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   return (
     <div style={{height: 118, display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
       <div
         style={{
-          opacity: Math.min(p, 1),
-          transform: `rotate(${tilt}deg) scale(${p})`,
+          opacity: p,
+          transform: `translateY(${(1 - p) * 14}px) rotate(${tilt}deg)`,
           background: '#fff',
           color: BLUE,
           border: `5px solid ${BLUE}`,
@@ -121,7 +120,7 @@ export const Pill: React.FC<{text?: string; tilt?: number}> = ({text, tilt = -2}
 
 export const useFadeOut = (frames: number) => {
   const frame = useCurrentFrame();
-  return interpolate(frame, [frames - 8, frames], [1, 0], {extrapolateLeft: 'clamp'});
+  return interpolate(frame, [frames - 4, frames], [1, 0], {extrapolateLeft: 'clamp'});
 };
 
 export const navyText: React.CSSProperties = {color: NAVY};

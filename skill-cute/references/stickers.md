@@ -15,7 +15,20 @@
 ```bash
 python3 scripts/make-sticker.py <사진.jpg> public/stickers/<이름>.png <x,y,w,h>
 ```
-`x,y,w,h`는 피사체를 감싸는 사각형(0~1 비율). 배경이 피사체와 구분될수록 잘 오려진다. 만든 뒤 반드시 눈으로 확인하고(잘린 부분, 남은 배경), 이상하면 사각형을 조정하거나 다른 사진을 쓴다. (필요: `pip install opencv-python-headless numpy pillow`)
+`x,y,w,h`는 피사체를 감싸는 사각형(0~1 비율). 배경이 피사체와 구분될수록 잘 오려진다. (필요: `pip install opencv-python-headless numpy pillow`)
+
+선택 인자(뒤에 이어서 쓴다):
+```bash
+python3 scripts/make-sticker.py <사진> <출력.png> <x,y,w,h> [깎을 비율] [지울 영역 x0,y0,x1,y1]
+# 예: 검은 배경 사진은 가장자리 어두운 테를 줄이려고 깎을 비율을 키운다
+python3 scripts/make-sticker.py kitten.jpg public/stickers/kitten.png 0.16,0.12,0.68,0.84 0.016
+# 예: 아래쪽에 남은 방석 등을 영역으로 지운다(그러면 윤곽을 더 둥글게 다듬는다)
+python3 scripts/make-sticker.py cat.jpg public/stickers/cat.png 0.10,0.05,0.88,0.93 0.006 0.0,0.765,1.0,1.0
+```
+
+### 윤곽 품질 기준 (만든 뒤 반드시 눈으로 확인)
+- 털·삐죽한 배경 조각을 열기 연산으로 지우고, 크게 블러한 뒤 이진화해 윤곽을 둥글게 한다. 흰 테두리도 모서리를 둥글게 한다.
+- 확인 항목: 잘린 얼굴·눈, 남은 배경 조각, 어두운 헤일로, 각진 계단 모양. 흰 털처럼 배경과 비슷한 피사체에서 오려내기가 실패하면 사각형을 줄이지 말고 **다른 사진**을 쓴다(사각형을 사진 전체에 가깝게 키우면 얼굴이 사라질 수 있다).
 
 ## 현재 스티커 (표정 → 어울리는 곳)
 | 파일 | 표정 | 어울리는 곳 | 의성어 예 | Pexels ID |

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """사진 한 장을 '피사체 모양대로 오린 스티커'(흰 테두리 다이컷 PNG)로 만든다.
-사용법: python3 scripts/make-sticker.py <사진> <출력.png> <x,y,w,h(0~1 비율, 피사체를 감싸는 사각형)>
+사용법: python3 scripts/make-sticker.py <사진> <출력.png> <x,y,w,h(0~1 비율, 피사체를 감싸는 사각형)> [안쪽으로 깎을 비율=0.006] [지울영역 x0,y0,x1,y1]
 예: python3 scripts/make-sticker.py dog.jpg public/stickers/dog.png 0.02,0.08,0.96,0.9
+    검은 배경 사진처럼 가장자리에 어두운 테가 남으면 4번째 값을 0.014 정도로 키운다.
 필요: pip install opencv-python-headless numpy pillow
 GrabCut(배경 제거)이라 배경이 피사체와 구분될수록 잘 오려진다. 결과는 반드시 눈으로 확인한다.
 """
@@ -14,7 +15,7 @@ OUT_MAX = 640   # 출력 한 변 최대 픽셀
 OUTLINE = 20    # 흰 테두리 두께(출력 기준 px)
 
 
-def cutout(path, rect, work=900):
+def cutout(path, rect, work=900, erode=0.006, cutbox=None):
     img = cv2.imread(path)
     h, w = img.shape[:2]
     s = min(1.0, work / max(h, w))
@@ -27,6 +28,10 @@ def cutout(path, rect, work=900):
     fg = np.zeros((1, 65), np.float64)
     cv2.grabCut(small, mask, r, bg, fg, 6, cv2.GC_INIT_WITH_RECT)
     m = np.where((mask == cv2.GC_FGD) | (mask == cv2.GC_PR_FGD), 255, 0).astype(np.uint8)
+    # 지정한 영역(배경으로 남은 물건 등)을 강제로 지운다: x0,y0,x1,y1 (0~1 비율)
+    if cutbox:
+        cx0, cy0, cx1, cy1 = cutbox
+        m[int(cy0 * sh):int(cy1 * sh), int(cx0 * sw):int(cx1 * sw)] = 0
     # 가장 큰 덩어리만 남기고 구멍 메우기, 가장자리 부드럽게
     n, lab, stats, _ = cv2.connectedComponentsWithStats(m)
     if n > 1:
@@ -35,10 +40,22 @@ def cutout(path, rect, work=900):
     cnts, _ = cv2.findContours(m, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     filled = np.zeros_like(m)
     cv2.drawContours(filled, cnts, -1, 255, -1)
-    k = max(3, int(min(sh, sw) * 0.012)) | 1
-    filled = cv2.morphologyEx(filled, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)))
-    filled = cv2.GaussianBlur(filled, (k * 2 + 1, k * 2 + 1), 0)
+    base = min(sh, sw)
+    k = max(3, int(base * 0.012)) | 1
+    ell = lambda n: cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (n, n))
+    filled = cv2.morphologyEx(filled, cv2.MORPH_CLOSE, ell(k))
+    # 얇은 털·삐죽한 배경 조각 제거(열기)
+    filled = cv2.morphologyEx(filled, cv2.MORPH_OPEN, ell(max(5, int(base * 0.022)) | 1))
+    # 윤곽을 부드럽게: 크게 블러한 뒤 다시 이진화(둥근 외곽선)
+    blur = max(9, int(base * (0.07 if cutbox else 0.03))) | 1   # 영역을 지웠으면 각진 모서리를 더 둥글게
+    filled = cv2.GaussianBlur(filled, (blur, blur), 0)
     filled = np.where(filled > 127, 255, 0).astype(np.uint8)
+    # 배경색이 테두리에 묻는 헤일로 제거: 살짝 안쪽으로
+    filled = cv2.erode(filled, ell(max(3, int(base * erode)) | 1))
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(filled)
+    if n > 1:
+        kk = 1 + np.argmax(stats[1:, cv2.CC_STAT_AREA])
+        filled = np.where(lab == kk, 255, 0).astype(np.uint8)
     rgb = cv2.cvtColor(small, cv2.COLOR_BGR2RGB)
     return rgb, filled
 
@@ -46,7 +63,9 @@ def cutout(path, rect, work=900):
 def main():
     src, dst, rs = sys.argv[1], sys.argv[2], sys.argv[3]
     rect = tuple(float(v) for v in rs.split(','))
-    rgb, m = cutout(src, rect)
+    erode = float(sys.argv[4]) if len(sys.argv) > 4 else 0.006
+    cutbox = tuple(float(v) for v in sys.argv[5].split(',')) if len(sys.argv) > 5 else None
+    rgb, m = cutout(src, rect, erode=erode, cutbox=cutbox)
     ys, xs = np.where(m > 0)
     pad = 6
     x0, x1 = max(xs.min() - pad, 0), min(xs.max() + pad, m.shape[1])
@@ -66,8 +85,10 @@ def main():
     # 흰 테두리 = 피사체 마스크를 바깥으로 부풀린 것 (모양을 따라가는 다이컷)
     ker = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (OUTLINE * 2 + 1, OUTLINE * 2 + 1))
     outline = cv2.dilate(sm, ker)
-    outline = cv2.GaussianBlur(outline, (5, 5), 0)
-    sm_soft = cv2.GaussianBlur(sm, (3, 3), 0)
+    outline = cv2.GaussianBlur(outline, (OUTLINE | 1, OUTLINE | 1), 0)   # 모서리를 둥글게
+    outline = np.where(outline > 110, 255, 0).astype(np.uint8)
+    outline = cv2.GaussianBlur(outline, (5, 5), 0)                       # 가장자리 안티앨리어싱
+    sm_soft = cv2.GaussianBlur(sm, (5, 5), 0)
     out = np.zeros((canvas_h, canvas_w, 4), np.uint8)
     out[..., :3] = 255
     out[..., 3] = outline
