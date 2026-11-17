@@ -4,6 +4,7 @@ import type {CardItem, CompareData, StatData, TableData} from '../types';
 import {Words, wordCount} from '../components/Words';
 import {Disclaimer} from '../components/Disclaimer';
 import {CuteTitle, RawTitle} from './CuteTitle';
+import {Illust} from './illust';
 import {Doodle, LabelBox, NavyTag, NumTag, Paper, Pill, Sfx, StickerImg, useFadeOut, Washi} from './parts';
 import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
@@ -469,6 +470,24 @@ const GridTile: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
       <div style={{color: BLUE, fontWeight: 900, fontSize: 50, lineHeight: 1.1, letterSpacing: -1.5}}>{c.big}</div>
       {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 32, marginTop: 6}}>{c.small}</div>}
     </div>
+  );
+};
+
+const DECO_POS: Record<string, React.CSSProperties> = {
+  tl: {left: 70, top: 320},
+  tr: {right: 70, top: 320},
+  bl: {left: 70, bottom: 300},
+  br: {right: 70, bottom: 300},
+};
+
+/** 주제 일러스트 한 개를 모서리에 놓는다 (컷이 끝날 때 같이 사라진다) */
+export const DecoLayer: React.FC<{name?: string; pos?: 'tl' | 'tr' | 'bl' | 'br'; text?: string; frames: number}> = ({name, pos = 'tr', text, frames}) => {
+  const out = useFadeOut(frames);
+  if (!name) return null;
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <Illust name={name} text={text} size={290} rotate={pos.endsWith('l') ? -8 : 8} style={DECO_POS[pos]} />
+    </AbsoluteFill>
   );
 };
 

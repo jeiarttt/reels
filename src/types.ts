@@ -21,6 +21,10 @@ export type Scene = {
   kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid';
   /** 귀여운 테마: 밝은 배경이면 'dark'(진한 남색 글자). 기본 'light'(흰 글자) */
   tone?: 'light' | 'dark';
+  /** 귀여운 테마: 주제에 어울리는 일러스트 이름(phone·card·train·coin·calendar·cap·house·ticket·briefcase·book)과 위치(tl·tr·bl·br), calendar의 숫자 */
+  deco?: string;
+  decoPos?: 'tl' | 'tr' | 'bl' | 'br';
+  decoText?: string;
   label?: string;
   /** 귀여운 테마: stickers/ 안 파일 이름(확장자 제외)과 의성어 태그 */
   sticker?: string;
@@ -59,6 +63,10 @@ export type Script = {
   ctaBg?: Bg;
   /** 귀여운 테마: 배경 어둡기(0~0.6). 밝은 사진이면 낮춘다. 기본 0.3 */
   bgDim?: number;
+  hookDeco?: string;
+  hookDecoPos?: 'tl' | 'tr' | 'bl' | 'br';
+  ctaDeco?: string;
+  ctaDecoPos?: 'tl' | 'tr' | 'bl' | 'br';
   accentColor?: string;
   status: 'pending' | 'confirmed';
   disclaimer_overlay?: string;

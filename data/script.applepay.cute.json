@@ -29,7 +29,10 @@
       "bg": {
         "src": "stock/simple-bright-iphone-white.jpg",
         "position": "100% 50%"
-      }
+      },
+      "deco": "calendar",
+      "decoPos": "tl",
+      "decoText": "16"
     },
     {
       "t": 4.6,
@@ -55,7 +58,9 @@
       "bg": {
         "src": "stock/simple-bright-card-tap.jpg",
         "position": "35% 50%"
-      }
+      },
+      "deco": "card",
+      "decoPos": "tr"
     },
     {
       "t": 4.0,
@@ -69,7 +74,9 @@
       },
       "bg": {
         "src": "stock/simple-sky-pale.jpg"
-      }
+      },
+      "deco": "train",
+      "decoPos": "br"
     },
     {
       "t": 3.6,
@@ -110,7 +117,9 @@
       "bg": {
         "src": "stock/simple-bright-iphone-white.jpg",
         "position": "0% 50%"
-      }
+      },
+      "deco": "phone",
+      "decoPos": "br"
     }
   ],
   "ctaLabel": "💙 놓치기 전에 저장",
@@ -148,5 +157,9 @@
     "원문 확인(2026-11-17): 정책브리핑 정책포커스 '모두의 카드로 변신'(newsId 148957978) 기자단 글 — \"K-패스는 월 15회 이상 시내버스, 지하철… 이용하는 사람들이 지출 금액의 20~53.3%를 환급\", \"만 19세에서 34세 청년은 기본형 K-패스 30% 환급\". 영상 '월 15회 이상'은 이 문장 기준(모두의 카드 개편 후 세부 조건은 K-패스 앱에서 확인)",
     "'K-패스 환급은 만 19세 이상부터'는 확인되지 않아 영상에 넣지 않음"
   ],
-  "bgDim": 0.14
+  "bgDim": 0.14,
+  "hookDeco": "phone",
+  "hookDecoPos": "tl",
+  "ctaDeco": "train",
+  "ctaDecoPos": "tr"
 }

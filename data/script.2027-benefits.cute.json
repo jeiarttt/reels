@@ -13,7 +13,7 @@
     "src": "stock/simple-bright-sky-lamp.jpg",
     "position": "50% 50%"
   },
-  "hookSticker": "kitten-orange",
+  "hookSticker": "dog-corgi",
   "hookSfx": "두근!",
   "scenes": [
     {
@@ -38,7 +38,9 @@
       },
       "bg": {
         "src": "stock/simple-sky-pale.jpg"
-      }
+      },
+      "deco": "coin",
+      "decoPos": "tr"
     },
     {
       "t": 3.8,
@@ -69,7 +71,9 @@
       "bg": {
         "src": "stock/simple-bright-card-tap.jpg",
         "position": "35% 50%"
-      }
+      },
+      "deco": "ticket",
+      "decoPos": "tr"
     },
     {
       "t": 3.0,
@@ -84,7 +88,9 @@
         "src": "stock/simple-bright-iphone-white.jpg",
         "position": "0% 50%"
       },
-      "tone": "dark"
+      "tone": "dark",
+      "deco": "cap",
+      "decoPos": "br"
     },
     {
       "t": 3.6,
@@ -107,7 +113,9 @@
         "src": "stock/simple-sky-deep.jpg"
       },
       "sticker": "chihuahua",
-      "sfx": "잠깐!"
+      "sfx": "잠깐!",
+      "deco": "briefcase",
+      "decoPos": "tr"
     },
     {
       "t": 3.2,
@@ -127,7 +135,9 @@
       ],
       "bg": {
         "src": "stock/simple-cloud-teal.jpg"
-      }
+      },
+      "deco": "book",
+      "decoPos": "tr"
     },
     {
       "t": 3.0,
@@ -140,7 +150,9 @@
       },
       "bg": {
         "src": "stock/simple-corner-sky.jpg"
-      }
+      },
+      "deco": "house",
+      "decoPos": "br"
     }
   ],
   "ctaLabel": "💙 놓치기 전에 저장",
@@ -149,7 +161,7 @@
     "src": "stock/simple-bright-sky-lamp.jpg",
     "position": "80% 50%"
   },
-  "ctaSticker": "hamster-snack",
+  "ctaSticker": "dog-black",
   "ctaSfx": "저장!",
   "accentColor": "#2457F5",
   "status": "pending",
@@ -178,5 +190,7 @@
     "원문 직접 확인(2026-11-17): 금융위 보도자료(fsc.go.kr/no010101/87627) '지방 소재 중소기업에 재직 중인 청년이 청년미래적금을 가입할 경우 본인 납입금의 25%를 지원', 우대형 12%→15%(월 최대 6만→7.5만원), 소급 적용 계획. 정책브리핑(148970791) '새로 도입하는 양질의 보편형 공공임대주택 물량 가운데 50% 이상을 청년층에 공급'. 정책브리핑(148970973) '청년 공공임대주택 10만 6000호를 공급'",
     "'지금 7.1만 호'는 원문에서 못 찾아 영상에서 뺌. 25%는 '비수도권'이 아니라 '지방 소재 중소기업' 표현으로 통일"
   ],
-  "bgDim": 0.14
+  "bgDim": 0.14,
+  "hookDeco": "coin",
+  "hookDecoPos": "tl"
 }
