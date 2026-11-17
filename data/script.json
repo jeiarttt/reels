@@ -6,17 +6,17 @@
   "hookLabel": "마감 임박",
   "hook": "청년미래적금 2차\n심사 통과했다면\n[[11월 27일]]까지예요 ⏰",
   "hookBg": {
-    "src": "stock/savings-9755390.jpg",
-    "position": "68% 50%"
+    "src": "stock/lifestyle-monstera-window.jpg",
+    "position": "62% 50%"
   },
   "scenes": [
     {
       "t": 5,
       "kind": "text",
       "label": "이번 2차 일정",
-      "text": "계좌 개설은\n11월 27일까지\n기간 안에 열어야 가입돼요",
+      "text": "계좌 개설은\n11월 27일까지\n기간 안에 열어야 해요",
       "bg": {
-        "src": "stock/seoul-day-skyline.jpg"
+        "src": "stock/lifestyle-plant-window.jpg"
       }
     },
     {
@@ -38,8 +38,7 @@
         }
       ],
       "bg": {
-        "src": "stock/savings-11391951.jpg",
-        "position": "33% 50%"
+        "src": "stock/lifestyle-desk-notebook.jpg"
       }
     },
     {
@@ -67,23 +66,23 @@
         ]
       },
       "bg": {
-        "src": "stock/seoul-day-lotte.jpg"
+        "src": "stock/lifestyle-warm-curtain.jpg"
       }
     },
     {
       "t": 5.5,
       "kind": "text",
-      "text": "도약계좌에서 갈아탈 때는\n[[해지 방식]]에 따라\n혜택이 달라질 수 있어요",
+      "text": "도약계좌에서 갈아탈 땐\n[[해지 방식]]에 따라\n혜택이 달라질 수 있어요",
       "bg": {
-        "src": "stock/seoul-day-namsan.jpg"
+        "src": "stock/lifestyle-window-plants-street.jpg"
       }
     }
   ],
   "ctaLabel": "저장해 두세요",
   "cta": "취급 은행 앱에서\n[[계좌 개설]]\n마감 전에 확인해요",
   "ctaBg": {
-    "src": "stock/savings-9755390.jpg",
-    "position": "68% 50%"
+    "src": "stock/lifestyle-monstera-window.jpg",
+    "position": "62% 50%"
   },
   "accentColor": "#FF8A1F",
   "status": "pending",

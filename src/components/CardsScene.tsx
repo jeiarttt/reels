@@ -16,7 +16,7 @@ export const CardsScene: React.FC<{
   const out = interpolate(frame, [frames - 8, frames], [1, 0], {extrapolateLeft: 'clamp'});
   const titleEnd = text ? 6 + wordCount(text) * 3 + 10 : 6;
   return (
-    <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '0 70px 140px', opacity: out}}>
+    <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', padding: '0 88px 140px', opacity: out}}>
       <div style={{width: '100%', textAlign: 'center'}}>
         <Label text={label} accent={accent} />
         {text && (
@@ -24,10 +24,10 @@ export const CardsScene: React.FC<{
             text={text}
             accent={accent}
             startFrame={6}
-            style={{color: '#fff', fontFamily: "'Hippie', 'Pretendard', sans-serif", fontWeight: 400, WebkitTextStroke: '0.035em currentColor', letterSpacing: '-0.01em', fontSize: 74, lineHeight: 1.35, marginBottom: 48, textShadow: '0 4px 24px rgba(0,0,0,.5)'}}
+            style={{color: '#fff', fontFamily: "'Hippie', 'Pretendard', sans-serif", fontWeight: 400, WebkitTextStroke: '0.035em currentColor', letterSpacing: '-0.01em', fontSize: 74, lineHeight: 1.35, marginBottom: 64, textShadow: '0 4px 24px rgba(0,0,0,.5)'}}
           />
         )}
-        <div style={{display: 'flex', flexDirection: 'column', gap: 26}}>
+        <div style={{display: 'flex', flexDirection: 'column', gap: 40}}>
           {cards.map((c, i) => {
             const s = titleEnd + i * 10;
             const p = interpolate(frame, [s, s + 14], [0, 1], {
@@ -44,7 +44,7 @@ export const CardsScene: React.FC<{
                   background: '#ffffff',
                   boxShadow: '0 10px 30px rgba(0,0,0,0.25)',
                   borderRadius: 36,
-                  padding: '34px 40px',
+                  padding: '46px 52px',
                   display: 'flex',
                   alignItems: 'baseline',
                   justifyContent: 'space-between',
@@ -53,11 +53,11 @@ export const CardsScene: React.FC<{
                   textAlign: 'left',
                 }}
               >
-                <span style={{color: accent, fontWeight: 900, fontSize: 80, letterSpacing: -2, whiteSpace: 'nowrap'}}>
+                <span style={{color: accent, fontWeight: 900, fontSize: 88, letterSpacing: -2, whiteSpace: 'nowrap'}}>
                   {c.big}
                 </span>
                 {c.small && (
-                  <span style={{color: '#1b2236', fontWeight: 700, fontSize: 40, textAlign: 'right'}}>{c.small}</span>
+                  <span style={{color: '#1b2236', fontWeight: 700, fontSize: 44, textAlign: 'right'}}>{c.small}</span>
                 )}
               </div>
             );

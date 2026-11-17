@@ -70,8 +70,8 @@ if (!s.backgroundSrc) {
     if (ls.length > 4) warn(`${w}: 줄이 ${ls.length}줄이에요 (최대 3~4줄)`);
     ls.forEach((l, j) => {
       const n = [...l].length;
-      if (n > 16) err(`${w}: ${j + 1}번째 줄이 ${n}자예요. 히피체는 폭을 넘길 수 있어요 (14자 안팎으로 \\n 나누기)`);
-      else if (n > 14) warn(`${w}: ${j + 1}번째 줄이 ${n}자예요 ("${l}")`);
+      if (n > 14) err(`${w}: ${j + 1}번째 줄이 ${n}자예요. 히피체는 폭을 넘길 수 있어요 (12자 안팎으로 \\n 나누기)`);
+      else if (n > 12) warn(`${w}: ${j + 1}번째 줄이 ${n}자예요 ("${l}")`);
     });
   }
   if (kind === 'cards') {
@@ -111,7 +111,7 @@ const hookLines = lines(s.hook);
 if (hookLines.length > 3) warn(`hook 이 ${hookLines.length}줄이에요 (최대 2~3줄)`);
 hookLines.forEach((l, j) => {
   const n = [...l].length;
-  if (n > 16) err(`hook ${j + 1}번째 줄이 ${n}자예요. 14자 안팎으로 \\n 나누기`);
+  if (n > 14) err(`hook ${j + 1}번째 줄이 ${n}자예요. 12자 안팎으로 \\n 나누기`);
 });
 const body = bodyTexts.join(' ').replace(/\s+/g, '');
 const hookPlain = strip(s.hook).replace(/\s+/g, '');

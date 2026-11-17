@@ -42,8 +42,8 @@ export const Reel: React.FC<{script: Script}> = ({script}) => {
 
   blocks.push(
     <Sequence key="hook" from={cursor} durationInFrames={hookFrames}>
-      <Background bg={pickBg(script, script.hookBg)} frames={hookFrames} dim={0.18} />
-      <TextScene label={script.hookLabel} text={script.hook} accent={accent} size={116} hook title />
+      <Background bg={pickBg(script, script.hookBg)} frames={hookFrames} dim={0.28} />
+      <TextScene label={script.hookLabel} text={script.hook} accent={accent} size={128} hook title />
     </Sequence>,
   );
   cursor += hookFrames;
@@ -53,13 +53,13 @@ export const Reel: React.FC<{script: Script}> = ({script}) => {
     const kind = s.kind ?? 'text';
     blocks.push(
       <Sequence key={`s${i}`} from={cursor} durationInFrames={frames}>
-        <Background bg={pickBg(script, s.bg)} frames={frames} dim={kind === 'text' ? 0.22 : 0.32} />
+        <Background bg={pickBg(script, s.bg)} frames={frames} dim={kind === 'text' ? 0.22 : 0.22} />
         {kind === 'cards' && s.cards ? (
           <CardsScene label={s.label} text={s.text} cards={s.cards} accent={accent} frames={frames} />
         ) : kind === 'table' && s.table ? (
           <TableScene label={s.label} text={s.text} table={s.table} accent={accent} frames={frames} />
         ) : (
-          <TextScene label={s.label} text={s.text ?? ''} accent={accent} frames={frames} size={86} title />
+          <TextScene label={s.label} text={s.text ?? ''} accent={accent} frames={frames} size={94} title />
         )}
       </Sequence>,
     );
@@ -69,7 +69,7 @@ export const Reel: React.FC<{script: Script}> = ({script}) => {
   blocks.push(
     <Sequence key="cta" from={cursor} durationInFrames={ctaFrames}>
       <Background bg={pickBg(script, script.ctaBg)} frames={ctaFrames} dim={0.24} />
-      <TextScene label={script.ctaLabel} text={script.cta} accent={accent} size={102} title />
+      <TextScene label={script.ctaLabel} text={script.cta} accent={accent} size={112} title />
     </Sequence>,
   );
 

@@ -11,13 +11,13 @@ export const Label: React.FC<{text?: string; accent: string}> = ({text, accent})
         opacity: p,
         transform: `translateY(${(1 - p) * 14}px)`,
         display: 'inline-block',
-        padding: '10px 28px',
+        padding: '12px 32px',
         borderRadius: 999,
         background: accent,
         color: '#101522',
         fontWeight: 900,
-        fontSize: 36,
-        marginBottom: 36,
+        fontSize: 40,
+        marginBottom: 48,
       }}
     >
       {text}
