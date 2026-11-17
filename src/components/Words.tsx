@@ -33,7 +33,8 @@ export const Words: React.FC<{
   startFrame?: number;
   stagger?: number;
   style?: React.CSSProperties;
-}> = ({text, accent, startFrame = 0, stagger = 3, style}) => {
+  accentStyle?: React.CSSProperties;
+}> = ({text, accent, startFrame = 0, stagger = 3, style, accentStyle}) => {
   const frame = useCurrentFrame();
   let idx = 0;
   const lines = parse(text);
@@ -70,7 +71,7 @@ export const Words: React.FC<{
                   }}
                 >
                   {w.map((pc, pi) => (
-                    <span key={pi} style={pc.accent ? {color: accent} : undefined}>
+                    <span key={pi} style={pc.accent ? {color: accent, ...accentStyle} : undefined}>
                       {pc.text}
                     </span>
                   ))}

@@ -4,8 +4,8 @@ import type {CardItem, TableData} from '../types';
 import {Words, wordCount} from '../components/Words';
 import {Disclaimer} from '../components/Disclaimer';
 import {CuteTitle} from './CuteTitle';
-import {LabelBox, Pill, Sfx, StickerImg, useFadeOut} from './parts';
-import {BLUE, CONTENT_TOP, NAVY, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
+import {LabelBox, NumTag, Paper, Pill, Sfx, StickerImg, useFadeOut, Washi} from './parts';
+import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
 type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string};
 
@@ -39,7 +39,7 @@ export const CuteCover: React.FC<{
               size={42}
               padX={38}
               padY={16}
-              style={{background: '#fff', color: BLUE, border: `5px solid ${BLUE}`, borderRadius: 999, boxShadow: '0 8px 18px rgba(20,40,120,0.2)'}}
+              style={{background: PAPER, color: BLUE, border: `4px dashed ${BLUE}`, borderRadius: 12, boxShadow: '0 8px 18px rgba(20,40,120,0.2)', transform: 'rotate(-1.5deg)'}}
             >
               {brand}
             </LabelBox>
@@ -48,7 +48,11 @@ export const CuteCover: React.FC<{
       )}
       <div style={{position: 'absolute', top: CONTENT_TOP + 60, left: 0, right: 0, textAlign: 'center'}}>
         <Pill text={label} tilt={-3} />
-        <CuteTitle text={text} size={132} startFrame={label ? 6 : 0} />
+        <div style={{position: 'relative'}}>
+          <Washi style={{left: 70, top: -8}} rotate={-12} w={170} tone="yellow" />
+          <Washi style={{right: 70, bottom: -6}} rotate={-8} w={170} tone="pink" />
+          <CuteTitle text={text} size={132} startFrame={label ? 6 : 0} />
+        </div>
       </div>
       {sticker && <StickerImg name={sticker} size={400} rotate={9} style={{right: 30, top: 230}} />}
       {sfx && <Sfx text={sfx} rotate={-9} style={{right: 390, top: 270}} />}
@@ -57,55 +61,24 @@ export const CuteCover: React.FC<{
   );
 };
 
-/** 말풍선 문구 */
-export const CuteBubble: React.FC<Common & {text: string}> = ({index, total, frames, label, text, sticker, sfx}) => {
+/** 줄 노트 메모 */
+export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx}) => {
   const out = useFadeOut(frames);
   const pop = usePop(4);
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={{position: 'absolute', top: CONTENT_TOP, left: 64, right: 64, textAlign: 'center'}}>
         <Pill text={label} tilt={-2} />
-        <div
-          style={{
-            position: 'relative',
-            background: '#fff',
-            borderRadius: 68,
-            padding: '56px 40px 64px',
-            boxShadow: SOFT_SHADOW,
-            transform: `scale(${0.9 + 0.1 * pop})`,
-            opacity: Math.min(pop, 1),
-          }}
-        >
+        <Paper tilt={-1} lineGap={114} linePad={56} pad="56px 40px 60px" pop={pop} num={index}>
           <Words
             text={text}
             accent={BLUE}
+            accentStyle={{background: `linear-gradient(transparent 52%, ${MARKER} 52% 90%, transparent 90%)`, padding: '0 6px'}}
             startFrame={8}
             stagger={3}
-            style={{
-              color: NAVY,
-              fontFamily: TITLE_FONT,
-              fontWeight: 400,
-              fontSize: 88,
-              lineHeight: 1.3,
-              letterSpacing: '-0.01em',
-            }}
+            style={{color: NAVY, fontFamily: TITLE_FONT, fontWeight: 400, fontSize: 88, lineHeight: '114px', letterSpacing: '-0.01em'}}
           />
-          {sticker && (
-          <div
-            style={{
-              position: 'absolute',
-              left: 150,
-              bottom: -34,
-              width: 76,
-              height: 76,
-              background: '#fff',
-              borderRadius: 16,
-              transform: 'rotate(45deg)',
-              boxShadow: '14px 14px 30px rgba(30,70,200,0.18)',
-            }}
-          />
-          )}
-        </div>
+        </Paper>
       </div>
       {sticker && <StickerImg name={sticker} size={330} rotate={-8} style={{left: 64, top: 1230}} />}
       {sfx && <Sfx text={sfx} rotate={7} style={{left: 420, top: 1290}} />}
@@ -114,7 +87,7 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, total, fra
 };
 
 /** 이모지 카드 */
-export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, total, frames, label, cards, sticker, sfx}) => {
+export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames, label, cards, sticker, sfx}) => {
   const out = useFadeOut(frames);
   return (
     <AbsoluteFill style={{opacity: out}}>
@@ -122,7 +95,7 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, total,
         <Pill text={label} tilt={2} />
         <div style={{display: 'flex', flexDirection: 'column', gap: 40}}>
           {cards.map((c, i) => (
-            <Card key={i} c={c} i={i} />
+            <Card key={i} c={c} i={i} num={i === 0 ? index : undefined} />
           ))}
         </div>
       </div>
@@ -132,7 +105,7 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, total,
   );
 };
 
-const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
+const Card: React.FC<{c: CardItem; i: number; num?: number}> = ({c, i, num}) => {
   const pop = usePop(16 + i * 9);
   return (
     <div
@@ -141,36 +114,25 @@ const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
         display: 'flex',
         alignItems: 'center',
         gap: 36,
-        background: '#fff',
-        borderRadius: 52,
+        background: PAPER,
+        borderRadius: 14,
         padding: '38px 46px',
-        boxShadow: SOFT_SHADOW,
+        boxShadow: PAPER_SHADOW,
         textAlign: 'left',
-        transform: `rotate(${i % 2 ? 1.1 : -1.1}deg) scale(${0.85 + 0.15 * pop})`,
+        transform: `translateY(${(1 - pop) * 40}px) rotate(${i % 2 ? 1.2 : -1.2}deg)`,
         opacity: Math.min(pop, 1),
       }}
     >
-      {/* 마스킹 테이프 */}
-      <div
-        style={{
-          position: 'absolute',
-          top: -20,
-          left: '50%',
-          width: 150,
-          height: 38,
-          marginLeft: -75,
-          background: 'rgba(36,87,245,0.28)',
-          borderRadius: 6,
-          transform: `rotate(${i % 2 ? 4 : -3}deg)`,
-        }}
-      />
+      <Washi style={{left: '50%', top: -26, marginLeft: -85}} rotate={i % 2 ? 4 : -3} w={170} tone={i % 2 ? 'yellow' : 'blue'} />
+      {num !== undefined && <NumTag n={num} style={{left: -22, top: -44}} />}
       <div
         style={{
           width: 128,
           height: 128,
           flex: '0 0 128px',
           borderRadius: '50%',
-          background: SKY,
+          background: POSTIT,
+          boxShadow: '0 6px 12px rgba(20,30,80,0.2)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -188,7 +150,7 @@ const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
 };
 
 /** 체크 메모 (표) */
-export const CuteList: React.FC<Common & {table: TableData}> = ({index, total, frames, label, table, sticker, sfx}) => {
+export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, label, table, sticker, sfx}) => {
   const out = useFadeOut(frames);
   const head = usePop(10);
   return (
@@ -197,17 +159,20 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, total, f
         <Pill text={label} tilt={-2} />
         <div
           style={{
-            background: '#fff',
-            borderRadius: 56,
-            overflow: 'hidden',
-            boxShadow: SOFT_SHADOW,
-            transform: `scale(${0.92 + 0.08 * head})`,
+            position: 'relative',
+            background: PAPER,
+            borderRadius: 14,
+            boxShadow: PAPER_SHADOW,
+            transform: `translateY(${(1 - head) * 44}px) rotate(-1deg)`,
             opacity: Math.min(head, 1),
           }}
         >
-          <div style={{background: BLUE, display: 'flex', justifyContent: 'center', gap: 14, padding: '16px 0 12px'}}>
+          <Washi style={{left: 36, top: -26}} rotate={-6} />
+          <Washi style={{right: 36, top: -26}} rotate={5} tone="yellow" w={150} />
+          <NumTag n={index} style={{left: -22, top: -44}} />
+          <div style={{display: 'flex', justifyContent: 'center', gap: 22, padding: '40px 0 0'}}>
             {Array.from({length: 7}).map((_, k) => (
-              <div key={k} style={{width: 26, height: 26, borderRadius: '50%', background: '#fff', opacity: 0.9}} />
+              <div key={k} style={{width: 24, height: 24, borderRadius: '50%', background: '#cfd8f0', boxShadow: 'inset 0 3px 5px rgba(20,30,80,0.35)'}} />
             ))}
           </div>
           {table.rows.map((r, ri) => (
@@ -230,7 +195,7 @@ const Row: React.FC<{r: string[]; i: number; last: boolean}> = ({r, i, last}) =>
         alignItems: 'center',
         gap: 24,
         padding: '52px 40px',
-        borderBottom: last ? 'none' : `4px dashed ${SKY}`,
+        borderBottom: last ? 'none' : `4px dashed rgba(36,87,245,0.28)`,
         opacity: Math.min(pop, 1),
         transform: `translateX(${(1 - pop) * -30}px)`,
         textAlign: 'left',
@@ -238,7 +203,7 @@ const Row: React.FC<{r: string[]; i: number; last: boolean}> = ({r, i, last}) =>
       }}
     >
       <div style={{fontSize: 58}}>✅</div>
-      <div style={{flex: '0 0 250px', background: SKY, color: BLUE, fontWeight: 900, fontSize: 46, borderRadius: 26, padding: '14px 18px', textAlign: 'center'}}>
+      <div style={{flex: '0 0 250px', background: POSTIT, color: BLUE, fontWeight: 900, fontSize: 46, borderRadius: 8, padding: '14px 18px', textAlign: 'center', boxShadow: '0 5px 10px rgba(20,30,80,0.2)'}}>
         {r[0]}
       </div>
       <div style={{color: NAVY, fontWeight: 800, fontSize: 46, lineHeight: 1.3, whiteSpace: 'pre-line'}}>{r.slice(1).join(' ')}</div>
@@ -261,7 +226,7 @@ export const CuteCta: React.FC<Common & {text: string}> = ({index, total, frames
                 size={62}
                 padX={56}
                 padY={22}
-                style={{background: '#fff', color: BLUE, border: `6px solid ${BLUE}`, borderRadius: 999, boxShadow: SOFT_SHADOW}}
+                style={{background: POSTIT, color: BLUE, borderRadius: 8, boxShadow: '0 14px 26px rgba(20,30,80,0.3)'}}
               >
                 {label}
               </LabelBox>

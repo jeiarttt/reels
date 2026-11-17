@@ -9,3 +9,9 @@ export const CONTENT_TOP = 600;
 
 /** 히피체는 글자 잉크의 중심이 줄 상자 중심보다 위/아래로 치우쳐 있다. 측정값(em)으로 보정한다. */
 export const HIPPIE_SHIFT_EM = 0.05;
+
+// 다이어리 꾸미기 컨셉
+export const PAPER = '#FFFDF4'; // 크림색 종이
+export const POSTIT = '#FFF0A0'; // 포스트잇 노랑
+export const MARKER = 'rgba(255,226,64,0.78)'; // 형광펜 노랑
+export const PAPER_SHADOW = '0 18px 40px rgba(20,30,80,0.30)';
