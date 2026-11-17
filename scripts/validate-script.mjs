@@ -177,9 +177,11 @@ if (s.theme === 'cute') {
     });
     if (sc.table && sc.table.rows.length > 3) warn(`[귀여운] scenes[${i}] 표는 3행 이내가 좋아요`);
   });
-  if (!s.hookSticker) warn('[귀여운] 표지 스티커(hookSticker)가 없어요');
   const stickers = [s.hookSticker, ...(s.scenes ?? []).map((x) => x.sticker), s.ctaSticker].filter(Boolean);
-  if (stickers.length > 3) warn(`[귀여운] 스티커가 ${stickers.length}개예요. 필요하거나 강조할 곳에만, 3개 이내로 써요`);
+  const decos = [s.hookDeco, ...(s.scenes ?? []).map((x) => x.deco), s.ctaDeco].filter(Boolean);
+  const deco_total = stickers.length + decos.length;
+  if (deco_total > 3) warn(`[귀여운] 스티커+일러스트가 ${deco_total}개예요. 영상 하나에 1~3개만 써요 (꼭 넣어야 하는 건 아니에요)`);
+  if (deco_total === 0) warn('[귀여운] 스티커·일러스트가 하나도 없어요. 강조할 곳에 1개는 있으면 좋아요');
   if (new Set(stickers).size !== stickers.length) warn('[귀여운] 같은 스티커를 여러 번 쓰고 있어요');
   const total = (s.hookSec ?? 3.5) + (s.scenes ?? []).reduce((a, b) => a + (b.t ?? 0), 0) + (s.ctaSec ?? 4);
   if (total > 28) warn(`[귀여운] 전체 길이가 ${total.toFixed(1)}초예요. 20~25초 안팎이 좋아요`);

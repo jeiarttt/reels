@@ -89,7 +89,7 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames
     <AbsoluteFill style={{opacity: out}}>
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 120, right: 120}}>
         <Pill text={label} tilt={2} />
-        <div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
+        <div style={{display: 'flex', flexDirection: 'column', gap: 46}}>
           {cards.map((c, i) => (
             <Card key={i} c={c} i={i} />
           ))}
@@ -110,10 +110,10 @@ const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
-        gap: 30,
+        gap: 32,
         background: '#fff',
         borderRadius: 34,
-        padding: '32px 40px',
+        padding: '46px 44px',
         boxShadow: PAPER_SHADOW,
         textAlign: 'left',
         transform: `translateY(${(1 - pop) * 40}px) rotate(${i % 2 ? 1.2 : -1.2}deg)`,
@@ -186,7 +186,7 @@ const Row: React.FC<{r: string[]; i: number; last: boolean}> = ({r, i, last}) =>
         display: 'flex',
         alignItems: 'center',
         gap: 24,
-        padding: '52px 40px',
+        padding: '64px 40px',
         borderBottom: last ? 'none' : `4px dashed rgba(36,87,245,0.28)`,
         opacity: Math.min(pop, 1),
         transform: `translateX(${(1 - pop) * -30}px)`,
@@ -256,7 +256,7 @@ export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label
       <div style={FLEX_CENTER}>
         <Pill text={label} tilt={-2} />
         <div style={{height: 10}} />
-        <div style={{position: 'relative', display: 'flex', flexDirection: 'column', gap: 30}}>
+        <div style={{position: 'relative', display: 'flex', flexDirection: 'column', gap: 48}}>
           <div
             style={{
               position: 'absolute',
@@ -302,7 +302,7 @@ const StepRow: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
           flex: 1,
           background: '#fff',
           borderRadius: 34,
-          padding: '26px 34px',
+          padding: '40px 36px',
           boxShadow: SOFT_SHADOW,
           textAlign: 'left',
           display: 'flex',
@@ -378,7 +378,7 @@ export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, st
           </div>
         </div>
         {stat.chips && (
-          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, marginTop: 20}}>
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 24, marginTop: 38}}>
             {stat.chips.map((c, k) => (
               <StatChip key={k} text={c} i={k} />
             ))}
@@ -403,7 +403,7 @@ const StatChip: React.FC<{text: string; i: number}> = ({text, i}) => {
         fontWeight: 800,
         fontSize: 42,
         lineHeight: 1.2,
-        padding: '14px 36px',
+        padding: '20px 40px',
         borderRadius: 999,
         boxShadow: SOFT_SHADOW,
         whiteSpace: 'nowrap',
@@ -425,7 +425,7 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
       <div style={FLEX_CENTER}>
         <Pill text={label} tilt={-2} />
         <div style={{height: 14}} />
-        <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 26 : 34, alignItems: 'stretch'}}>
+        <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 44 : 34, alignItems: 'stretch'}}>
           <ComparePanel ok stack={compare.stack} neutral={compare.neutral} title={compare.leftTitle} items={compare.leftItems} delay={10} />
           <ComparePanel stack={compare.stack} neutral={compare.neutral} title={compare.rightTitle} items={compare.rightItems} delay={22} />
         </div>
@@ -441,13 +441,13 @@ const ComparePanel: React.FC<{ok?: boolean; neutral?: boolean; stack?: boolean; 
   const pop = usePop(delay);
   const col = neutral ? (ok ? BLUE : '#14B8A6') : ok ? BLUE : DANGER;
   return (
-    <div style={{flex: stack ? 'none' : 1, background: '#fff', borderRadius: 38, padding: '0 0 28px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
+    <div style={{flex: stack ? 'none' : 1, background: '#fff', borderRadius: 38, padding: '0 0 42px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
       <div style={{background: col, color: '#fff', padding: '4px 0 0'}}>
         <LabelBox size={50} padX={20} padY={22} style={{display: 'flex', width: '100%'}}>
           {neutral ? '' : ok ? '✅ ' : '❌ '}{title}
         </LabelBox>
       </div>
-      <div style={{display: 'flex', flexDirection: stack ? 'row' : 'column', flexWrap: stack ? 'wrap' : 'nowrap', gap: stack ? '14px 34px' : 18, padding: '26px 34px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
+      <div style={{display: 'flex', flexDirection: stack ? 'row' : 'column', flexWrap: stack ? 'wrap' : 'nowrap', gap: stack ? '24px 34px' : 26, padding: '38px 34px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
         {items.map((it, k) => (
           <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: stack ? 42 : 36, lineHeight: 1.2, whiteSpace: 'nowrap'}}>
             <span style={{color: col, fontWeight: 900, fontSize: stack ? 44 : 40}}>{neutral ? '•' : ok ? '✓' : '✕'}</span>
@@ -468,7 +468,7 @@ export const CuteGrid: React.FC<Common & {cards: CardItem[]}> = ({frames, label,
       <div style={FLEX_CENTER}>
         <Pill text={label} tilt={2} />
         <div style={{height: 10}} />
-        <div style={{display: 'flex', flexWrap: 'wrap', gap: 26, justifyContent: 'center'}}>
+        <div style={{display: 'flex', flexWrap: 'wrap', gap: 44, justifyContent: 'center'}}>
           {cards.map((c, i) => (
             <GridTile key={i} c={c} i={i} />
           ))}
@@ -489,14 +489,14 @@ const GridTile: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
         width: 400,
         background: '#fff',
         borderRadius: 34,
-        padding: '26px 24px 24px',
+        padding: '42px 24px 40px',
         boxShadow: SOFT_SHADOW,
         opacity: Math.min(pop, 1),
         transform: `translateY(${(1 - pop) * 40}px) rotate(${i % 2 ? 1 : -1}deg)`,
         wordBreak: 'keep-all',
       }}
     >
-      <div style={{width: 92, height: 92, borderRadius: '50%', background: POSTIT, margin: '0 auto 10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 54}}>{c.emoji ?? '⭐'}</div>
+      <div style={{width: 92, height: 92, borderRadius: '50%', background: POSTIT, margin: '0 auto 22px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 54}}>{c.emoji ?? '⭐'}</div>
       <div style={{color: BLUE, fontWeight: 900, fontSize: 50, lineHeight: 1.1, letterSpacing: -1.5}}>{c.big}</div>
       {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 32, marginTop: 6}}>{c.small}</div>}
     </div>
