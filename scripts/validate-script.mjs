@@ -136,7 +136,7 @@ const emoji = /\p{Extended_Pictographic}/u;
 });
 if (emoji.test(s.cta ?? '')) warn('cta 에 이모지가 있어요');
 const hl = ([s.hook, ...bodyTexts].join(' ').match(/\[\[/g) ?? []).length;
-if (hl > 4) warn(`[[ ]] 강조가 ${hl}곳이에요 (전체 2~3곳 이내)`);
+if (hl > 3) err(`[[ ]] 강조가 ${hl}곳이에요. 전체 3곳 이내로 줄여요 (핵심 숫자·단어만)`);
 if ((all.match(/\[\[/g) ?? []).length !== (all.match(/\]\]/g) ?? []).length) err('[[ ]] 짝이 맞지 않아요');
 
 // ── 출력 ──

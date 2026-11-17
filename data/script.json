@@ -14,7 +14,7 @@
       "t": 5,
       "kind": "text",
       "label": "이번 2차 일정",
-      "text": "계좌 개설은\n[[11월 27일]]까지\n기간 안에 열어야 가입돼요",
+      "text": "계좌 개설은\n11월 27일까지\n기간 안에 열어야 가입돼요",
       "bg": {
         "src": "stock/seoul-day-skyline.jpg"
       }
