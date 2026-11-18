@@ -10,8 +10,7 @@
   "hookLabel": "📣 카카오뱅크 애플페이 시작",
   "hook": "아이폰도 교통비\n[[환급]] 받아요",
   "hookBg": {
-    "src": "stock/simple-bright-sky-lamp.jpg",
-    "position": "50% 50%"
+    "src": "stock/my-IMG_0577.jpg"
   },
   "hookSticker": "pug-tongue",
   "hookSfx": "오!",
@@ -25,10 +24,8 @@
         "sub": "체크카드를\n애플 지갑에 추가",
         "emoji": "🗓️"
       },
-      "tone": "dark",
       "bg": {
-        "src": "stock/simple-bright-iphone-white.jpg",
-        "position": "100% 50%"
+        "src": "stock/my-IMG_0559.jpg"
       }
     },
     {
@@ -53,8 +50,7 @@
         }
       ],
       "bg": {
-        "src": "stock/simple-bright-card-tap.jpg",
-        "position": "35% 50%"
+        "src": "stock/my-IMG_0558.jpg"
       }
     },
     {
@@ -72,7 +68,7 @@
         ]
       },
       "bg": {
-        "src": "stock/simple-sky-pale.jpg"
+        "src": "stock/my-IMG_0714.jpg"
       },
       "deco": "train",
       "decoPos": "tr"
@@ -98,8 +94,7 @@
         "stack": true
       },
       "bg": {
-        "src": "stock/simple-bright-card-tap.jpg",
-        "position": "85% 50%"
+        "src": "stock/my-IMG_0557.jpg"
       },
       "sticker": "chihuahua",
       "sfx": "잠깐!"
@@ -113,18 +108,16 @@
         "sub": "Apple Pay 등록·이용",
         "emoji": "🙋"
       },
-      "tone": "dark",
       "bg": {
-        "src": "stock/simple-bright-iphone-white.jpg",
-        "position": "0% 50%"
+        "src": "stock/my-IMG_0707.jpg"
       }
     }
   ],
   "ctaLabel": "💙 저장하고 총정리 받기",
   "cta": "DM으로 [[애플페이]]\n총정리 받아가세요",
   "ctaBg": {
-    "src": "stock/simple-bright-sky-lamp.jpg",
-    "position": "80% 50%"
+    "src": "stock/my-IMG_0639.jpg",
+    "position": "0% 50%"
   },
   "accentColor": "#2457F5",
   "status": "pending",
@@ -153,5 +146,5 @@
     "원문 확인(2026-11-17): 정책브리핑 정책포커스 '모두의 카드로 변신'(newsId 148957978) 기자단 글 — \"K-패스는 월 15회 이상 시내버스, 지하철… 이용하는 사람들이 지출 금액의 20~53.3%를 환급\", \"만 19세에서 34세 청년은 기본형 K-패스 30% 환급\". 영상 '월 15회 이상'은 이 문장 기준(모두의 카드 개편 후 세부 조건은 K-패스 앱에서 확인)",
     "'K-패스 환급은 만 19세 이상부터'는 확인되지 않아 영상에 넣지 않음"
   ],
-  "bgDim": 0.14
+  "bgDim": 0.18
 }
