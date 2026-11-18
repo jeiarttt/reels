@@ -1,0 +1,155 @@
+{
+  "id": "20261118-월세-세액공제-cute",
+  "mode": "card_news",
+  "theme": "cute",
+  "style": "photo",
+  "backgroundSrc": "",
+  "brand": "2030 상경러 · 자취 꿀팁",
+  "bgDim": 0.14,
+  "hookSec": 2.6,
+  "ctaSec": 2.8,
+  "hookLabel": "📣 자취생 연말정산",
+  "hook": "월세 세액공제\n[[받을 수 있어요]]",
+  "hookBg": {
+    "src": "stock/simple-bright-sky-lamp.jpg",
+    "position": "50% 50%"
+  },
+  "hookSticker": "dog-corgi-up",
+  "hookSfx": "오?",
+  "scenes": [
+    {
+      "t": 3.8,
+      "kind": "stat",
+      "label": "💰 월세 세액공제",
+      "stat": {
+        "big": "15%",
+        "sub": "총급여 8천만 원 이하",
+        "emoji": "🏠",
+        "gauge": 15,
+        "chips": [
+          "총급여 5,500만 원 이하는 17%"
+        ]
+      },
+      "bg": {
+        "src": "stock/simple-sky-pale.jpg"
+      }
+    },
+    {
+      "t": 3.4,
+      "kind": "cards",
+      "label": "🏘️ 이런 집도 돼요",
+      "cards": [
+        {
+          "big": "아파트",
+          "small": "월세 공제",
+          "emoji": "🏢"
+        },
+        {
+          "big": "주거용 오피스텔",
+          "small": "월세 공제",
+          "emoji": "🏬"
+        },
+        {
+          "big": "고시원",
+          "small": "월세 공제",
+          "emoji": "🛏️"
+        }
+      ],
+      "bg": {
+        "src": "stock/simple-bright-card-tap.jpg",
+        "position": "35% 50%"
+      },
+      "deco": "house",
+      "decoPos": "tr"
+    },
+    {
+      "t": 4.2,
+      "kind": "steps",
+      "label": "📝 월세 현금영수증 신청",
+      "cards": [
+        {
+          "big": "계약서 준비",
+          "small": "월세 지출내역도",
+          "emoji": "📄"
+        },
+        {
+          "big": "홈택스로 신청",
+          "small": "월세 현금영수증",
+          "emoji": "📲"
+        }
+      ],
+      "bg": {
+        "src": "stock/simple-bright-iphone-white.jpg",
+        "position": "0% 50%"
+      },
+      "tone": "dark"
+    },
+    {
+      "t": 4.2,
+      "kind": "compare",
+      "label": "🙋 대상이 아니라면?",
+      "compare": {
+        "leftTitle": "세액공제 대상",
+        "leftItems": [
+          "월세액 세액공제"
+        ],
+        "rightTitle": "대상이 아니면",
+        "rightItems": [
+          "현금영수증 금액으로",
+          "신용카드 등 소득공제"
+        ],
+        "neutral": true
+      },
+      "bg": {
+        "src": "stock/simple-sky-deep.jpg"
+      }
+    },
+    {
+      "t": 4.0,
+      "kind": "stat",
+      "label": "🧡 청년은 더 늘 예정이에요",
+      "stat": {
+        "big": "17%",
+        "sub": "15~34세 청년\n소득과 관계없이",
+        "emoji": "🙋",
+        "chips": [
+          "공제 한도 1,000만 → 1,200만 원",
+          "세제개편안 · 확정 전"
+        ]
+      },
+      "bg": {
+        "src": "stock/simple-cloud-teal.jpg"
+      },
+      "sticker": "chihuahua",
+      "sfx": "잠깐!"
+    }
+  ],
+  "ctaLabel": "💙 연말정산 전에 저장",
+  "cta": "월세 세액공제\n[[저장]]해 두세요",
+  "ctaBg": {
+    "src": "stock/simple-bright-sky-lamp.jpg",
+    "position": "80% 50%"
+  },
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "caption": "자취 월세도 연말정산에서 세액공제를 받을 수 있어요 🏠 아파트뿐 아니라 주거용 오피스텔·고시원도 가능해요.\n\n💰 공제율: 총급여 8,000만 원 이하 15%, 5,500만 원 이하 17%\n📝 홈택스(손택스)에서 월세 현금영수증 신청(임차계약서·월세 지출내역 첨부)\n🙋 세액공제 대상이 아니어도 월세를 현금영수증 금액으로 인정받아 신용카드 등 소득공제에 쓸 수 있어요\n🧡 15~34세 청년은 소득과 관계없이 17%, 한도 1,200만 원으로 늘리는 세제개편안이 있어요(확정 전)\n\n연말정산 전에 저장해 두세요 📌\n(2026년 11월 기준 · 세제개편안은 확정 전이고 조건은 변경될 수 있어요)\n\n#월세세액공제 #연말정산 #자취꿀팁 #청년혜택 #상경러 #재테크",
+  "hashtags": [
+    "#월세세액공제",
+    "#연말정산",
+    "#자취꿀팁",
+    "#청년혜택",
+    "#상경러",
+    "#재테크"
+  ],
+  "sources": [
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148969870",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148958472",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148957247",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148958309"
+  ],
+  "verify_before_post": [
+    "정책브리핑(공식) 원문 확인: 현행 공제율(총급여 8천만 원 이하 15%, 5,500만 원 이하 17%), 청년 17%·한도 1,200만 원은 세제개편안(확정 전), 주거용 오피스텔·고시원 포함, 홈택스 월세 현금영수증 신청 절차, 비대상자의 신용카드 등 소득공제 인정",
+    "무주택 세대주 등 세부 자격 요건은 원문에서 확인하지 못해 영상·캡션에 넣지 않음(총정리에서 국세청 확인 안내)",
+    "청년 17% 확대의 국회 통과 여부·적용 시기 미확인(영상에 '확정 전' 표기)"
+  ]
+}

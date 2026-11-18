@@ -387,8 +387,8 @@ export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, st
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={90} rotate={8} delay={26} style={{left: 110, top: 440}} />
       <Doodle kind="heart" color={dark ? BLUE : '#fff'} size={80} rotate={-10} delay={32} style={{right: 120, top: 1470}} />
-      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1280}} />}
-      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1330}} />}
+      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1480}} />}
+      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1530}} />}
     </AbsoluteFill>
   );
 };
