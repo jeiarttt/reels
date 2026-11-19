@@ -13,7 +13,9 @@
   "hookLabel": "🔖 상경 자취생 북마크",
   "hook": "KTX·전세·통신비,\n[[돈 아끼는 사이트 4개]]",
   "hookBg": {
-    "src": "stock/my-IMG_0639.jpg",
+    "src": "user/sites-bg.mp4",
+    "type": "video",
+    "startFrom": 0,
     "position": "50% 50%"
   },
   "hookSticker": "dog-corgi-up",
@@ -24,8 +26,8 @@
       "kind": "stat",
       "label": "🚄 코레일 힘내라 청춘",
       "stat": {
-        "big": "최대 40%",
-        "sub": "KTX 할인",
+        "big": "40%",
+        "sub": "KTX 최대 할인",
         "emoji": "🚄",
         "chips": [
           "만 25~33세 코레일 회원",
@@ -35,8 +37,10 @@
       "deco": "train",
       "decoPos": "tr",
       "bg": {
-        "src": "stock/my-IMG_0714.jpg",
-        "position": "70% 50%"
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 2.6,
+        "position": "50% 50%"
       }
     },
     {
@@ -58,15 +62,17 @@
             "3억 원 이하"
           ],
           [
-            "연소득",
-            "청년 5천만 원 이하"
+            "연소득(청년)",
+            "5천만 원 이하"
           ]
         ]
       },
       "deco": "house",
       "decoPos": "tl",
       "bg": {
-        "src": "stock/my-IMG_0696.jpg",
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 6.8,
         "position": "50% 50%"
       }
     },
@@ -76,8 +82,8 @@
       "label": "🔎 마이홈포털 자가진단",
       "cards": [
         {
-          "big": "소득·가구원·거주지 입력",
-          "small": "자가진단",
+          "big": "조건 입력",
+          "small": "소득·가구원 수·거주지",
           "emoji": "⌨️"
         },
         {
@@ -92,7 +98,9 @@
         }
       ],
       "bg": {
-        "src": "stock/my-IMG_0707.jpg",
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 11.4,
         "position": "50% 50%"
       }
     },
@@ -102,8 +110,8 @@
       "label": "📱 스마트초이스",
       "cards": [
         {
-          "big": "25% 요금할인 조회",
-          "small": "선택약정",
+          "big": "25% 할인 조회",
+          "small": "선택약정 요금할인",
           "emoji": "🔍"
         },
         {
@@ -118,7 +126,9 @@
         }
       ],
       "bg": {
-        "src": "stock/my-IMG_0577.jpg",
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 15.8,
         "position": "50% 50%"
       }
     }
@@ -126,7 +136,9 @@
   "ctaLabel": "💙 저장하고 총정리 받기",
   "cta": "DM으로 [[사이트]]\n총정리 받아가세요",
   "ctaBg": {
-    "src": "stock/my-IMG_0559.jpg",
+    "src": "user/sites-bg.mp4",
+    "type": "video",
+    "startFrom": 20.0,
     "position": "50% 50%"
   },
   "caption": "상경한 자취생이 북마크해 두면 돈 아끼는 사이트 4개 🔖\n🚄 코레일 '힘내라 청춘': 만 25~33세 KTX 최대 40% 할인\n🏠 전세보증료 환급 최대 40만 원 · 🔎 마이홈포털 자가진단 · 📱 스마트초이스 25% 할인 조회\n💌 신청 조건·방법 총정리는 DM으로 \"사이트\"라고 보내 주세요!\n(2026년 11월 기준 정책브리핑 기사 기준 · 금액과 조건은 바뀔 수 있어요)\n\n#자취꿀팁 #청년혜택 #상경러 #재테크 #KTX할인 #전세보증료",

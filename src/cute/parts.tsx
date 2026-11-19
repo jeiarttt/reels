@@ -107,7 +107,7 @@ export const StickerImg: React.FC<{
  *  반드시 내용 컨테이너(세로 flex)의 첫 번째 자식으로 둔다. */
 export const StickerAnchor: React.FC<{name: string; size: number; rotate?: number; corner?: 'tr' | 'tl'; sfx?: string}> = ({name, size, rotate = 0, corner = 'tr', sfx}) => {
   const sz = Math.round(size * STICKER_SCALE);
-  const pos = {bottom: -Math.round(sz * 0.2), [corner === 'tr' ? 'right' : 'left']: 4};
+  const pos = {bottom: -Math.round(sz * 0.1), [corner === 'tr' ? 'right' : 'left']: -10};
   return (
     <div style={{height: 0, position: 'relative', alignSelf: 'stretch', zIndex: 5}}>
       <StickerImg name={name} size={size} rotate={rotate} sfx={sfx} style={pos} />

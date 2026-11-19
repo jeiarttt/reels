@@ -45,7 +45,8 @@ const bodyTexts = [];
 const bgUsage = {};
 const useBg = (bg, where) => {
   if (!bg || !bg.src) return;
-  bgUsage[bg.src] = (bgUsage[bg.src] ?? 0) + 1;
+  const bgKey = bg.src + (bg.startFrom ? '@' + bg.startFrom : ''); // 긴 영상의 다른 구간은 다른 배경으로 센다
+  bgUsage[bgKey] = (bgUsage[bgKey] ?? 0) + 1;
   if (!existsSync(`public/${bg.src}`)) err(`${where}: 배경 파일이 없어요 (public/${bg.src})`);
 };
 if (!s.backgroundSrc) {

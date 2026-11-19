@@ -22,7 +22,7 @@ const usePop = (delay = 0) => {
 /** 주제 일러스트를 내용 블록 모서리에 걸쳐 놓는다(높이 0 기준점). 스티커가 있으면 반대쪽 모서리에 둔다. */
 const DecoAnchor: React.FC<{name: string; text?: string; corner: 'tl' | 'tr'}> = ({name, text, corner}) => (
   <div style={{height: 0, position: 'relative', alignSelf: 'stretch', zIndex: 4}}>
-    <Illust name={name} text={text} size={230} rotate={corner === 'tl' ? -8 : 8} style={{bottom: -34, [corner === 'tr' ? 'right' : 'left']: 0}} />
+    <Illust name={name} text={text} size={230} rotate={corner === 'tl' ? -8 : 8} style={{bottom: -8, [corner === 'tr' ? 'right' : 'left']: -18}} />
   </div>
 );
 
@@ -204,7 +204,7 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, 
             ))}
           </div>
           {table.rows.map((r, ri) => (
-            <Row key={ri} r={r} i={ri} last={ri === table.rows.length - 1} v={vOf(table.rows.length)} />
+            <Row key={ri} r={r} i={ri} last={ri === table.rows.length - 1} v={vOf(table.rows.length)} allShort={table.rows.every((x) => x.length === 2 && [...x[1]].length <= 6)} />
           ))}
         </div>
       </div>
@@ -213,11 +213,11 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, 
   );
 };
 
-const Row: React.FC<{r: string[]; i: number; last: boolean; v: number}> = ({r, i, last, v}) => {
+const Row: React.FC<{r: string[]; i: number; last: boolean; v: number; allShort: boolean}> = ({r, i, last, v, allShort}) => {
   const pop = usePop(20 + i * 10);
   const f = 1 + (v - 1) * 0.2;
   const rest = r.slice(1).join(' ');
-  const big = r.length === 2 && [...rest].length <= 6;
+  const big = allShort;
   return (
     <div
       style={{
@@ -233,7 +233,7 @@ const Row: React.FC<{r: string[]; i: number; last: boolean; v: number}> = ({r, i
       }}
     >
       <div style={{fontSize: Math.round(58 * f)}}>✅</div>
-      <div style={{flex: '0 0 340px', background: POSTIT, color: BLUE, fontWeight: 900, fontSize: Math.round(46 * f), borderRadius: 8, padding: '14px 18px', textAlign: 'center', boxShadow: '0 5px 10px rgba(20,30,80,0.2)'}}>
+      <div style={{flex: big ? '0 0 340px' : '0 0 290px', background: POSTIT, color: BLUE, fontWeight: 900, fontSize: Math.round(46 * f), borderRadius: 8, padding: '14px 18px', textAlign: 'center', boxShadow: '0 5px 10px rgba(20,30,80,0.2)'}}>
         {r[0]}
       </div>
       <div style={{color: big ? BLUE : NAVY, fontWeight: big ? 900 : 800, fontSize: big ? Math.round(84 * f) : Math.round(46 * f), lineHeight: 1.3, whiteSpace: 'pre-line'}}>{rest}</div>
