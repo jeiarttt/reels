@@ -19,6 +19,8 @@ export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: s
 export type Scene = {
   t: number;
   kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid' | 'checklist' | 'flow';
+  /** 라임 스타일 장식 도형 모양(burst·sparkle·ring·plus·dots·moon). 생략하면 컷마다 돌려 쓴다 */
+  shape?: string;
   /** 글자 컷 아래에 붙이는 작은 알약 문구 */
   chips?: string[];
   /** 귀여운 테마: 밝은 배경이면 'dark'(진한 남색 글자). 기본 'light'(흰 글자) */

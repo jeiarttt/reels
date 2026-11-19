@@ -49,20 +49,47 @@ export const useIn = (delay = 0) => {
   return Math.max(spring({frame: frame - delay, fps, config: {damping: 16, stiffness: 120}}), 0);
 };
 
-/** 뾰족한 별(스파클). 가로 w, 세로는 w*1.27 */
-export const Star: React.FC<{w: number; style?: React.CSSProperties; delay?: number}> = ({w, style, delay = 10}) => {
-  const p = useIn(delay);
-  const h = Math.round(w * 1.27);
-  const n = 12;
-  const pts: string[] = [];
-  for (let k = 0; k < n * 2; k++) {
-    const r = k % 2 === 0 ? 1 : 0.42;
-    const a = (Math.PI * k) / n - Math.PI / 2;
-    pts.push(`${(50 + 50 * r * Math.cos(a)).toFixed(2)},${(64 + 64 * r * Math.sin(a)).toFixed(2)}`);
+export type ShapeKind = 'burst' | 'sparkle' | 'ring' | 'plus' | 'dots' | 'moon';
+export const SHAPES: ShapeKind[] = ['sparkle', 'ring', 'burst', 'plus', 'dots', 'moon'];
+
+/** 장식 도형(가로세로 비율 1:1, 찌그러지지 않게). 모양은 컷마다 돌려 쓴다 */
+export const Star: React.FC<{w: number; kind?: ShapeKind; style?: React.CSSProperties; delay?: number}> = ({w, kind = 'burst', style, delay = 10}) => {
+  const p = Math.min(useIn(delay), 1);
+  let body: React.ReactNode;
+  if (kind === 'burst') {
+    const n = 12;
+    const pts: string[] = [];
+    for (let k = 0; k < n * 2; k++) {
+      const r = k % 2 === 0 ? 1 : 0.42;
+      const a = (Math.PI * k) / n - Math.PI / 2;
+      pts.push(`${(50 + 50 * r * Math.cos(a)).toFixed(2)},${(50 + 50 * r * Math.sin(a)).toFixed(2)}`);
+    }
+    body = <polygon points={pts.join(' ')} fill={STAR} />;
+  } else if (kind === 'sparkle') {
+    body = <path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0 Z" fill={STAR} />;
+  } else if (kind === 'ring') {
+    body = <circle cx="50" cy="50" r="38" fill="none" stroke={STAR} strokeWidth="16" />;
+  } else if (kind === 'plus') {
+    body = (
+      <>
+        <rect x="38" y="4" width="24" height="92" rx="12" fill={STAR} />
+        <rect x="4" y="38" width="92" height="24" rx="12" fill={STAR} />
+      </>
+    );
+  } else if (kind === 'dots') {
+    body = (
+      <>
+        <circle cx="20" cy="20" r="14" fill={STAR} />
+        <circle cx="50" cy="50" r="14" fill={STAR} />
+        <circle cx="80" cy="80" r="14" fill={STAR} />
+      </>
+    );
+  } else {
+    body = <path d="M70 6 A44 44 0 1 0 94 70 A34 34 0 1 1 70 6 Z" fill={STAR} />;
   }
   return (
-    <svg width={w} height={h} viewBox="0 0 100 128" style={{position: 'absolute', opacity: Math.min(p, 1), transform: `scale(${0.6 + 0.4 * Math.min(p, 1)}) rotate(${(1 - Math.min(p, 1)) * -40}deg)`, ...style}}>
-      <polygon points={pts.join(' ')} fill={STAR} />
+    <svg width={w} height={w} viewBox="0 0 100 100" style={{position: 'absolute', opacity: p, transform: `scale(${0.6 + 0.4 * p}) rotate(${(1 - p) * -30}deg)`, ...style}}>
+      {body}
     </svg>
   );
 };

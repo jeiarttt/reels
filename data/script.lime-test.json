@@ -1,0 +1,156 @@
+{
+  "id": "lime-kinds-test",
+  "mode": "card_news",
+  "theme": "lime",
+  "style": "photo",
+  "backgroundSrc": "",
+  "brand": "2030 상경러",
+  "bgDim": 0.5,
+  "hookSec": 2.6,
+  "ctaSec": 2.8,
+  "hookLabel": "월세 내는 자취생 필독",
+  "hook": "월세의 [[15%]]가\n연말정산에서 공제돼요",
+  "hookBg": {
+    "src": "user/wolse-bg-a.mp4",
+    "type": "video",
+    "startFrom": 0,
+    "position": "50% 50%"
+  },
+  "hookSticker": "dog-corgi-up",
+  "hookSfx": "오?",
+  "scenes": [
+    {
+      "t": 3.8,
+      "kind": "stat",
+      "label": "월세 세액공제",
+      "stat": {
+        "big": "15%",
+        "sub": "총급여 8,000만 원 이하",
+        "chips": [
+          "총급여 5,500만 원 이하는 17%"
+        ]
+      },
+      "bg": {
+        "src": "user/wolse-bg-a.mp4",
+        "type": "video",
+        "startFrom": 2.6,
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 3.4,
+      "kind": "table",
+      "label": "월세 세액공제",
+      "table": {
+        "head": [
+          "총급여",
+          "공제율"
+        ],
+        "rows": [
+          [
+            "8,000만 원 이하",
+            "15%"
+          ],
+          [
+            "5,500만 원 이하",
+            "17%"
+          ]
+        ]
+      },
+      "bg": {
+        "src": "user/wolse-bg-b.mp4",
+        "type": "video",
+        "startFrom": 0,
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 4.2,
+      "kind": "text",
+      "label": "이런 집도 돼요",
+      "text": "아파트뿐 아니라\n[[주거용 오피스텔]]\n고시원도 돼요",
+      "bg": {
+        "src": "user/wolse-bg-c.mp4",
+        "type": "video",
+        "startFrom": 0,
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 4.2,
+      "kind": "steps",
+      "label": "월세 현금영수증 신청",
+      "cards": [
+        {
+          "big": "계약서 준비",
+          "small": "월세 지출내역도",
+          "emoji": "📄"
+        },
+        {
+          "big": "홈택스로 신청",
+          "small": "월세 현금영수증",
+          "emoji": "📲"
+        }
+      ],
+      "bg": {
+        "src": "user/wolse-bg-b.mp4",
+        "type": "video",
+        "startFrom": 1.0,
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 4.0,
+      "kind": "compare",
+      "label": "대상이 아니라면?",
+      "compare": {
+        "leftTitle": "세액공제 대상",
+        "leftItems": [
+          "월세액 세액공제"
+        ],
+        "rightTitle": "대상이 아니면",
+        "rightItems": [
+          "현금영수증 금액으로",
+          "신용카드 등 소득공제"
+        ],
+        "neutral": true
+      },
+      "bg": {
+        "src": "user/wolse-bg-c.mp4",
+        "type": "video",
+        "startFrom": 0.4,
+        "position": "50% 50%"
+      }
+    }
+  ],
+  "ctaLabel": "저장하고 총정리 받기",
+  "cta": "DM으로 [[월세]]\n총정리 받아가세요",
+  "ctaBg": {
+    "src": "user/wolse-bg-c.mp4",
+    "type": "video",
+    "startFrom": 1.6,
+    "position": "50% 50%"
+  },
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "caption": "자취 월세도 연말정산에서 세액공제를 받을 수 있어요 🏠\n총급여 8,000만 원 이하 15%, 5,500만 원 이하 17%예요. 주거용 오피스텔·고시원도 돼요.\n홈택스(손택스)에서 월세 현금영수증을 신청하면 돼요.\n💌 신청 방법·준비물 총정리는 DM으로 \"월세\"라고 보내 주세요!\n(2026년 11월 기준 · 청년 17% 확대는 세제개편안으로 확정 전이에요)\n\n#월세세액공제 #연말정산 #자취꿀팁 #청년혜택 #상경러 #재테크",
+  "hashtags": [
+    "#월세세액공제",
+    "#연말정산",
+    "#자취꿀팁",
+    "#청년혜택",
+    "#상경러",
+    "#재테크"
+  ],
+  "sources": [
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148969870",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148958472",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148957247",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148958309"
+  ],
+  "verify_before_post": [
+    "정책브리핑(공식) 원문 확인: 현행 공제율(총급여 8천만 원 이하 15%, 5,500만 원 이하 17%), 청년 17%·한도 1,200만 원은 세제개편안(확정 전), 주거용 오피스텔·고시원 포함, 홈택스 월세 현금영수증 신청 절차, 비대상자의 신용카드 등 소득공제 인정",
+    "무주택 세대주 등 세부 자격 요건은 원문에서 확인하지 못해 영상·캡션에 넣지 않음(총정리에서 국세청 확인 안내)",
+    "청년 17% 확대의 국회 통과 여부·적용 시기 미확인(영상에 '확정 전' 표기)"
+  ]
+}

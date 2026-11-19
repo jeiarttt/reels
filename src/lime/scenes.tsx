@@ -3,7 +3,8 @@ import {AbsoluteFill} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
-import {Check, clean, Rich, Star, useIn, Wordmark} from './parts';
+import {Check, clean, Rich, SHAPES, Star, useIn, Wordmark} from './parts';
+import type {ShapeKind} from './parts';
 
 /** 영상 위 작은 글자가 묻히지 않도록 짙은 그림자를 깐다 */
 const SHADOW = '0 2px 14px rgba(0,0,0,0.7), 0 0 3px rgba(0,0,0,0.5)';
@@ -27,11 +28,11 @@ export const LimeCover: React.FC<{frames: number; label?: string; text: string; 
       {brand && <Wordmark text={clean(brand)} style={{left: 0, right: 0, top: 90, textAlign: 'center'}} />}
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         <div style={{position: 'relative'}}>
-          <Star w={77} style={{left: -70, top: -120}} delay={14} />
+          <Star w={86} kind="sparkle" style={{left: -80, top: -120}} delay={14} />
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 100, lineHeight: 1.2, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={text} />
           </div>
-          <Star w={101} style={{right: -70, bottom: -150}} delay={8} />
+          <Star w={96} kind="burst" style={{right: -70, bottom: -140}} delay={8} />
         </div>
         {label && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 56, textShadow: SHADOW, ...rise(p2)}}>{clean(label)}</div>}
       </div>
@@ -90,7 +91,7 @@ const StepCard: React.FC<{s: Step; i: number}> = ({s, i}) => {
 };
 
 /** 본문 공통 틀: 상단 로고, 라벨·제목·설명, 아래쪽 내용, 별 */
-const Frame: React.FC<{frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; children?: React.ReactNode}> = ({frames, index, total, brand, label, title, desc, wide, children}) => {
+const Frame: React.FC<{shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; children?: React.ReactNode}> = ({shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
   const p1 = useIn(6);
   return (
@@ -103,7 +104,7 @@ const Frame: React.FC<{frames: number; index: number; total: number; brand?: str
             <Rich text={title} />
           </div>
           {desc && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 28, textShadow: SHADOW, ...rise(p1)}}>{desc}</div>}
-          <Star w={101} style={{right: wide ? 28 : -20, bottom: -132}} delay={12} />
+          <Star w={104} kind={shape ?? SHAPES[index % SHAPES.length]} style={{right: wide ? 28 : -20, bottom: -140}} delay={12} />
         </div>
         <div>{children}</div>
       </div>
@@ -115,7 +116,7 @@ const Frame: React.FC<{frames: number; index: number; total: number; brand?: str
 /** 스크립트의 한 컷(kind)을 라임 레이아웃으로 바꿔 그린다 */
 export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total: number; brand?: string}> = ({s, frames, index, total, brand}) => {
   const kind = s.kind ?? 'text';
-  const base = {frames, index, total, brand};
+  const base = {frames, index, total, brand, shape: (s.shape as ShapeKind | undefined)};
   const label = clean(s.label ?? '');
 
   if (kind === 'text') {
@@ -166,7 +167,17 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
     const c = s.compare;
     return (
       <Frame {...base} title={label}>
-        <InfoRows rows={[...c.leftItems.map((x) => ({left: clean(c.leftTitle), right: clean(x)})), ...c.rightItems.map((x) => ({left: clean(c.rightTitle), right: clean(x)}))]} />
+        <div style={{display: 'flex', flexDirection: 'column', gap: 44}}>
+          {[
+            {t: c.leftTitle, items: c.leftItems},
+            {t: c.rightTitle, items: c.rightItems},
+          ].map((g, gi) => (
+            <div key={gi}>
+              <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, letterSpacing: -1.5, marginBottom: 18, textShadow: SHADOW}}>{clean(g.t)}</div>
+              <InfoRows rows={g.items.map((x) => ({left: clean(x)}))} />
+            </div>
+          ))}
+        </div>
       </Frame>
     );
   }
