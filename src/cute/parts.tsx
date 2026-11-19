@@ -53,6 +53,8 @@ export const ProgressDots: React.FC<{index: number; total: number}> = ({index, t
   </AbsoluteFill>
 );
 
+const STICKER_SCALE = 0.62;
+
 /** 동그란 스티커 사진: 통통 튀며 등장하고 계속 살짝 흔들린다 */
 export const StickerImg: React.FC<{
   name: string;
@@ -60,7 +62,9 @@ export const StickerImg: React.FC<{
   rotate?: number;
   style?: React.CSSProperties;
   delay?: number;
-}> = ({name, size, rotate = 0, style, delay = 8}) => {
+}> = ({name, size: baseSize, rotate = 0, style, delay = 8}) => {
+  // 스티커가 내용보다 눈에 띄지 않게 전체적으로 작게 (사용자 요청 2026-11-19)
+  const size = Math.round(baseSize * STICKER_SCALE);
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const s = spring({frame: frame - delay, fps, config: {damping: 9, stiffness: 150}});
