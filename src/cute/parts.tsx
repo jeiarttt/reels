@@ -103,6 +103,18 @@ export const StickerImg: React.FC<{
 };
 
 /** 의성어 말풍선 태그 (예: "헉!", "냠냠") */
+/** 내용 블록의 모서리에 걸쳐 놓는 스티커(+말풍선). 높이 0짜리 기준점이라 레이아웃을 밀지 않는다.
+ *  반드시 내용 컨테이너(세로 flex)의 첫 번째 자식으로 둔다. */
+export const StickerAnchor: React.FC<{name: string; size: number; rotate?: number; corner?: 'tr' | 'tl'; sfx?: string}> = ({name, size, rotate = 0, corner = 'tr', sfx}) => {
+  const sz = Math.round(size * STICKER_SCALE);
+  const pos = {bottom: -Math.round(sz * 0.2), [corner === 'tr' ? 'right' : 'left']: 4};
+  return (
+    <div style={{height: 0, position: 'relative', alignSelf: 'stretch', zIndex: 5}}>
+      <StickerImg name={name} size={size} rotate={rotate} sfx={sfx} style={pos} />
+    </div>
+  );
+};
+
 export const Sfx: React.FC<{text: string; rotate?: number; style?: React.CSSProperties; delay?: number}> = ({
   text,
   rotate = -8,

@@ -5,10 +5,10 @@ import {Words, wordCount} from '../components/Words';
 import {Disclaimer} from '../components/Disclaimer';
 import {CuteTitle, RawTitle} from './CuteTitle';
 import {Illust} from './illust';
-import {Doodle, LabelBox, NavyTag, NumTag, Paper, Pill, Sfx, StickerImg, useFadeOut, Washi} from './parts';
+import {Doodle, LabelBox, NavyTag, NumTag, Paper, Pill, Sfx, StickerAnchor, StickerImg, useFadeOut, Washi} from './parts';
 import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
-type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string; tone?: 'light' | 'dark'};
+type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string; tone?: 'light' | 'dark'; deco?: string; decoText?: string; decoPos?: 'tl' | 'tr' | 'bl' | 'br'};
 
 /** 항목 수가 적을수록 세로 여백을 넓혀 화면을 채운다 */
 const vOf = (n: number) => (n <= 1 ? 2.6 : n === 2 ? 2.2 : n === 3 ? 1.75 : n === 4 ? 1.35 : 1);
@@ -17,6 +17,32 @@ const usePop = (delay = 0) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   return Math.max(spring({frame: frame - delay, fps, config: {damping: 11, stiffness: 140}}), 0);
+};
+
+/** 주제 일러스트를 내용 블록 모서리에 걸쳐 놓는다(높이 0 기준점). 스티커가 있으면 반대쪽 모서리에 둔다. */
+const DecoAnchor: React.FC<{name: string; text?: string; corner: 'tl' | 'tr'}> = ({name, text, corner}) => (
+  <div style={{height: 0, position: 'relative', alignSelf: 'stretch', zIndex: 4}}>
+    <Illust name={name} text={text} size={230} rotate={corner === 'tl' ? -8 : 8} style={{bottom: -34, [corner === 'tr' ? 'right' : 'left']: 0}} />
+  </div>
+);
+
+const Accents: React.FC<{
+  sticker?: string;
+  sfx?: string;
+  size: number;
+  rotate: number;
+  corner: 'tl' | 'tr';
+  deco?: string;
+  decoText?: string;
+  decoPos?: 'tl' | 'tr' | 'bl' | 'br';
+}> = ({sticker, sfx, size, rotate, corner, deco, decoText, decoPos}) => {
+  const decoCorner: 'tl' | 'tr' = sticker ? (corner === 'tr' ? 'tl' : 'tr') : decoPos?.endsWith('l') ? 'tl' : 'tr';
+  return (
+    <>
+      {sticker && <StickerAnchor name={sticker} sfx={sfx} size={size} rotate={rotate} corner={corner} />}
+      {deco && <DecoAnchor name={deco} text={decoText} corner={decoCorner} />}
+    </>
+  );
 };
 
 /** 표지: 사진 위에 바로 놓는 큰 글자 + 말풍선 라벨 + 어두운 태그 + 흰 선 낙서 */
@@ -29,12 +55,15 @@ export const CuteCover: React.FC<{
   disclaimer?: string;
   sticker?: string;
   sfx?: string;
+  deco?: string;
+  decoPos?: 'tl' | 'tr' | 'bl' | 'br';
   frames: number;
-}> = ({label, text, brand, sticker, sfx, frames}) => {
+}> = ({label, text, brand, sticker, sfx, deco, decoPos, frames}) => {
   const out = useFadeOut(frames);
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 130, right: 130}}>
+        <Accents sticker={sticker} sfx={sfx} size={400} rotate={9} corner="tr" deco={deco} decoPos={decoPos} />
         <Pill text={label} tilt={-3} align="left" />
         <div style={{height: 24}} />
         <RawTitle text={text} size={112} startFrame={label ? 6 : 0} />
@@ -47,14 +76,13 @@ export const CuteCover: React.FC<{
       <Doodle kind="sparkle" size={96} rotate={8} delay={14} style={{left: 110, top: 1340}} />
       <Doodle kind="heart" size={92} rotate={-10} delay={20} style={{right: 120, top: 1360}} />
       <Doodle kind="swirl" size={150} rotate={-4} delay={26} style={{right: 360, top: 1320}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={400} rotate={9} style={{right: 30, top: 200}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={-9} style={{right: 390, top: 240}} />}
     </AbsoluteFill>
   );
 };
 
 /** 큰 글자 컷: 종이 없이 사진 위에 바로 */
-export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx, tone}) => {
+export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx, deco, decoText, decoPos, tone}) => {
   const dark = tone === 'dark';
   const out = useFadeOut(frames);
   const odd = index % 2 === 1;
@@ -75,24 +103,25 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, la
         }}
       />
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 120, right: 120}}>
+        <Accents sticker={sticker} sfx={sfx} size={330} rotate={-8} corner="tl" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={odd ? -2 : 2} />
         <div style={{height: 22}} />
         <RawTitle text={text} size={titleSize} startFrame={8} dark={dark} />
       </div>
       <Doodle kind={odd ? 'sparkle' : 'heart'} color={dark ? BLUE : '#fff'} size={88} rotate={odd ? 10 : -8} delay={16} style={{right: 110, top: 640}} />
       <Doodle kind={odd ? 'swirl' : 'star'} color={dark ? BLUE : '#fff'} size={odd ? 140 : 76} rotate={-6} delay={22} style={{left: 120, top: 1270}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={330} rotate={-8} style={{left: 64, top: 1230}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={7} style={{left: 420, top: 1290}} />}
     </AbsoluteFill>
   );
 };
 
 /** 이모지 카드 */
-export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames, label, cards, sticker, sfx}) => {
+export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames, label, cards, sticker, sfx, deco, decoText, decoPos}) => {
   const out = useFadeOut(frames);
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 120, right: 120}}>
+        <Accents sticker={sticker} sfx={sfx} size={270} rotate={12} corner="tr" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={2} />
         <div style={{display: 'flex', flexDirection: 'column', gap: 46 * vOf(cards.length)}}>
           {cards.map((c, i) => (
@@ -101,7 +130,6 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames
         </div>
       </div>
       <Doodle kind="sparkle" size={84} rotate={10} delay={30} style={{right: 110, top: 540}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={270} rotate={12} style={{right: 40, top: cards.length <= 3 ? 110 : 330}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: cards.length <= 3 ? 170 : 400}} />}
     </AbsoluteFill>
   );
@@ -152,12 +180,13 @@ const Card: React.FC<{c: CardItem; i: number; v: number}> = ({c, i, v}) => {
 };
 
 /** 체크 메모 (표) */
-export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, label, table, sticker, sfx}) => {
+export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, label, table, sticker, sfx, deco, decoText, decoPos}) => {
   const out = useFadeOut(frames);
   const head = usePop(10);
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 120, right: 120}}>
+        <Accents sticker={sticker} sfx={sfx} size={260} rotate={-10} corner="tl" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={-2} />
         <div
           style={{
@@ -179,7 +208,6 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, 
           ))}
         </div>
       </div>
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={260} rotate={-10} style={{right: 48, top: 1330}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={6} style={{right: 80, top: 1290}} />}
     </AbsoluteFill>
   );
@@ -214,7 +242,7 @@ const Row: React.FC<{r: string[]; i: number; last: boolean; v: number}> = ({r, i
 };
 
 /** 마지막 화면 */
-export const CuteCta: React.FC<Common & {text: string}> = ({frames, label, text, sticker, sfx}) => {
+export const CuteCta: React.FC<Common & {text: string}> = ({frames, label, text, sticker, sfx, deco, decoText, decoPos}) => {
   const out = useFadeOut(frames);
   return (
     <AbsoluteFill style={{opacity: out}}>
@@ -229,13 +257,13 @@ export const CuteCta: React.FC<Common & {text: string}> = ({frames, label, text,
         }}
       />
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 130, right: 130}}>
+        <Accents sticker={sticker} sfx={sfx} size={320} rotate={-9} corner="tr" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={-2} />
         <div style={{height: 22}} />
         <RawTitle text={text} size={100} startFrame={8} />
       </div>
       <Doodle kind="arrow" size={150} rotate={20} delay={20} style={{right: 120, top: 1230}} />
       <Doodle kind="sparkle" size={84} rotate={-6} delay={14} style={{left: 120, top: 660}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={320} rotate={-9} style={{left: 56, top: 1290}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={8} style={{left: 400, top: 1330}} />}
     </AbsoluteFill>
   );
@@ -256,7 +284,7 @@ const FLEX_CENTER: React.CSSProperties = {
 const DANGER = '#FF5A5F';
 
 /** 세로 단계: 번호 동그라미가 점선으로 이어지는 타임라인 (방법·절차용) */
-export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label, cards, sticker, sfx, tone}) => {
+export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label, cards, sticker, sfx, deco, decoText, decoPos, tone}) => {
   const out = useFadeOut(frames);
   const frame = useCurrentFrame();
   const dark = tone === 'dark';
@@ -264,6 +292,7 @@ export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={FLEX_CENTER}>
+        <Accents sticker={sticker} sfx={sfx} size={270} rotate={12} corner="tr" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={-2} />
         <div style={{height: 10}} />
         <div style={{position: 'relative', display: 'flex', flexDirection: 'column', gap: 48 * vOf(cards.length)}}>
@@ -287,7 +316,6 @@ export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={30} style={{right: 110, top: 520}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={270} rotate={12} style={{right: 40, top: 330}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 400}} />}
     </AbsoluteFill>
   );
@@ -333,7 +361,7 @@ const StepRow: React.FC<{c: CardItem; i: number; v: number}> = ({c, i, v}) => {
 };
 
 /** 큰 숫자 하나 (게이지 고리 선택): 핵심 수치·날짜·나이를 크게 보여줄 때 */
-export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, stat, sticker, sfx, tone}) => {
+export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, stat, sticker, sfx, deco, decoText, decoPos, tone}) => {
   const out = useFadeOut(frames);
   const frame = useCurrentFrame();
   const dark = tone === 'dark';
@@ -346,6 +374,7 @@ export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, st
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={FLEX_CENTER}>
+        <Accents sticker={sticker} sfx={sfx} size={300} rotate={-8} corner="tl" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={2} />
         <div style={{height: 14}} />
         <div style={{position: 'relative', width: 600, height: 600, margin: '0 auto', transform: `scale(${0.85 + 0.15 * pop})`, opacity: Math.min(pop, 1)}}>
@@ -398,7 +427,6 @@ export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, st
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={90} rotate={8} delay={26} style={{left: 110, top: 440}} />
       <Doodle kind="heart" color={dark ? BLUE : '#fff'} size={80} rotate={-10} delay={32} style={{right: 120, top: 1470}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={300} rotate={-8} style={{left: 64, top: 1480}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1530}} />}
     </AbsoluteFill>
   );
@@ -428,12 +456,13 @@ const StatChip: React.FC<{text: string; i: number}> = ({text, i}) => {
 };
 
 /** 두 칸 비교: 되는 것 / 안 되는 것 */
-export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, label, compare, sticker, sfx, tone}) => {
+export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, label, compare, sticker, sfx, deco, decoText, decoPos, tone}) => {
   const out = useFadeOut(frames);
   const dark = tone === 'dark';
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={FLEX_CENTER}>
+        <Accents sticker={sticker} sfx={sfx} size={300} rotate={-8} corner="tr" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={-2} />
         <div style={{height: 14}} />
         <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 72 : 34, alignItems: 'stretch'}}>
@@ -442,7 +471,6 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={34} style={{right: 110, top: 520}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={300} rotate={-8} style={{left: 64, top: 1420}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1470}} />}
     </AbsoluteFill>
   );
@@ -471,12 +499,13 @@ const ComparePanel: React.FC<{ok?: boolean; neutral?: boolean; stack?: boolean; 
 };
 
 /** 격자 타일(2열): 항목 4~6개를 한눈에 */
-export const CuteGrid: React.FC<Common & {cards: CardItem[]}> = ({frames, label, cards, sticker, sfx, tone}) => {
+export const CuteGrid: React.FC<Common & {cards: CardItem[]}> = ({frames, label, cards, sticker, sfx, deco, decoText, decoPos, tone}) => {
   const out = useFadeOut(frames);
   const dark = tone === 'dark';
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div style={FLEX_CENTER}>
+        <Accents sticker={sticker} sfx={sfx} size={260} rotate={12} corner="tl" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={2} />
         <div style={{height: 10}} />
         <div style={{display: 'flex', flexWrap: 'wrap', gap: 44, justifyContent: 'center'}}>
@@ -486,7 +515,6 @@ export const CuteGrid: React.FC<Common & {cards: CardItem[]}> = ({frames, label,
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={30} style={{right: 100, top: 480}} />
-      {sticker && <StickerImg name={sticker} sfx={sfx} size={260} rotate={12} style={{right: 40, top: 300}} />}
       {!sticker && sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 380}} />}
     </AbsoluteFill>
   );

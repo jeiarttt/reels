@@ -3,7 +3,7 @@ import {AbsoluteFill, Sequence} from 'remotion';
 import type {Bg, Script} from '../types';
 import {Background} from '../components/Background';
 import {ctaSecOf, FPS, hookSecOf} from '../Root';
-import {CuteBubble, CuteCards, CuteCompare, CuteCover, CuteCta, CuteGrid, CuteList, CuteStat, CuteSteps, DecoLayer} from './scenes';
+import {CuteBubble, CuteCards, CuteCompare, CuteCover, CuteCta, CuteGrid, CuteList, CuteStat, CuteSteps} from './scenes';
 
 const pick = (script: Script, bg?: Bg): Bg | undefined => (script.backgroundSrc ? {src: script.backgroundSrc} : bg);
 
@@ -28,9 +28,10 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
         brand={script.brand}
         sticker={script.hookSticker}
         sfx={script.hookSfx}
+        deco={script.hookDeco}
+        decoPos={script.hookDecoPos}
         frames={hookFrames}
       />
-      <DecoLayer name={script.hookDeco} pos={script.hookDecoPos} frames={hookFrames} />
     </Sequence>,
   );
   cursor += hookFrames;
@@ -38,7 +39,7 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
   script.scenes.forEach((s, i) => {
     const frames = Math.round(s.t * FPS);
     const kind = s.kind ?? 'text';
-    const common = {index: i + 1, total, frames, label: s.label, sticker: s.sticker, sfx: s.sfx, tone: s.tone};
+    const common = {index: i + 1, total, frames, label: s.label, sticker: s.sticker, sfx: s.sfx, tone: s.tone, deco: s.deco, decoText: s.decoText, decoPos: s.decoPos};
     blocks.push(
       <Sequence key={`s${i}`} from={cursor} durationInFrames={frames}>
         <Background bg={pick(script, s.bg)} frames={frames} {...bgProps} />
@@ -57,7 +58,6 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
         ) : (
           <CuteBubble {...common} text={s.text ?? ''} />
         )}
-        <DecoLayer name={s.deco} pos={s.decoPos} text={s.decoText} frames={frames} />
       </Sequence>,
     );
     cursor += frames;
@@ -74,8 +74,9 @@ export const CuteReel: React.FC<{script: Script}> = ({script}) => {
         text={script.cta}
         sticker={script.ctaSticker}
         sfx={script.ctaSfx}
+        deco={script.ctaDeco}
+        decoPos={script.ctaDecoPos}
       />
-      <DecoLayer name={script.ctaDeco} pos={script.ctaDecoPos} frames={ctaFrames} />
     </Sequence>,
   );
 
