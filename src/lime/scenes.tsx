@@ -197,7 +197,10 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
           <Rich text={text} />
         </div>
         {label && (
-          <div style={{marginTop: 64, background: ACCENT, color: BG, fontWeight: 800, fontSize: 40, letterSpacing: -1.5, lineHeight: 1.4, padding: '24px 40px', borderRadius: 36, ...rise(p2)}}>{clean(label)} ↗</div>
+          <div style={{marginTop: 64, background: ACCENT, color: BG, fontWeight: 800, fontSize: 40, letterSpacing: -1.5, lineHeight: 1.4, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
+            <svg width={34} height={34} viewBox="0 0 24 24" fill="none"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" stroke={BG} strokeWidth={2.6} strokeLinejoin="round" fill={BG} /></svg>
+            {clean(label)}
+          </div>
         )}
       </div>
     </Fade>
