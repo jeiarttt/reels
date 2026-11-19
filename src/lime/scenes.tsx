@@ -12,6 +12,13 @@ const SHADOW_SOFT = '0 4px 24px rgba(0,0,0,0.35)';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
+/** 도형 자리(머리글 기준): 제목 오른쪽 위, 카드 모서리에 살짝 걸치기, 제목 위쪽 오른쪽을 돌려 쓴다 */
+const SHAPE_SPOTS: ((wide?: boolean) => React.CSSProperties)[] = [
+  (w) => ({right: w ? 40 : 0, top: -10}),
+  (w) => ({right: w ? 20 : -26, bottom: -64}),
+  (w) => ({right: w ? 90 : 70, top: -92}),
+];
+
 const Fade: React.FC<{frames: number; children: React.ReactNode}> = ({frames, children}) => {
   const out = useFadeOut(frames);
   return <AbsoluteFill style={{opacity: out, fontFamily: FONT}}>{children}</AbsoluteFill>;
@@ -98,17 +105,16 @@ const Frame: React.FC<{shape?: ShapeKind; frames: number; index: number; total: 
     <Fade frames={frames}>
       {brand && <Wordmark text={clean(brand)} style={{right: 120, top: 90}} />}
       <div style={{position: 'absolute', left: wide ? 72 : 120, right: wide ? 72 : 120, top: 240, bottom: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div style={{position: 'relative', marginBottom: 150, paddingLeft: wide ? 48 : 0, paddingRight: wide ? 48 : 0}}>
+        <div style={{position: 'relative', marginBottom: 72, paddingLeft: wide ? 48 : 0, paddingRight: wide ? 48 : 0}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 92, lineHeight: 1.2, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={title} />
           </div>
           {desc && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 28, textShadow: SHADOW, ...rise(p1)}}>{desc}</div>}
-          <Star w={104} kind={shape ?? SHAPES[index % SHAPES.length]} style={{right: wide ? 28 : -20, bottom: -140}} delay={12} />
+          <Star w={92} kind={shape ?? SHAPES[index % SHAPES.length]} style={SHAPE_SPOTS[index % SHAPE_SPOTS.length](wide)} delay={12} />
         </div>
         <div>{children}</div>
       </div>
-      <div style={{position: 'absolute', right: 72, bottom: 96, color: 'rgba(255,255,255,0.85)', fontWeight: 800, fontSize: 30, letterSpacing: 1, textShadow: SHADOW}}>{pad(index)} / {pad(total)}</div>
     </Fade>
   );
 };
