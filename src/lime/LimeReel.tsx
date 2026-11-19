@@ -8,11 +8,11 @@ import {BG, FONT} from './theme';
 
 const pick = (script: Script, bg?: Bg): Bg | undefined => (script.backgroundSrc ? {src: script.backgroundSrc} : bg);
 
-/** 사진·영상 배경 + 가독성용 dim(어두운 막). 배경이 없으면 어두운 단색 */
+/** 사진·영상 배경 + 가독성용 dim(위는 연하게, 글자가 있는 가운데 높이는 dim, 아래는 진하게). 배경이 없으면 어두운 단색 */
 const Backdrop: React.FC<{bg?: Bg; frames: number; dim: number}> = ({bg, frames, dim}) => (
   <>
     {bg ? <Background bg={bg} frames={frames} dim={0} veil={0} fade={3} /> : <AbsoluteFill style={{background: BG}} />}
-    <AbsoluteFill style={{background: `rgba(20,23,19,${dim})`}} />
+    <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(20,23,19,${(dim * 0.6).toFixed(3)}) 0%, rgba(20,23,19,${dim}) 45%, rgba(20,23,19,${Math.min(dim * 1.3, 0.85).toFixed(3)}) 100%)`}} />
   </>
 );
 
@@ -21,7 +21,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
   const hookFrames = Math.round(hookSecOf(script) * FPS);
   const ctaFrames = Math.round(ctaSecOf(script) * FPS);
   const total = script.scenes.length + 2;
-  const dim = script.bgDim ?? 0.6;
+  const dim = script.bgDim ?? 0.5;
   let cursor = 0;
   const blocks: React.ReactNode[] = [];
 
