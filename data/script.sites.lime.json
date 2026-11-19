@@ -41,11 +41,12 @@
     },
     {
       "t": 4.6,
-      "kind": "checklist",
-      "label": "🏠 안심전세포털 · 정부24",
+      "kind": "split",
+      "label": "안심전세포털 · 정부24",
+      "text": "전세보증료 환급",
       "stat": {
-        "big": "최대 40만 원",
-        "sub": "전세보증료 환급"
+        "big": "40만",
+        "sub": "원 환급\n(최대)"
       },
       "cards": [
         {
@@ -55,11 +56,9 @@
           "big": "보증금 3억 원 이하"
         },
         {
-          "big": "연소득 청년 5천만 원 이하"
+          "big": "연소득 청년\n5천만 원 이하"
         }
       ],
-      "deco": "house",
-      "decoPos": "tr",
       "bg": {
         "src": "user/sites-bg.mp4",
         "type": "video",
