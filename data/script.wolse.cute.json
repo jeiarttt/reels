@@ -97,7 +97,8 @@
           "현금영수증 금액으로",
           "신용카드 등 소득공제"
         ],
-        "neutral": true
+        "neutral": true,
+        "stack": true
       },
       "bg": {
         "src": "user/wolse-bg-b.mp4",

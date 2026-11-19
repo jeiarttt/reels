@@ -10,6 +10,9 @@ import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_
 
 type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string; tone?: 'light' | 'dark'};
 
+/** 항목 수가 적을수록 세로 여백을 넓혀 화면을 채운다 */
+const vOf = (n: number) => (n <= 1 ? 2.6 : n === 2 ? 2.2 : n === 3 ? 1.75 : n === 4 ? 1.35 : 1);
+
 const usePop = (delay = 0) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -55,6 +58,8 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, la
   const dark = tone === 'dark';
   const out = useFadeOut(frames);
   const odd = index % 2 === 1;
+  const longest = Math.max(...text.replace(/\[\[|\]\]/g, '').split('\n').map((l) => [...l.replace(/\s+/g, '')].length), 1);
+  const titleSize = Math.max(84, Math.min(112, Math.floor(780 / longest)));
   return (
     <AbsoluteFill style={{opacity: out}}>
       <div
@@ -72,7 +77,7 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, la
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 120, right: 120}}>
         <Pill text={label} tilt={odd ? -2 : 2} />
         <div style={{height: 22}} />
-        <RawTitle text={text} size={84} startFrame={8} dark={dark} />
+        <RawTitle text={text} size={titleSize} startFrame={8} dark={dark} />
       </div>
       <Doodle kind={odd ? 'sparkle' : 'heart'} color={dark ? BLUE : '#fff'} size={88} rotate={odd ? 10 : -8} delay={16} style={{right: 110, top: 640}} />
       <Doodle kind={odd ? 'swirl' : 'star'} color={dark ? BLUE : '#fff'} size={odd ? 140 : 76} rotate={-6} delay={22} style={{left: 120, top: 1270}} />
@@ -89,21 +94,23 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames
     <AbsoluteFill style={{opacity: out}}>
       <div style={{position: 'absolute', top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', left: 120, right: 120}}>
         <Pill text={label} tilt={2} />
-        <div style={{display: 'flex', flexDirection: 'column', gap: 46}}>
+        <div style={{display: 'flex', flexDirection: 'column', gap: 46 * vOf(cards.length)}}>
           {cards.map((c, i) => (
-            <Card key={i} c={c} i={i} />
+            <Card key={i} c={c} i={i} v={vOf(cards.length)} />
           ))}
         </div>
       </div>
       <Doodle kind="sparkle" size={84} rotate={10} delay={30} style={{right: 110, top: 540}} />
-      {sticker && <StickerImg name={sticker} size={270} rotate={12} style={{right: 40, top: 330}} />}
-      {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 400}} />}
+      {sticker && <StickerImg name={sticker} size={270} rotate={12} style={{right: 40, top: cards.length <= 3 ? 110 : 330}} />}
+      {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: cards.length <= 3 ? 170 : 400}} />}
     </AbsoluteFill>
   );
 };
 
-const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
+const Card: React.FC<{c: CardItem; i: number; v: number}> = ({c, i, v}) => {
   const pop = usePop(16 + i * 9);
+  const f = 1 + (v - 1) * 0.2;
+  const icon = Math.round(112 * (1 + (v - 1) * 0.35));
   return (
     <div
       style={{
@@ -113,7 +120,7 @@ const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
         gap: 32,
         background: '#fff',
         borderRadius: 34,
-        padding: '46px 44px',
+        padding: `${Math.round(46 * v)}px 44px`,
         boxShadow: PAPER_SHADOW,
         textAlign: 'left',
         transform: `translateY(${(1 - pop) * 40}px) rotate(${i % 2 ? 1.2 : -1.2}deg)`,
@@ -122,23 +129,23 @@ const Card: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
     >
       <div
         style={{
-          width: 112,
-          height: 112,
-          flex: '0 0 112px',
+          width: icon,
+          height: icon,
+          flex: `0 0 ${icon}px`,
           borderRadius: '50%',
           background: POSTIT,
           boxShadow: '0 6px 12px rgba(20,30,80,0.2)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: 70,
+          fontSize: Math.round(icon * 0.625),
         }}
       >
         {c.emoji ?? '⭐'}
       </div>
       <div style={{wordBreak: 'keep-all'}}>
-        <div style={{color: BLUE, fontWeight: 900, fontSize: 72, lineHeight: 1.1, letterSpacing: -2}}>{c.big}</div>
-        {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 42, marginTop: 8}}>{c.small}</div>}
+        <div style={{color: BLUE, fontWeight: 900, fontSize: Math.round(72 * f), lineHeight: 1.1, letterSpacing: -2}}>{c.big}</div>
+        {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: Math.round(42 * f), marginTop: 8}}>{c.small}</div>}
       </div>
     </div>
   );
@@ -168,7 +175,7 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, 
             ))}
           </div>
           {table.rows.map((r, ri) => (
-            <Row key={ri} r={r} i={ri} last={ri === table.rows.length - 1} />
+            <Row key={ri} r={r} i={ri} last={ri === table.rows.length - 1} v={vOf(table.rows.length)} />
           ))}
         </div>
       </div>
@@ -178,15 +185,18 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, 
   );
 };
 
-const Row: React.FC<{r: string[]; i: number; last: boolean}> = ({r, i, last}) => {
+const Row: React.FC<{r: string[]; i: number; last: boolean; v: number}> = ({r, i, last, v}) => {
   const pop = usePop(20 + i * 10);
+  const f = 1 + (v - 1) * 0.2;
+  const rest = r.slice(1).join(' ');
+  const big = r.length === 2 && [...rest].length <= 6;
   return (
     <div
       style={{
         display: 'flex',
         alignItems: 'center',
         gap: 24,
-        padding: '64px 40px',
+        padding: `${Math.round(50 * v)}px 40px`,
         borderBottom: last ? 'none' : `4px dashed rgba(36,87,245,0.28)`,
         opacity: Math.min(pop, 1),
         transform: `translateX(${(1 - pop) * -30}px)`,
@@ -194,11 +204,11 @@ const Row: React.FC<{r: string[]; i: number; last: boolean}> = ({r, i, last}) =>
         wordBreak: 'keep-all',
       }}
     >
-      <div style={{fontSize: 58}}>✅</div>
-      <div style={{flex: '0 0 250px', background: POSTIT, color: BLUE, fontWeight: 900, fontSize: 46, borderRadius: 8, padding: '14px 18px', textAlign: 'center', boxShadow: '0 5px 10px rgba(20,30,80,0.2)'}}>
+      <div style={{fontSize: Math.round(58 * f)}}>✅</div>
+      <div style={{flex: '0 0 340px', background: POSTIT, color: BLUE, fontWeight: 900, fontSize: Math.round(46 * f), borderRadius: 8, padding: '14px 18px', textAlign: 'center', boxShadow: '0 5px 10px rgba(20,30,80,0.2)'}}>
         {r[0]}
       </div>
-      <div style={{color: NAVY, fontWeight: 800, fontSize: 46, lineHeight: 1.3, whiteSpace: 'pre-line'}}>{r.slice(1).join(' ')}</div>
+      <div style={{color: big ? BLUE : NAVY, fontWeight: big ? 900 : 800, fontSize: big ? Math.round(84 * f) : Math.round(46 * f), lineHeight: 1.3, whiteSpace: 'pre-line'}}>{rest}</div>
     </div>
   );
 };
@@ -256,7 +266,7 @@ export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label
       <div style={FLEX_CENTER}>
         <Pill text={label} tilt={-2} />
         <div style={{height: 10}} />
-        <div style={{position: 'relative', display: 'flex', flexDirection: 'column', gap: 48}}>
+        <div style={{position: 'relative', display: 'flex', flexDirection: 'column', gap: 48 * vOf(cards.length)}}>
           <div
             style={{
               position: 'absolute',
@@ -272,7 +282,7 @@ export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label
             }}
           />
           {cards.map((c, i) => (
-            <StepRow key={i} c={c} i={i} />
+            <StepRow key={i} c={c} i={i} v={vOf(cards.length)} />
           ))}
         </div>
       </div>
@@ -283,8 +293,9 @@ export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label
   );
 };
 
-const StepRow: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
+const StepRow: React.FC<{c: CardItem; i: number; v: number}> = ({c, i, v}) => {
   const pop = usePop(14 + i * 12);
+  const f = 1 + (v - 1) * 0.25;
   return (
     <div style={{position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: 26, opacity: Math.min(pop, 1), transform: `translateX(${(1 - pop) * -40}px)`}}>
       <div style={{flex: '0 0 100px', display: 'flex', justifyContent: 'center'}}>
@@ -302,7 +313,7 @@ const StepRow: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
           flex: 1,
           background: '#fff',
           borderRadius: 34,
-          padding: '40px 36px',
+          padding: `${Math.round(40 * v)}px 36px`,
           boxShadow: SOFT_SHADOW,
           textAlign: 'left',
           display: 'flex',
@@ -312,10 +323,10 @@ const StepRow: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
         }}
       >
         <div style={{flex: 1}}>
-          <div style={{color: BLUE, fontWeight: 900, fontSize: 54, lineHeight: 1.1, letterSpacing: -1.5}}>{c.big}</div>
-          {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 36, marginTop: 6}}>{c.small}</div>}
+          <div style={{color: BLUE, fontWeight: 900, fontSize: Math.round(54 * f), lineHeight: 1.1, letterSpacing: -1.5}}>{c.big}</div>
+          {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: Math.round(36 * f), marginTop: 6}}>{c.small}</div>}
         </div>
-        <div style={{fontSize: 64}}>{c.emoji ?? ''}</div>
+        <div style={{fontSize: Math.round(64 * f)}}>{c.emoji ?? ''}</div>
       </div>
     </div>
   );
@@ -425,7 +436,7 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
       <div style={FLEX_CENTER}>
         <Pill text={label} tilt={-2} />
         <div style={{height: 14}} />
-        <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 44 : 34, alignItems: 'stretch'}}>
+        <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 72 : 34, alignItems: 'stretch'}}>
           <ComparePanel ok stack={compare.stack} neutral={compare.neutral} title={compare.leftTitle} items={compare.leftItems} delay={10} />
           <ComparePanel stack={compare.stack} neutral={compare.neutral} title={compare.rightTitle} items={compare.rightItems} delay={22} />
         </div>
@@ -441,16 +452,16 @@ const ComparePanel: React.FC<{ok?: boolean; neutral?: boolean; stack?: boolean; 
   const pop = usePop(delay);
   const col = neutral ? (ok ? BLUE : '#14B8A6') : ok ? BLUE : DANGER;
   return (
-    <div style={{flex: stack ? 'none' : 1, background: '#fff', borderRadius: 38, padding: '0 0 42px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
+    <div style={{flex: stack ? 'none' : 1, background: '#fff', borderRadius: 38, padding: stack ? '0 0 84px' : '0 0 42px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
       <div style={{background: col, color: '#fff', padding: '4px 0 0'}}>
-        <LabelBox size={50} padX={20} padY={22} style={{display: 'flex', width: '100%'}}>
+        <LabelBox size={stack ? 58 : 50} padX={20} padY={stack ? 38 : 22} style={{display: 'flex', width: '100%'}}>
           {neutral ? '' : ok ? '✅ ' : '❌ '}{title}
         </LabelBox>
       </div>
-      <div style={{display: 'flex', flexDirection: stack ? 'row' : 'column', flexWrap: stack ? 'wrap' : 'nowrap', gap: stack ? '24px 34px' : 26, padding: '38px 34px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
+      <div style={{display: 'flex', flexDirection: stack ? 'row' : 'column', flexWrap: stack ? 'wrap' : 'nowrap', gap: stack ? '30px 40px' : 26, padding: stack ? '76px 40px 0' : '38px 34px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
         {items.map((it, k) => (
-          <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: stack ? 42 : 36, lineHeight: 1.2, whiteSpace: 'nowrap'}}>
-            <span style={{color: col, fontWeight: 900, fontSize: stack ? 44 : 40}}>{neutral ? '•' : ok ? '✓' : '✕'}</span>
+          <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: stack ? 52 : 36, lineHeight: 1.2, whiteSpace: 'nowrap'}}>
+            <span style={{color: col, fontWeight: 900, fontSize: stack ? 54 : 40}}>{neutral ? '•' : ok ? '✓' : '✕'}</span>
             <span>{it}</span>
           </div>
         ))}
