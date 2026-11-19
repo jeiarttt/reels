@@ -7,28 +7,29 @@ import {Check, clean, Rich, Star, Track, useIn, Wordmark} from './parts';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
-const Fade: React.FC<{frames: number; children: React.ReactNode; bg?: boolean}> = ({frames, children, bg}) => {
+const Fade: React.FC<{frames: number; children: React.ReactNode}> = ({frames, children}) => {
   const out = useFadeOut(frames);
-  return <AbsoluteFill style={{opacity: out, background: bg ? BG : undefined, fontFamily: FONT}}>{children}</AbsoluteFill>;
+  return <AbsoluteFill style={{opacity: out, fontFamily: FONT}}>{children}</AbsoluteFill>;
 };
 
 const rise = (p: number): React.CSSProperties => ({opacity: Math.min(p, 1), transform: `translateY(${(1 - Math.min(p, 1)) * 36}px)`});
 
-/** 표지: 전면 사진(영상) + 하단 그라디언트 + 아래쪽 큰 제목 */
+/** 표지: 화면 한가운데 가운데 정렬 큰 제목 + 설명, 별 2개 (배경 사진·영상은 LimeReel이 dim과 함께 깐다) */
 export const LimeCover: React.FC<{frames: number; label?: string; text: string; brand?: string}> = ({frames, label, text, brand}) => {
   const p1 = useIn(4);
   const p2 = useIn(12);
   return (
     <Fade frames={frames}>
-      <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0) 48%, rgba(0,0,0,0.30) 72%, rgba(0,0,0,0.80) 100%)'}} />
-      {brand && <Wordmark text={clean(brand)} style={{left: 72, top: 72}} />}
-      <Star w={77} style={{left: 63, top: 760}} delay={14} />
-      <Star w={101} style={{right: 100, bottom: 360}} delay={8} />
-      <div style={{position: 'absolute', left: 72, right: 72, bottom: 150}}>
-        <div style={{color: TITLE, fontWeight: 700, fontSize: 88, lineHeight: 1.2, letterSpacing: -2, ...rise(p1)}}>
-          <Rich text={text} />
+      {brand && <Wordmark text={clean(brand)} style={{left: 0, right: 0, top: 90, textAlign: 'center'}} />}
+      <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+        <div style={{position: 'relative'}}>
+          <Star w={77} style={{left: -70, top: -120}} delay={14} />
+          <div style={{color: TITLE, fontWeight: 700, fontSize: 88, lineHeight: 1.2, letterSpacing: -2, ...rise(p1)}}>
+            <Rich text={text} />
+          </div>
+          <Star w={101} style={{right: -70, bottom: -150}} delay={8} />
         </div>
-        {label && <div style={{color: DESC, fontWeight: 400, fontSize: 40, lineHeight: 1.16, letterSpacing: -2, marginTop: 28, ...rise(p2)}}>{clean(label)}</div>}
+        {label && <div style={{color: DESC, fontWeight: 400, fontSize: 40, lineHeight: 1.16, letterSpacing: -2, marginTop: 56, ...rise(p2)}}>{clean(label)}</div>}
       </div>
     </Fade>
   );
@@ -89,7 +90,7 @@ const Frame: React.FC<{frames: number; index: number; total: number; brand?: str
   const p0 = useIn(2);
   const p1 = useIn(6);
   return (
-    <Fade frames={frames} bg>
+    <Fade frames={frames}>
       {brand && <Wordmark text={clean(brand)} style={{right: 120, top: 90}} />}
       <div style={{position: 'absolute', left: wide ? 72 : 120, right: wide ? 72 : 120, top: 240, bottom: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{position: 'relative', marginBottom: 150, paddingLeft: wide ? 48 : 0, paddingRight: wide ? 48 : 0}}>
@@ -168,23 +169,23 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   return <Frame {...base} title={label} />;
 };
 
-/** 마지막 화면: 중앙 문구 + 라임 버튼 + 아래쪽 트랙 */
+/** 마지막 화면: 화면 가운데 가운데 정렬 문구 + 라임 버튼 + 아래쪽 트랙 */
 export const LimeCta: React.FC<{frames: number; label?: string; text: string; brand?: string}> = ({frames, label, text, brand}) => {
   const p0 = useIn(2);
   const p1 = useIn(8);
   const p2 = useIn(16);
   return (
-    <Fade frames={frames} bg>
-      <Track style={{left: -65, top: 1200}} />
-      {brand && <div style={{position: 'absolute', left: 0, right: 0, top: 520, textAlign: 'center', color: ACCENT, fontWeight: 800, fontSize: 32, letterSpacing: -1, ...rise(p0)}}>{clean(brand)}</div>}
-      <div style={{position: 'absolute', left: 64, right: 64, top: 600, textAlign: 'center', color: CTA_TITLE, fontWeight: 700, fontSize: 88, lineHeight: 1.16, letterSpacing: -2, ...rise(p1)}}>
-        <Rich text={text} />
-      </div>
-      {label && (
-        <div style={{position: 'absolute', left: 0, right: 0, top: 900, display: 'flex', justifyContent: 'center', ...rise(p2)}}>
-          <div style={{background: ACCENT, color: BG, fontWeight: 700, fontSize: 32, letterSpacing: -2, lineHeight: 1.4, padding: '20px 32px', borderRadius: 32}}>{clean(label)} ↗</div>
+    <Fade frames={frames}>
+      <Track style={{left: -65, top: 1290}} />
+      <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+        {brand && <div style={{color: ACCENT, fontWeight: 800, fontSize: 32, letterSpacing: -1, marginBottom: 48, ...rise(p0)}}>{clean(brand)}</div>}
+        <div style={{color: CTA_TITLE, fontWeight: 700, fontSize: 88, lineHeight: 1.16, letterSpacing: -2, ...rise(p1)}}>
+          <Rich text={text} />
         </div>
-      )}
+        {label && (
+          <div style={{marginTop: 64, background: ACCENT, color: BG, fontWeight: 700, fontSize: 32, letterSpacing: -2, lineHeight: 1.4, padding: '20px 32px', borderRadius: 32, ...rise(p2)}}>{clean(label)} ↗</div>
+        )}
+      </div>
     </Fade>
   );
 };
