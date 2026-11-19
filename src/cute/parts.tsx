@@ -62,7 +62,9 @@ export const StickerImg: React.FC<{
   rotate?: number;
   style?: React.CSSProperties;
   delay?: number;
-}> = ({name, size: baseSize, rotate = 0, style, delay = 8}) => {
+  /** 의성어 말풍선: 스티커에 붙여서 같이 등장한다 */
+  sfx?: string;
+}> = ({name, size: baseSize, rotate = 0, style, delay = 8, sfx}) => {
   // 스티커가 내용보다 눈에 띄지 않게 전체적으로 작게 (사용자 요청 2026-11-19)
   const size = Math.round(baseSize * STICKER_SCALE);
   const frame = useCurrentFrame();
@@ -88,6 +90,14 @@ export const StickerImg: React.FC<{
         src={staticFile(`stickers/${name}.png`)}
         style={{maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'drop-shadow(0 12px 18px rgba(20,40,120,0.38))'}}
       />
+      {sfx && (
+        <Sfx
+          text={sfx}
+          rotate={style?.right !== undefined ? -9 : 7}
+          delay={delay + 8}
+          style={style?.right !== undefined ? {right: size - 34, top: -Math.round(size * 0.02)} : {left: size - 34, top: -Math.round(size * 0.02)}}
+        />
+      )}
     </div>
   );
 };

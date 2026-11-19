@@ -47,8 +47,8 @@ export const CuteCover: React.FC<{
       <Doodle kind="sparkle" size={96} rotate={8} delay={14} style={{left: 110, top: 1340}} />
       <Doodle kind="heart" size={92} rotate={-10} delay={20} style={{right: 120, top: 1360}} />
       <Doodle kind="swirl" size={150} rotate={-4} delay={26} style={{right: 360, top: 1320}} />
-      {sticker && <StickerImg name={sticker} size={400} rotate={9} style={{right: 30, top: 200}} />}
-      {sfx && <Sfx text={sfx} rotate={-9} style={{right: 390, top: 240}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={400} rotate={9} style={{right: 30, top: 200}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={-9} style={{right: 390, top: 240}} />}
     </AbsoluteFill>
   );
 };
@@ -81,8 +81,8 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, la
       </div>
       <Doodle kind={odd ? 'sparkle' : 'heart'} color={dark ? BLUE : '#fff'} size={88} rotate={odd ? 10 : -8} delay={16} style={{right: 110, top: 640}} />
       <Doodle kind={odd ? 'swirl' : 'star'} color={dark ? BLUE : '#fff'} size={odd ? 140 : 76} rotate={-6} delay={22} style={{left: 120, top: 1270}} />
-      {sticker && <StickerImg name={sticker} size={330} rotate={-8} style={{left: 64, top: 1230}} />}
-      {sfx && <Sfx text={sfx} rotate={7} style={{left: 420, top: 1290}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={330} rotate={-8} style={{left: 64, top: 1230}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={7} style={{left: 420, top: 1290}} />}
     </AbsoluteFill>
   );
 };
@@ -101,8 +101,8 @@ export const CuteCards: React.FC<Common & {cards: CardItem[]}> = ({index, frames
         </div>
       </div>
       <Doodle kind="sparkle" size={84} rotate={10} delay={30} style={{right: 110, top: 540}} />
-      {sticker && <StickerImg name={sticker} size={270} rotate={12} style={{right: 40, top: cards.length <= 3 ? 110 : 330}} />}
-      {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: cards.length <= 3 ? 170 : 400}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={270} rotate={12} style={{right: 40, top: cards.length <= 3 ? 110 : 330}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: cards.length <= 3 ? 170 : 400}} />}
     </AbsoluteFill>
   );
 };
@@ -179,8 +179,8 @@ export const CuteList: React.FC<Common & {table: TableData}> = ({index, frames, 
           ))}
         </div>
       </div>
-      {sticker && <StickerImg name={sticker} size={260} rotate={-10} style={{right: 48, top: 1330}} />}
-      {sfx && <Sfx text={sfx} rotate={6} style={{right: 80, top: 1290}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={260} rotate={-10} style={{right: 48, top: 1330}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={6} style={{right: 80, top: 1290}} />}
     </AbsoluteFill>
   );
 };
@@ -235,8 +235,8 @@ export const CuteCta: React.FC<Common & {text: string}> = ({frames, label, text,
       </div>
       <Doodle kind="arrow" size={150} rotate={20} delay={20} style={{right: 120, top: 1230}} />
       <Doodle kind="sparkle" size={84} rotate={-6} delay={14} style={{left: 120, top: 660}} />
-      {sticker && <StickerImg name={sticker} size={320} rotate={-9} style={{left: 56, top: 1290}} />}
-      {sfx && <Sfx text={sfx} rotate={8} style={{left: 400, top: 1330}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={320} rotate={-9} style={{left: 56, top: 1290}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={8} style={{left: 400, top: 1330}} />}
     </AbsoluteFill>
   );
 };
@@ -287,8 +287,8 @@ export const CuteSteps: React.FC<Common & {cards: CardItem[]}> = ({frames, label
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={30} style={{right: 110, top: 520}} />
-      {sticker && <StickerImg name={sticker} size={270} rotate={12} style={{right: 40, top: 330}} />}
-      {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 400}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={270} rotate={12} style={{right: 40, top: 330}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 400}} />}
     </AbsoluteFill>
   );
 };
@@ -398,8 +398,8 @@ export const CuteStat: React.FC<Common & {stat: StatData}> = ({frames, label, st
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={90} rotate={8} delay={26} style={{left: 110, top: 440}} />
       <Doodle kind="heart" color={dark ? BLUE : '#fff'} size={80} rotate={-10} delay={32} style={{right: 120, top: 1470}} />
-      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1480}} />}
-      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1530}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={300} rotate={-8} style={{left: 64, top: 1480}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1530}} />}
     </AbsoluteFill>
   );
 };
@@ -442,8 +442,8 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={34} style={{right: 110, top: 520}} />
-      {sticker && <StickerImg name={sticker} size={300} rotate={-8} style={{left: 64, top: 1420}} />}
-      {sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1470}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={300} rotate={-8} style={{left: 64, top: 1420}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={7} style={{left: 380, top: 1470}} />}
     </AbsoluteFill>
   );
 };
@@ -486,8 +486,8 @@ export const CuteGrid: React.FC<Common & {cards: CardItem[]}> = ({frames, label,
         </div>
       </div>
       <Doodle kind="sparkle" color={dark ? BLUE : '#fff'} size={84} rotate={10} delay={30} style={{right: 100, top: 480}} />
-      {sticker && <StickerImg name={sticker} size={260} rotate={12} style={{right: 40, top: 300}} />}
-      {sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 380}} />}
+      {sticker && <StickerImg name={sticker} sfx={sfx} size={260} rotate={12} style={{right: 40, top: 300}} />}
+      {!sticker && sfx && <Sfx text={sfx} rotate={-7} style={{right: 290, top: 380}} />}
     </AbsoluteFill>
   );
 };
