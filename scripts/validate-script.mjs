@@ -162,18 +162,13 @@ const hl = ([s.hook, ...bodyTexts].join(' ').match(/\[\[/g) ?? []).length;
 if (hl > 3) err(`[[ ]] 강조가 ${hl}곳이에요. 전체 3곳 이내로 줄여요 (핵심 숫자·단어만)`);
 if ((all.match(/\[\[/g) ?? []).length !== (all.match(/\]\]/g) ?? []).length) err('[[ ]] 짝이 맞지 않아요');
 
-// ── 귀여운 테마: 컷당 글자를 최소로 (첫 컷이 가장 중요) ──
+// ── 귀여운 테마 ── (글자 수 제한은 두지 않는다: 내용을 줄여서까지 맞추지 않고, 넘치는지는 렌더 후 화면으로 확인)
 if (s.theme === 'cute') {
   const count = (t = '') => [...strip(t).replace(/[\s!?.,~()/·:\-]+/g, '')].length; // 공백·문장부호는 읽는 부담이 아니라서 세지 않는다
   const hookN = count(s.hook);
-  if (hookN > 18) warn(`[귀여운] 표지 제목이 ${hookN}자예요. 1초 안에 읽히게 18자 이내로 줄여요`);
   if (lines(s.hook).length > 2) warn('[귀여운] 표지 제목은 2줄 이내가 좋아요');
-  if (count(s.cta) > 16) warn(`[귀여운] 마지막 화면 문구가 ${count(s.cta)}자예요 (16자 이내)`);
   (s.scenes ?? []).forEach((sc, i) => {
-    if (sc.text && count(sc.text) > 26) warn(`[귀여운] scenes[${i}] 문구가 ${count(sc.text)}자예요. 컷당 26자 이내(정보 보강 시)로 줄여요`);
     (sc.cards ?? []).forEach((c, k) => {
-      if ([...(c.big ?? '')].length > 10) warn(`[귀여운] scenes[${i}].cards[${k}].big 이 10자를 넘어요`);
-      if ([...(c.small ?? '')].length > 8) warn(`[귀여운] scenes[${i}].cards[${k}].small 이 8자를 넘어요`);
     });
     if (sc.table && sc.table.rows.length > 3) warn(`[귀여운] scenes[${i}] 표는 3행 이내가 좋아요`);
   });
