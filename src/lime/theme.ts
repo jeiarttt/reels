@@ -10,7 +10,7 @@ export const CTA_TITLE = '#F5F5EF';
 export const FONT = "'Pretendard', sans-serif";
 export const CARD = '#F5F5EF';
 export const INK = '#141713';
-export const INK_SUB = '#555B50';
+export const INK_SUB = '#3F443B';
 export const INK_ACCENT = '#4A5E00';
 /** 큰 제목 글꼴: 페이퍼로지 ExtraBold (눈누, SIL OFL 1.1, 웹폰트 woff2) */
 export const FONT_TITLE = "'Paperlogy', 'Pretendard', sans-serif";

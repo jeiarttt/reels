@@ -89,7 +89,7 @@ export const Track: React.FC<{style?: React.CSSProperties}> = ({style}) => {
 
 /** 로고 자리: 계정 이름 글자(로고 파일이 없을 때) */
 export const Wordmark: React.FC<{text: string; style?: React.CSSProperties}> = ({text, style}) => (
-  <div style={{position: 'absolute', color: ACCENT, fontFamily: FONT, fontWeight: 800, fontSize: 32, letterSpacing: -1, ...style}}>{text}</div>
+  <div style={{position: 'absolute', color: ACCENT, fontFamily: FONT, fontWeight: 800, fontSize: 36, letterSpacing: -1, textShadow: '0 2px 14px rgba(0,0,0,0.7), 0 0 3px rgba(0,0,0,0.5)', ...style}}>{text}</div>
 );
 
 export const Check: React.FC<{size?: number; color?: string}> = ({size = 44, color = INK_ACCENT}) => (
