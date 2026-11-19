@@ -11,7 +11,7 @@ import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_
 type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string; tone?: 'light' | 'dark'; deco?: string; decoText?: string; decoPos?: 'tl' | 'tr' | 'bl' | 'br'};
 
 /** 항목 수가 적을수록 세로 여백을 넓혀 화면을 채운다 */
-const vOf = (n: number) => (n <= 1 ? 2.6 : n === 2 ? 2.2 : n === 3 ? 1.75 : n === 4 ? 1.35 : 1);
+const vOf = (n: number) => (n <= 1 ? 2 : n === 2 ? 1.7 : n === 3 ? 1.4 : n === 4 ? 1.2 : 1);
 
 const usePop = (delay = 0) => {
   const frame = useCurrentFrame();
@@ -465,7 +465,7 @@ export const CuteCompare: React.FC<Common & {compare: CompareData}> = ({frames, 
         <Accents sticker={sticker} sfx={sfx} size={300} rotate={-8} corner="tr" deco={deco} decoText={decoText} decoPos={decoPos} />
         <Pill text={label} tilt={-2} />
         <div style={{height: 14}} />
-        <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 72 : 34, alignItems: 'stretch'}}>
+        <div style={{display: 'flex', flexDirection: compare.stack ? 'column' : 'row', gap: compare.stack ? 54 : 34, alignItems: 'stretch'}}>
           <ComparePanel ok stack={compare.stack} neutral={compare.neutral} title={compare.leftTitle} items={compare.leftItems} delay={10} />
           <ComparePanel stack={compare.stack} neutral={compare.neutral} title={compare.rightTitle} items={compare.rightItems} delay={22} />
         </div>
@@ -480,13 +480,13 @@ const ComparePanel: React.FC<{ok?: boolean; neutral?: boolean; stack?: boolean; 
   const pop = usePop(delay);
   const col = neutral ? (ok ? BLUE : '#14B8A6') : ok ? BLUE : DANGER;
   return (
-    <div style={{flex: stack ? 'none' : 1, background: '#fff', borderRadius: 38, padding: stack ? '0 0 84px' : '0 0 42px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
+    <div style={{flex: stack ? 'none' : 1, background: '#fff', borderRadius: 38, padding: stack ? '0 0 62px' : '0 0 42px', boxShadow: SOFT_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(${ok ? -1 : 1}deg)`}}>
       <div style={{background: col, color: '#fff', padding: '4px 0 0'}}>
-        <LabelBox size={stack ? 58 : 50} padX={20} padY={stack ? 38 : 22} style={{display: 'flex', width: '100%'}}>
+        <LabelBox size={stack ? 58 : 50} padX={20} padY={stack ? 30 : 22} style={{display: 'flex', width: '100%'}}>
           {neutral ? '' : ok ? '✅ ' : '❌ '}{title}
         </LabelBox>
       </div>
-      <div style={{display: 'flex', flexDirection: stack ? 'row' : 'column', flexWrap: stack ? 'wrap' : 'nowrap', gap: stack ? '30px 40px' : 26, padding: stack ? '76px 40px 0' : '38px 34px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
+      <div style={{display: 'flex', flexDirection: stack ? 'row' : 'column', flexWrap: stack ? 'wrap' : 'nowrap', gap: stack ? '30px 40px' : 26, padding: stack ? '54px 40px 0' : '38px 34px 0', textAlign: 'left', wordBreak: 'keep-all'}}>
         {items.map((it, k) => (
           <div key={k} style={{display: 'flex', alignItems: 'center', gap: 12, color: NAVY, fontWeight: 800, fontSize: stack ? 52 : 36, lineHeight: 1.2, whiteSpace: 'nowrap'}}>
             <span style={{color: col, fontWeight: 900, fontSize: stack ? 54 : 40}}>{neutral ? '•' : ok ? '✓' : '✕'}</span>
