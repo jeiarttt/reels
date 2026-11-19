@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
-import {ACCENT, BG, CTA_TITLE, DESC, FONT, MUTED, ROW, TITLE} from './theme';
+import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
 import {Check, clean, Rich, Star, Track, useIn, Wordmark} from './parts';
 
 const pad = (n: number) => String(n).padStart(2, '0');
@@ -24,7 +24,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; text: string; 
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         <div style={{position: 'relative'}}>
           <Star w={77} style={{left: -70, top: -120}} delay={14} />
-          <div style={{color: TITLE, fontWeight: 700, fontSize: 88, lineHeight: 1.2, letterSpacing: -2, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 88, lineHeight: 1.2, letterSpacing: -2, ...rise(p1)}}>
             <Rich text={text} />
           </div>
           <Star w={101} style={{right: -70, bottom: -150}} delay={8} />
@@ -49,9 +49,9 @@ const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
   const p = useIn(16 + i * 8);
   const single = r.right === undefined;
   return (
-    <div style={{minHeight: 170, borderRadius: 30, background: ROW, padding: '34px 60px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, wordBreak: 'keep-all', ...rise(p)}}>
-      <div style={{color: single ? TITLE : ACCENT, fontWeight: single ? 700 : 700, fontSize: single ? 44 : 36, lineHeight: 1.25, letterSpacing: -1.5}}>{r.left}</div>
-      {single ? <Check /> : <div style={{color: DESC, fontWeight: 400, fontSize: 36, lineHeight: 1.25, letterSpacing: -1.5, textAlign: 'right'}}>{r.right}</div>}
+    <div style={{minHeight: 170, borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', padding: '34px 60px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, wordBreak: 'keep-all', ...rise(p)}}>
+      <div style={{color: single ? INK : INK_ACCENT, fontWeight: 800, fontSize: single ? 44 : 36, lineHeight: 1.25, letterSpacing: -1.5}}>{r.left}</div>
+      {single ? <Check /> : <div style={{color: INK_SUB, fontWeight: 600, fontSize: 36, lineHeight: 1.25, letterSpacing: -1.5, textAlign: 'right'}}>{r.right}</div>}
     </div>
   );
 };
@@ -70,14 +70,14 @@ const StepCard: React.FC<{s: Step; i: number}> = ({s, i}) => {
   const p = useIn(16 + i * 8);
   const hi = i === 0;
   return (
-    <div style={{flex: 1, minHeight: 560, borderRadius: 30, padding: 30, background: hi ? ACCENT : ROW, color: hi ? BG : TITLE, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p)}}>
+    <div style={{flex: 1, minHeight: 560, borderRadius: 30, padding: 30, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p)}}>
       <div style={{fontWeight: 700, fontSize: 76, letterSpacing: -2}}>{s.n}</div>
       <div>
         <div style={{fontWeight: 700, fontSize: 40, lineHeight: 1.2, letterSpacing: -1.5}}>{s.label}</div>
         {s.detail && (
           <>
-            <div style={{height: 1, background: hi ? 'rgba(20,23,19,0.35)' : 'rgba(255,255,255,0.25)', margin: '20px 0'}} />
-            <div style={{fontWeight: 400, fontSize: 30, lineHeight: 1.3, letterSpacing: -1, color: hi ? BG : DESC}}>{s.detail}</div>
+            <div style={{height: 1, background: 'rgba(20,23,19,0.30)', margin: '20px 0'}} />
+            <div style={{fontWeight: 400, fontSize: 30, lineHeight: 1.3, letterSpacing: -1, color: hi ? INK : INK_SUB}}>{s.detail}</div>
           </>
         )}
       </div>
@@ -95,7 +95,7 @@ const Frame: React.FC<{frames: number; index: number; total: number; brand?: str
       <div style={{position: 'absolute', left: wide ? 72 : 120, right: wide ? 72 : 120, top: 240, bottom: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{position: 'relative', marginBottom: 150, paddingLeft: wide ? 48 : 0, paddingRight: wide ? 48 : 0}}>
           {label && <div style={{color: ACCENT, fontWeight: 700, fontSize: 36, lineHeight: 1.16, letterSpacing: -2, marginBottom: 28, ...rise(p0)}}>{label}</div>}
-          <div style={{color: TITLE, fontWeight: 700, fontSize: 80, lineHeight: 1.2, letterSpacing: -2, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 80, lineHeight: 1.2, letterSpacing: -2, ...rise(p1)}}>
             <Rich text={title} />
           </div>
           {desc && <div style={{color: DESC, fontWeight: 400, fontSize: 40, lineHeight: 1.16, letterSpacing: -2, marginTop: 28, ...rise(p1)}}>{desc}</div>}
@@ -179,7 +179,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
       <Track style={{left: -65, top: 1290}} />
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 150, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontWeight: 800, fontSize: 32, letterSpacing: -1, marginBottom: 48, ...rise(p0)}}>{clean(brand)}</div>}
-        <div style={{color: CTA_TITLE, fontWeight: 700, fontSize: 88, lineHeight: 1.16, letterSpacing: -2, ...rise(p1)}}>
+        <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 88, lineHeight: 1.16, letterSpacing: -2, ...rise(p1)}}>
           <Rich text={text} />
         </div>
         {label && (

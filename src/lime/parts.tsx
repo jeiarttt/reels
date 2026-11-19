@@ -1,6 +1,6 @@
 import React from 'react';
 import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {ACCENT, FONT, STAR} from './theme';
+import {ACCENT, BG, FONT, INK_ACCENT, STAR} from './theme';
 
 /** 이모지·특수 기호를 지운다(라임 스타일은 이모지를 쓰지 않는다) */
 export const clean = (t = ''): string =>
@@ -67,23 +67,33 @@ export const Star: React.FC<{w: number; style?: React.CSSProperties; delay?: num
   );
 };
 
-/** 겹친 둥근 선(트랙). 노선도처럼 이어지는 선 모양 */
-export const Track: React.FC<{style?: React.CSSProperties}> = ({style}) => (
-  <svg width={1340} height={665} viewBox="0 0 1340 665" style={{position: 'absolute', ...style}}>
-    {[0, 1, 2, 3, 4].map((i) => {
-      const h = 620 - i * 90;
-      return <rect key={i} x={i * 45 + 1.25} y={45 + i * 45} width={1340 - i * 90 - 2.5} height={h} rx={h / 2} fill="none" stroke={ACCENT} strokeOpacity={0.39} strokeWidth={2.5} />;
-    })}
-  </svg>
-);
+/** 노선도 선: 겹친 둥근 노선 3개 + 정거장 동그라미(상경·이동 느낌). 화면 아래에서 잘린다 */
+export const Track: React.FC<{style?: React.CSSProperties}> = ({style}) => {
+  const lines = [0, 1, 2].map((i) => ({x: i * 70 + 2, y: 50 + i * 70, w: 1340 - i * 140 - 4, h: 560 - i * 140}));
+  const stations: [number, number][] = [];
+  lines.forEach((l, i) => {
+    [0.18, 0.4, 0.62, 0.84].forEach((f) => stations.push([l.x + l.w * f, l.y]));
+    if (i === 0) stations.push([l.x + l.w, l.y + l.h / 2], [l.x, l.y + l.h / 2]);
+  });
+  return (
+    <svg width={1340} height={640} viewBox="0 0 1340 640" style={{position: 'absolute', ...style}}>
+      {lines.map((l, i) => (
+        <rect key={i} x={l.x} y={l.y} width={l.w} height={l.h} rx={l.h / 2} fill="none" stroke={ACCENT} strokeOpacity={0.75} strokeWidth={7} />
+      ))}
+      {stations.map(([cx, cy], i) => (
+        <circle key={i} cx={cx} cy={cy} r={14} fill={BG} stroke={ACCENT} strokeWidth={6} />
+      ))}
+    </svg>
+  );
+};
 
 /** 로고 자리: 계정 이름 글자(로고 파일이 없을 때) */
 export const Wordmark: React.FC<{text: string; style?: React.CSSProperties}> = ({text, style}) => (
   <div style={{position: 'absolute', color: ACCENT, fontFamily: FONT, fontWeight: 800, fontSize: 32, letterSpacing: -1, ...style}}>{text}</div>
 );
 
-export const Check: React.FC<{size?: number}> = ({size = 44}) => (
+export const Check: React.FC<{size?: number; color?: string}> = ({size = 44, color = INK_ACCENT}) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <path d="M4 12.5l5 5L20 6.5" stroke={ACCENT} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M4 12.5l5 5L20 6.5" stroke={color} strokeWidth={3.2} strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );

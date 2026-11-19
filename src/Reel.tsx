@@ -21,6 +21,7 @@ const fonts: {family: string; weight: string; file: string}[] = [
   {family: FONT_BODY, weight: '700', file: 'Pretendard-Bold.woff2'},
   {family: FONT_BODY, weight: '800', file: 'Pretendard-ExtraBold.woff2'},
   {family: FONT_BODY, weight: '900', file: 'Pretendard-Black.woff2'},
+  {family: 'Paperlogy', weight: '800', file: 'Paperlogy-8ExtraBold.woff2'},
 ];
 fonts.forEach(({family, weight, file}) =>
   loadFont({family, url: staticFile(`fonts/${file}`), weight}).catch((e) =>
