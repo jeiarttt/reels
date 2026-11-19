@@ -1,6 +1,6 @@
 import React from 'react';
-import {spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {ACCENT, BG, FONT, INK_ACCENT, STAR} from './theme';
+import {Easing, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {ACCENT, BG, FONT, INK, INK_ACCENT, STAR} from './theme';
 
 /** 이모지·특수 기호를 지운다(라임 스타일은 이모지를 쓰지 않는다) */
 export const clean = (t = ''): string =>
@@ -10,8 +10,20 @@ export const clean = (t = ''): string =>
     .replace(/ *\n */g, '\n')
     .trim();
 
-/** [[강조]] 는 라임색, \n 은 줄바꿈 */
-export const Rich: React.FC<{text: string; accent?: string}> = ({text, accent = ACCENT}) => {
+/** 숫자가 0에서 올라가며 센다(첫 숫자 덩어리만). 쉼표가 있으면 쉼표를 살린다 */
+export const CountText: React.FC<{text: string; from?: number; frames?: number}> = ({text, from = 8, frames = 26}) => {
+  const frame = useCurrentFrame();
+  const m = text.match(/\d[\d,]*(?:\.\d+)?/);
+  if (!m || m.index === undefined) return <>{text}</>;
+  const target = parseFloat(m[0].replace(/,/g, ''));
+  const p = interpolate(frame, [from, from + frames], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const val = Math.round(target * p);
+  const shown = m[0].includes(',') ? val.toLocaleString('en-US') : String(val);
+  return <>{text.slice(0, m.index)}{shown}{text.slice(m.index + m[0].length)}</>;
+};
+
+/** [[강조]] 는 라임색(marker면 형광펜 칠 + 어두운 글자), \n 은 줄바꿈. count면 강조 안의 숫자가 올라간다 */
+export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; count?: boolean}> = ({text, accent = ACCENT, marker, count}) => {
   const lines = text.split('\n');
   return (
     <>
@@ -29,9 +41,15 @@ export const Rich: React.FC<{text: string; accent?: string}> = ({text, accent = 
                 on = false;
                 return null;
               }
-              return (
-                <span key={i} style={on ? {color: accent} : undefined}>
-                  {p}
+              if (!on) return <span key={i}>{p}</span>;
+              const inner = count ? <CountText text={p} /> : p;
+              return marker ? (
+                <span key={i} style={{background: accent, color: INK, padding: '0 0.22em', margin: '0 -0.04em', borderRadius: '0.22em', display: 'inline-block', transform: 'rotate(-1.2deg)', textShadow: 'none', lineHeight: 1.12}}>
+                  {inner}
+                </span>
+              ) : (
+                <span key={i} style={{color: accent}}>
+                  {inner}
                 </span>
               );
             })}
@@ -42,6 +60,17 @@ export const Rich: React.FC<{text: string; accent?: string}> = ({text, accent = 
   );
 };
 
+/** 손으로 그은 듯한 물결 밑줄 */
+export const Wave: React.FC<{w?: number; style?: React.CSSProperties; delay?: number}> = ({w = 260, style, delay = 14}) => {
+  const frame = useCurrentFrame();
+  const p = interpolate(frame, [delay, delay + 14], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return (
+    <svg width={w} height={26} viewBox="0 0 260 26" style={{display: 'block', transform: 'rotate(-1.2deg)', ...style}}>
+      <path d="M4 14 Q 22 2 40 14 T 76 14 T 112 14 T 148 14 T 184 14 T 220 14 T 256 14" fill="none" stroke={ACCENT} strokeWidth={7} strokeLinecap="round" strokeDasharray={320} strokeDashoffset={320 * (1 - p)} />
+    </svg>
+  );
+};
+
 /** 등장: 아래에서 살짝 올라오며 나타난다 */
 export const useIn = (delay = 0) => {
   const frame = useCurrentFrame();
@@ -49,12 +78,22 @@ export const useIn = (delay = 0) => {
   return Math.max(spring({frame: frame - delay, fps, config: {damping: 16, stiffness: 120}}), 0);
 };
 
+/** 통통 튀는 등장(살짝 넘쳤다가 돌아온다) */
+export const useBounce = (delay = 0) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  return Math.max(spring({frame: frame - delay, fps, config: {damping: 8, stiffness: 150}}), 0);
+};
+
 export type ShapeKind = 'burst' | 'sparkle' | 'ring' | 'plus' | 'dots' | 'moon';
 export const SHAPES: ShapeKind[] = ['sparkle', 'ring', 'burst', 'plus', 'dots', 'moon'];
 
 /** 장식 도형(가로세로 비율 1:1, 찌그러지지 않게). 모양은 컷마다 돌려 쓴다 */
 export const Star: React.FC<{w: number; kind?: ShapeKind; style?: React.CSSProperties; delay?: number}> = ({w, kind = 'burst', style, delay = 10}) => {
-  const p = Math.min(useIn(delay), 1);
+  const p = Math.min(useBounce(delay), 1.25);
+  const frame = useCurrentFrame();
+  const wig = Math.sin(frame / 9 + w) * 9;
+  const bob = Math.sin(frame / 11 + w / 20) * 7;
   let body: React.ReactNode;
   if (kind === 'burst') {
     const n = 12;
@@ -88,7 +127,7 @@ export const Star: React.FC<{w: number; kind?: ShapeKind; style?: React.CSSPrope
     body = <path d="M70 6 A44 44 0 1 0 94 70 A34 34 0 1 1 70 6 Z" fill={STAR} />;
   }
   return (
-    <svg width={w} height={w} viewBox="0 0 100 100" style={{position: 'absolute', opacity: p, transform: `scale(${0.6 + 0.4 * p}) rotate(${(1 - p) * -30}deg)`, ...style}}>
+    <svg width={w} height={w} viewBox="0 0 100 100" style={{position: 'absolute', opacity: Math.min(p, 1), transform: `translateY(${bob}px) scale(${0.5 + 0.5 * p}) rotate(${(1 - Math.min(p, 1)) * -40 + wig}deg)`, ...style}}>
       {body}
     </svg>
   );
