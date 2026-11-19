@@ -1,0 +1,154 @@
+{
+  "mode": "card_news",
+  "theme": "lime",
+  "style": "photo",
+  "backgroundSrc": "",
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "id": "20261119-사이트4개-자취-lime-v2",
+  "brand": "2030 상경러",
+  "bgDim": 0.5,
+  "hookSec": 2.6,
+  "ctaSec": 2.8,
+  "hookLabel": "상경 자취생 북마크",
+  "hook": "KTX·전세·통신비,\n[[돈 아끼는 사이트 4개]]",
+  "hookBg": {
+    "src": "user/sites-bg.mp4",
+    "type": "video",
+    "startFrom": 0,
+    "position": "50% 50%"
+  },
+  "hookSticker": "dog-corgi-up",
+  "hookSfx": "오?",
+  "scenes": [
+    {
+      "t": 4.2,
+      "kind": "plain",
+      "label": "코레일 힘내라 청춘",
+      "text": "KTX 할인\n[[최대 40%]]",
+      "chips": [
+        "만 25~33세 코레일 회원",
+        "공석 한정 · 사전 예매"
+      ],
+      "bg": {
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 2.6,
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 4.6,
+      "kind": "split",
+      "label": "안심전세포털 · 정부24",
+      "text": "전세보증료 환급",
+      "stat": {
+        "big": "40만",
+        "sub": "원 환급\n(최대)"
+      },
+      "cards": [
+        {
+          "big": "무주택"
+        },
+        {
+          "big": "보증금 3억 원 이하"
+        },
+        {
+          "big": "연소득 청년\n5천만 원 이하"
+        }
+      ],
+      "bg": {
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 6.8,
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 4.4,
+      "kind": "timeline",
+      "label": "마이홈포털 자가진단",
+      "cards": [
+        {
+          "big": "조건 입력",
+          "small": "소득·가구원·거주지"
+        },
+        {
+          "big": "지원 확인",
+          "small": "공공임대·주거지원"
+        },
+        {
+          "big": "공고 알림",
+          "small": "관심 지역 설정"
+        }
+      ],
+      "bg": {
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 11.4,
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 4.2,
+      "kind": "list",
+      "label": "스마트초이스",
+      "cards": [
+        {
+          "big": "25% 할인 조회",
+          "small": "선택약정"
+        },
+        {
+          "big": "요금제 추천",
+          "small": "이용패턴 기준"
+        },
+        {
+          "big": "지원금 비교",
+          "small": "지원금 vs 25%"
+        },
+        {
+          "big": "미환급액 조회",
+          "small": "돌려받을 돈"
+        }
+      ],
+      "bg": {
+        "src": "user/sites-bg.mp4",
+        "type": "video",
+        "startFrom": 15.8,
+        "position": "50% 50%"
+      }
+    }
+  ],
+  "ctaLabel": "저장하고 총정리 받기",
+  "cta": "DM으로 [[사이트]]\n총정리 받아가세요",
+  "ctaBg": {
+    "src": "user/sites-bg.mp4",
+    "type": "video",
+    "startFrom": 20.0,
+    "position": "50% 50%"
+  },
+  "caption": "상경한 자취생이 북마크해 두면 돈 아끼는 사이트 4개 🔖\n🚄 코레일 '힘내라 청춘': 만 25~33세 KTX 최대 40% 할인\n🏠 전세보증료 환급 최대 40만 원 · 🔎 마이홈포털 자가진단 · 📱 스마트초이스 25% 할인 조회\n💌 신청 조건·방법 총정리는 DM으로 \"사이트\"라고 보내 주세요!\n(2026년 11월 기준 정책브리핑 기사 기준 · 금액과 조건은 바뀔 수 있어요)\n\n#자취꿀팁 #청년혜택 #상경러 #재테크 #KTX할인 #전세보증료",
+  "hashtags": [
+    "#자취꿀팁",
+    "#청년혜택",
+    "#상경러",
+    "#재테크",
+    "#KTX할인",
+    "#전세보증료"
+  ],
+  "sources": [
+    "https://www.korea.kr/news/reporterView.do?newsId=148913933",
+    "https://www.korea.kr/news/reporterView.do?newsId=148936530",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148887101",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148940420",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148960201",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148887501",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148928325",
+    "https://www.korea.kr/multi/visualNewsView.do?newsId=148941352"
+  ],
+  "verify_before_post": [
+    "공식 출처 확인 여부: 정책브리핑(korea.kr) 기사 8건은 직접 열어 확인함 / 코레일·정부24·안심전세포털·마이홈포털·스마트초이스 사이트는 직접 열람하지 못함(현재 할인율·금액·조건은 각 사이트에서 최종 확인)",
+    "힘내라 청춘 최대 40%는 2023.05·2024.11 기사 기준",
+    "전세보증료 최대 40만 원은 2025.3.31 이후 가입자(국토교통부 2025.04.07), 청년 나이는 시·도 조례에 따라 달라 영상에 나이 숫자 미표기"
+  ]
+}
