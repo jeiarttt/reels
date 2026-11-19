@@ -9,6 +9,7 @@ import {CardsScene} from './components/CardsScene';
 import {TableScene} from './components/TableScene';
 import {ctaSecOf, FPS, hookSecOf} from './Root';
 import {CuteReel} from './cute/CuteReel';
+import {LimeReel} from './lime/LimeReel';
 
 // 폰트 규칙: 큰 제목(첫 화면·마지막 화면)은 히피체, 내용·작은 정보성 글은 Pretendard.
 // 파일은 public/fonts/ 에 있다. (히피체: Project-Noonnu 배포본, Pretendard: OFL)
@@ -34,6 +35,7 @@ const pickBg = (script: Script, bg?: Bg): Bg | undefined =>
 export const Reel: React.FC<{script: Script}> = ({script}) => {
   const accent = script.accentColor ?? '#FF8A1F';
   if (script.theme === 'cute') return <CuteReel script={script} />;
+  if (script.theme === 'lime') return <LimeReel script={script} />;
   const showDisclaimer = script.status !== 'confirmed' && !!script.disclaimer_overlay;
 
   let cursor = 0;

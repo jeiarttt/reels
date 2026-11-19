@@ -43,7 +43,7 @@ export type Script = {
   id: string;
   mode: 'card_news';
   /** 'cute' 면 귀여운 디자인(스티커·말풍선·이모지 카드)으로 렌더 */
-  theme?: 'cute';
+  theme?: 'cute' | 'lime';
   /** 표지·마지막 화면 길이(초). 기본 3.5 / 4 */
   hookSec?: number;
   ctaSec?: number;
