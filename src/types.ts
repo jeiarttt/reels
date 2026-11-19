@@ -18,7 +18,9 @@ export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: s
 
 export type Scene = {
   t: number;
-  kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid';
+  kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid' | 'checklist' | 'flow';
+  /** 글자 컷 아래에 붙이는 작은 알약 문구 */
+  chips?: string[];
   /** 귀여운 테마: 밝은 배경이면 'dark'(진한 남색 글자). 기본 'light'(흰 글자) */
   tone?: 'light' | 'dark';
   /** 귀여운 테마: 주제에 어울리는 일러스트 이름(phone·card·train·coin·calendar·cap·house·ticket·briefcase·book)과 위치(tl·tr·bl·br), calendar의 숫자 */

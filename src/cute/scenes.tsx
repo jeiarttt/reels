@@ -8,7 +8,7 @@ import {Illust} from './illust';
 import {Doodle, LabelBox, NavyTag, NumTag, Paper, Pill, Sfx, StickerAnchor, StickerImg, useFadeOut, Washi} from './parts';
 import {BLUE, CONTENT_TOP, MARKER, NAVY, PAPER, PAPER_SHADOW, POSTIT, SKY, SOFT_SHADOW, TITLE_FONT} from './theme';
 
-type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string; tone?: 'light' | 'dark'; deco?: string; decoText?: string; decoPos?: 'tl' | 'tr' | 'bl' | 'br'};
+type Common = {index: number; total: number; frames: number; label?: string; sticker?: string; sfx?: string; tone?: 'light' | 'dark'; deco?: string; decoText?: string; decoPos?: 'tl' | 'tr' | 'bl' | 'br'; chips?: string[]; headline?: StatData};
 
 /** 항목 수가 적을수록 세로 여백을 넓혀 화면을 채운다 */
 const vOf = (n: number) => (n <= 1 ? 2 : n === 2 ? 1.7 : n === 3 ? 1.4 : n === 4 ? 1.2 : 1);
@@ -82,7 +82,7 @@ export const CuteCover: React.FC<{
 };
 
 /** 큰 글자 컷: 종이 없이 사진 위에 바로 */
-export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx, deco, decoText, decoPos, tone}) => {
+export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, label, text, sticker, sfx, deco, decoText, decoPos, tone, chips}) => {
   const dark = tone === 'dark';
   const out = useFadeOut(frames);
   const odd = index % 2 === 1;
@@ -107,6 +107,13 @@ export const CuteBubble: React.FC<Common & {text: string}> = ({index, frames, la
         <Pill text={label} tilt={odd ? -2 : 2} />
         <div style={{height: 22}} />
         <RawTitle text={text} size={titleSize} startFrame={8} dark={dark} />
+        {chips && chips.length > 0 && (
+          <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, marginTop: 56}}>
+            {chips.map((c, i) => (
+              <StatChip key={i} text={c} i={i} />
+            ))}
+          </div>
+        )}
       </div>
       <Doodle kind={odd ? 'sparkle' : 'heart'} color={dark ? BLUE : '#fff'} size={88} rotate={odd ? 10 : -8} delay={16} style={{right: 110, top: 640}} />
       <Doodle kind={odd ? 'swirl' : 'star'} color={dark ? BLUE : '#fff'} size={odd ? 140 : 76} rotate={-6} delay={22} style={{left: 120, top: 1270}} />
@@ -525,10 +532,10 @@ const GridTile: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
   return (
     <div
       style={{
-        width: 400,
+        width: 'calc(50% - 22px)',
         background: '#fff',
         borderRadius: 34,
-        padding: '42px 24px 40px',
+        padding: '56px 24px 52px',
         boxShadow: SOFT_SHADOW,
         opacity: Math.min(pop, 1),
         transform: `translateY(${(1 - pop) * 40}px) rotate(${i % 2 ? 1 : -1}deg)`,
@@ -540,6 +547,80 @@ const GridTile: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
       {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 32, marginTop: 6}}>{c.small}</div>}
     </div>
   );
+};
+
+
+/** 체크리스트 쿠폰: 위쪽 파란 띠에 큰 혜택, 아래에 조건 체크 목록 */
+export const CuteChecklist: React.FC<Common & {headline: StatData; cards: CardItem[]}> = ({frames, label, headline, cards, sticker, sfx, deco, decoText, decoPos}) => {
+  const out = useFadeOut(frames);
+  const pop = usePop(10);
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={FLEX_CENTER}>
+        <Accents sticker={sticker} sfx={sfx} size={260} rotate={-10} corner="tl" deco={deco} decoText={decoText} decoPos={decoPos} />
+        <Pill text={label} tilt={-2} />
+        <div style={{background: '#fff', borderRadius: 40, boxShadow: PAPER_SHADOW, overflow: 'hidden', opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(-1deg)`}}>
+          <div style={{background: BLUE, color: '#fff', padding: '64px 40px 56px', textAlign: 'center'}}>
+            <div style={{fontWeight: 800, fontSize: 46, opacity: 0.92}}>{headline.sub}</div>
+            <div style={{fontWeight: 900, fontSize: 120, lineHeight: 1.1, letterSpacing: -3, marginTop: 8, color: '#FFE45C'}}>{headline.big}</div>
+          </div>
+          <div style={{borderTop: '6px dashed rgba(255,255,255,0.0)', padding: '20px 44px 40px'}}>
+            {cards.map((c, i) => (
+              <CheckRow key={i} text={c.big} i={i} last={i === cards.length - 1} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const CheckRow: React.FC<{text: string; i: number; last: boolean}> = ({text, i, last}) => {
+  const pop = usePop(20 + i * 10);
+  return (
+    <div style={{display: 'flex', alignItems: 'center', gap: 24, padding: '34px 0', borderBottom: last ? 'none' : '4px dashed rgba(36,87,245,0.25)', opacity: Math.min(pop, 1), transform: `translateX(${(1 - pop) * -30}px)`, textAlign: 'left', wordBreak: 'keep-all'}}>
+      <div style={{fontSize: 56}}>✅</div>
+      <div style={{color: NAVY, fontWeight: 800, fontSize: 50, lineHeight: 1.2}}>{text}</div>
+    </div>
+  );
+};
+
+/** 가로 흐름: 동그라미 아이콘이 화살표로 이어지는 3단계 (입력 → 확인 → 알림 같은 짧은 절차) */
+export const CuteFlow: React.FC<Common & {cards: CardItem[]}> = ({frames, label, cards, sticker, sfx, deco, decoText, decoPos}) => {
+  const out = useFadeOut(frames);
+  const pop = usePop(10);
+  return (
+    <AbsoluteFill style={{opacity: out}}>
+      <div style={FLEX_CENTER}>
+        <Accents sticker={sticker} sfx={sfx} size={260} rotate={12} corner="tr" deco={deco} decoText={decoText} decoPos={decoPos} />
+        <Pill text={label} tilt={2} />
+        <div style={{background: '#fff', borderRadius: 40, boxShadow: PAPER_SHADOW, padding: '120px 16px 104px', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', gap: 0, opacity: Math.min(pop, 1), transform: `translateY(${(1 - pop) * 40}px) rotate(1deg)`}}>
+          {cards.map((c, i) => (
+            <React.Fragment key={i}>
+              <FlowNode c={c} i={i} />
+              {i < cards.length - 1 && <FlowArrow i={i} />}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+const FlowNode: React.FC<{c: CardItem; i: number}> = ({c, i}) => {
+  const pop = usePop(18 + i * 12);
+  return (
+    <div style={{width: 248, textAlign: 'center', wordBreak: 'keep-all', opacity: Math.min(pop, 1), transform: `scale(${0.7 + 0.3 * Math.min(pop, 1)})`}}>
+      <div style={{width: 176, height: 176, margin: '0 auto 36px', borderRadius: '50%', background: POSTIT, boxShadow: '0 8px 16px rgba(20,30,80,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 98}}>{c.emoji ?? '⭐'}</div>
+      <div style={{color: BLUE, fontWeight: 900, fontSize: 54, lineHeight: 1.15, letterSpacing: -1.5}}>{c.big}</div>
+      {c.small && <div style={{color: NAVY, fontWeight: 700, fontSize: 34, lineHeight: 1.25, marginTop: 14}}>{c.small}</div>}
+    </div>
+  );
+};
+
+const FlowArrow: React.FC<{i: number}> = ({i}) => {
+  const pop = usePop(26 + i * 12);
+  return <div style={{width: 24, marginTop: 62, color: BLUE, fontWeight: 900, fontSize: 56, textAlign: 'center', opacity: Math.min(pop, 1)}}>›</div>;
 };
 
 const DECO_POS: Record<string, React.CSSProperties> = {

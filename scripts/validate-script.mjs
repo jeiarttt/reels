@@ -19,7 +19,7 @@ try {
 const strip = (t = '') => t.replace(/\[\[|\]\]/g, '');
 const lines = (t = '') => strip(t).split('\n');
 const FORBIDDEN = ['무조건', '100%', '누구나', '반드시 받', '확실히', '대박', '충격', '절대 손해'];
-const KINDS = ['text', 'cards', 'table', 'steps', 'stat', 'compare', 'grid'];
+const KINDS = ['text', 'cards', 'table', 'steps', 'stat', 'compare', 'grid', 'checklist', 'flow'];
 
 // ── 필수 항목 ──
 for (const k of ['id', 'mode', 'hook', 'cta', 'status', 'caption']) if (!s[k]) err(`필수 항목 없음: ${k}`);
