@@ -59,10 +59,42 @@ const Wob: React.FC<{t: string}> = ({t}) => (
   </>
 );
 
-export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; count?: boolean; wobble?: boolean}> = ({text, accent = ACCENT, marker, count, wobble}) => {
+export type TitleFx = 'pop' | 'type';
+/** 표지·마지막 장 큰 제목의 등장 효과(대본 titleFx). 없으면 기본 등장 */
+export const TitleFxContext = createContext<TitleFx | undefined>(undefined);
+
+const FX_STEP: Record<TitleFx, number> = {pop: 2, type: 2.6};
+
+export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; count?: boolean; wobble?: boolean; fx?: TitleFx; fxStart?: number; fxOffset?: number; fxTotal?: number}> = ({text, accent = ACCENT, marker, count, wobble, fx, fxStart = 6, fxOffset = 0, fxTotal}) => {
   const lines = text.split('\n');
   const wf = useCurrentFrame();
   const wig = 1.6 * Math.sin(wf / 7);
+  const plain = text.replace(/\[\[|\]\]/g, '').replace(/\s/g, '');
+  const total = fxTotal ?? [...plain].length;
+  const step = fx ? FX_STEP[fx] : 0;
+  let k = fxOffset; // 지금까지 그린 글자 수(공백 제외)
+  const cursorAt = fx === 'type' ? Math.min(Math.floor((wf - fxStart) / step), total - 1) : -1;
+  const cursorOn = fx === 'type' && wf - fxStart >= 0 && wf - fxStart < total * step + 30 && (wf - fxStart < total * step || Math.floor((wf - fxStart - total * step) / 7) % 2 === 0);
+  const chars = (str: string, color?: string) =>
+    [...str].map((c, ci) => {
+      if (/\s/.test(c)) return <span key={ci} style={{whiteSpace: 'pre'}}>{c}</span>;
+      const idx = k++;
+      const t = wf - fxStart - idx * step;
+      if (fx === 'pop') {
+        const e = Easing.out(Easing.back(2.4))(Math.min(Math.max(t / 10, 0), 1));
+        return (
+          <span key={ci} style={{display: 'inline-block', color, opacity: t < 0 ? 0 : Math.min(1, t / 3), transform: `translateY(${((1 - e) * 54).toFixed(1)}px) scale(${(0.55 + 0.45 * e).toFixed(3)})`}}>
+            {c}
+          </span>
+        );
+      }
+      return (
+        <React.Fragment key={ci}>
+          <span style={{color, opacity: t < 0 ? 0 : 1}}>{c}</span>
+          {cursorOn && idx === cursorAt && <span style={{display: 'inline-block', width: '0.07em', height: '0.86em', background: ACCENT, marginLeft: '0.05em', verticalAlign: '-0.08em'}} />}
+        </React.Fragment>
+      );
+    });
   return (
     <>
       {lines.map((line, li) => {
@@ -79,7 +111,19 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
                 on = false;
                 return null;
               }
-              if (!on) return <span key={i}>{wobble ? <Wob t={p} /> : p}</span>;
+              if (!on) return <span key={i}>{fx ? chars(p) : wobble ? <Wob t={p} /> : p}</span>;
+              if (fx) {
+                const first = k;
+                const n = [...p].filter((c) => !/\s/.test(c)).length;
+                const sw = Math.min(Math.max((wf - fxStart - first * step) / Math.max(n * step, 8), 0), 1);
+                return marker ? (
+                  <span key={i} style={{backgroundImage: `linear-gradient(${accent}, ${accent})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left center', backgroundSize: `${(sw * 100).toFixed(1)}% 100%`, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', transform: `rotate(${wig}deg)`, transformOrigin: 'center', textShadow: 'none', WebkitTextStroke: '0px transparent', lineHeight: 1.25}}>
+                    {chars(p)}
+                  </span>
+                ) : (
+                  <span key={i} style={{color: accent}}>{chars(p)}</span>
+                );
+              }
               const inner = count ? <CountText text={p} /> : p;
               return marker ? (
                 <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', transform: `rotate(${wig}deg)`, transformOrigin: 'center', textShadow: 'none', WebkitTextStroke: '0px transparent', lineHeight: 1.25}}>

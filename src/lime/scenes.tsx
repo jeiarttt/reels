@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
 import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, Wave} from './parts';
-import {useTitleStroke} from './parts';
+import {TitleFxContext, useTitleStroke} from './parts';
 import type {ShapeKind} from './parts';
 
 /** 영상 위 작은 글자가 묻히지 않도록 짙은 그림자를 깐다 */
@@ -58,6 +58,8 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const lines = text.split('\n');
   const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]/g, '')].length), 1);
   const stroke = useTitleStroke();
+  const fx = useContext(TitleFxContext);
+  const fxAll = [...text.replace(/\[\[|\]\]/g, '').replace(/\s/g, '')].length;
   const titleSize = Math.min(110, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
@@ -70,7 +72,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
-              <Rich text={ln} marker />
+              <Rich text={ln} marker fx={fx} fxStart={8} fxTotal={fxAll} fxOffset={lines.slice(0, i).join('').replace(/\[\[|\]\]/g, '').replace(/\s/g, '').length} />
               {i === 0 && <Star w={86} kind="sparkle" style={{left: -112, top: -46}} delay={14} />}
               {i === 0 && <Star w={96} kind="burst" style={{right: -124, top: 62}} delay={8} />}
               {i === 0 && mark && <MarkSticker ch={mark} size={210} style={{right: -140, top: -160}} />}
@@ -470,13 +472,14 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
   const p1 = useIn(8);
   const p2 = useIn(16);
   const stroke = useTitleStroke();
+  const fx = useContext(TitleFxContext);
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
           <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 110, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
-            <Rich text={text} />
+            <Rich text={text} fx={fx} fxStart={8} />
           </div>
           <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />
         </div>
