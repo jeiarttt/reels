@@ -1,0 +1,127 @@
+{
+  "mode": "card_news",
+  "theme": "lime",
+  "style": "photo",
+  "backgroundSrc": "",
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "id": "20261120-난방비절약-자취-lime",
+  "brand": "2030 상경러",
+  "bgDim": 0.2,
+  "titleStroke": 3,
+  "titleFont": "Dunggeun",
+  "hookSec": 2.8,
+  "ctaSec": 3.2,
+  "hook": "난방비 줄이는\n[[6가지]]",
+  "hookLabel": "",
+  "hookSub": "",
+  "hookBg": {
+    "src": "stock/pexels-763147.jpg",
+    "type": "image",
+    "position": "30% 50%"
+  },
+  "cta": "저장해 두고\n난방 켜기 전에\n다시 보세요",
+  "ctaBg": {
+    "src": "stock/pexels-31774998.jpg",
+    "type": "image",
+    "position": "50% 50%"
+  },
+  "scenes": [
+    {
+      "t": 3.0,
+      "kind": "text",
+      "label": "난방비 6가지 중 첫째",
+      "text": "실내는 [[20도]]",
+      "chips": [
+        "권장 18~20도(내복·실내복 전제)",
+        "20도 유지 월평균 약 5150원 절감"
+      ],
+      "bg": {
+        "src": "stock/pexels-36077581.jpg",
+        "type": "image",
+        "position": "48% 50%"
+      }
+    },
+    {
+      "t": 3.0,
+      "kind": "text",
+      "label": "둘째 · 셋째",
+      "text": "외출할 때\n안 쓰는 방",
+      "chips": [
+        "단열 좋은 집은 외출 모드",
+        "안 쓰는 방 분배기 밸브 잠그기",
+        "보일러와 가습기 함께"
+      ],
+      "bg": {
+        "src": "stock/pexels-7417506.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 3.0,
+      "kind": "text",
+      "label": "넷째 · 다섯째",
+      "text": "[[체감 3도]]\n올리는 법",
+      "chips": [
+        "수면양말·내복 입기",
+        "창문 안쪽에 에어캡 두 겹",
+        "현관·방문 닫고 바닥엔 담요"
+      ],
+      "bg": {
+        "src": "stock/pexels-6633363.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 3.0,
+      "kind": "text",
+      "label": "여섯째",
+      "text": "전기장판은\n강에서 약으로",
+      "chips": [
+        "한 단계만 낮춰도 월 1760원 절약",
+        "잠들기 전까지만 사용"
+      ],
+      "bg": {
+        "src": "stock/pexels-4740586.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      }
+    },
+    {
+      "t": 3.0,
+      "kind": "text",
+      "label": "덤",
+      "text": "동파·캐시백도\n챙기세요",
+      "chips": [
+        "수도계량기 보온 챙기기",
+        "에너지캐시백은 3% 이상 줄이면 지급"
+      ],
+      "bg": {
+        "src": "stock/pexels-10505371.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      }
+    }
+  ],
+  "caption": "자취방 난방비 줄이는 6가지 🥾\n실내 18~20도 · 단열 좋은 집은 외출 모드 · 안 쓰는 방 밸브 잠그기 · 수면양말·내복 · 창문 안쪽 에어캡 · 전기장판 강→약\n💰 20도 유지하면 월평균 약 5150원 절감(추산), 전기장판 강→약 한 단계만 낮춰도 월 1760원(2023년 기사 기준)\n📌 저장해 두고 난방 켜기 전에 보세요!\n(정책브리핑 2023·2025년 기사 기준 · 절감액은 일반 가정 평균 추산이에요)\n\n#자취꿀팁 #난방비절약 #겨울나기 #에너지절약 #상경러 #재테크",
+  "hashtags": [
+    "#자취꿀팁",
+    "#난방비절약",
+    "#겨울나기",
+    "#에너지절약",
+    "#상경러",
+    "#재테크"
+  ],
+  "sources": [
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148911714",
+    "https://www.korea.kr/news/reporterView.do?newsId=148956664",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148954665"
+  ],
+  "verify_before_post": [
+    "공식 출처 확인 여부: 정책브리핑(korea.kr) 기사 3건(산업통상자원부 2023-02-15, 정책기자단 2025-12-18, 행정안전부 2025-11-13, 모두 공공누리 제1유형)을 직접 열어 확인함 / 올겨울 새 공식 발표와 에너지캐시백 사이트는 직접 열람하지 못함",
+    "절감액(월 5150원·1760원 등)은 기사 작성 시점 기준 일반 가정 평균 추산이며 원룸에는 안 맞을 수 있음",
+    "외출 시 '끄기 vs 낮추기'와 동파 구체 수칙은 공공누리 제4유형 기사에만 있어 영상에 쓰지 않음"
+  ]
+}
