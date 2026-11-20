@@ -36,7 +36,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
   blocks.push(
     <Sequence key="hook" from={cursor} durationInFrames={hookFrames}>
       <Backdrop bg={pick(script, script.hookBg)} frames={hookFrames} dim={dim} blur={script.bgBlur ?? 0} />
-      <LimeCover frames={hookFrames} label={script.hookLabel} sub={script.hookSub} text={script.hook} brand={script.brand} />
+      <LimeCover frames={hookFrames} label={script.hookLabel} sub={script.hookSub} text={script.hook} brand={script.brand} mark={script.hookMark} />
     </Sequence>,
   );
   cursor += hookFrames;
