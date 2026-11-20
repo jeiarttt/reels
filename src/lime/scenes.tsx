@@ -221,28 +221,31 @@ const SplitLine: React.FC<{l: {label: string; detail?: string}; i: number}> = ({
 const Scale: React.FC<{min: number; max: number; from: number; to: number; mark: number; unit?: string}> = ({min, max, from, to, mark, unit = ''}) => {
   const frame = useCurrentFrame();
   const p = useBounce(10);
+  const stroke = useTitleStroke();
   const grow = interpolate(frame, [14, 36], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const pct = (v: number) => ((v - min) / (max - min)) * 100;
   const ticks: number[] = [];
   for (let v = Math.ceil(min / 2) * 2; v <= max; v += 2) ticks.push(v);
   return (
-    <div style={{position: 'relative', height: 340, margin: '0 20px 28px', opacity: Math.min(p, 1)}}>
-      <div style={{position: 'absolute', left: `${pct(mark)}%`, top: 0, transform: 'translateX(-50%)', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 96, letterSpacing: '-0.02em', padding: '16px 64px', borderRadius: 999}}>
-        {mark}{unit}
-        <div style={{position: 'absolute', left: '50%', bottom: -15, width: 34, height: 34, marginLeft: -17, background: '#000', borderRadius: 9, transform: 'rotate(45deg)'}} />
+    <div style={{opacity: Math.min(p, 1)}}>
+      <div style={{textAlign: 'center', color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 380, lineHeight: 1, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke}}>
+        <CountText text={`${mark}${unit}`} />
       </div>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 172, height: 64, borderRadius: 32, background: 'rgba(255,255,255,0.5)'}} />
-      <div style={{position: 'absolute', left: `${pct(from)}%`, width: `${(pct(to) - pct(from)) * grow}%`, top: 172, height: 64, borderRadius: 32, background: ACCENT}} />
-      {ticks.map((v) => (
-        <div key={v} style={{position: 'absolute', left: `${pct(v)}%`, top: 254, transform: 'translateX(-50%)', color: TITLE, fontWeight: 900, fontSize: 46, textShadow: SHADOW}}>{v}</div>
-      ))}
+      <div style={{position: 'relative', height: 190, margin: '40px 20px 0'}}>
+        <div style={{position: 'absolute', left: `${pct(mark)}%`, top: 0, width: 0, height: 0, marginLeft: -26, borderLeft: '26px solid transparent', borderRight: '26px solid transparent', borderTop: '40px solid #000'}} />
+        <div style={{position: 'absolute', left: 0, right: 0, top: 54, height: 64, borderRadius: 32, background: 'rgba(255,255,255,0.5)'}} />
+        <div style={{position: 'absolute', left: `${pct(from)}%`, width: `${(pct(to) - pct(from)) * grow}%`, top: 54, height: 64, borderRadius: 32, background: ACCENT}} />
+        {ticks.map((v) => (
+          <div key={v} style={{position: 'absolute', left: `${pct(v)}%`, top: 136, transform: 'translateX(-50%)', color: TITLE, fontWeight: 900, fontSize: 46, textShadow: SHADOW}}>{v}</div>
+        ))}
+      </div>
     </div>
   );
 };
 
 /** 질문(검정, 오른쪽)과 답(아이보리, 왼쪽) 말풍선 대화 */
 const Chat: React.FC<{items: {side: 'q' | 'a'; text: string}[]}> = ({items}) => (
-  <div style={{display: 'flex', flexDirection: 'column', gap: 40}}>
+  <div style={{display: 'flex', flexDirection: 'column', gap: 56}}>
     {items.map((it, i) => (
       <Bubble key={i} it={it} i={i} />
     ))}
@@ -252,7 +255,7 @@ const Bubble: React.FC<{it: {side: 'q' | 'a'; text: string}; i: number}> = ({it,
   const p = useBounce(14 + i * 12);
   const q = it.side === 'q';
   return (
-    <div style={{alignSelf: q ? 'flex-end' : 'flex-start', maxWidth: '94%', position: 'relative', background: q ? '#000' : CARD, color: q ? TITLE : INK, fontWeight: 800, fontSize: 66, lineHeight: 1.3, letterSpacing: -2, padding: '46px 72px', borderRadius: 84, wordBreak: 'keep-all', boxShadow: '0 10px 28px rgba(0,0,0,0.25)', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px) scale(${0.85 + 0.15 * p})`, transformOrigin: q ? 'right bottom' : 'left bottom'}}>
+    <div style={{alignSelf: q ? 'flex-end' : 'flex-start', maxWidth: '94%', position: 'relative', background: q ? '#000' : CARD, color: q ? TITLE : INK, fontWeight: 800, fontSize: 76, lineHeight: 1.3, letterSpacing: -2, padding: '56px 80px', borderRadius: 96, wordBreak: 'keep-all', boxShadow: '0 10px 28px rgba(0,0,0,0.25)', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px) scale(${0.85 + 0.15 * p})`, transformOrigin: q ? 'right bottom' : 'left bottom'}}>
       <Rich text={it.text} marker />
       <div style={{position: 'absolute', bottom: 26, [q ? 'right' : 'left']: -12, width: 38, height: 38, background: q ? '#000' : CARD, borderRadius: 12, transform: 'rotate(45deg)'}} />
     </div>
@@ -263,9 +266,9 @@ const Bubble: React.FC<{it: {side: 'q' | 'a'; text: string}; i: number}> = ({it,
 const Swap: React.FC<{from: string; to: string}> = ({from, to}) => {
   const p1 = useBounce(10);
   const p2 = useBounce(22);
-  const box: React.CSSProperties = {width: 310, height: 310, borderRadius: 80, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 180, letterSpacing: '-0.02em'};
+  const box: React.CSSProperties = {width: 380, height: 380, borderRadius: 96, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 230, letterSpacing: '-0.02em'};
   return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40, marginBottom: 36}}>
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 44, marginBottom: 30}}>
       <div style={{...box, background: 'rgba(245,245,239,0.9)', color: INK_SUB, opacity: Math.min(p1, 1) * 0.85, transform: `scale(${0.7 + 0.3 * p1})`}}>{from}</div>
       <svg width="140" height="90" viewBox="0 0 110 70" style={{opacity: Math.min(p2, 1)}}>
         <path d="M6 35 H92 M68 10 L98 35 L68 60" fill="none" stroke={ACCENT} strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
@@ -276,14 +279,14 @@ const Swap: React.FC<{from: string; to: string}> = ({from, to}) => {
 };
 
 /** 본문 공통 틀: 상단 로고, 라벨·제목·설명, 아래쪽 내용, 별 */
-const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; children?: React.ReactNode}> = ({count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
+const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; fill?: boolean; children?: React.ReactNode}> = ({fill, count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
   const p1 = useIn(6);
   const stroke = useTitleStroke();
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div style={{position: 'relative', marginBottom: 48, textAlign: 'left'}}>
+      <div style={{position: 'absolute', left: 72, right: 72, top: fill ? 170 : 0, bottom: fill ? 210 : 96, display: 'flex', flexDirection: 'column', justifyContent: fill ? 'flex-start' : 'center'}}>
+        <div style={{position: 'relative', marginBottom: fill ? 20 : 48, textAlign: 'left'}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
@@ -292,7 +295,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
           {desc && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 28, textShadow: SHADOW, ...rise(p1)}}>{desc}</div>}
           <Star w={92} kind={shape ?? SHAPES[index % SHAPES.length]} style={SHAPE_SPOTS[index % SHAPE_SPOTS.length](wide)} delay={12} />
         </div>
-        <div>{children}</div>
+        <div style={fill ? {flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly'} : undefined}>{children}</div>
       </div>
     </Fade>
   );
@@ -307,7 +310,7 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
 
   if (kind === 'scale' && s.scale) {
     return (
-      <Frame {...base} label={label} title={s.text ?? ''}>
+      <Frame {...base} fill label={label} title={s.text ?? ''}>
         <Scale {...s.scale} />
         {s.chips && <InfoRows rows={s.chips.map((c) => ({left: clean(c)}))} />}
       </Frame>
@@ -315,14 +318,14 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   }
   if (kind === 'chat' && s.chat) {
     return (
-      <Frame {...base} label={label} title={s.text ?? ''}>
+      <Frame {...base} fill label={label} title={s.text ?? ''}>
         <Chat items={s.chat.map((c) => ({side: c.side, text: clean(c.text)}))} />
       </Frame>
     );
   }
   if (kind === 'swap' && s.swap) {
     return (
-      <Frame {...base} label={label} title={s.text ?? ''}>
+      <Frame {...base} fill label={label} title={s.text ?? ''}>
         <Swap from={clean(s.swap.from)} to={clean(s.swap.to)} />
         {s.stat && <Split big={clean(s.stat.big)} sub={clean(s.stat.sub ?? '')} lines={items} />}
       </Frame>
