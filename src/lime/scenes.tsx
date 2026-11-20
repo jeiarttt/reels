@@ -42,7 +42,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: titleSize, lineHeight: 1.25, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={text} marker />
           </div>
-          <Star w={96} kind="burst" style={{right: -70, bottom: -140}} delay={8} />
+          <Star w={96} kind="burst" style={{right: -96, top: 8}} delay={8} />
         </div>
         {label && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 56, textShadow: SHADOW, ...rise(p2)}}>{clean(label)}</div>}
         {sub && <div style={{color: TITLE, fontWeight: 700, fontSize: 34, lineHeight: 1.4, letterSpacing: -1, marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
