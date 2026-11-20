@@ -10,20 +10,49 @@ export const clean = (t = ''): string =>
     .replace(/ *\n */g, '\n')
     .trim();
 
+/** 단계별로(8칸) 차오르는 진행률 0~1. 숫자와 게이지가 같이 쓴다 */
+export const STEPS = 8;
+export const stepP = (frame: number, from = 8, frames = 26) => {
+  const t = interpolate(frame, [from, from + frames], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  return Math.min(1, Math.ceil(t * STEPS - 1e-6) / STEPS);
+};
+
+/** 숫자와 함께 칸씩 차오르는 게이지(ratio: 최종 채움 0~1) */
+export const Gauge: React.FC<{ratio: number; w?: number; from?: number; frames?: number; style?: React.CSSProperties}> = ({ratio, w = 520, from = 8, frames = 26, style}) => {
+  const frame = useCurrentFrame();
+  const p = stepP(frame, from, frames);
+  const h = 26;
+  return (
+    <div style={{width: w, height: h, borderRadius: h, background: 'rgba(255,255,255,0.28)', overflow: 'hidden', margin: '0 auto', ...style}}>
+      <div style={{width: `${ratio * p * 100}%`, height: '100%', borderRadius: h, background: ACCENT}} />
+    </div>
+  );
+};
+
 /** 숫자가 0에서 올라가며 센다(첫 숫자 덩어리만). 쉼표가 있으면 쉼표를 살린다 */
 export const CountText: React.FC<{text: string; from?: number; frames?: number}> = ({text, from = 8, frames = 26}) => {
   const frame = useCurrentFrame();
   const m = text.match(/\d[\d,]*(?:\.\d+)?/);
   if (!m || m.index === undefined) return <>{text}</>;
   const target = parseFloat(m[0].replace(/,/g, ''));
-  const p = interpolate(frame, [from, from + frames], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  const p = stepP(frame, from, frames);
   const val = Math.round(target * p);
   const shown = m[0].includes(',') ? val.toLocaleString('en-US') : String(val);
   return <>{text.slice(0, m.index)}{shown}{text.slice(m.index + m[0].length)}</>;
 };
 
 /** [[강조]] 는 라임색(marker면 형광펜 칠 + 어두운 글자), \n 은 줄바꿈. count면 강조 안의 숫자가 올라간다 */
-export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; count?: boolean}> = ({text, accent = ACCENT, marker, count}) => {
+const WROT = [-1.8, 1.3, -0.9, 1.9, -1.4, 1.1];
+/** 큰 제목 글자마다 각도만 조금씩 다르게(과하지 않게) */
+const Wob: React.FC<{t: string}> = ({t}) => (
+  <>
+    {[...t].map((c, i) =>
+      c === ' ' ? <span key={i}> </span> : <span key={i} style={{display: 'inline-block', transform: `rotate(${WROT[i % 6]}deg)`}}>{c}</span>,
+    )}
+  </>
+);
+
+export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; count?: boolean; wobble?: boolean}> = ({text, accent = ACCENT, marker, count, wobble}) => {
   const lines = text.split('\n');
   return (
     <>
@@ -41,7 +70,7 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
                 on = false;
                 return null;
               }
-              if (!on) return <span key={i}>{p}</span>;
+              if (!on) return <span key={i}>{wobble ? <Wob t={p} /> : p}</span>;
               const inner = count ? <CountText text={p} /> : p;
               return marker ? (
                 <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.22em', display: 'inline-block', transform: 'rotate(-1.2deg)', textShadow: 'none', lineHeight: 1.25}}>
@@ -49,7 +78,7 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
                 </span>
               ) : (
                 <span key={i} style={{color: accent}}>
-                  {inner}
+                  {wobble && !count ? <Wob t={p} /> : inner}
                 </span>
               );
             })}

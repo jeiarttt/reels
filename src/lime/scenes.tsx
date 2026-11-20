@@ -3,7 +3,7 @@ import {AbsoluteFill} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
-import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, Wave, Wordmark} from './parts';
+import {Check, clean, CountText, Gauge, Rich, SHAPES, Star, useBounce, useIn, Wave, Wordmark} from './parts';
 import type {ShapeKind} from './parts';
 
 /** 영상 위 작은 글자가 묻히지 않도록 짙은 그림자를 깐다 */
@@ -14,7 +14,7 @@ const pad = (n: number) => String(n).padStart(2, '0');
 
 /** 도형 자리(머리글 기준): 제목 오른쪽 위, 카드 모서리에 살짝 걸치기, 제목 위쪽 오른쪽을 돌려 쓴다 */
 const SHAPE_SPOTS: ((wide?: boolean) => React.CSSProperties)[] = [
-  (w) => ({right: w ? 40 : 0, top: -10}),
+  (w) => ({right: w ? 70 : 40, top: -96}),
   (w) => ({right: w ? 20 : -26, bottom: -64}),
   (w) => ({right: w ? 90 : 70, top: -92}),
 ];
@@ -44,7 +44,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: titleSize, lineHeight: 1.38, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
-              <Rich text={ln} marker />
+              <Rich text={ln} marker wobble />
               {i === 0 && <Star w={86} kind="sparkle" style={{left: -116, top: 2}} delay={14} />}
               {i === 0 && <Star w={96} kind="burst" style={{right: -102, top: -3}} delay={8} />}
             </div>
@@ -194,6 +194,7 @@ const Split: React.FC<{big: string; sub?: string; lines: {label: string; detail?
         <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 176, lineHeight: 1, letterSpacing: -7, whiteSpace: 'nowrap', textShadow: SHADOW_SOFT}}>
           <CountText text={big} />
         </div>
+        <Gauge ratio={big.includes('%') ? parseFloat(big.replace(/[^\d.]/g, '')) / 100 : 1} w={360} style={{margin: '14px 0 0'}} />
         {sub && <div style={{color: TITLE, fontWeight: 800, fontSize: 44, lineHeight: 1.2, letterSpacing: -1.5, marginTop: 12, textShadow: SHADOW, whiteSpace: 'pre-line'}}>{sub}</div>}
       </div>
       <div style={{flex: 1, borderLeft: '4px solid rgba(255,255,255,0.45)', paddingLeft: 36}}>
@@ -216,19 +217,20 @@ const SplitLine: React.FC<{l: {label: string; detail?: string}; i: number}> = ({
 };
 
 /** 본문 공통 틀: 상단 로고, 라벨·제목·설명, 아래쪽 내용, 별 */
-const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; children?: React.ReactNode}> = ({count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
+const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; gauge?: number; children?: React.ReactNode}> = ({gauge, count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
   const p1 = useIn(6);
   return (
     <Fade frames={frames}>
       {brand && <Wordmark text={clean(brand)} style={{right: 120, top: 90}} />}
-      <div style={{position: 'absolute', left: wide ? 72 : 120, right: wide ? 72 : 120, top: 240, bottom: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div style={{position: 'relative', marginBottom: 72, paddingLeft: wide ? 48 : 0, paddingRight: wide ? 48 : 0}}>
+      <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+        <div style={{position: 'relative', marginBottom: 64, textAlign: 'center'}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 92, lineHeight: 1.25, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 100, lineHeight: 1.3, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
           </div>
-          {!title.includes('[[') && !desc && <Wave style={{marginTop: 18}} />}
+          {gauge !== undefined && <Gauge ratio={gauge} style={{marginTop: 44}} />}
+          {!title.includes('[[') && !desc && <Wave style={{marginTop: 18, marginLeft: 'auto', marginRight: 'auto'}} />}
           {desc && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 28, textShadow: SHADOW, ...rise(p1)}}>{desc}</div>}
           <Star w={92} kind={shape ?? SHAPES[index % SHAPES.length]} style={SHAPE_SPOTS[index % SHAPE_SPOTS.length](wide)} delay={12} />
         </div>
@@ -275,8 +277,10 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   }
 
   if (kind === 'text') {
+    const num = (s.text ?? '').match(/\[\[([^\]]*\d[^\]]*)\]\]/);
+    const pct = num && num[1].includes('%') ? parseFloat(num[1].replace(/[^\d.]/g, '')) / 100 : undefined;
     return (
-      <Frame {...base} label={label} title={s.text ?? ''}>
+      <Frame {...base} count={!!num} gauge={pct} label={label} title={s.text ?? ''}>
         {s.chips && <InfoRows rows={s.chips.map((c) => ({left: clean(c)}))} />}
       </Frame>
     );
@@ -349,7 +353,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontWeight: 800, fontSize: 36, letterSpacing: -1, marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 98, lineHeight: 1.22, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
-          <Rich text={text} marker />
+          <Rich text={text} marker wobble />
         </div>
         {label && (
           <div style={{marginTop: 64, background: ACCENT, color: BG, fontWeight: 800, fontSize: 40, letterSpacing: -1.5, lineHeight: 1.4, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
