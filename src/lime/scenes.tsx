@@ -36,7 +36,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const lines = text.split('\n');
   const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]/g, '')].length), 1);
   const stroke = useTitleStroke();
-  const titleSize = Math.min(120, Math.floor(900 / (longest * 0.75)));
+  const titleSize = Math.min(100, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
@@ -352,7 +352,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
-          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 98, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
+          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={text} marker />
           </div>
           <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />
