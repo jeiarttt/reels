@@ -11,9 +11,15 @@ import {BG, FONT} from './theme';
 const pick = (script: Script, bg?: Bg): Bg | undefined => (script.backgroundSrc ? {src: script.backgroundSrc} : bg);
 
 /** 사진·영상 배경 + 가독성용 dim(위는 연하게, 글자가 있는 가운데 높이는 dim, 아래는 진하게). 배경이 없으면 어두운 단색 */
-const Backdrop: React.FC<{bg?: Bg; frames: number; dim: number}> = ({bg, frames, dim}) => (
+const Backdrop: React.FC<{bg?: Bg; frames: number; dim: number; blur?: number}> = ({bg, frames, dim, blur = 0}) => (
   <>
-    {bg ? <Background bg={bg} frames={frames} dim={0} veil={0} fade={3} /> : <AbsoluteFill style={{background: BG}} />}
+    {bg ? (
+      <AbsoluteFill style={blur > 0 ? {filter: `blur(${blur}px)`, transform: 'scale(1.12)'} : undefined}>
+        <Background bg={bg} frames={frames} dim={0} veil={0} fade={3} />
+      </AbsoluteFill>
+    ) : (
+      <AbsoluteFill style={{background: BG}} />
+    )}
     <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(0,0,0,${(dim * 0.4).toFixed(3)}) 0%, rgba(0,0,0,${dim}) 45%, rgba(0,0,0,${Math.min(dim * 1.6, 0.9).toFixed(3)}) 100%)`}} />
   </>
 );
@@ -29,7 +35,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
 
   blocks.push(
     <Sequence key="hook" from={cursor} durationInFrames={hookFrames}>
-      <Backdrop bg={pick(script, script.hookBg)} frames={hookFrames} dim={dim} />
+      <Backdrop bg={pick(script, script.hookBg)} frames={hookFrames} dim={dim} blur={script.bgBlur ?? 0} />
       <LimeCover frames={hookFrames} label={script.hookLabel} sub={script.hookSub} text={script.hook} brand={script.brand} />
     </Sequence>,
   );
@@ -39,7 +45,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
     const frames = Math.round(s.t * FPS);
     blocks.push(
       <Sequence key={`s${i}`} from={cursor} durationInFrames={frames}>
-        <Backdrop bg={pick(script, s.bg)} frames={frames} dim={s.dim ?? dim} />
+        <Backdrop bg={pick(script, s.bg)} frames={frames} dim={s.dim ?? dim} blur={script.bgBlur ?? 0} />
         <LimeScene s={s} frames={frames} index={i + 1} total={total - 1} brand={script.brand} />
       </Sequence>,
     );
@@ -48,7 +54,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
 
   blocks.push(
     <Sequence key="cta" from={cursor} durationInFrames={ctaFrames}>
-      <Backdrop bg={pick(script, script.ctaBg)} frames={ctaFrames} dim={dim} />
+      <Backdrop bg={pick(script, script.ctaBg)} frames={ctaFrames} dim={dim} blur={script.bgBlur ?? 0} />
       <LimeCta frames={ctaFrames} label={script.ctaLabel} text={script.cta} brand={script.brand} icon={script.ctaIcon} />
     </Sequence>,
   );

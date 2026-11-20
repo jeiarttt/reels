@@ -87,6 +87,8 @@ export type Script = {
   titleFont?: string;
   /** 라임: 모든 장식 도형을 이 모양으로 통일(예: 'snow' 눈 결정) */
   shapeKind?: string;
+  /** 라임: 배경 사진 흐림 정도(px, 0이면 선명). 글자가 더 깔끔하게 보이도록 */
+  bgBlur?: number;
   hookDeco?: string;
   hookDecoPos?: 'tl' | 'tr' | 'bl' | 'br';
   ctaDeco?: string;
