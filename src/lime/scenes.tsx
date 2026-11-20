@@ -36,7 +36,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const lines = text.split('\n');
   const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]/g, '')].length), 1);
   const stroke = useTitleStroke();
-  const titleSize = Math.min(100, Math.floor(900 / (longest * 0.75)));
+  const titleSize = Math.min(110, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
@@ -46,7 +46,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
             <div style={{position: 'absolute', left: '50%', bottom: -13, width: 28, height: 28, marginLeft: -14, background: '#000', borderRadius: 5, transform: 'rotate(45deg)'}} />
           </div>
         )}
-        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
+        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
               <Rich text={ln} marker />
@@ -56,11 +56,11 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
           ))}
         </div>
         {label && (
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 58, lineHeight: 1.5, letterSpacing: '-0.02em', marginTop: 50, textShadow: SHADOW, ...rise(p2)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 58, lineHeight: 1.4, letterSpacing: '-0.02em', marginTop: 50, textShadow: SHADOW, ...rise(p2)}}>
             <Rich text={label} />
           </div>
         )}
-        {sub && <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, lineHeight: 1.5, letterSpacing: '-0.02em', marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
+        {sub && <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, lineHeight: 1.4, letterSpacing: '-0.02em', marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
       </div>
     </Fade>
   );
@@ -352,13 +352,13 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
-          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
+          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 110, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={text} marker />
           </div>
           <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />
         </div>
         {label && (
-          <div style={{marginTop: 64, background: ACCENT, color: BG, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', lineHeight: 1.5, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
+          <div style={{marginTop: 64, background: ACCENT, color: BG, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', lineHeight: 1.4, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
             {icon === 'comment' ? (
               <svg width={36} height={36} viewBox="0 0 24 24" fill="none"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" stroke={BG} strokeWidth={2.4} strokeLinejoin="round" fill={BG} /></svg>
             ) : (
