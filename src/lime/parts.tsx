@@ -14,7 +14,7 @@ export const clean = (t = ''): string =>
 export const STEPS = 8;
 export const stepP = (frame: number, from = 8, frames = 26) => {
   const t = interpolate(frame, [from, from + frames], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  return Math.min(1, Math.ceil(t * STEPS - 1e-6) / STEPS);
+  return Easing.out(Easing.cubic)(t);
 };
 
 /** 숫자와 함께 칸씩 차오르는 게이지(ratio: 최종 채움 0~1) */

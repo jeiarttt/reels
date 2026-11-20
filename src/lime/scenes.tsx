@@ -3,7 +3,7 @@ import {AbsoluteFill} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
-import {Check, clean, CountText, Gauge, Rich, SHAPES, Star, useBounce, useIn, Wave, Wordmark} from './parts';
+import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, Wave, Wordmark} from './parts';
 import type {ShapeKind} from './parts';
 
 /** 영상 위 작은 글자가 묻히지 않도록 짙은 그림자를 깐다 */
@@ -194,7 +194,6 @@ const Split: React.FC<{big: string; sub?: string; lines: {label: string; detail?
         <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 176, lineHeight: 1, letterSpacing: -7, whiteSpace: 'nowrap', textShadow: SHADOW_SOFT}}>
           <CountText text={big} />
         </div>
-        <Gauge ratio={big.includes('%') ? parseFloat(big.replace(/[^\d.]/g, '')) / 100 : 1} w={360} style={{margin: '14px 0 0'}} />
         {sub && <div style={{color: TITLE, fontWeight: 800, fontSize: 44, lineHeight: 1.2, letterSpacing: -1.5, marginTop: 12, textShadow: SHADOW, whiteSpace: 'pre-line'}}>{sub}</div>}
       </div>
       <div style={{flex: 1, borderLeft: '4px solid rgba(255,255,255,0.45)', paddingLeft: 36}}>
@@ -229,7 +228,6 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 100, lineHeight: 1.3, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
           </div>
-          {gauge !== undefined && <Gauge ratio={gauge} style={{marginTop: 44}} />}
           {!title.includes('[[') && !desc && <Wave style={{marginTop: 18, marginLeft: 'auto', marginRight: 'auto'}} />}
           {desc && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 28, textShadow: SHADOW, ...rise(p1)}}>{desc}</div>}
           <Star w={92} kind={shape ?? SHAPES[index % SHAPES.length]} style={SHAPE_SPOTS[index % SHAPE_SPOTS.length](wide)} delay={12} />
