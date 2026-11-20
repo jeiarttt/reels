@@ -226,15 +226,15 @@ const Scale: React.FC<{min: number; max: number; from: number; to: number; mark:
   const ticks: number[] = [];
   for (let v = Math.ceil(min / 2) * 2; v <= max; v += 2) ticks.push(v);
   return (
-    <div style={{position: 'relative', height: 250, margin: '0 28px 8px', opacity: Math.min(p, 1)}}>
-      <div style={{position: 'absolute', left: `${pct(mark)}%`, top: 0, transform: 'translateX(-50%)', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 64, letterSpacing: '-0.02em', padding: '12px 42px', borderRadius: 999}}>
+    <div style={{position: 'relative', height: 340, margin: '0 20px 28px', opacity: Math.min(p, 1)}}>
+      <div style={{position: 'absolute', left: `${pct(mark)}%`, top: 0, transform: 'translateX(-50%)', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 96, letterSpacing: '-0.02em', padding: '16px 64px', borderRadius: 999}}>
         {mark}{unit}
-        <div style={{position: 'absolute', left: '50%', bottom: -11, width: 24, height: 24, marginLeft: -12, background: '#000', borderRadius: 6, transform: 'rotate(45deg)'}} />
+        <div style={{position: 'absolute', left: '50%', bottom: -15, width: 34, height: 34, marginLeft: -17, background: '#000', borderRadius: 9, transform: 'rotate(45deg)'}} />
       </div>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 118, height: 44, borderRadius: 22, background: 'rgba(255,255,255,0.45)'}} />
-      <div style={{position: 'absolute', left: `${pct(from)}%`, width: `${(pct(to) - pct(from)) * grow}%`, top: 118, height: 44, borderRadius: 22, background: ACCENT}} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: 172, height: 64, borderRadius: 32, background: 'rgba(255,255,255,0.5)'}} />
+      <div style={{position: 'absolute', left: `${pct(from)}%`, width: `${(pct(to) - pct(from)) * grow}%`, top: 172, height: 64, borderRadius: 32, background: ACCENT}} />
       {ticks.map((v) => (
-        <div key={v} style={{position: 'absolute', left: `${pct(v)}%`, top: 178, transform: 'translateX(-50%)', color: TITLE, fontWeight: 800, fontSize: 34, textShadow: SHADOW}}>{v}</div>
+        <div key={v} style={{position: 'absolute', left: `${pct(v)}%`, top: 254, transform: 'translateX(-50%)', color: TITLE, fontWeight: 900, fontSize: 46, textShadow: SHADOW}}>{v}</div>
       ))}
     </div>
   );
@@ -242,7 +242,7 @@ const Scale: React.FC<{min: number; max: number; from: number; to: number; mark:
 
 /** 질문(검정, 오른쪽)과 답(아이보리, 왼쪽) 말풍선 대화 */
 const Chat: React.FC<{items: {side: 'q' | 'a'; text: string}[]}> = ({items}) => (
-  <div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
+  <div style={{display: 'flex', flexDirection: 'column', gap: 40}}>
     {items.map((it, i) => (
       <Bubble key={i} it={it} i={i} />
     ))}
@@ -252,9 +252,9 @@ const Bubble: React.FC<{it: {side: 'q' | 'a'; text: string}; i: number}> = ({it,
   const p = useBounce(14 + i * 12);
   const q = it.side === 'q';
   return (
-    <div style={{alignSelf: q ? 'flex-end' : 'flex-start', maxWidth: '86%', position: 'relative', background: q ? '#000' : CARD, color: q ? TITLE : INK, fontWeight: 800, fontSize: 52, lineHeight: 1.3, letterSpacing: -1.5, padding: '38px 62px', borderRadius: 72, wordBreak: 'keep-all', boxShadow: '0 10px 28px rgba(0,0,0,0.25)', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px) scale(${0.85 + 0.15 * p})`, transformOrigin: q ? 'right bottom' : 'left bottom'}}>
-      {it.text}
-      <div style={{position: 'absolute', bottom: 22, [q ? 'right' : 'left']: -12, width: 38, height: 38, background: q ? '#000' : CARD, borderRadius: 12, transform: 'rotate(45deg)'}} />
+    <div style={{alignSelf: q ? 'flex-end' : 'flex-start', maxWidth: '94%', position: 'relative', background: q ? '#000' : CARD, color: q ? TITLE : INK, fontWeight: 800, fontSize: 66, lineHeight: 1.3, letterSpacing: -2, padding: '46px 72px', borderRadius: 84, wordBreak: 'keep-all', boxShadow: '0 10px 28px rgba(0,0,0,0.25)', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px) scale(${0.85 + 0.15 * p})`, transformOrigin: q ? 'right bottom' : 'left bottom'}}>
+      <Rich text={it.text} marker />
+      <div style={{position: 'absolute', bottom: 26, [q ? 'right' : 'left']: -12, width: 38, height: 38, background: q ? '#000' : CARD, borderRadius: 12, transform: 'rotate(45deg)'}} />
     </div>
   );
 };
@@ -263,11 +263,11 @@ const Bubble: React.FC<{it: {side: 'q' | 'a'; text: string}; i: number}> = ({it,
 const Swap: React.FC<{from: string; to: string}> = ({from, to}) => {
   const p1 = useBounce(10);
   const p2 = useBounce(22);
-  const box: React.CSSProperties = {width: 250, height: 250, borderRadius: 64, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 130, letterSpacing: '-0.02em'};
+  const box: React.CSSProperties = {width: 310, height: 310, borderRadius: 80, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 180, letterSpacing: '-0.02em'};
   return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 36, marginBottom: 20}}>
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40, marginBottom: 36}}>
       <div style={{...box, background: 'rgba(245,245,239,0.9)', color: INK_SUB, opacity: Math.min(p1, 1) * 0.85, transform: `scale(${0.7 + 0.3 * p1})`}}>{from}</div>
-      <svg width="110" height="70" viewBox="0 0 110 70" style={{opacity: Math.min(p2, 1)}}>
+      <svg width="140" height="90" viewBox="0 0 110 70" style={{opacity: Math.min(p2, 1)}}>
         <path d="M6 35 H92 M68 10 L98 35 L68 60" fill="none" stroke={ACCENT} strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
       <div style={{...box, background: ACCENT, color: INK, opacity: Math.min(p2, 1), transform: `scale(${0.7 + 0.3 * p2})`}}>{to}</div>
