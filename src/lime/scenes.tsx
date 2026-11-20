@@ -301,7 +301,7 @@ const Swap: React.FC<{from: string; to: string}> = ({from, to}) => {
 };
 
 /** 본문 공통 틀: 상단 로고, 라벨·제목·설명, 아래쪽 내용, 별 */
-const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; fill?: boolean; children?: React.ReactNode}> = ({fill, count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
+const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; fill?: boolean; no?: string; noSub?: string; children?: React.ReactNode}> = ({no, noSub, fill, count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
   const p1 = useIn(6);
   const stroke = useTitleStroke();
@@ -309,6 +309,12 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: fill ? 170 : 0, bottom: fill ? 210 : 96, display: 'flex', flexDirection: 'column', justifyContent: fill ? 'flex-start' : 'center'}}>
         <div style={{position: 'relative', marginBottom: fill ? 20 : 48, textAlign: 'left'}}>
+          {no && (
+            <div style={{display: 'flex', alignItems: 'center', gap: 20, marginBottom: 26, ...rise(p0)}}>
+              <div style={{background: ACCENT, color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 60, lineHeight: 1, letterSpacing: '-0.02em', padding: '12px 34px', borderRadius: 999}}>{no}</div>
+              {noSub && <div style={{color: TITLE, fontWeight: 800, fontSize: 40, letterSpacing: -1, textShadow: SHADOW}}>{noSub}</div>}
+            </div>
+          )}
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
@@ -326,7 +332,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
 /** 스크립트의 한 컷(kind)을 라임 레이아웃으로 바꿔 그린다 */
 export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total: number; brand?: string}> = ({s, frames, index, total, brand}) => {
   const kind = s.kind ?? 'text';
-  const base = {frames, index, total, brand, shape: (s.shape as ShapeKind | undefined)};
+  const base = {frames, index, total, brand, shape: (s.shape as ShapeKind | undefined), no: s.no, noSub: s.noSub};
   const label = clean(s.label ?? '');
   const items = (s.cards ?? []).map((c) => ({label: clean(c.big), detail: clean(c.small ?? '') || undefined}));
 

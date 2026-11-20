@@ -69,6 +69,8 @@ if (!s.backgroundSrc) {
     bodyTexts.push(sc.text ?? '');
   }
   if (sc.label) bodyTexts.push(sc.label);
+  if (sc.no) bodyTexts.push(sc.no);
+  if (sc.noSub) bodyTexts.push(sc.noSub);
   if (sc.stat && kind !== 'stat') bodyTexts.push(sc.stat.big ?? '', sc.stat.sub ?? ''); // checklist·split 등 다른 컷 종류에서도 큰 숫자는 본문이다
   if (sc.chips) bodyTexts.push(...sc.chips);
   if (sc.chat) bodyTexts.push(...sc.chat.map((c) => c.text));

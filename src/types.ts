@@ -32,6 +32,9 @@ export type Scene = {
   label?: string;
   /** 라임 번호 칸(steps·list)의 시작 번호 보정(예: 1이면 02부터) */
   numStart?: number;
+  /** 라임: 제목 위에 붙는 번호 배지(예: '01', '02·03', '덤')와 옆 작은 글자(예: '6가지 중') */
+  no?: string;
+  noSub?: string;
   /** 라임: 이 컷만 배경 딤을 따로 정할 때(없으면 대본 bgDim) */
   dim?: number;
   /** 라임 scale 컷: 가로 눈금 막대(구간 강조 + 표시 말풍선) */
