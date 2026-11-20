@@ -20,7 +20,7 @@
   },
   "cta": "저장해 두고\n꺼내 쓰기 전\n다시 보세요",
   "ctaBg": {
-    "src": "stock/pexels-31146888.jpg",
+    "src": "stock/pexels-31774998.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -46,7 +46,7 @@
         }
       ],
       "bg": {
-        "src": "stock/pexels-3125905.jpg",
+        "src": "stock/pexels-30185616.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -113,9 +113,9 @@
         "오래 쓸 땐 타이머 켜기"
       ],
       "bg": {
-        "src": "stock/pexels-36077581.jpg",
+        "src": "stock/pexels-5044289.jpg",
         "type": "image",
-        "position": "92% 50%"
+        "position": "50% 50%"
       }
     }
   ],
