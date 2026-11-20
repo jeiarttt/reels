@@ -45,8 +45,8 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
               <Rich text={ln} marker wobble />
-              {i === 0 && <Star w={86} kind="sparkle" style={{left: -116, top: 2}} delay={14} />}
-              {i === 0 && <Star w={96} kind="burst" style={{right: -102, top: -3}} delay={8} />}
+              {i === 0 && <Star w={86} kind="sparkle" style={{left: -112, top: -46}} delay={14} />}
+              {i === 0 && <Star w={96} kind="burst" style={{right: -124, top: 62}} delay={8} />}
             </div>
           ))}
         </div>
