@@ -112,23 +112,23 @@ const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
 
 type Step = {n: string; label: string; detail?: string};
 
-const StepCards: React.FC<{steps: Step[]}> = ({steps}) => (
+const StepCards: React.FC<{steps: Step[]; noNum?: boolean}> = ({steps, noNum}) => (
   <div style={{display: 'flex', gap: 20}}>
     {steps.map((s, i) => (
-      <StepCard key={i} s={s} i={i} compact={steps.every((x) => !x.detail)} />
+      <StepCard key={i} s={s} i={i} compact={steps.every((x) => !x.detail)} noNum={noNum} />
     ))}
   </div>
 );
 
-const StepCard: React.FC<{s: Step; i: number; compact?: boolean}> = ({s, i, compact}) => {
+const StepCard: React.FC<{s: Step; i: number; compact?: boolean; noNum?: boolean}> = ({s, i, compact, noNum}) => {
   const p = useBounce(16 + i * 8);
   const tilt = [-2, 1.4, -1][i % 3];
   const hi = i === 0;
   return (
-    <div style={{flex: 1, minHeight: compact ? 390 : 560, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
-      <div style={{fontWeight: 700, fontSize: 88, letterSpacing: -2}}>{s.n}</div>
+    <div style={{flex: 1, minHeight: noNum ? 330 : compact ? 390 : 560, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
+      {!noNum && <div style={{fontWeight: 700, fontSize: 88, letterSpacing: -2}}>{s.n}</div>}
       <div>
-        <div style={{fontWeight: 800, fontSize: 46, lineHeight: 1.2, letterSpacing: -1.5}}>{s.label}</div>
+        <div style={{fontWeight: 800, fontSize: noNum ? 56 : 46, lineHeight: 1.2, letterSpacing: -1.5}}>{s.label}</div>
         {s.detail && (
           <>
             <div style={{height: 1, background: 'rgba(20,23,19,0.30)', margin: '20px 0'}} />
@@ -423,7 +423,7 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   if ((kind === 'steps' || kind === 'flow' || kind === 'cards') && s.cards && s.cards.length <= 3 && s.cards.length >= 2) {
     return (
       <Frame {...base} title={label} wide>
-        <StepCards steps={s.cards.map((c, i) => ({n: pad(i + 1 + (s.numStart ?? 0)), label: clean(c.big), detail: clean(c.small ?? '')}))} />
+        <StepCards steps={s.cards.map((c, i) => ({n: pad(i + 1 + (s.numStart ?? 0)), label: clean(c.big), detail: clean(c.small ?? '')}))} noNum={!!s.no} />
       </Frame>
     );
   }
