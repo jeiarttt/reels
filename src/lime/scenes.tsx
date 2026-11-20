@@ -63,7 +63,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <SoftBubble bg="#000" color={TITLE} fontSize={60} px={60} py={22} tail={50} shift={10} style={{marginBottom: 64, ...rise(pPill)}}>
+          <SoftBubble bg="#000" color={TITLE} fontSize={52} px={52} py={19} tail={43} shift={9} style={{marginBottom: 60, ...rise(pPill)}}>
             {clean(brand)}
           </SoftBubble>
         )}
