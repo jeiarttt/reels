@@ -460,7 +460,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
           <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 110, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
-            <Rich text={text} marker />
+            <Rich text={text} />
           </div>
           <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />
         </div>

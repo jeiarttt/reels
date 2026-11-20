@@ -163,7 +163,10 @@ if (s.theme !== 'cute' && s.theme !== 'lime') {
   });
   if (emoji.test(s.cta ?? '')) warn('cta 에 이모지가 있어요');
 }
-const hl = ([s.hook, ...bodyTexts].join(' ').match(/\[\[/g) ?? []).length;
+// 마지막 장(cta)의 강조는 형광 칸이 아니라 컬러 글자라서 따로 센다(1곳까지)
+const ctaHl = (String(s.cta ?? '').match(/\[\[/g) ?? []).length;
+if (ctaHl > 1) err(`마지막 장 [[ ]] 강조가 ${ctaHl}곳이에요. 1곳 이내로 줄여요`);
+const hl = ([s.hook, ...bodyTexts.slice(0, -1)].join(' ').match(/\[\[/g) ?? []).length;
 if (hl > 3) err(`[[ ]] 강조가 ${hl}곳이에요. 전체 3곳 이내로 줄여요 (핵심 숫자·단어만)`);
 if ((all.match(/\[\[/g) ?? []).length !== (all.match(/\]\]/g) ?? []).length) err('[[ ]] 짝이 맞지 않아요');
 

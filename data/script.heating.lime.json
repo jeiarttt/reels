@@ -20,7 +20,7 @@
     "type": "image",
     "position": "30% 50%"
   },
-  "cta": "저장해 두고\n난방 켜기 전에\n다시 보세요",
+  "cta": "저장해 두고\n[[난방 켜기 전]]에\n다시 보세요",
   "ctaBg": {
     "src": "stock/pexels-31774998.jpg",
     "type": "image",
