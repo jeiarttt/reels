@@ -190,7 +190,7 @@ const Split: React.FC<{big: string; sub?: string; lines: {label: string; detail?
   const p = useBounce(10);
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 44}}>
-      <div style={{flex: '0 0 410px', opacity: Math.min(p, 1), transform: `scale(${0.7 + 0.3 * p}) rotate(${-2 * Math.min(p, 1)}deg)`, transformOrigin: 'left center'}}>
+      <div style={{flex: '0 0 410px', opacity: Math.min(p, 1), transform: `scale(${0.7 + 0.3 * p})`, transformOrigin: 'left center'}}>
         <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 176, lineHeight: 1, letterSpacing: '-0.02em', whiteSpace: 'nowrap', textShadow: SHADOW_SOFT}}>
           <CountText text={big} />
         </div>
