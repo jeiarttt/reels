@@ -30,6 +30,10 @@ export type Scene = {
   decoPos?: 'tl' | 'tr' | 'bl' | 'br';
   decoText?: string;
   label?: string;
+  /** 라임 번호 칸(steps·list)의 시작 번호 보정(예: 1이면 02부터) */
+  numStart?: number;
+  /** 라임: 이 컷만 배경 딤을 따로 정할 때(없으면 대본 bgDim) */
+  dim?: number;
   /** 귀여운 테마: stickers/ 안 파일 이름(확장자 제외)과 의성어 태그 */
   sticker?: string;
   sfx?: string;

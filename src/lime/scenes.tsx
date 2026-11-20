@@ -41,9 +41,9 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <div style={{position: 'relative', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', height: 87, lineHeight: '87px', padding: '0 40px', borderRadius: 30, marginBottom: 62, ...rise(pPill)}}>
+          <div style={{position: 'relative', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 46, letterSpacing: '-0.02em', height: 108, lineHeight: '108px', padding: '0 68px', borderRadius: '50%', marginBottom: 70, ...rise(pPill)}}>
             {clean(brand)}
-            <div style={{position: 'absolute', left: '50%', bottom: -13, width: 28, height: 28, marginLeft: -14, background: '#000', borderRadius: 5, transform: 'rotate(45deg)'}} />
+            <div style={{position: 'absolute', left: '50%', bottom: -13, width: 30, height: 30, marginLeft: -15, background: '#000', borderRadius: 8, transform: 'rotate(45deg)'}} />
           </div>
         )}
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
@@ -141,19 +141,19 @@ const PlainLine: React.FC<{t: string; i: number}> = ({t, i}) => {
 };
 
 /** 카드 없는 번호 목록: 큰 라임 숫자 + 글자 + 가는 구분선 */
-const NumList: React.FC<{items: {label: string; detail?: string}[]}> = ({items}) => (
+const NumList: React.FC<{items: {label: string; detail?: string}[]; start?: number}> = ({items, start = 0}) => (
   <div>
     {items.map((it, i) => (
-      <NumRow key={i} it={it} i={i} last={i === items.length - 1} />
+      <NumRow key={i} it={it} i={i} no={i + start} last={i === items.length - 1} />
     ))}
   </div>
 );
 
-const NumRow: React.FC<{it: {label: string; detail?: string}; i: number; last: boolean}> = ({it, i, last}) => {
+const NumRow: React.FC<{it: {label: string; detail?: string}; i: number; no: number; last: boolean}> = ({it, i, no, last}) => {
   const p = useBounce(14 + i * 8);
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 36, padding: '30px 0', borderBottom: last ? 'none' : '3px solid rgba(255,255,255,0.35)', wordBreak: 'keep-all', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px)`}}>
-      <div style={{flex: '0 0 120px', color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 108, lineHeight: 1, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT}}>{pad(i + 1)}</div>
+      <div style={{flex: '0 0 120px', color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 108, lineHeight: 1, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT}}>{pad(no + 1)}</div>
       <div>
         <div style={{color: TITLE, fontWeight: 800, fontSize: 54, lineHeight: 1.2, letterSpacing: -1.5, textShadow: SHADOW}}>{it.label}</div>
         {it.detail && <div style={{color: TITLE, fontWeight: 700, fontSize: 38, lineHeight: 1.25, letterSpacing: -1, marginTop: 8, opacity: 0.92, textShadow: SHADOW}}>{it.detail}</div>}
@@ -256,7 +256,7 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   if (kind === 'list') {
     return (
       <Frame {...base} title={label}>
-        <NumList items={items} />
+        <NumList items={items} start={s.numStart ?? 0} />
       </Frame>
     );
   }
@@ -300,7 +300,7 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   if ((kind === 'steps' || kind === 'flow' || kind === 'cards') && s.cards && s.cards.length <= 3 && s.cards.length >= 2) {
     return (
       <Frame {...base} title={label} wide>
-        <StepCards steps={s.cards.map((c, i) => ({n: pad(i + 1), label: clean(c.big), detail: clean(c.small ?? '')}))} />
+        <StepCards steps={s.cards.map((c, i) => ({n: pad(i + 1 + (s.numStart ?? 0)), label: clean(c.big), detail: clean(c.small ?? '')}))} />
       </Frame>
     );
   }

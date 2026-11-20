@@ -39,7 +39,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
     const frames = Math.round(s.t * FPS);
     blocks.push(
       <Sequence key={`s${i}`} from={cursor} durationInFrames={frames}>
-        <Backdrop bg={pick(script, s.bg)} frames={frames} dim={dim} />
+        <Backdrop bg={pick(script, s.bg)} frames={frames} dim={s.dim ?? dim} />
         <LimeScene s={s} frames={frames} index={i + 1} total={total - 1} brand={script.brand} />
       </Sequence>,
     );
