@@ -54,6 +54,8 @@ const Wob: React.FC<{t: string}> = ({t}) => (
 
 export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; count?: boolean; wobble?: boolean}> = ({text, accent = ACCENT, marker, count, wobble}) => {
   const lines = text.split('\n');
+  const wf = useCurrentFrame();
+  const wig = 1.6 * Math.sin(wf / 7);
   return (
     <>
       {lines.map((line, li) => {
@@ -73,7 +75,7 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
               if (!on) return <span key={i}>{wobble ? <Wob t={p} /> : p}</span>;
               const inner = count ? <CountText text={p} /> : p;
               return marker ? (
-                <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', textShadow: 'none', lineHeight: 1.25}}>
+                <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', transform: `rotate(${wig}deg)`, transformOrigin: 'center', textShadow: 'none', lineHeight: 1.25}}>
                   {inner}
                 </span>
               ) : (
