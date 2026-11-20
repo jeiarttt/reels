@@ -11,7 +11,7 @@
   "hookSec": 2.8,
   "ctaSec": 3.2,
   "hook": "전기장판 켜기 전\n[[이것부터]]\n확인하세요",
-  "hookLabel": "5년간 전기장판·난로 화재 2354건\n행정안전부 정책뉴스 기준",
+  "hookLabel": "",
   "hookSub": "",
   "hookBg": {
     "src": "stock/pexels-5629134.jpg",
@@ -20,9 +20,9 @@
   },
   "cta": "저장해 두고\n꺼내 쓰기 전\n다시 보세요",
   "ctaBg": {
-    "src": "stock/pexels-6585615.jpg",
+    "src": "stock/pexels-31146888.jpg",
     "type": "image",
-    "position": "40% 50%"
+    "position": "50% 50%"
   },
   "scenes": [
     {
@@ -46,9 +46,9 @@
         }
       ],
       "bg": {
-        "src": "stock/pexels-36344878.jpg",
+        "src": "stock/pexels-12034871.jpg",
         "type": "image",
-        "position": "50% 50%"
+        "position": "30% 50%"
       }
     },
     {
@@ -62,7 +62,7 @@
         "조절부 이상 수시 확인"
       ],
       "bg": {
-        "src": "stock/pexels-5629134.jpg",
+        "src": "stock/pexels-14641424.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -77,9 +77,9 @@
         "넘어지면 꺼지는 제품 고르기"
       ],
       "bg": {
-        "src": "stock/pexels-12034871.jpg",
+        "src": "stock/pexels-19615791.jpg",
         "type": "image",
-        "position": "30% 50%"
+        "position": "40% 50%"
       }
     },
     {
@@ -98,9 +98,9 @@
         }
       ],
       "bg": {
-        "src": "stock/pexels-6585615.jpg",
+        "src": "stock/pexels-14071431.jpg",
         "type": "image",
-        "position": "60% 50%"
+        "position": "38% 50%"
       }
     },
     {
@@ -113,9 +113,9 @@
         "오래 쓸 땐 타이머 켜기"
       ],
       "bg": {
-        "src": "stock/pexels-36344878.jpg",
+        "src": "stock/pexels-36077581.jpg",
         "type": "image",
-        "position": "70% 50%"
+        "position": "92% 50%"
       }
     }
   ],
