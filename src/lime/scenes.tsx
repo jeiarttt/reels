@@ -27,21 +27,25 @@ const Fade: React.FC<{frames: number; children: React.ReactNode}> = ({frames, ch
 const rise = (p: number): React.CSSProperties => ({opacity: Math.min(p, 1), transform: `translateY(${(1 - Math.min(p, 1)) * 36}px)`});
 
 /** 표지: 화면 한가운데 가운데 정렬 큰 제목 + 설명, 별 2개 (배경 사진·영상은 LimeReel이 dim과 함께 깐다) */
-export const LimeCover: React.FC<{frames: number; label?: string; text: string; brand?: string}> = ({frames, label, text, brand}) => {
+export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; text: string; brand?: string}> = ({frames, label, sub, text, brand}) => {
   const p1 = useIn(4);
   const p2 = useIn(12);
+  const p3 = useIn(18);
+  const longest = Math.max(...text.replace(/\[\[|\]\]/g, '').split('\n').map((l) => [...l].length), 1);
+  const titleSize = Math.min(100, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
       {brand && <Wordmark text={clean(brand)} style={{left: 0, right: 0, top: 90, textAlign: 'center'}} />}
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         <div style={{position: 'relative'}}>
           <Star w={86} kind="sparkle" style={{left: -80, top: -120}} delay={14} />
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 100, lineHeight: 1.25, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: titleSize, lineHeight: 1.25, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={text} marker />
           </div>
           <Star w={96} kind="burst" style={{right: -70, bottom: -140}} delay={8} />
         </div>
         {label && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 56, textShadow: SHADOW, ...rise(p2)}}>{clean(label)}</div>}
+        {sub && <div style={{color: TITLE, fontWeight: 700, fontSize: 34, lineHeight: 1.4, letterSpacing: -1, marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
       </div>
     </Fade>
   );
@@ -74,17 +78,17 @@ type Step = {n: string; label: string; detail?: string};
 const StepCards: React.FC<{steps: Step[]}> = ({steps}) => (
   <div style={{display: 'flex', gap: 20}}>
     {steps.map((s, i) => (
-      <StepCard key={i} s={s} i={i} />
+      <StepCard key={i} s={s} i={i} compact={steps.every((x) => !x.detail)} />
     ))}
   </div>
 );
 
-const StepCard: React.FC<{s: Step; i: number}> = ({s, i}) => {
+const StepCard: React.FC<{s: Step; i: number; compact?: boolean}> = ({s, i, compact}) => {
   const p = useBounce(16 + i * 8);
   const tilt = [-2, 1.4, -1][i % 3];
   const hi = i === 0;
   return (
-    <div style={{flex: 1, minHeight: 620, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
+    <div style={{flex: 1, minHeight: compact ? 430 : 620, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
       <div style={{fontWeight: 700, fontSize: 88, letterSpacing: -2}}>{s.n}</div>
       <div>
         <div style={{fontWeight: 800, fontSize: 46, lineHeight: 1.2, letterSpacing: -1.5}}>{s.label}</div>
@@ -326,7 +330,7 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
 };
 
 /** 마지막 화면: 화면 가운데 가운데 정렬 문구 + 라임 버튼 + 아래쪽 트랙 */
-export const LimeCta: React.FC<{frames: number; label?: string; text: string; brand?: string}> = ({frames, label, text, brand}) => {
+export const LimeCta: React.FC<{frames: number; label?: string; text: string; brand?: string; icon?: 'bookmark' | 'comment'}> = ({frames, label, text, brand, icon = 'bookmark'}) => {
   const p0 = useIn(2);
   const p1 = useIn(8);
   const p2 = useIn(16);
@@ -339,7 +343,11 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
         </div>
         {label && (
           <div style={{marginTop: 64, background: ACCENT, color: BG, fontWeight: 800, fontSize: 40, letterSpacing: -1.5, lineHeight: 1.4, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
-            <svg width={34} height={34} viewBox="0 0 24 24" fill="none"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" stroke={BG} strokeWidth={2.6} strokeLinejoin="round" fill={BG} /></svg>
+            {icon === 'comment' ? (
+              <svg width={36} height={36} viewBox="0 0 24 24" fill="none"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" stroke={BG} strokeWidth={2.4} strokeLinejoin="round" fill={BG} /></svg>
+            ) : (
+              <svg width={34} height={34} viewBox="0 0 24 24" fill="none"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" stroke={BG} strokeWidth={2.6} strokeLinejoin="round" fill={BG} /></svg>
+            )}
             {clean(label)}
           </div>
         )}

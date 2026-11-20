@@ -59,6 +59,10 @@ export type Script = {
   /** 표지 위쪽 채널 태그(선택). 예: "2030 상경러 · 청년 혜택" */
   brand?: string;
   hookLabel?: string;
+  /** 라임 스타일 표지 맨 아래 작은 글씨(여러 줄 가능) */
+  hookSub?: string;
+  /** 라임 스타일 마지막 컷 라벨 아이콘: bookmark(저장) 또는 comment(댓글) */
+  ctaIcon?: 'bookmark' | 'comment';
   hook: string;
   hookBg?: Bg;
   scenes: Scene[];
