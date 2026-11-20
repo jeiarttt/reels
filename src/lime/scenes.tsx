@@ -29,7 +29,7 @@ const rise = (p: number): React.CSSProperties => ({opacity: Math.min(p, 1), tran
 
 
 /** 표지 말풍선: 살짝 울퉁불퉁한 윤곽(모서리는 둥글게 다듬음)과 뾰족한 꼬리. 색·글자색은 스타일 값 */
-const SOFT_BUBBLE = '8,28 16,12 50,9 84,12 93,30 94,52 88,67 74,70 72,96 60,70 22,70 8,60';
+const SOFT_BUBBLE = '3,30 8,10 50,4 92,8 98,32 98,56 94,74 78,77 76,100 62,77 20,78 4,68';
 const SoftBubble: React.FC<{bg: string; color: string; fontSize: number; px: number; py: number; tail?: number; style?: React.CSSProperties; children: React.ReactNode}> = ({bg, color, fontSize, px, py, tail = 44, style, children}) => (
   <div style={{position: 'relative', display: 'inline-block', filter: 'drop-shadow(0 8px 14px rgba(0,0,0,0.3))', ...style}}>
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'}}>
@@ -63,7 +63,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <SoftBubble bg="#000" color={TITLE} fontSize={50} px={96} py={40} tail={50} style={{marginBottom: 60, ...rise(pPill)}}>
+          <SoftBubble bg="#000" color={TITLE} fontSize={60} px={84} py={34} tail={52} style={{marginBottom: 64, ...rise(pPill)}}>
             {clean(brand)}
           </SoftBubble>
         )}
