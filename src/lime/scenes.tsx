@@ -3,7 +3,7 @@ import {AbsoluteFill} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
-import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, Wave, Wordmark} from './parts';
+import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, Wave} from './parts';
 import type {ShapeKind} from './parts';
 
 /** 영상 위 작은 글자가 묻히지 않도록 짙은 그림자를 깐다 */
@@ -221,7 +221,6 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
   const p1 = useIn(6);
   return (
     <Fade frames={frames}>
-      {brand && <Wordmark text={clean(brand)} style={{right: 120, top: 90}} />}
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{position: 'relative', marginBottom: 64, textAlign: 'left'}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
