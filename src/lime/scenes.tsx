@@ -125,14 +125,14 @@ const StepCard: React.FC<{s: Step; i: number; compact?: boolean; noNum?: boolean
   const tilt = [-2, 1.4, -1][i % 3];
   const hi = i === 0;
   return (
-    <div style={{flex: 1, minHeight: noNum ? 330 : compact ? 390 : 560, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
+    <div style={{flex: 1, minHeight: noNum ? 420 : compact ? 390 : 560, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
       {!noNum && <div style={{fontWeight: 700, fontSize: 88, letterSpacing: -2}}>{s.n}</div>}
       <div>
         <div style={{fontWeight: 800, fontSize: noNum ? 56 : 46, lineHeight: 1.2, letterSpacing: -1.5}}>{s.label}</div>
         {s.detail && (
           <>
             <div style={{height: 1, background: 'rgba(20,23,19,0.30)', margin: '20px 0'}} />
-            <div style={{fontWeight: 700, fontSize: 36, lineHeight: 1.3, letterSpacing: -1, color: hi ? INK : INK_SUB, minHeight: 94}}>{s.detail}</div>
+            <div style={{fontWeight: 700, fontSize: noNum ? 44 : 36, lineHeight: 1.35, letterSpacing: -1, color: hi ? INK : INK_SUB, minHeight: noNum ? 0 : 94}}>{s.detail}</div>
           </>
         )}
       </div>
