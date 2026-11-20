@@ -23,6 +23,13 @@ const fonts: {family: string; weight: string; file: string}[] = [
   {family: FONT_BODY, weight: '900', file: 'Pretendard-Black.woff2'},
   {family: 'Paperlogy', weight: '800', file: 'Paperlogy-8ExtraBold.woff2'},
 ];
+// 서울알림체 Heavy: 서울서체는 파일 재배포가 금지라 저장소에 올리지 않는다(.gitignore).
+// 렌더 전에 scripts/fetch-seoul-font.sh 로 public/fonts-local/ 에 받아 둔다.
+loadFont({
+  family: 'SeoulAlrim',
+  url: staticFile('fonts-local/SeoulAlrimTTF-Heavy.woff2'),
+  weight: '900',
+}).catch((e) => console.error('font load failed SeoulAlrim', e));
 fonts.forEach(({family, weight, file}) =>
   loadFont({family, url: staticFile(`fonts/${file}`), weight}).catch((e) =>
     console.error('font load failed', file, e),

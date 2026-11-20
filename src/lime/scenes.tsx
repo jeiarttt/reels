@@ -39,9 +39,9 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <div style={{background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 40, letterSpacing: -1, height: 87, lineHeight: '87px', padding: '0 36px', borderRadius: 999, marginBottom: 58, ...rise(pPill)}}>{clean(brand)}</div>
+          <div style={{background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', height: 87, lineHeight: '87px', padding: '0 36px', borderRadius: 999, marginBottom: 58, ...rise(pPill)}}>{clean(brand)}</div>
         )}
-        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: titleSize, lineHeight: 1.5, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
+        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
               <Rich text={ln} marker wobble />
@@ -51,11 +51,11 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
           ))}
         </div>
         {label && (
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 58, lineHeight: 1.5, letterSpacing: -1.5, marginTop: 50, textShadow: SHADOW, ...rise(p2)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 58, lineHeight: 1.5, letterSpacing: '-0.02em', marginTop: 50, textShadow: SHADOW, ...rise(p2)}}>
             <Rich text={label} />
           </div>
         )}
-        {sub && <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 40, lineHeight: 1.5, letterSpacing: -1, marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
+        {sub && <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, lineHeight: 1.5, letterSpacing: '-0.02em', marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
       </div>
     </Fade>
   );
@@ -148,7 +148,7 @@ const NumRow: React.FC<{it: {label: string; detail?: string}; i: number; last: b
   const p = useBounce(14 + i * 8);
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 36, padding: '30px 0', borderBottom: last ? 'none' : '3px solid rgba(255,255,255,0.35)', wordBreak: 'keep-all', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px)`}}>
-      <div style={{flex: '0 0 120px', color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 108, lineHeight: 1, letterSpacing: -4, textShadow: SHADOW_SOFT}}>{pad(i + 1)}</div>
+      <div style={{flex: '0 0 120px', color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 108, lineHeight: 1, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT}}>{pad(i + 1)}</div>
       <div>
         <div style={{color: TITLE, fontWeight: 800, fontSize: 54, lineHeight: 1.2, letterSpacing: -1.5, textShadow: SHADOW}}>{it.label}</div>
         {it.detail && <div style={{color: TITLE, fontWeight: 700, fontSize: 38, lineHeight: 1.25, letterSpacing: -1, marginTop: 8, opacity: 0.92, textShadow: SHADOW}}>{it.detail}</div>}
@@ -176,7 +176,7 @@ const TimeRow: React.FC<{it: {label: string; detail?: string}; i: number}> = ({i
   const p = useBounce(14 + i * 10);
   return (
     <div style={{position: 'relative', display: 'flex', alignItems: 'center', gap: 34, wordBreak: 'keep-all', opacity: Math.min(p, 1), transform: `translateX(${(1 - p) * -50}px)`}}>
-      <div style={{flex: '0 0 74px', width: 74, height: 74, borderRadius: '50%', background: ACCENT, border: `6px solid ${BG}`, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', color: INK, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 36, boxShadow: '0 6px 16px rgba(0,0,0,0.4)'}}>{i + 1}</div>
+      <div style={{flex: '0 0 74px', width: 74, height: 74, borderRadius: '50%', background: ACCENT, border: `6px solid ${BG}`, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, boxShadow: '0 6px 16px rgba(0,0,0,0.4)'}}>{i + 1}</div>
       <div>
         <div style={{color: TITLE, fontWeight: 800, fontSize: 56, lineHeight: 1.2, letterSpacing: -1.5, textShadow: SHADOW}}>{it.label}</div>
         {it.detail && <div style={{color: TITLE, fontWeight: 700, fontSize: 38, lineHeight: 1.25, letterSpacing: -1, marginTop: 6, opacity: 0.92, textShadow: SHADOW}}>{it.detail}</div>}
@@ -191,7 +191,7 @@ const Split: React.FC<{big: string; sub?: string; lines: {label: string; detail?
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 44}}>
       <div style={{flex: '0 0 410px', opacity: Math.min(p, 1), transform: `scale(${0.7 + 0.3 * p}) rotate(${-2 * Math.min(p, 1)}deg)`, transformOrigin: 'left center'}}>
-        <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 176, lineHeight: 1, letterSpacing: -7, whiteSpace: 'nowrap', textShadow: SHADOW_SOFT}}>
+        <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 176, lineHeight: 1, letterSpacing: '-0.02em', whiteSpace: 'nowrap', textShadow: SHADOW_SOFT}}>
           <CountText text={big} />
         </div>
         {sub && <div style={{color: TITLE, fontWeight: 800, fontSize: 44, lineHeight: 1.2, letterSpacing: -1.5, marginTop: 12, textShadow: SHADOW, whiteSpace: 'pre-line'}}>{sub}</div>}
@@ -216,7 +216,7 @@ const SplitLine: React.FC<{l: {label: string; detail?: string}; i: number}> = ({
 };
 
 /** 본문 공통 틀: 상단 로고, 라벨·제목·설명, 아래쪽 내용, 별 */
-const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; gauge?: number; children?: React.ReactNode}> = ({gauge, count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
+const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; children?: React.ReactNode}> = ({count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
   const p1 = useIn(6);
   return (
@@ -225,7 +225,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{position: 'relative', marginBottom: 64, textAlign: 'center'}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 100, lineHeight: 1.3, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
           </div>
           {!title.includes('[[') && !desc && <Wave style={{marginTop: 18, marginLeft: 'auto', marginRight: 'auto'}} />}
@@ -276,9 +276,8 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
 
   if (kind === 'text') {
     const num = (s.text ?? '').match(/\[\[([^\]]*\d[^\]]*)\]\]/);
-    const pct = num && num[1].includes('%') ? parseFloat(num[1].replace(/[^\d.]/g, '')) / 100 : undefined;
     return (
-      <Frame {...base} count={!!num} gauge={pct} label={label} title={s.text ?? ''}>
+      <Frame {...base} count={!!num} label={label} title={s.text ?? ''}>
         {s.chips && <InfoRows rows={s.chips.map((c) => ({left: clean(c)}))} />}
       </Frame>
     );
@@ -314,7 +313,7 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   if (kind === 'stat' && s.stat) {
     return (
       <Frame {...base} title={label}>
-        <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 220, lineHeight: 1.05, letterSpacing: -6, textShadow: SHADOW_SOFT}}><CountText text={clean(s.stat.big)} /></div>
+        <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 220, lineHeight: 1.05, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT}}><CountText text={clean(s.stat.big)} /></div>
         {s.stat.sub && <div style={{color: TITLE, fontWeight: 700, fontSize: 46, lineHeight: 1.2, letterSpacing: -1.5, margin: '12px 0 40px', whiteSpace: 'pre-line', textShadow: SHADOW}}>{clean(s.stat.sub)}</div>}
         {s.stat.chips && <InfoRows rows={s.stat.chips.map((c) => ({left: clean(c)}))} />}
       </Frame>
@@ -349,12 +348,12 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
-        {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 36, letterSpacing: -1, marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
-        <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 98, lineHeight: 1.5, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
+        {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
+        <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 98, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
           <Rich text={text} marker wobble />
         </div>
         {label && (
-          <div style={{marginTop: 64, background: ACCENT, color: BG, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 40, letterSpacing: -1.5, lineHeight: 1.5, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
+          <div style={{marginTop: 64, background: ACCENT, color: BG, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', lineHeight: 1.5, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
             {icon === 'comment' ? (
               <svg width={36} height={36} viewBox="0 0 24 24" fill="none"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z" stroke={BG} strokeWidth={2.4} strokeLinejoin="round" fill={BG} /></svg>
             ) : (
