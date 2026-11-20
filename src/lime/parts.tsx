@@ -44,7 +44,7 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
               if (!on) return <span key={i}>{p}</span>;
               const inner = count ? <CountText text={p} /> : p;
               return marker ? (
-                <span key={i} style={{background: accent, color: INK, padding: '0 0.22em', margin: '0 -0.04em', borderRadius: '0.22em', display: 'inline-block', transform: 'rotate(-1.2deg)', textShadow: 'none', lineHeight: 1.12}}>
+                <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.22em', display: 'inline-block', transform: 'rotate(-1.2deg)', textShadow: 'none', lineHeight: 1.25}}>
                   {inner}
                 </span>
               ) : (

@@ -26,25 +26,35 @@ const Fade: React.FC<{frames: number; children: React.ReactNode}> = ({frames, ch
 
 const rise = (p: number): React.CSSProperties => ({opacity: Math.min(p, 1), transform: `translateY(${(1 - Math.min(p, 1)) * 36}px)`});
 
-/** 표지: 화면 한가운데 가운데 정렬 큰 제목 + 설명, 별 2개 (배경 사진·영상은 LimeReel이 dim과 함께 깐다) */
+/** 표지: 화면 한가운데 가운데 정렬. 검정 알약(계정 글자) → 큰 제목(양옆 도형) → 작은 두 줄(숫자는 라임색) */
 export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; text: string; brand?: string}> = ({frames, label, sub, text, brand}) => {
-  const p1 = useIn(4);
+  const pPill = useIn(2);
+  const p1 = useIn(5);
   const p2 = useIn(12);
   const p3 = useIn(18);
-  const longest = Math.max(...text.replace(/\[\[|\]\]/g, '').split('\n').map((l) => [...l].length), 1);
+  const lines = text.split('\n');
+  const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]/g, '')].length), 1);
   const titleSize = Math.min(100, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
-      {brand && <Wordmark text={clean(brand)} style={{left: 0, right: 0, top: 90, textAlign: 'center'}} />}
-      <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
-        <div style={{position: 'relative'}}>
-          <Star w={86} kind="sparkle" style={{left: -80, top: -120}} delay={14} />
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: titleSize, lineHeight: 1.25, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
-            <Rich text={text} marker />
-          </div>
-          <Star w={96} kind="burst" style={{right: -96, top: 8}} delay={8} />
+      <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+        {brand && (
+          <div style={{background: '#000', color: TITLE, fontWeight: 700, fontSize: 36, letterSpacing: -1, height: 87, lineHeight: '87px', padding: '0 58px', borderRadius: 999, marginBottom: 58, ...rise(pPill)}}>{clean(brand)}</div>
+        )}
+        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: titleSize, lineHeight: 1.38, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
+          {lines.map((ln, i) => (
+            <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
+              <Rich text={ln} marker />
+              {i === 0 && <Star w={86} kind="sparkle" style={{left: -116, top: 2}} delay={14} />}
+              {i === 0 && <Star w={96} kind="burst" style={{right: -102, top: -3}} delay={8} />}
+            </div>
+          ))}
         </div>
-        {label && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 56, textShadow: SHADOW, ...rise(p2)}}>{clean(label)}</div>}
+        {label && (
+          <div style={{color: TITLE, fontWeight: 700, fontSize: 50, lineHeight: 1.92, letterSpacing: -1.5, marginTop: 54, textShadow: SHADOW, ...rise(p2)}}>
+            <Rich text={label} />
+          </div>
+        )}
         {sub && <div style={{color: TITLE, fontWeight: 700, fontSize: 34, lineHeight: 1.4, letterSpacing: -1, marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
       </div>
     </Fade>

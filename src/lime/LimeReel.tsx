@@ -12,7 +12,7 @@ const pick = (script: Script, bg?: Bg): Bg | undefined => (script.backgroundSrc 
 const Backdrop: React.FC<{bg?: Bg; frames: number; dim: number}> = ({bg, frames, dim}) => (
   <>
     {bg ? <Background bg={bg} frames={frames} dim={0} veil={0} fade={3} /> : <AbsoluteFill style={{background: BG}} />}
-    <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(20,23,19,${(dim * 0.6).toFixed(3)}) 0%, rgba(20,23,19,${dim}) 45%, rgba(20,23,19,${Math.min(dim * 1.3, 0.85).toFixed(3)}) 100%)`}} />
+    <AbsoluteFill style={{background: `linear-gradient(180deg, rgba(0,0,0,${(dim * 0.4).toFixed(3)}) 0%, rgba(0,0,0,${dim}) 45%, rgba(0,0,0,${Math.min(dim * 1.6, 0.9).toFixed(3)}) 100%)`}} />
   </>
 );
 
