@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createContext, useContext} from 'react';
 import {Easing, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {ACCENT, BG, FONT, INK, INK_ACCENT, STAR} from './theme';
 
@@ -9,6 +9,13 @@ export const clean = (t = ''): string =>
     .replace(/[ \t]+/g, ' ')
     .replace(/ *\n */g, '\n')
     .trim();
+
+/** 큰 제목 글자 바깥 검은 테두리(px). 대본의 titleStroke 로 정한다 */
+export const TitleStrokeContext = createContext(0);
+export const useTitleStroke = (): React.CSSProperties => {
+  const w = useContext(TitleStrokeContext);
+  return w > 0 ? {WebkitTextStroke: `${w * 2}px #000`, paintOrder: 'stroke fill', strokeLinejoin: 'round'} : {};
+};
 
 /** 단계별로(8칸) 차오르는 진행률 0~1. 숫자와 게이지가 같이 쓴다 */
 export const STEPS = 8;
@@ -75,7 +82,7 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
               if (!on) return <span key={i}>{wobble ? <Wob t={p} /> : p}</span>;
               const inner = count ? <CountText text={p} /> : p;
               return marker ? (
-                <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', transform: `rotate(${wig}deg)`, transformOrigin: 'center', textShadow: 'none', lineHeight: 1.25}}>
+                <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', transform: `rotate(${wig}deg)`, transformOrigin: 'center', textShadow: 'none', WebkitTextStroke: '0px transparent', lineHeight: 1.25}}>
                   {inner}
                 </span>
               ) : (

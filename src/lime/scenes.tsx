@@ -4,6 +4,7 @@ import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
 import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, Wave} from './parts';
+import {useTitleStroke} from './parts';
 import type {ShapeKind} from './parts';
 
 /** 영상 위 작은 글자가 묻히지 않도록 짙은 그림자를 깐다 */
@@ -34,6 +35,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const p3 = useIn(18);
   const lines = text.split('\n');
   const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]/g, '')].length), 1);
+  const stroke = useTitleStroke();
   const titleSize = Math.min(120, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
@@ -44,7 +46,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
             <div style={{position: 'absolute', left: '50%', bottom: -13, width: 28, height: 28, marginLeft: -14, background: '#000', borderRadius: 5, transform: 'rotate(45deg)'}} />
           </div>
         )}
-        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
+        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
               <Rich text={ln} marker />
@@ -218,12 +220,13 @@ const SplitLine: React.FC<{l: {label: string; detail?: string}; i: number}> = ({
 const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; children?: React.ReactNode}> = ({count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
   const p1 = useIn(6);
+  const stroke = useTitleStroke();
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{position: 'relative', marginBottom: 48, textAlign: 'left'}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
           </div>
           {!title.includes('[[') && !desc && <Wave style={{marginTop: 18}} />}
@@ -343,12 +346,13 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
   const p0 = useIn(2);
   const p1 = useIn(8);
   const p2 = useIn(16);
+  const stroke = useTitleStroke();
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
-          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 98, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
+          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 98, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={text} marker />
           </div>
           <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />

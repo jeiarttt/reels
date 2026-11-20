@@ -71,6 +71,8 @@ export type Script = {
   ctaBg?: Bg;
   /** 귀여운 테마: 배경 어둡기(0~0.6). 밝은 사진이면 낮춘다. 기본 0.3 */
   bgDim?: number;
+  /** 라임: 큰 제목 글자 바깥 검은 테두리 두께(px, 0이면 없음) */
+  titleStroke?: number;
   hookDeco?: string;
   hookDecoPos?: 'tl' | 'tr' | 'bl' | 'br';
   ctaDeco?: string;
