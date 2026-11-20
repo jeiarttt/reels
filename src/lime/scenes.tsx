@@ -28,21 +28,14 @@ const Fade: React.FC<{frames: number; children: React.ReactNode}> = ({frames, ch
 const rise = (p: number): React.CSSProperties => ({opacity: Math.min(p, 1), transform: `translateY(${(1 - Math.min(p, 1)) * 36}px)`});
 
 
-/** 종이를 오려 붙인 듯한 울퉁불퉁한 말풍선 윤곽(꼬리 포함). y는 몸통 높이 비율, y>1.5 는 꼬리 끝 */
-const BUBBLE_SHAPES: [number, number][][] = [
-  [[2, 0.3], [26, 0.05], [76, 0.02], [97, 0.2], [99, 0.58], [93, 0.9], [80, 1], [77, 2], [62, 0.98], [22, 1], [3, 0.78]],
-  [[4, 0.2], [22, 0.03], [80, 0.08], [97, 0.28], [96, 0.66], [85, 0.97], [68, 0.99], [72, 2], [52, 1], [16, 0.96], [2, 0.6]],
-  [[1, 0.4], [14, 0.1], [60, 0.02], [92, 0.12], [100, 0.46], [94, 0.84], [76, 1], [80, 2], [60, 1], [26, 0.98], [6, 0.76]],
-];
-const bubbleClip = (shape: number, mirror: boolean, tail: number) =>
-  `polygon(${BUBBLE_SHAPES[shape % BUBBLE_SHAPES.length]
-    .map(([x, y]) => `${mirror ? 100 - x : x}% ${y > 1.5 ? '100%' : `calc((100% - ${tail}px) * ${y})`}`)
-    .join(', ')})`;
-
-/** 종이 오림 말풍선: 배경색·글자색은 스타일 값, 꼬리는 mirror 로 왼쪽/오른쪽 */
-const PaperBubble: React.FC<{shape?: number; mirror?: boolean; bg: string; color: string; fontSize: number; px: number; py: number; tail?: number; style?: React.CSSProperties; children: React.ReactNode}> = ({shape = 0, mirror = false, bg, color, fontSize, px, py, tail = 42, style, children}) => (
-  <div style={{filter: 'drop-shadow(0 8px 14px rgba(0,0,0,0.3))', ...style}}>
-    <div style={{clipPath: bubbleClip(shape, mirror, tail), background: bg, color, fontFamily: FONT_TITLE, fontWeight: 900, fontSize, lineHeight: 1.3, letterSpacing: '-0.02em', padding: `${py}px ${px}px ${py + tail}px`, textAlign: 'center', wordBreak: 'keep-all'}}>{children}</div>
+/** 표지 말풍선: 살짝 울퉁불퉁한 윤곽(모서리는 둥글게 다듬음)과 뾰족한 꼬리. 색·글자색은 스타일 값 */
+const SOFT_BUBBLE = '8,28 16,12 50,9 84,12 93,30 94,52 88,67 74,70 72,96 60,70 22,70 8,60';
+const SoftBubble: React.FC<{bg: string; color: string; fontSize: number; px: number; py: number; tail?: number; style?: React.CSSProperties; children: React.ReactNode}> = ({bg, color, fontSize, px, py, tail = 44, style, children}) => (
+  <div style={{position: 'relative', display: 'inline-block', filter: 'drop-shadow(0 8px 14px rgba(0,0,0,0.3))', ...style}}>
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', overflow: 'visible'}}>
+      <polygon points={SOFT_BUBBLE} fill={bg} stroke={bg} strokeWidth={26} strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+    </svg>
+    <div style={{position: 'relative', color, fontFamily: FONT_TITLE, fontWeight: 900, fontSize, lineHeight: 1.3, letterSpacing: '-0.02em', padding: `${py}px ${px}px ${py + tail}px`, textAlign: 'center', whiteSpace: 'nowrap'}}>{children}</div>
   </div>
 );
 
@@ -70,9 +63,9 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <PaperBubble shape={0} bg="#000" color={TITLE} fontSize={50} px={84} py={30} tail={44} style={{marginBottom: 54, ...rise(pPill)}}>
+          <SoftBubble bg="#000" color={TITLE} fontSize={50} px={96} py={40} tail={50} style={{marginBottom: 60, ...rise(pPill)}}>
             {clean(brand)}
-          </PaperBubble>
+          </SoftBubble>
         )}
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
           {lines.map((ln, i) => (
@@ -284,9 +277,10 @@ const Bubble: React.FC<{it: {side: 'q' | 'a'; text: string}; i: number}> = ({it,
   const p = useBounce(14 + i * 12);
   const q = it.side === 'q';
   return (
-    <PaperBubble shape={i} mirror={!q} bg={q ? '#000' : CARD} color={q ? TITLE : INK} fontSize={68} px={72} py={36} tail={40} style={{alignSelf: q ? 'flex-end' : 'flex-start', maxWidth: '94%', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px) scale(${0.85 + 0.15 * p})`, transformOrigin: q ? 'right bottom' : 'left bottom'}}>
+    <div style={{alignSelf: q ? 'flex-end' : 'flex-start', maxWidth: '94%', position: 'relative', background: q ? '#000' : CARD, color: q ? TITLE : INK, fontWeight: 800, fontSize: 76, lineHeight: 1.3, letterSpacing: -2, padding: '56px 80px', borderRadius: 96, wordBreak: 'keep-all', boxShadow: '0 10px 28px rgba(0,0,0,0.25)', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px) scale(${0.85 + 0.15 * p})`, transformOrigin: q ? 'right bottom' : 'left bottom'}}>
       <Rich text={it.text} marker />
-    </PaperBubble>
+      <div style={{position: 'absolute', bottom: 26, [q ? 'right' : 'left']: -12, width: 38, height: 38, background: q ? '#000' : CARD, borderRadius: 12, transform: 'rotate(45deg)'}} />
+    </div>
   );
 };
 
