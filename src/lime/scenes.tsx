@@ -44,7 +44,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
-              <Rich text={ln} marker wobble />
+              <Rich text={ln} marker />
               {i === 0 && <Star w={86} kind="sparkle" style={{left: -112, top: -46}} delay={14} />}
               {i === 0 && <Star w={96} kind="burst" style={{right: -124, top: 62}} delay={8} />}
             </div>
@@ -223,12 +223,12 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
     <Fade frames={frames}>
       {brand && <Wordmark text={clean(brand)} style={{right: 120, top: 90}} />}
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div style={{position: 'relative', marginBottom: 64, textAlign: 'center'}}>
+        <div style={{position: 'relative', marginBottom: 64, textAlign: 'left'}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
           </div>
-          {!title.includes('[[') && !desc && <Wave style={{marginTop: 18, marginLeft: 'auto', marginRight: 'auto'}} />}
+          {!title.includes('[[') && !desc && <Wave style={{marginTop: 18}} />}
           {desc && <div style={{color: TITLE, fontWeight: 700, fontSize: 48, lineHeight: 1.16, letterSpacing: -1.5, marginTop: 28, textShadow: SHADOW, ...rise(p1)}}>{desc}</div>}
           <Star w={92} kind={shape ?? SHAPES[index % SHAPES.length]} style={SHAPE_SPOTS[index % SHAPE_SPOTS.length](wide)} delay={12} />
         </div>
@@ -350,7 +350,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 98, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
-          <Rich text={text} marker wobble />
+          <Rich text={text} marker />
         </div>
         {label && (
           <div style={{marginTop: 64, background: ACCENT, color: BG, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', lineHeight: 1.5, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
