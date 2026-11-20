@@ -34,12 +34,12 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const p3 = useIn(18);
   const lines = text.split('\n');
   const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]/g, '')].length), 1);
-  const titleSize = Math.min(100, Math.floor(900 / (longest * 0.75)));
+  const titleSize = Math.min(120, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <div style={{background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 36, letterSpacing: -1, height: 87, lineHeight: '87px', padding: '0 58px', borderRadius: 999, marginBottom: 58, ...rise(pPill)}}>{clean(brand)}</div>
+          <div style={{background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 40, letterSpacing: -1, height: 87, lineHeight: '87px', padding: '0 36px', borderRadius: 999, marginBottom: 58, ...rise(pPill)}}>{clean(brand)}</div>
         )}
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: titleSize, lineHeight: 1.5, letterSpacing: -2, textShadow: SHADOW_SOFT, ...rise(p1)}}>
           {lines.map((ln, i) => (
@@ -51,11 +51,11 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
           ))}
         </div>
         {label && (
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 50, lineHeight: 1.5, letterSpacing: -1.5, marginTop: 54, textShadow: SHADOW, ...rise(p2)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 58, lineHeight: 1.5, letterSpacing: -1.5, marginTop: 50, textShadow: SHADOW, ...rise(p2)}}>
             <Rich text={label} />
           </div>
         )}
-        {sub && <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 34, lineHeight: 1.5, letterSpacing: -1, marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
+        {sub && <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 800, fontSize: 40, lineHeight: 1.5, letterSpacing: -1, marginTop: 36, opacity: 0.92, textShadow: SHADOW, whiteSpace: 'pre-line', ...rise(p3)}}>{clean(sub)}</div>}
       </div>
     </Fade>
   );
