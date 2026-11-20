@@ -311,7 +311,12 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
         <div style={{position: 'relative', marginBottom: fill ? 20 : 48, textAlign: 'left'}}>
           {no && (
             <div style={{display: 'flex', alignItems: 'center', gap: 20, marginBottom: 26, ...rise(p0)}}>
-              <div style={{background: ACCENT, color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 60, lineHeight: 1, letterSpacing: '-0.02em', padding: '12px 34px', borderRadius: 999}}>{no}</div>
+              <div style={{background: ACCENT, color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 60, lineHeight: 1, letterSpacing: '-0.02em', padding: '12px 34px', borderRadius: 999}}>{no.split(/\s*·\s*/).map((part, k) => (
+                <React.Fragment key={k}>
+                  {k > 0 && <span style={{display: 'inline-block', width: 11, height: 11, borderRadius: '50%', background: INK, margin: '0 9px', verticalAlign: '0.26em'}} />}
+                  {part}
+                </React.Fragment>
+              ))}</div>
               {noSub && <div style={{color: TITLE, fontWeight: 800, fontSize: 40, letterSpacing: -1, textShadow: SHADOW}}>{noSub}</div>}
             </div>
           )}
