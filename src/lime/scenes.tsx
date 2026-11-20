@@ -300,22 +300,17 @@ const Swap: React.FC<{from: string; to: string}> = ({from, to}) => {
   );
 };
 
-/** 01 02 03 … 번호 줄: 지금 컷의 번호만 라임 알약으로 켜지고 나머지는 흐리게. '덤'이면 끝에 라임 알약 */
-const NumTracker: React.FC<{no: string; total: number; style?: React.CSSProperties}> = ({no, total, style}) => {
-  const on = (no.match(/\d+/g) ?? []).map(Number);
-  const extra = on.length === 0 ? no : '';
-  const chip: React.CSSProperties = {fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 44, lineHeight: 1, letterSpacing: '-0.02em', padding: '12px 26px', borderRadius: 999};
+/** 번호 배지: 이 컷에 해당하는 번호만 라임 알약으로(예: 01 / 02 03 / 덤) */
+const NumTracker: React.FC<{no: string; total: number; style?: React.CSSProperties}> = ({no, style}) => {
+  const nums = no.match(/\d+/g);
+  const labels = nums ? nums.map((n) => pad(Number(n))) : [no];
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 26, ...style}}>
-      {Array.from({length: total}, (_, k) => k + 1).map((n) => {
-        const active = on.includes(n);
-        return (
-          <div key={n} style={{...chip, background: active ? ACCENT : 'rgba(255,255,255,0.3)', color: active ? INK : TITLE, textShadow: active ? 'none' : SHADOW, transform: active ? 'scale(1.12)' : 'none'}}>
-            {pad(n)}
-          </div>
-        );
-      })}
-      {extra && <div style={{...chip, background: ACCENT, color: INK, marginLeft: 8}}>{extra}</div>}
+      {labels.map((t) => (
+        <div key={t} style={{background: ACCENT, color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 52, lineHeight: 1, letterSpacing: '-0.02em', padding: '14px 32px', borderRadius: 999}}>
+          {t}
+        </div>
+      ))}
     </div>
   );
 };
