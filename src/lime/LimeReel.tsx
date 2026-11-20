@@ -54,7 +54,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
 
   return (
     <TitleStrokeContext.Provider value={script.titleStroke ?? 0}>
-      <AbsoluteFill style={{backgroundColor: BG, fontFamily: FONT}}>{blocks}</AbsoluteFill>
+      <AbsoluteFill style={{backgroundColor: BG, fontFamily: FONT, ...(script.titleFont ? ({'--title-font': `'${script.titleFont}'`} as React.CSSProperties) : {})}}>{blocks}</AbsoluteFill>
     </TitleStrokeContext.Provider>
   );
 };

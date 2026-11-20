@@ -22,6 +22,7 @@ const fonts: {family: string; weight: string; file: string}[] = [
   {family: FONT_BODY, weight: '800', file: 'Pretendard-ExtraBold.woff2'},
   {family: FONT_BODY, weight: '900', file: 'Pretendard-Black.woff2'},
   {family: 'Paperlogy', weight: '800', file: 'Paperlogy-8ExtraBold.woff2'},
+  {family: 'Dunggeun', weight: '700', file: 'Hakgyoansim-DunggeunMiso-B.woff2'}, // 학교안심 둥근미소(Keris, OFL)
 ];
 // 서울알림체 Heavy: 서울서체는 파일 재배포가 금지라 저장소에 올리지 않는다(.gitignore).
 // 렌더 전에 scripts/fetch-seoul-font.sh 로 public/fonts-local/ 에 받아 둔다.

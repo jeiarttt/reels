@@ -73,6 +73,8 @@ export type Script = {
   bgDim?: number;
   /** 라임: 큰 제목 글자 바깥 검은 테두리 두께(px, 0이면 없음) */
   titleStroke?: number;
+  /** 라임: 큰 글자 글꼴 이름(Reel.tsx 에서 불러온 family, 예: 'Dunggeun'). 없으면 서울알림체 */
+  titleFont?: string;
   hookDeco?: string;
   hookDecoPos?: 'tl' | 'tr' | 'bl' | 'br';
   ctaDeco?: string;

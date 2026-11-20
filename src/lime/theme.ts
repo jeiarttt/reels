@@ -14,4 +14,5 @@ export const INK_SUB = '#3F443B';
 export const INK_ACCENT = '#4A5E00';
 /** 큰 제목 글꼴: 페이퍼로지 ExtraBold (눈누, SIL OFL 1.1, 웹폰트 woff2) */
 // 서울알림체(서울서체, 영상 사용 가능·파일 재배포 금지라 저장소에 넣지 않고 눈누 CDN에서 불러온다)
-export const FONT_TITLE = "'SeoulAlrim', 'Paperlogy', 'Pretendard', sans-serif";
+// 대본의 titleFont 가 있으면 LimeReel 이 --title-font 변수로 덮어쓴다(예: 'Dunggeun')
+export const FONT_TITLE = "var(--title-font, 'SeoulAlrim'), 'Paperlogy', 'Pretendard', sans-serif";
