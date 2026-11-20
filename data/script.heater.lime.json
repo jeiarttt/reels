@@ -46,9 +46,9 @@
         }
       ],
       "bg": {
-        "src": "stock/pexels-12034871.jpg",
+        "src": "stock/pexels-3125905.jpg",
         "type": "image",
-        "position": "30% 50%"
+        "position": "50% 50%"
       }
     },
     {
@@ -77,9 +77,9 @@
         "넘어지면 꺼지는 제품 고르기"
       ],
       "bg": {
-        "src": "stock/pexels-19615791.jpg",
+        "src": "stock/pexels-12034871.jpg",
         "type": "image",
-        "position": "40% 50%"
+        "position": "30% 50%"
       }
     },
     {
@@ -98,9 +98,9 @@
         }
       ],
       "bg": {
-        "src": "stock/pexels-14071431.jpg",
+        "src": "stock/pexels-36012993.jpg",
         "type": "image",
-        "position": "38% 50%"
+        "position": "50% 50%"
       }
     },
     {

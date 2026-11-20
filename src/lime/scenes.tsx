@@ -39,7 +39,10 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <div style={{background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', height: 87, lineHeight: '87px', padding: '0 36px', borderRadius: 999, marginBottom: 58, ...rise(pPill)}}>{clean(brand)}</div>
+          <div style={{position: 'relative', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', height: 87, lineHeight: '87px', padding: '0 40px', borderRadius: 30, marginBottom: 62, ...rise(pPill)}}>
+            {clean(brand)}
+            <div style={{position: 'absolute', left: '50%', bottom: -13, width: 28, height: 28, marginLeft: -14, background: '#000', borderRadius: 5, transform: 'rotate(45deg)'}} />
+          </div>
         )}
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
           {lines.map((ln, i) => (
