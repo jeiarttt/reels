@@ -67,7 +67,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
 type Row = {left: string; right?: string};
 
 const InfoRows: React.FC<{rows: Row[]}> = ({rows}) => (
-  <div style={{display: 'flex', flexDirection: 'column', gap: 32}}>
+  <div style={{display: 'flex', flexDirection: 'column', gap: 26}}>
     {rows.map((r, i) => (
       <InfoRow key={i} r={r} i={i} />
     ))}
@@ -79,7 +79,7 @@ const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
   const tilt = [-1.4, 1.1, -0.9, 1.3][i % 4];
   const single = r.right === undefined;
   return (
-    <div style={{minHeight: 196, borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', padding: '34px 60px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 48}px) rotate(${tilt}deg)`}}>
+    <div style={{minHeight: 172, borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', padding: '28px 56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 48}px) rotate(${tilt}deg)`}}>
       <div style={{color: single ? INK : INK_ACCENT, fontWeight: 800, fontSize: single ? 50 : 42, lineHeight: 1.25, letterSpacing: -1.5}}>{r.left}</div>
       {single ? <Check /> : <div style={{color: INK_SUB, fontWeight: 700, fontSize: 42, lineHeight: 1.25, letterSpacing: -1.5, textAlign: 'right'}}>{r.right}</div>}
     </div>
@@ -101,7 +101,7 @@ const StepCard: React.FC<{s: Step; i: number; compact?: boolean}> = ({s, i, comp
   const tilt = [-2, 1.4, -1][i % 3];
   const hi = i === 0;
   return (
-    <div style={{flex: 1, minHeight: compact ? 430 : 620, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
+    <div style={{flex: 1, minHeight: compact ? 390 : 560, borderRadius: 30, padding: 32, background: hi ? ACCENT : CARD, color: INK, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 60}px) rotate(${tilt}deg)`}}>
       <div style={{fontWeight: 700, fontSize: 88, letterSpacing: -2}}>{s.n}</div>
       <div>
         <div style={{fontWeight: 800, fontSize: 46, lineHeight: 1.2, letterSpacing: -1.5}}>{s.label}</div>
@@ -193,7 +193,7 @@ const Split: React.FC<{big: string; sub?: string; lines: {label: string; detail?
   const p = useBounce(10);
   return (
     <div>
-      <div style={{display: 'flex', flexDirection: [...big].length > 3 ? 'column' : 'row', alignItems: [...big].length > 3 ? 'flex-start' : 'flex-end', gap: [...big].length > 3 ? 8 : 28, marginBottom: 44, opacity: Math.min(p, 1), transform: `scale(${0.7 + 0.3 * p})`, transformOrigin: 'left center'}}>
+      <div style={{display: 'flex', flexDirection: [...big].length > 3 ? 'column' : 'row', alignItems: [...big].length > 3 ? 'flex-start' : 'flex-end', gap: [...big].length > 3 ? 8 : 28, marginBottom: 34, opacity: Math.min(p, 1), transform: `scale(${0.7 + 0.3 * p})`, transformOrigin: 'left center'}}>
         <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 176, lineHeight: 1, letterSpacing: '-0.02em', whiteSpace: 'nowrap', textShadow: SHADOW_SOFT}}>
           <CountText text={big} />
         </div>
@@ -221,7 +221,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div style={{position: 'relative', marginBottom: 64, textAlign: 'left'}}>
+        <div style={{position: 'relative', marginBottom: 48, textAlign: 'left'}}>
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
           <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
@@ -347,8 +347,11 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
-        <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 98, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
-          <Rich text={text} marker />
+        <div style={{position: 'relative'}}>
+          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 98, lineHeight: 1.5, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...rise(p1)}}>
+            <Rich text={text} marker />
+          </div>
+          <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />
         </div>
         {label && (
           <div style={{marginTop: 64, background: ACCENT, color: BG, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, letterSpacing: '-0.02em', lineHeight: 1.5, padding: '24px 40px', borderRadius: 36, display: 'flex', alignItems: 'center', gap: 16, ...rise(p2)}}>
