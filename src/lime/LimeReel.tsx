@@ -3,7 +3,8 @@ import {AbsoluteFill, Sequence} from 'remotion';
 import type {Bg, Script} from '../types';
 import {Background} from '../components/Background';
 import {ctaSecOf, FPS, hookSecOf} from '../Root';
-import {TitleStrokeContext} from './parts';
+import {ShapeOverrideContext, TitleStrokeContext} from './parts';
+import type {ShapeKind} from './parts';
 import {LimeCover, LimeCta, LimeScene} from './scenes';
 import {BG, FONT} from './theme';
 
@@ -54,7 +55,9 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
 
   return (
     <TitleStrokeContext.Provider value={script.titleStroke ?? 0}>
+     <ShapeOverrideContext.Provider value={script.shapeKind as ShapeKind | undefined}>
       <AbsoluteFill style={{backgroundColor: BG, fontFamily: FONT, ...(script.titleFont ? ({'--title-font': `'${script.titleFont}'`} as React.CSSProperties) : {})}}>{blocks}</AbsoluteFill>
+     </ShapeOverrideContext.Provider>
     </TitleStrokeContext.Provider>
   );
 };

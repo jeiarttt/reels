@@ -75,6 +75,8 @@ export type Script = {
   titleStroke?: number;
   /** 라임: 큰 글자 글꼴 이름(Reel.tsx 에서 불러온 family, 예: 'Dunggeun'). 없으면 서울알림체 */
   titleFont?: string;
+  /** 라임: 모든 장식 도형을 이 모양으로 통일(예: 'snow' 눈 결정) */
+  shapeKind?: string;
   hookDeco?: string;
   hookDecoPos?: 'tl' | 'tr' | 'bl' | 'br';
   ctaDeco?: string;

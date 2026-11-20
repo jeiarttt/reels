@@ -123,11 +123,15 @@ export const useBounce = (delay = 0) => {
   return Math.max(spring({frame: frame - delay, fps, config: {damping: 8, stiffness: 150}}), 0);
 };
 
-export type ShapeKind = 'burst' | 'sparkle' | 'ring' | 'plus' | 'dots' | 'moon';
+export type ShapeKind = 'burst' | 'sparkle' | 'ring' | 'plus' | 'dots' | 'moon' | 'snow';
+/** 대본의 shapeKind 가 있으면 모든 장식 도형을 이 모양으로 바꾼다(예: 'snow' 눈 결정) */
+export const ShapeOverrideContext = createContext<ShapeKind | undefined>(undefined);
 export const SHAPES: ShapeKind[] = ['sparkle', 'ring', 'burst', 'plus', 'dots', 'moon'];
 
 /** 장식 도형(가로세로 비율 1:1, 찌그러지지 않게). 모양은 컷마다 돌려 쓴다 */
-export const Star: React.FC<{w: number; kind?: ShapeKind; style?: React.CSSProperties; delay?: number}> = ({w, kind = 'burst', style, delay = 10}) => {
+export const Star: React.FC<{w: number; kind?: ShapeKind; style?: React.CSSProperties; delay?: number}> = ({w, kind: kindProp = 'burst', style, delay = 10}) => {
+  const override = useContext(ShapeOverrideContext);
+  const kind: ShapeKind = override ?? kindProp;
   const p = Math.min(useBounce(delay), 1.25);
   const frame = useCurrentFrame();
   const wig = Math.sin(frame / 9 + w) * 9;
@@ -144,6 +148,20 @@ export const Star: React.FC<{w: number; kind?: ShapeKind; style?: React.CSSPrope
     body = <polygon points={pts.join(' ')} fill={STAR} />;
   } else if (kind === 'sparkle') {
     body = <path d="M50 0 C54 30 70 46 100 50 C70 54 54 70 50 100 C46 70 30 54 0 50 C30 46 46 30 50 0 Z" fill={STAR} />;
+  } else if (kind === 'snow') {
+    // 눈 결정: 여섯 갈래 + 짧은 곁가지(단순한 선 모양)
+    const arms = [0, 60, 120, 180, 240, 300].map((deg) => (
+      <g key={deg} transform={`rotate(${deg} 50 50)`}>
+        <line x1="50" y1="50" x2="50" y2="6" />
+        <line x1="50" y1="24" x2="38" y2="12" />
+        <line x1="50" y1="24" x2="62" y2="12" />
+      </g>
+    ));
+    body = (
+      <g stroke={STAR} strokeWidth="8" strokeLinecap="round" fill="none">
+        {arms}
+      </g>
+    );
   } else if (kind === 'ring') {
     body = <circle cx="50" cy="50" r="38" fill="none" stroke={STAR} strokeWidth="16" />;
   } else if (kind === 'plus') {
