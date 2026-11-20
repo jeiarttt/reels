@@ -14,15 +14,15 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-5629134.jpg",
+    "src": "stock/pexels-10346632.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "저장해 두고\n꺼내 쓰기 전\n다시 보세요",
   "ctaBg": {
-    "src": "stock/pexels-31774998.jpg",
+    "src": "stock/pexels-6606317.jpg",
     "type": "image",
-    "position": "50% 50%"
+    "position": "58% 50%"
   },
   "scenes": [
     {
@@ -46,7 +46,7 @@
         }
       ],
       "bg": {
-        "src": "stock/pexels-30185616.jpg",
+        "src": "stock/pexels-30814754.jpg",
         "type": "image",
         "position": "50% 50%"
       }
