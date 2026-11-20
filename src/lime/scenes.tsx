@@ -190,11 +190,11 @@ const Split: React.FC<{big: string; sub?: string; lines: {label: string; detail?
   const p = useBounce(10);
   return (
     <div>
-      <div style={{display: 'flex', alignItems: 'flex-end', gap: 28, marginBottom: 44, opacity: Math.min(p, 1), transform: `scale(${0.7 + 0.3 * p})`, transformOrigin: 'left center'}}>
+      <div style={{display: 'flex', flexDirection: [...big].length > 3 ? 'column' : 'row', alignItems: [...big].length > 3 ? 'flex-start' : 'flex-end', gap: [...big].length > 3 ? 8 : 28, marginBottom: 44, opacity: Math.min(p, 1), transform: `scale(${0.7 + 0.3 * p})`, transformOrigin: 'left center'}}>
         <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 176, lineHeight: 1, letterSpacing: '-0.02em', whiteSpace: 'nowrap', textShadow: SHADOW_SOFT}}>
           <CountText text={big} />
         </div>
-        {sub && <div style={{color: TITLE, fontWeight: 800, fontSize: 48, lineHeight: 1.25, letterSpacing: -1.5, paddingBottom: 14, textShadow: SHADOW, whiteSpace: 'pre-line'}}>{sub}</div>}
+        {sub && <div style={{color: TITLE, fontWeight: 800, fontSize: 48, lineHeight: 1.25, letterSpacing: -1.5, paddingBottom: [...big].length > 3 ? 0 : 14, textShadow: SHADOW, whiteSpace: 'pre-line'}}>{sub}</div>}
       </div>
       <InfoRows rows={lines.map((l) => ({left: [l.label, l.detail].filter(Boolean).join(' ').replace(/\n/g, ' ')}))} />
     </div>
