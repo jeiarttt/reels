@@ -18,7 +18,7 @@ export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: s
 
 export type Scene = {
   t: number;
-  kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid' | 'checklist' | 'flow' | 'plain' | 'list' | 'timeline' | 'split';
+  kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid' | 'checklist' | 'flow' | 'plain' | 'list' | 'timeline' | 'split' | 'scale' | 'chat' | 'swap';
   /** 라임 스타일 장식 도형 모양(burst·sparkle·ring·plus·dots·moon). 생략하면 컷마다 돌려 쓴다 */
   shape?: string;
   /** 글자 컷 아래에 붙이는 작은 알약 문구 */
@@ -34,6 +34,12 @@ export type Scene = {
   numStart?: number;
   /** 라임: 이 컷만 배경 딤을 따로 정할 때(없으면 대본 bgDim) */
   dim?: number;
+  /** 라임 scale 컷: 가로 눈금 막대(구간 강조 + 표시 말풍선) */
+  scale?: {min: number; max: number; from: number; to: number; mark: number; unit?: string};
+  /** 라임 chat 컷: 질문(q, 오른쪽 검정)·답(a, 왼쪽 아이보리) 말풍선 */
+  chat?: {side: 'q' | 'a'; text: string}[];
+  /** 라임 swap 컷: 강 → 약 처럼 바꾸는 모습 */
+  swap?: {from: string; to: string};
   /** 귀여운 테마: stickers/ 안 파일 이름(확장자 제외)과 의성어 태그 */
   sticker?: string;
   sfx?: string;

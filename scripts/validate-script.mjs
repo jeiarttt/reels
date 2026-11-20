@@ -19,7 +19,7 @@ try {
 const strip = (t = '') => t.replace(/\[\[|\]\]/g, '');
 const lines = (t = '') => strip(t).split('\n');
 const FORBIDDEN = ['무조건', '100%', '누구나', '반드시 받', '확실히', '대박', '충격', '절대 손해'];
-const KINDS = ['text', 'cards', 'table', 'steps', 'stat', 'compare', 'grid', 'checklist', 'flow', 'plain', 'list', 'timeline', 'split'];
+const KINDS = ['text', 'cards', 'table', 'steps', 'stat', 'compare', 'grid', 'checklist', 'flow', 'plain', 'list', 'timeline', 'split', 'scale', 'chat', 'swap'];
 
 // ── 필수 항목 ──
 for (const k of ['id', 'mode', 'hook', 'cta', 'status', 'caption']) if (!s[k]) err(`필수 항목 없음: ${k}`);
@@ -71,6 +71,8 @@ if (!s.backgroundSrc) {
   if (sc.label) bodyTexts.push(sc.label);
   if (sc.stat && kind !== 'stat') bodyTexts.push(sc.stat.big ?? '', sc.stat.sub ?? ''); // checklist·split 등 다른 컷 종류에서도 큰 숫자는 본문이다
   if (sc.chips) bodyTexts.push(...sc.chips);
+  if (sc.chat) bodyTexts.push(...sc.chat.map((c) => c.text));
+  if (sc.swap) bodyTexts.push(sc.swap.from, sc.swap.to);
   if (sc.text) {
     const ls = lines(sc.text);
     if (ls.length > 4) warn(`${w}: 줄이 ${ls.length}줄이에요 (최대 3~4줄)`);

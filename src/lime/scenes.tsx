@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill} from 'remotion';
+import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
@@ -41,9 +41,9 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
-          <div style={{position: 'relative', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 46, letterSpacing: '-0.02em', height: 108, lineHeight: '108px', padding: '0 68px', borderRadius: '50%', marginBottom: 70, ...rise(pPill)}}>
+          <div style={{position: 'relative', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 52, letterSpacing: '-0.02em', height: 140, lineHeight: '140px', padding: '0 92px', borderRadius: '50%', marginBottom: 80, ...rise(pPill)}}>
             {clean(brand)}
-            <div style={{position: 'absolute', left: '50%', bottom: -13, width: 30, height: 30, marginLeft: -15, background: '#000', borderRadius: 8, transform: 'rotate(45deg)'}} />
+            <div style={{position: 'absolute', left: '50%', bottom: -16, width: 38, height: 38, marginLeft: -19, background: '#000', borderRadius: 12, transform: 'rotate(45deg)'}} />
           </div>
         )}
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
@@ -216,6 +216,65 @@ const SplitLine: React.FC<{l: {label: string; detail?: string}; i: number}> = ({
   );
 };
 
+
+/** 가로 눈금 막대: 적정 구간을 라임색으로 채우고, 위에 검정 말풍선으로 값을 가리킨다 */
+const Scale: React.FC<{min: number; max: number; from: number; to: number; mark: number; unit?: string}> = ({min, max, from, to, mark, unit = ''}) => {
+  const frame = useCurrentFrame();
+  const p = useBounce(10);
+  const grow = interpolate(frame, [14, 36], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const pct = (v: number) => ((v - min) / (max - min)) * 100;
+  const ticks: number[] = [];
+  for (let v = Math.ceil(min / 2) * 2; v <= max; v += 2) ticks.push(v);
+  return (
+    <div style={{position: 'relative', height: 250, margin: '0 28px 8px', opacity: Math.min(p, 1)}}>
+      <div style={{position: 'absolute', left: `${pct(mark)}%`, top: 0, transform: 'translateX(-50%)', background: '#000', color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 64, letterSpacing: '-0.02em', padding: '12px 42px', borderRadius: 999}}>
+        {mark}{unit}
+        <div style={{position: 'absolute', left: '50%', bottom: -11, width: 24, height: 24, marginLeft: -12, background: '#000', borderRadius: 6, transform: 'rotate(45deg)'}} />
+      </div>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 118, height: 44, borderRadius: 22, background: 'rgba(255,255,255,0.45)'}} />
+      <div style={{position: 'absolute', left: `${pct(from)}%`, width: `${(pct(to) - pct(from)) * grow}%`, top: 118, height: 44, borderRadius: 22, background: ACCENT}} />
+      {ticks.map((v) => (
+        <div key={v} style={{position: 'absolute', left: `${pct(v)}%`, top: 178, transform: 'translateX(-50%)', color: TITLE, fontWeight: 800, fontSize: 34, textShadow: SHADOW}}>{v}</div>
+      ))}
+    </div>
+  );
+};
+
+/** 질문(검정, 오른쪽)과 답(아이보리, 왼쪽) 말풍선 대화 */
+const Chat: React.FC<{items: {side: 'q' | 'a'; text: string}[]}> = ({items}) => (
+  <div style={{display: 'flex', flexDirection: 'column', gap: 30}}>
+    {items.map((it, i) => (
+      <Bubble key={i} it={it} i={i} />
+    ))}
+  </div>
+);
+const Bubble: React.FC<{it: {side: 'q' | 'a'; text: string}; i: number}> = ({it, i}) => {
+  const p = useBounce(14 + i * 12);
+  const q = it.side === 'q';
+  return (
+    <div style={{alignSelf: q ? 'flex-end' : 'flex-start', maxWidth: '86%', position: 'relative', background: q ? '#000' : CARD, color: q ? TITLE : INK, fontWeight: 800, fontSize: 52, lineHeight: 1.3, letterSpacing: -1.5, padding: '38px 62px', borderRadius: 72, wordBreak: 'keep-all', boxShadow: '0 10px 28px rgba(0,0,0,0.25)', opacity: Math.min(p, 1), transform: `translateY(${(1 - p) * 40}px) scale(${0.85 + 0.15 * p})`, transformOrigin: q ? 'right bottom' : 'left bottom'}}>
+      {it.text}
+      <div style={{position: 'absolute', bottom: 22, [q ? 'right' : 'left']: -12, width: 38, height: 38, background: q ? '#000' : CARD, borderRadius: 12, transform: 'rotate(45deg)'}} />
+    </div>
+  );
+};
+
+/** 강 → 약 처럼 바꾸는 모습: 흐린 칸에서 라임 칸으로 화살표 */
+const Swap: React.FC<{from: string; to: string}> = ({from, to}) => {
+  const p1 = useBounce(10);
+  const p2 = useBounce(22);
+  const box: React.CSSProperties = {width: 250, height: 250, borderRadius: 64, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 130, letterSpacing: '-0.02em'};
+  return (
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 36, marginBottom: 20}}>
+      <div style={{...box, background: 'rgba(245,245,239,0.9)', color: INK_SUB, opacity: Math.min(p1, 1) * 0.85, transform: `scale(${0.7 + 0.3 * p1})`}}>{from}</div>
+      <svg width="110" height="70" viewBox="0 0 110 70" style={{opacity: Math.min(p2, 1)}}>
+        <path d="M6 35 H92 M68 10 L98 35 L68 60" fill="none" stroke={ACCENT} strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <div style={{...box, background: ACCENT, color: INK, opacity: Math.min(p2, 1), transform: `scale(${0.7 + 0.3 * p2})`}}>{to}</div>
+    </div>
+  );
+};
+
 /** 본문 공통 틀: 상단 로고, 라벨·제목·설명, 아래쪽 내용, 별 */
 const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; children?: React.ReactNode}> = ({count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
@@ -246,6 +305,29 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   const label = clean(s.label ?? '');
   const items = (s.cards ?? []).map((c) => ({label: clean(c.big), detail: clean(c.small ?? '') || undefined}));
 
+  if (kind === 'scale' && s.scale) {
+    return (
+      <Frame {...base} label={label} title={s.text ?? ''}>
+        <Scale {...s.scale} />
+        {s.chips && <InfoRows rows={s.chips.map((c) => ({left: clean(c)}))} />}
+      </Frame>
+    );
+  }
+  if (kind === 'chat' && s.chat) {
+    return (
+      <Frame {...base} label={label} title={s.text ?? ''}>
+        <Chat items={s.chat.map((c) => ({side: c.side, text: clean(c.text)}))} />
+      </Frame>
+    );
+  }
+  if (kind === 'swap' && s.swap) {
+    return (
+      <Frame {...base} label={label} title={s.text ?? ''}>
+        <Swap from={clean(s.swap.from)} to={clean(s.swap.to)} />
+        {s.stat && <Split big={clean(s.stat.big)} sub={clean(s.stat.sub ?? '')} lines={items} />}
+      </Frame>
+    );
+  }
   if (kind === 'plain') {
     return (
       <Frame {...base} label={label} title={s.text ?? ''}>
