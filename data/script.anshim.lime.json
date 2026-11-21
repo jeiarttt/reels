@@ -1,0 +1,179 @@
+{
+  "mode": "card_news",
+  "theme": "lime",
+  "style": "photo",
+  "backgroundSrc": "",
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "id": "20261121-청년안심주택-lime",
+  "brand": "2030 상경러",
+  "bgDim": 0.2,
+  "titleStroke": 3,
+  "titleFont": "Dunggeun",
+  "titleFx": "pop",
+  "hookSec": 2.8,
+  "ctaSec": 3.2,
+  "hook": "다음 주 마감!\n서울 청년안심주택\n[[11곳]]",
+  "hookLabel": "",
+  "hookSub": "",
+  "hookBg": {
+    "src": "stock/pexels-34443159.jpg",
+    "type": "image",
+    "position": "50% 50%"
+  },
+  "cta": "댓글에 [[청안]]\n남기면 단지 표를\nDM으로 보내드려요",
+  "ctaBg": {
+    "src": "stock/pexels-32604487.jpg",
+    "type": "image",
+    "position": "50% 50%"
+  },
+  "scenes": [
+    {
+      "t": 3.0,
+      "kind": "table",
+      "no": "언제",
+      "label": "마감은 이때까지",
+      "table": {
+        "head": [
+          "날짜",
+          "마감 단지"
+        ],
+        "rows": [
+          [
+            "11/23(월)",
+            "7곳"
+          ],
+          [
+            "11/24(화)",
+            "세이지움 개봉·유니트125"
+          ],
+          [
+            "11/25(수)",
+            "인히어쌍문·미아 헤리츠타워"
+          ]
+        ]
+      },
+      "bg": {
+        "src": "stock/pexels-28353121.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    },
+    {
+      "t": 3.0,
+      "kind": "split",
+      "no": "몇 곳",
+      "text": "이번에 올라온 곳",
+      "stat": {
+        "big": "11곳",
+        "sub": "11/19 공고"
+      },
+      "cards": [
+        {
+          "big": "호실 지정 추가모집 8곳(15세대)"
+        },
+        {
+          "big": "예비자 모집 3곳(빈 호실 나오면 순차)"
+        }
+      ],
+      "bg": {
+        "src": "stock/pexels-16583796.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    },
+    {
+      "t": 3.0,
+      "kind": "table",
+      "no": "얼마",
+      "label": "타입·호실별로 달라요",
+      "table": {
+        "head": [
+          "단지",
+          "보증금·월세"
+        ],
+        "rows": [
+          [
+            "청계로벤하임",
+            "1억 8,870만 · 월 25.7만"
+          ],
+          [
+            "인히어쌍문",
+            "2,880만 · 월 36.1만"
+          ],
+          [
+            "제이스타상봉",
+            "5,300만 · 월 42.6만"
+          ],
+          [
+            "서초꽃마을 주얼리",
+            "6,700만 · 월 50만대"
+          ]
+        ]
+      },
+      "bg": {
+        "src": "stock/pexels-38921436.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.45
+    },
+    {
+      "t": 3.0,
+      "kind": "text",
+      "no": "자격",
+      "text": "누가 신청해요?",
+      "chips": [
+        "모집공고일 기준 만 19~39세",
+        "신청자·입주 예정 세대원 모두 무주택",
+        "자동차 가액 4,542만 원 이내"
+      ],
+      "bg": {
+        "src": "stock/pexels-6447393.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    },
+    {
+      "t": 3.0,
+      "kind": "text",
+      "no": "확인",
+      "text": "신청 전에 꼭",
+      "chips": [
+        "1인 1타입만 신청(중복 시 모두 탈락)",
+        "소득·자산 기준은 단지마다 달라요",
+        "반려동물도 단지별로 달라요"
+      ],
+      "bg": {
+        "src": "stock/pexels-19309651.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    }
+  ],
+  "caption": "서울 청년안심주택 추가모집, 다음 주 월~수 마감이에요 🏢\n11월 19일 공고 11곳: 호실 지정 추가모집 8곳(합계 15세대) + 예비자 모집 3곳\n💰 예: 청계로벤하임 보증금 1억 8,870만 원·월 25.7만 원, 인히어쌍문 2,880만 원·월 36.1만 원, 제이스타상봉 5,300만 원·월 42.6만 원 (타입·호실별로 달라요)\n💌 단지별 마감·세대·보증금·월세 표는 댓글에 \"청안\"이라고 남겨 주세요! DM으로 보내드려요\n(2026년 11월 21일 서울주거포털 공고 기준 · 최종 조건과 마감 시각은 각 단지 공고문에서 확인하세요)\n\n#청년안심주택 #서울청년주택 #자취 #상경러 #주거 #청년혜택",
+  "hashtags": [
+    "#청년안심주택",
+    "#서울청년주택",
+    "#자취",
+    "#상경러",
+    "#주거",
+    "#청년혜택"
+  ],
+  "sources": [
+    "https://soco.seoul.go.kr/youth/bbs/BMSR00015/list.do?menuNo=400008",
+    "https://soco.seoul.go.kr/youth/bbs/BMSR00015/view.do?boardId=6805&menuNo=400008",
+    "https://soco.seoul.go.kr/youth/bbs/BMSR00015/view.do?boardId=6800&menuNo=400008",
+    "https://soco.seoul.go.kr/youth/bbs/BMSR00015/view.do?boardId=6804&menuNo=400008",
+    "https://soco.seoul.go.kr/youth/bbs/BMSR00015/view.do?boardId=6803&menuNo=400008"
+  ],
+  "verify_before_post": [
+    "공식 출처 확인 여부: 서울주거포털 청년안심주택 모집공고 게시판과 공고문 PDF 11건(2026-11-19 게시)을 직접 열어 확인함 / 단지별 청약신청 페이지(외부 주소)는 열지 못함",
+    "금액은 공고문의 타입·호실별 기준 금액이라 계약 호실에 따라 일부 달라질 수 있음",
+    "세대 수·마감 시각은 변동될 수 있으니 올리기 직전 한 번 더 확인"
+  ]
+}
