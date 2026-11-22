@@ -13,7 +13,7 @@
   "titleFx": "pop",
   "hookSec": 2.8,
   "ctaSec": 3.2,
-  "hook": "혼인신고\n[[올해]] 할까?\n내년에 할까?",
+  "hook": "혼인신고\n[[올해]] 할까?\n[[내년에]] 할까?",
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
