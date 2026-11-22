@@ -1,0 +1,160 @@
+{
+  "mode": "card_news",
+  "theme": "lime",
+  "style": "photo",
+  "backgroundSrc": "",
+  "accentColor": "#2457F5",
+  "status": "pending",
+  "id": "20261122-혼인신고-lime",
+  "brand": "2030 상경러",
+  "bgDim": 0.2,
+  "titleStroke": 3,
+  "titleFont": "Dunggeun",
+  "titleFx": "pop",
+  "hookSec": 2.8,
+  "ctaSec": 3.2,
+  "hook": "혼인신고\n[[올해]] vs 내년",
+  "hookLabel": "",
+  "hookSub": "",
+  "hookBg": {
+    "src": "stock/simple-sky-pale.jpg",
+    "type": "image",
+    "position": "50% 50%"
+  },
+  "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
+  "ctaBg": {
+    "src": "stock/simple-sky-blue.jpg",
+    "type": "image",
+    "position": "50% 50%"
+  },
+  "scenes": [
+    {
+      "t": 3.0,
+      "kind": "text",
+      "no": "올해",
+      "text": "올해 신고하면",
+      "chips": [
+        "부부 각각 50만 원 세액공제",
+        "혼인신고한 해에 생애 1회",
+        "2026년 신고분까지 적용"
+      ],
+      "bg": {
+        "src": "stock/simple-cloud-teal.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    },
+    {
+      "t": 3.0,
+      "kind": "split",
+      "no": "내년",
+      "text": "2027년 예산안",
+      "stat": {
+        "big": "100만 원",
+        "sub": "혼인지원금 신설"
+      },
+      "cards": [
+        {
+          "big": "혼인신고한 부부에게 생애 한 번"
+        },
+        {
+          "big": "국회 심의 전이라 바뀔 수 있어요"
+        }
+      ],
+      "bg": {
+        "src": "stock/simple-corner-sky.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    },
+    {
+      "t": 3.0,
+      "kind": "split",
+      "no": "부모",
+      "text": "부모·조부모 증여",
+      "stat": {
+        "big": "+1억",
+        "sub": "증여세 공제"
+      },
+      "cards": [
+        {
+          "big": "혼인신고 전후 2년 안에 받은 증여"
+        },
+        {
+          "big": "배우자 부모님은 해당 안 돼요"
+        }
+      ],
+      "bg": {
+        "src": "stock/simple-sky-deep.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    },
+    {
+      "t": 3.0,
+      "kind": "split",
+      "no": "대출",
+      "text": "디딤돌대출 소득 기준",
+      "stat": {
+        "big": "8,500만",
+        "sub": "신혼 · 일반은 6천만"
+      },
+      "cards": [
+        {
+          "big": "부부합산 연소득 기준"
+        },
+        {
+          "big": "신혼 = 혼인신고 7년 이내"
+        }
+      ],
+      "bg": {
+        "src": "stock/simple-desk-gray.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.45
+    },
+    {
+      "t": 3.0,
+      "kind": "text",
+      "no": "확인",
+      "text": "신고 전에 꼭",
+      "chips": [
+        "세금·대출은 개인 상황마다 달라요",
+        "큰돈이 걸리면 세무서·은행에서 확인",
+        "혼인지원금은 국회 확정 전이에요"
+      ],
+      "bg": {
+        "src": "stock/simple-sky-blue.jpg",
+        "type": "image",
+        "position": "50% 50%"
+      },
+      "dim": 0.4
+    }
+  ],
+  "caption": "혼인신고, 올해 할까 내년에 할까? 💍\n올해: 부부 각각 50만 원 세액공제(생애 1회, 2026년 신고분까지) / 내년: 2027년 예산안에 혼인지원금 100만 원 신설(국회 심의 전)\n💰 혼인신고 전후 2년 안에 부모·조부모에게 받으면 증여세 공제 +1억 원\n🏠 디딤돌대출 소득 기준: 일반 부부합산 6천만 원, 신혼(혼인신고 7년 이내) 8,500만 원 이하\n💌 조건·신청 방법 총정리는 댓글을 남겨 주시면 DM으로 보내드려요!\n(2026년 11월 22일 정부 발표 기준 · 세금·대출은 개인 상황마다 달라요, 세무서·은행에서 확인하세요)\n\n#혼인신고 #혼인세액공제 #혼인지원금 #신혼부부 #디딤돌대출 #재테크",
+  "hashtags": [
+    "#혼인신고",
+    "#혼인세액공제",
+    "#혼인지원금",
+    "#신혼부부",
+    "#디딤돌대출",
+    "#재테크"
+  ],
+  "sources": [
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148969897",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148971827",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148970791",
+    "https://www.korea.kr/news/policyNewsView.do?newsId=148932056",
+    "https://www.hf.go.kr/ko/sub01/sub01_02_01.do"
+  ],
+  "verify_before_post": [
+    "공식 출처 확인 여부: 정책브리핑 4건은 직접 열어 확인, 국세청·주택금융공사·법제처 원문은 직접 열지 못함 / 혼인세액공제의 12/31 날짜·낸 세금 한도는 법령 원문 미확인이라 영상에 쓰지 않음(정책브리핑 '24~'26 표기만 확인)",
+    "혼인지원금은 2027년 예산안(국회 심의 전) — 올리기 전 국회 확정 여부 재확인",
+    "증여 1억 공제·디딤돌 기준은 검색 결과로 확인(국세청·주택금융공사 원문 페이지는 직접 열지 못함)",
+    "디딤돌 신혼 한도 3.2억·금리 +0.3%p·1세대 2주택 비과세 특례는 미확인이라 제외"
+  ]
+}
