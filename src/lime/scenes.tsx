@@ -187,6 +187,26 @@ const NumRow: React.FC<{it: {label: string; detail?: string}; i: number; no: num
 };
 
 /** 세로 타임라인: 라임 선 위에 번호 동그라미가 이어지고 오른쪽에 글자 */
+
+/** 카드 한 장 안에 항목을 묶는다. numbered면 라임 번호 동그라미(+작은 설명), 아니면 체크 줄 */
+const BoxCard: React.FC<{items: {label: string; detail?: string}[]; numbered?: boolean}> = ({items, numbered}) => {
+  const p = useBounce(14);
+  return (
+    <div style={{borderRadius: 34, background: CARD, boxShadow: '0 12px 32px rgba(0,0,0,0.3)', padding: '20px 52px', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - Math.min(p, 1)) * 48}px) rotate(-0.8deg)`}}>
+      {items.map((it, i) => (
+        <div key={i} style={{display: 'flex', alignItems: 'center', gap: 30, padding: '30px 0', borderTop: i ? '2px solid rgba(0,0,0,0.1)' : 'none'}}>
+          {numbered && <div style={{flex: '0 0 66px', width: 66, height: 66, borderRadius: '50%', background: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 34}}>{i + 1}</div>}
+          <div style={{flex: 1}}>
+            <div style={{color: INK, fontWeight: 800, fontSize: numbered ? 46 : 44, lineHeight: 1.25, letterSpacing: -1.5}}>{it.label}</div>
+            {it.detail && <div style={{color: INK_SUB, fontWeight: 700, fontSize: 36, lineHeight: 1.3, letterSpacing: -1, marginTop: 6}}>{it.detail}</div>}
+          </div>
+          {!numbered && <Check />}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Timeline: React.FC<{items: {label: string; detail?: string}[]}> = ({items}) => {
   const lineP = Math.min(useIn(10), 1);
   return (
@@ -368,6 +388,13 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
       <Frame {...base} fill label={label} title={s.text ?? ''}>
         <Swap from={clean(s.swap.from)} to={clean(s.swap.to)} />
         {s.stat && <Split big={clean(s.stat.big)} sub={clean(s.stat.sub ?? '')} lines={items} />}
+      </Frame>
+    );
+  }
+  if (kind === 'box') {
+    return (
+      <Frame {...base} title={s.text ?? label}>
+        <BoxCard items={items} numbered={s.boxNum} />
       </Frame>
     );
   }
