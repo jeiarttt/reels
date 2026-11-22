@@ -82,6 +82,8 @@ export type Script = {
   hookBg?: Bg;
   scenes: Scene[];
   ctaLabel?: string;
+  /** 라임: 마지막 컷 위 작은 글자(없으면 brand). 예: "저장하고 팔로우" */
+  ctaBrand?: string;
   cta: string;
   ctaBg?: Bg;
   /** 귀여운 테마: 배경 어둡기(0~0.6). 밝은 사진이면 낮춘다. 기본 0.3 */
