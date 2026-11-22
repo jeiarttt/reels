@@ -17,13 +17,13 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/simple-sky-pale.jpg",
+    "src": "stock/jeju-4.jpg",
     "type": "image",
-    "position": "50% 50%"
+    "position": "50% 70%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/simple-sky-blue.jpg",
+    "src": "stock/jeju-4.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -39,7 +39,7 @@
         "2026년 신고분까지 적용"
       ],
       "bg": {
-        "src": "stock/simple-cloud-teal.jpg",
+        "src": "stock/jeju-3.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -63,7 +63,7 @@
         }
       ],
       "bg": {
-        "src": "stock/simple-corner-sky.jpg",
+        "src": "stock/jeju-5.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -87,7 +87,7 @@
         }
       ],
       "bg": {
-        "src": "stock/simple-sky-deep.jpg",
+        "src": "stock/jeju-6.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -111,7 +111,7 @@
         }
       ],
       "bg": {
-        "src": "stock/simple-desk-gray.jpg",
+        "src": "stock/jeju-7.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -128,7 +128,7 @@
         "혼인지원금은 국회 확정 전이에요"
       ],
       "bg": {
-        "src": "stock/simple-sky-blue.jpg",
+        "src": "stock/jeju-3.jpg",
         "type": "image",
         "position": "50% 50%"
       },
