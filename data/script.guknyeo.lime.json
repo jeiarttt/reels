@@ -12,8 +12,8 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 2.8,
-  "ctaSec": 3.2,
+  "hookSec": 3.1,
+  "ctaSec": 5.1,
   "hook": "신청 안 하면\n[[월 60만 원]]\n못 받아요",
   "hookLabel": "",
   "hookSub": "",
@@ -60,10 +60,11 @@
           ]
         ]
       },
-      "narration": "매달 60만 원씩, 최대 6개월 받아요!"
+      "narration": "매달 60만 원씩, 최대 6개월 받아요!",
+      "voice": "voice/guknyeo-1.mp3"
     },
     {
-      "t": 3.8,
+      "t": 4.6,
       "kind": "table",
       "no": "대상",
       "label": "누가 신청해요?",
@@ -97,10 +98,11 @@
         "position": "50% 50%"
       },
       "dim": 0.4,
-      "narration": "청년은 가족 소득이 중간 가구의 1.2배 이하면 돼요."
+      "narration": "청년은 가족 소득이 중간 가구의 1.2배 이하면 돼요.",
+      "voice": "voice/guknyeo-2.mp3"
     },
     {
-      "t": 3.4,
+      "t": 4.2,
       "kind": "box",
       "boxNum": false,
       "no": "제외",
@@ -122,10 +124,11 @@
         "position": "50% 50%"
       },
       "dim": 0.4,
-      "narration": "주 30시간 이상 일하거나, 실업급여를 받으면 안 돼요."
+      "narration": "주 30시간 이상 일하거나, 실업급여를 받으면 안 돼요.",
+      "voice": "voice/guknyeo-3.mp3"
     },
     {
-      "t": 3.6,
+      "t": 5.1,
       "kind": "box",
       "boxNum": false,
       "no": "대안",
@@ -147,10 +150,11 @@
         "position": "50% 50%"
       },
       "dim": 0.4,
-      "narration": "1유형이 안 돼도 2유형이 있어요. 청년은 소득 상관없어요."
+      "narration": "1유형이 안 돼도 2유형이 있어요. 청년은 소득 상관없어요.",
+      "voice": "voice/guknyeo-4.mp3"
     },
     {
-      "t": 4.0,
+      "t": 4.9,
       "kind": "box",
       "boxNum": true,
       "no": "신청",
@@ -176,10 +180,11 @@
         "position": "50% 50%"
       },
       "dim": 0.4,
-      "narration": "고용24에서 등록하고 신청하면, 한 달쯤 뒤 결과가 나와요."
+      "narration": "고용24에서 등록하고 신청하면, 한 달쯤 뒤 결과가 나와요.",
+      "voice": "voice/guknyeo-5.mp3"
     },
     {
-      "t": 3.4,
+      "t": 4.2,
       "kind": "table",
       "no": "주의",
       "label": "받는 동안 꼭",
@@ -209,7 +214,8 @@
         "position": "50% 50%"
       },
       "dim": 0.4,
-      "narration": "매달 구직활동을 해야 받고, 소득은 꼭 신고해요."
+      "narration": "매달 구직활동을 해야 받고, 소득은 꼭 신고해요.",
+      "voice": "voice/guknyeo-6.mp3"
     }
   ],
   "caption": "취업 준비 중이라면 국민취업지원제도 구직촉진수당을 확인해 보세요 💼 소득·재산 요건을 충족하면 월 60만 원씩 최대 6개월(신청은 고용24·고용센터)\n💌 대상 요건·신청 방법 총정리는 댓글을 남겨 주시면 DM으로 보내드려요! (2026년 11월 23일 고용24 안내 기준 · 요건에 따라 지급이 안 될 수 있어요)\n\n#국민취업지원제도 #구직촉진수당 #취업준비 #청년혜택 #재테크 #자취꿀팁",
@@ -236,5 +242,7 @@
     "2유형(청년 15~34세 소득·재산·취업경험 무관, 중장년 35~69세 소득 중위 100% 이하)은 고용24 취업지원신청 소개에서 확인. 수당 금액은 영상에 쓰지 않음"
   ],
   "hookNarration": "신청 안 하면, 월 60만 원 못 받아요.",
-  "ctaNarration": "신청 기간 놓치지 않게 저장하고, 총정리는 댓글로 받아가세요."
+  "ctaNarration": "신청 기간 놓치지 않게 저장하고, 총정리는 댓글로 받아가세요.",
+  "hookVoice": "voice/guknyeo-hook.mp3",
+  "ctaVoice": "voice/guknyeo-cta.mp3"
 }
