@@ -348,7 +348,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
         <div style={{position: 'relative', marginBottom: fill ? 20 : 48, textAlign: 'left'}}>
           {no && <NumTracker no={no} total={noTotal ?? 6} style={rise(p0)} />}
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, wordBreak: 'keep-all', ...stroke, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, wordBreak: 'keep-all', ...stroke, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
           </div>
           {!title.includes('[[') && !desc && <Wave style={{marginTop: 18}} />}
