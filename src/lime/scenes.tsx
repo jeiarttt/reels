@@ -69,7 +69,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
             {clean(brand)}
           </SoftBubble>
         )}
-        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
+        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
               <Rich text={ln} marker fx={fx} fxStart={8} fxTotal={fxAll} fxOffset={lines.slice(0, i).join('').replace(/\[\[|\]\]/g, '').replace(/\s/g, '').length} />
@@ -505,7 +505,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
       <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
-          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 110, lineHeight: 1.4, letterSpacing: '-0.02em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
+          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 110, lineHeight: 1.4, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={text} fx={fx} fxStart={8} />
           </div>
           <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />
