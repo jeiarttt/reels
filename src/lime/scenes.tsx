@@ -100,14 +100,27 @@ const InfoRows: React.FC<{rows: Row[]}> = ({rows}) => (
   </div>
 );
 
+/** 카드 안 글자에서 [[강조]]를 형광 칸으로 보여 준다 */
+const Em: React.FC<{text: string}> = ({text}) => (
+  <>
+    {text.split(/(\[\[[^\]]*\]\])/g).map((part, k) =>
+      part.startsWith('[[') && part.endsWith(']]') ? (
+        <span key={k} style={{background: ACCENT, color: INK, fontWeight: 900, borderRadius: 12, padding: '2px 16px', margin: '0 2px'}}>{part.slice(2, -2)}</span>
+      ) : (
+        <React.Fragment key={k}>{part}</React.Fragment>
+      ),
+    )}
+  </>
+);
+
 const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
   const p = useBounce(16 + i * 8);
   const tilt = [-1.4, 1.1, -0.9, 1.3][i % 4];
   const single = r.right === undefined;
   return (
     <div style={{minHeight: 172, borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', padding: '28px 56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 48}px) rotate(${tilt}deg)`}}>
-      <div style={{color: single ? INK : INK_ACCENT, fontWeight: 800, fontSize: single ? 50 : 42, lineHeight: 1.25, letterSpacing: -1.5}}>{r.left}</div>
-      {single ? <Check /> : <div style={{color: INK_SUB, fontWeight: 700, fontSize: 42, lineHeight: 1.25, letterSpacing: -1.5, textAlign: 'right'}}>{r.right}</div>}
+      <div style={{color: single ? INK : INK_ACCENT, fontWeight: 800, fontSize: single ? 50 : 42, lineHeight: 1.25, letterSpacing: -1.5}}><Em text={r.left} /></div>
+      {single ? <Check /> : <div style={{color: INK_SUB, fontWeight: 700, fontSize: 42, lineHeight: 1.25, letterSpacing: -1.5, textAlign: 'right'}}><Em text={r.right ?? ''} /></div>}
     </div>
   );
 };
