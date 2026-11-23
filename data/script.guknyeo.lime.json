@@ -12,8 +12,8 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 3.1,
-  "ctaSec": 5.1,
+  "hookSec": 2.8,
+  "ctaSec": 4.6,
   "hook": "신청 안 하면\n[[월 60만 원]]\n못 받아요",
   "hookLabel": "",
   "hookSub": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 3.4,
+      "t": 3.1,
       "kind": "table",
       "no": "금액",
       "bg": {
@@ -64,7 +64,7 @@
       "voice": "voice/guknyeo-1.mp3"
     },
     {
-      "t": 4.6,
+      "t": 4.1,
       "kind": "table",
       "no": "대상",
       "label": "누가 신청해요?",
@@ -102,7 +102,7 @@
       "voice": "voice/guknyeo-2.mp3"
     },
     {
-      "t": 4.2,
+      "t": 3.7,
       "kind": "box",
       "boxNum": false,
       "no": "제외",
@@ -128,7 +128,7 @@
       "voice": "voice/guknyeo-3.mp3"
     },
     {
-      "t": 5.1,
+      "t": 4.5,
       "kind": "box",
       "boxNum": false,
       "no": "대안",
@@ -154,7 +154,7 @@
       "voice": "voice/guknyeo-4.mp3"
     },
     {
-      "t": 4.9,
+      "t": 4.4,
       "kind": "box",
       "boxNum": true,
       "no": "신청",
@@ -184,7 +184,7 @@
       "voice": "voice/guknyeo-5.mp3"
     },
     {
-      "t": 4.2,
+      "t": 3.8,
       "kind": "table",
       "no": "주의",
       "label": "받는 동안 꼭",
