@@ -3,7 +3,7 @@
 // 사용: node scripts/fit-voice.mjs data/script.xxx.json [여유초=0.5] [--write]
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
-const [file, padArg, flag] = process.argv.slice(2);
+const [file, padArg] = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 if (!file) { console.error('대본 파일이 필요해요'); process.exit(1); }
 const pad = Number(padArg ?? 0.5);
 const write = process.argv.includes('--write');
