@@ -18,7 +18,7 @@ export type CompareData = {leftTitle: string; leftItems: string[]; rightTitle: s
 
 export type Scene = {
   t: number;
-  kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid' | 'checklist' | 'flow' | 'plain' | 'list' | 'timeline' | 'split' | 'scale' | 'chat' | 'swap' | 'box' | 'ncards' | 'dark';
+  kind?: 'text' | 'cards' | 'table' | 'steps' | 'stat' | 'compare' | 'grid' | 'checklist' | 'flow' | 'plain' | 'list' | 'timeline' | 'split' | 'scale' | 'chat' | 'swap' | 'box';
   /** 라임 스타일 장식 도형 모양(burst·sparkle·ring·plus·dots·moon). 생략하면 컷마다 돌려 쓴다 */
   shape?: string;
   /** 글자 컷 아래에 붙이는 작은 알약 문구 */
