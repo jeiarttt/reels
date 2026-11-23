@@ -1,5 +1,5 @@
 import React from 'react';
-import {AbsoluteFill, Sequence} from 'remotion';
+import {AbsoluteFill, Audio, Sequence, staticFile} from 'remotion';
 import type {Bg, Script} from '../types';
 import {Background} from '../components/Background';
 import {ctaSecOf, FPS, hookSecOf} from '../Root';
@@ -37,6 +37,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
     <Sequence key="hook" from={cursor} durationInFrames={hookFrames}>
       <Backdrop bg={pick(script, script.hookBg)} frames={hookFrames} dim={dim} blur={script.bgBlur ?? 0} />
       <LimeCover frames={hookFrames} label={script.hookLabel} sub={script.hookSub} text={script.hook} brand={script.brand} mark={script.hookMark} />
+      {script.hookVoice && <Audio src={staticFile(script.hookVoice)} volume={script.voiceVolume ?? 1} />}
     </Sequence>,
   );
   cursor += hookFrames;
@@ -47,6 +48,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
       <Sequence key={`s${i}`} from={cursor} durationInFrames={frames}>
         <Backdrop bg={pick(script, s.bg)} frames={frames} dim={s.dim ?? dim} blur={script.bgBlur ?? 0} />
         <LimeScene s={s} frames={frames} index={i + 1} total={total - 1} brand={script.brand} />
+        {s.voice && <Audio src={staticFile(s.voice)} volume={script.voiceVolume ?? 1} />}
       </Sequence>,
     );
     cursor += frames;
@@ -56,6 +58,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
     <Sequence key="cta" from={cursor} durationInFrames={ctaFrames}>
       <Backdrop bg={pick(script, script.ctaBg)} frames={ctaFrames} dim={dim} blur={script.bgBlur ?? 0} />
       <LimeCta frames={ctaFrames} label={script.ctaLabel} text={script.cta} brand={script.ctaBrand ?? script.brand} icon={script.ctaIcon} />
+      {script.ctaVoice && <Audio src={staticFile(script.ctaVoice)} volume={script.voiceVolume ?? 1} />}
     </Sequence>,
   );
 

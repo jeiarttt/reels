@@ -41,6 +41,9 @@ export type Scene = {
   scale?: {min: number; max: number; from: number; to: number; mark: number; unit?: string};
   /** 라임 chat 컷: 질문(q, 오른쪽 검정)·답(a, 왼쪽 아이보리) 말풍선 */
   chat?: {side: 'q' | 'a'; text: string}[];
+  /** 컷별 나레이션 글과 음성 파일 */
+  narration?: string;
+  voice?: string;
   /** 라임 box 컷: true면 번호 동그라미(1·2·3), 아니면 체크 줄. cards 항목을 카드 한 장 안에 묶는다 */
   boxNum?: boolean;
   /** 라임 swap 컷: 강 → 약 처럼 바꾸는 모습 */
@@ -82,6 +85,12 @@ export type Script = {
   hookBg?: Bg;
   scenes: Scene[];
   ctaLabel?: string;
+  /** 음성 나레이션: 대본 글과 public/ 안 음성 파일(예: 'voice/hook.mp3'). 파일이 있으면 해당 컷에서 재생 */
+  hookNarration?: string;
+  hookVoice?: string;
+  ctaNarration?: string;
+  ctaVoice?: string;
+  voiceVolume?: number;
   /** 라임: 마지막 컷 위 작은 글자(없으면 brand). 예: "저장하고 팔로우" */
   ctaBrand?: string;
   cta: string;
