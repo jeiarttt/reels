@@ -18,13 +18,13 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/simple-sky-pale.jpg",
+    "src": "stock/pexels-8534385.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/simple-sky-deep.jpg",
+    "src": "stock/pexels-2505120.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -59,7 +59,7 @@
         ]
       },
       "bg": {
-        "src": "stock/simple-cloud-teal.jpg",
+        "src": "stock/pexels-442574.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -83,7 +83,7 @@
         }
       ],
       "bg": {
-        "src": "stock/simple-desk-white.jpg",
+        "src": "stock/pexels-8960464.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -108,7 +108,7 @@
         }
       ],
       "bg": {
-        "src": "stock/simple-sky-blue.jpg",
+        "src": "stock/pexels-8534180.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -140,7 +140,7 @@
         ]
       },
       "bg": {
-        "src": "stock/simple-corner-sky.jpg",
+        "src": "stock/pexels-30047570.jpg",
         "type": "image",
         "position": "50% 50%"
       },
