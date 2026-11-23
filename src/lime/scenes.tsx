@@ -207,6 +207,46 @@ const BoxCard: React.FC<{items: {label: string; detail?: string}[]; numbered?: b
   );
 };
 
+/** 번호 원 + 카드 한 장씩: 검정 번호 원(형광 숫자) · 굵은 제목 · 올리브색 작은 설명 */
+const NumCards: React.FC<{items: {label: string; detail?: string}[]; start?: number}> = ({items, start = 1}) => (
+  <div style={{display: 'flex', flexDirection: 'column', gap: 24}}>
+    {items.map((it, i) => (
+      <NumCardRow key={i} it={it} n={i + start} i={i} />
+    ))}
+  </div>
+);
+const NumCardRow: React.FC<{it: {label: string; detail?: string}; n: number; i: number}> = ({it, n, i}) => {
+  const p = useBounce(14 + i * 8);
+  return (
+    <div style={{display: 'flex', alignItems: 'center', gap: 32, minHeight: 150, borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.26)', padding: '26px 44px', wordBreak: 'keep-all', ...rise(p)}}>
+      <div style={{flex: '0 0 76px', width: 76, height: 76, borderRadius: '50%', background: '#000', color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 40, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{n}</div>
+      <div style={{flex: 1}}>
+        <div style={{color: INK, fontWeight: 800, fontSize: 46, lineHeight: 1.25, letterSpacing: -1.5}}>{it.label}</div>
+        {it.detail && <div style={{color: '#6A7E00', fontWeight: 700, fontSize: 36, lineHeight: 1.3, letterSpacing: -1, marginTop: 6}}>{it.detail}</div>}
+      </div>
+    </div>
+  );
+};
+
+/** 어두운 카드: 형광 제목 줄 + 가는 구분선 + 흰 본문 줄 */
+const DarkCards: React.FC<{items: {label: string; detail?: string}[]}> = ({items}) => (
+  <div style={{display: 'flex', flexDirection: 'column', gap: 24}}>
+    {items.map((it, i) => (
+      <DarkCardRow key={i} it={it} i={i} />
+    ))}
+  </div>
+);
+const DarkCardRow: React.FC<{it: {label: string; detail?: string}; i: number}> = ({it, i}) => {
+  const p = useBounce(14 + i * 8);
+  return (
+    <div style={{borderRadius: 28, background: 'rgba(39,43,36,0.95)', border: '1.5px solid rgba(230,255,101,0.3)', boxShadow: '0 10px 28px rgba(0,0,0,0.3)', padding: '30px 48px', wordBreak: 'keep-all', ...rise(p)}}>
+      <div style={{color: ACCENT, fontWeight: 800, fontSize: 46, lineHeight: 1.25, letterSpacing: -1.5}}>{it.label}</div>
+      {it.detail && <div style={{height: 2, background: 'rgba(230,255,101,0.3)', margin: '18px 0'}} />}
+      {it.detail && <div style={{color: '#F7F8F3', fontWeight: 700, fontSize: 40, lineHeight: 1.3, letterSpacing: -1}}>{it.detail}</div>}
+    </div>
+  );
+};
+
 const Timeline: React.FC<{items: {label: string; detail?: string}[]}> = ({items}) => {
   const lineP = Math.min(useIn(10), 1);
   return (
@@ -388,6 +428,20 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
       <Frame {...base} fill label={label} title={s.text ?? ''}>
         <Swap from={clean(s.swap.from)} to={clean(s.swap.to)} />
         {s.stat && <Split big={clean(s.stat.big)} sub={clean(s.stat.sub ?? '')} lines={items} />}
+      </Frame>
+    );
+  }
+  if (kind === 'ncards') {
+    return (
+      <Frame {...base} title={s.text ?? label}>
+        <NumCards items={items} start={s.numStart ?? 1} />
+      </Frame>
+    );
+  }
+  if (kind === 'dark') {
+    return (
+      <Frame {...base} title={s.text ?? label}>
+        <DarkCards items={items} />
       </Frame>
     );
   }
