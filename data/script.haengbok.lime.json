@@ -12,8 +12,8 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 5.7,
-  "ctaSec": 4.5,
+  "hookSec": 4.6,
+  "ctaSec": 3.7,
   "hook": "서울 행복주택\n[[월세 7만 원대]]\n12/1 오후 5시 마감",
   "hookLabel": "",
   "hookSub": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 5.8,
+      "t": 4.7,
       "kind": "table",
       "no": "월세",
       "label": "월세 얼마예요?",
@@ -64,7 +64,7 @@
       "voice": "voice/haengbok-1.mp3"
     },
     {
-      "t": 6.3,
+      "t": 5.1,
       "kind": "box",
       "boxNum": false,
       "no": "대상",
@@ -93,7 +93,7 @@
       "voice": "voice/haengbok-2.mp3"
     },
     {
-      "t": 3.7,
+      "t": 2.9,
       "kind": "table",
       "no": "단지",
       "label": "어느 단지예요?",
@@ -127,7 +127,7 @@
       "voice": "voice/haengbok-3.mp3"
     },
     {
-      "t": 5.3,
+      "t": 4.3,
       "kind": "box",
       "boxNum": true,
       "no": "신청",
@@ -158,7 +158,7 @@
       "voice": "voice/haengbok-4.mp3"
     },
     {
-      "t": 5.4,
+      "t": 4.4,
       "kind": "table",
       "no": "주의",
       "label": "꼭 알아두세요",
