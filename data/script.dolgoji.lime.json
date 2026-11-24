@@ -18,13 +18,13 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-16583796.jpg",
+    "src": "stock/pexels-31730305.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-16583796.jpg",
+    "src": "stock/pexels-31730305.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -35,11 +35,11 @@
       "no": "대상",
       "label": "일반공급 신청 대상",
       "bg": {
-        "src": "stock/pexels-32604487.jpg",
+        "src": "stock/pexels-3943727.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.48,
+      "dim": 0.5,
       "table": {
         "head": [
           "구분",
@@ -72,11 +72,11 @@
       "no": "월세",
       "label": "일반공급 월세는?",
       "bg": {
-        "src": "stock/pexels-34443159.jpg",
+        "src": "stock/pexels-7054399.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.48,
+      "dim": 0.5,
       "table": {
         "head": [
           "구분",
@@ -110,11 +110,11 @@
       "no": "신청",
       "text": "이렇게 신청해요",
       "bg": {
-        "src": "stock/pexels-38921436.jpg",
+        "src": "stock/pexels-38277660.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.48,
+      "dim": 0.5,
       "cards": [
         {
           "big": "단지 홈페이지 hut2026.com",
@@ -141,11 +141,11 @@
       "no": "주의",
       "label": "꼭 알아두세요",
       "bg": {
-        "src": "stock/pexels-6447393.jpg",
+        "src": "stock/pexels-4056856.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.48,
+      "dim": 0.5,
       "table": {
         "head": [
           "구분",
