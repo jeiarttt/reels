@@ -18,15 +18,15 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-6052793.jpg",
+    "src": "stock/pexels-39429446.jpg",
     "type": "image",
-    "position": "62% 50%"
+    "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-6052793.jpg",
+    "src": "stock/pexels-39429446.jpg",
     "type": "image",
-    "position": "62% 50%"
+    "position": "50% 50%"
   },
   "scenes": [
     {
@@ -35,7 +35,7 @@
       "no": "기간",
       "label": "언제까지 열어요?",
       "bg": {
-        "src": "stock/pexels-5466785.jpg",
+        "src": "stock/pexels-33643675.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -73,7 +73,7 @@
       "no": "혜택",
       "text": "어떤 적금이에요?",
       "bg": {
-        "src": "stock/pexels-3943727.jpg",
+        "src": "stock/pexels-13671765.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -98,7 +98,7 @@
       "no": "만기",
       "label": "만기에 얼마예요?",
       "bg": {
-        "src": "stock/pexels-6694543.jpg",
+        "src": "stock/pexels-16113732.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -136,7 +136,7 @@
       "no": "개설",
       "text": "이렇게 열어요",
       "bg": {
-        "src": "stock/pexels-7054399.jpg",
+        "src": "stock/pexels-33643675.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -164,7 +164,7 @@
       "no": "갈아타기",
       "label": "청년도약계좌 쓰는 분",
       "bg": {
-        "src": "stock/pexels-3943727.jpg",
+        "src": "stock/pexels-13671765.jpg",
         "type": "image",
         "position": "50% 50%"
       },
