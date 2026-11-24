@@ -12,8 +12,8 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 3.5,
-  "ctaSec": 3.4,
+  "hookSec": 3.8,
+  "ctaSec": 3.6,
   "hook": "청년미래적금\n아직 개설 안 했다면?\n[[11/27]] 개설 마감",
   "hookLabel": "",
   "hookSub": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 4.1,
+      "t": 4.5,
       "kind": "table",
       "no": "기간",
       "label": "언제까지 개설해요?",
@@ -68,7 +68,7 @@
       "voice": "voice/mirae-1.mp3"
     },
     {
-      "t": 4.5,
+      "t": 4.9,
       "kind": "box",
       "boxNum": false,
       "no": "혜택",
@@ -95,7 +95,7 @@
       "voice": "voice/mirae-2.mp3"
     },
     {
-      "t": 6.7,
+      "t": 7.3,
       "kind": "table",
       "no": "만기",
       "label": "만기에 얼마예요?",
@@ -133,7 +133,7 @@
       "voice": "voice/mirae-3.mp3"
     },
     {
-      "t": 3.2,
+      "t": 3.5,
       "kind": "box",
       "boxNum": true,
       "no": "개설",
@@ -163,7 +163,7 @@
       "voice": "voice/mirae-4.mp3"
     },
     {
-      "t": 3.8,
+      "t": 4.1,
       "kind": "table",
       "no": "갈아타기",
       "label": "청년도약계좌 쓰는 분",
