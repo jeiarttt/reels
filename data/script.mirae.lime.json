@@ -8,7 +8,7 @@
   "id": "20261124-청년미래적금-lime",
   "brand": "2차 심사 통과",
   "ctaBrand": "개설 기간 놓치지 않게 저장해 두세요",
-  "bgDim": 0.2,
+  "bgDim": 0.5,
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
@@ -18,15 +18,15 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-8534385.jpg",
+    "src": "stock/pexels-6052793.jpg",
     "type": "image",
-    "position": "50% 50%"
+    "position": "62% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-8534385.jpg",
+    "src": "stock/pexels-6052793.jpg",
     "type": "image",
-    "position": "50% 50%"
+    "position": "62% 50%"
   },
   "scenes": [
     {
@@ -35,11 +35,11 @@
       "no": "기간",
       "label": "언제까지 열어요?",
       "bg": {
-        "src": "stock/pexels-8960464.jpg",
+        "src": "stock/pexels-5466785.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.4,
+      "dim": 0.62,
       "table": {
         "head": [
           "구분",
@@ -73,11 +73,11 @@
       "no": "혜택",
       "text": "어떤 적금이에요?",
       "bg": {
-        "src": "stock/pexels-30047570.jpg",
+        "src": "stock/pexels-3943727.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.4,
+      "dim": 0.62,
       "cards": [
         {
           "big": "3년 만기 · 월 최대 50만 원"
@@ -98,11 +98,11 @@
       "no": "만기",
       "label": "만기에 얼마예요?",
       "bg": {
-        "src": "stock/pexels-2505120.jpg",
+        "src": "stock/pexels-6694543.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.4,
+      "dim": 0.62,
       "table": {
         "head": [
           "구분",
@@ -136,11 +136,11 @@
       "no": "개설",
       "text": "이렇게 열어요",
       "bg": {
-        "src": "stock/pexels-8534180.jpg",
+        "src": "stock/pexels-7054399.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.4,
+      "dim": 0.62,
       "cards": [
         {
           "big": "신청했던 은행 앱 열기"
@@ -164,11 +164,11 @@
       "no": "갈아타기",
       "label": "청년도약계좌 쓰는 분",
       "bg": {
-        "src": "stock/pexels-442574.jpg",
+        "src": "stock/pexels-3943727.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.4,
+      "dim": 0.62,
       "table": {
         "head": [
           "순서",
