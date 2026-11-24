@@ -63,7 +63,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const titleSize = Math.min(110, Math.floor(900 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 72, right: 72, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+      <div style={{position: 'absolute', left: 84, right: 84, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
           <SoftBubble bg="#000" color={TITLE} fontSize={52} px={52} py={19} tail={43} shift={9} style={{marginBottom: 60, ...rise(pPill)}}>
             {clean(brand)}
@@ -118,7 +118,7 @@ const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
   const tilt = [-1.4, 1.1, -0.9, 1.3][i % 4];
   const single = r.right === undefined;
   return (
-    <div style={{minHeight: 172, borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', padding: '28px 56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24, wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 48}px) rotate(${tilt}deg)`}}>
+    <div style={{minHeight: 172, borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', padding: '28px 44px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20, wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - p) * 48}px) rotate(${tilt}deg)`}}>
       <div style={{color: single ? INK : INK_ACCENT, fontWeight: 800, fontSize: single ? 50 : 42, lineHeight: 1.25, letterSpacing: -1.5}}><Em text={r.left} /></div>
       {single ? <Check /> : <div style={{color: INK_SUB, fontWeight: 700, fontSize: 42, lineHeight: 1.25, letterSpacing: -1.5, textAlign: 'right'}}><Em text={r.right ?? ''} /></div>}
     </div>
@@ -357,7 +357,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
   const stroke = useTitleStroke();
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 72, right: 72, top: fill ? 170 : 0, bottom: fill ? 210 : 96, display: 'flex', flexDirection: 'column', justifyContent: fill ? 'flex-start' : 'center'}}>
+      <div style={{position: 'absolute', left: 84, right: 84, top: fill ? 170 : 0, bottom: fill ? 210 : 96, display: 'flex', flexDirection: 'column', justifyContent: fill ? 'flex-start' : 'center'}}>
         <div style={{position: 'relative', marginBottom: fill ? 20 : 48, textAlign: 'left'}}>
           {no && <NumTracker no={no} total={noTotal ?? 6} style={rise(p0)} />}
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
@@ -515,7 +515,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
   const fx = useContext(TitleFxContext);
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 64, right: 64, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+      <div style={{position: 'absolute', left: 80, right: 80, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
           <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 110, lineHeight: 1.4, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
