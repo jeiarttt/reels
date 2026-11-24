@@ -24,7 +24,7 @@
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-31730305.jpg",
+    "src": "stock/pexels-38277660.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -141,7 +141,7 @@
       "no": "주의",
       "label": "꼭 알아두세요",
       "bg": {
-        "src": "stock/pexels-4056856.jpg",
+        "src": "stock/pexels-31730305.jpg",
         "type": "image",
         "position": "50% 50%"
       },
