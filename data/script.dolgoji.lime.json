@@ -24,7 +24,7 @@
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-38277660.jpg",
+    "src": "stock/pexels-30254621.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -35,7 +35,7 @@
       "no": "대상",
       "label": "일반공급 신청 대상",
       "bg": {
-        "src": "stock/pexels-3943727.jpg",
+        "src": "stock/pexels-38804860.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -72,7 +72,7 @@
       "no": "월세",
       "label": "일반공급 월세는?",
       "bg": {
-        "src": "stock/pexels-7054399.jpg",
+        "src": "stock/pexels-35758419.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -141,7 +141,7 @@
       "no": "주의",
       "label": "꼭 알아두세요",
       "bg": {
-        "src": "stock/pexels-31730305.jpg",
+        "src": "stock/pexels-34725803.jpg",
         "type": "image",
         "position": "50% 50%"
       },
