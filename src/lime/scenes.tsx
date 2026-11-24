@@ -60,7 +60,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const stroke = useTitleStroke();
   const fx = useContext(TitleFxContext);
   const fxAll = [...text.replace(/\[\[|\]\]/g, '').replace(/\s/g, '')].length;
-  const titleSize = Math.min(110, Math.floor(900 / (longest * 0.75)));
+  const titleSize = Math.min(110, Math.floor(860 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
       <div style={{position: 'absolute', left: 84, right: 84, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
