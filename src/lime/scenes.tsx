@@ -125,6 +125,43 @@ const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
   );
 };
 
+
+/** 3칸 이상 표: 검정 머리줄 + 아이보리 카드 안에 줄마다 값을 나란히 보여 준다 */
+const GridTable: React.FC<{head: string[]; rows: string[][]}> = ({head, rows}) => {
+  const p0 = useBounce(14);
+  const cols = `${Math.round(880 * 0.2)}px repeat(${head.length - 1}, 1fr)`;
+  return (
+    <div style={{borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', overflow: 'hidden', wordBreak: 'keep-all', ...rise(p0), transform: `translateY(${(1 - Math.min(p0, 1)) * 48}px)`}}>
+      <div style={{display: 'grid', gridTemplateColumns: cols, background: '#000', padding: '26px 34px', gap: 18}}>
+        {head.map((h, i) => (
+          <div key={i} style={{color: ACCENT, fontWeight: 800, fontSize: 38, letterSpacing: -1, WebkitTextStroke: '0px transparent', textShadow: 'none', textAlign: i === 0 ? 'left' : 'center'}}>{clean(h)}</div>
+        ))}
+      </div>
+      {rows.map((r, ri) => (
+        <GridRow key={ri} r={r} ri={ri} cols={cols} />
+      ))}
+    </div>
+  );
+};
+
+const GridRow: React.FC<{r: string[]; ri: number; cols: string}> = ({r, ri, cols}) => {
+  const p = useBounce(24 + ri * 10);
+  return (
+    <div style={{display: 'grid', gridTemplateColumns: cols, gap: 18, padding: '40px 34px', alignItems: 'center', borderTop: ri ? '3px solid rgba(20,23,19,0.1)' : undefined, opacity: Math.min(p, 1), transform: `translateY(${(1 - Math.min(p, 1)) * 28}px)`}}>
+      {r.map((c, ci) => {
+        const lines = clean(c).split('\n');
+        return (
+          <div key={ci} style={{textAlign: ci === 0 ? 'left' : 'center'}}>
+            {lines.map((ln, li) => (
+              <div key={li} style={{color: ci === 0 ? (li === 0 ? INK_ACCENT : INK_SUB) : li === 0 ? INK : INK_SUB, fontWeight: li === 0 ? 800 : 700, fontSize: ci === 0 ? (li === 0 ? 40 : 32) : li === 0 ? 40 : 36, lineHeight: 1.5, letterSpacing: -1.2, WebkitTextStroke: '0px transparent', textShadow: 'none'}}><Em text={ln} /></div>
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 type Step = {n: string; label: string; detail?: string};
 
 const StepCards: React.FC<{steps: Step[]; noNum?: boolean}> = ({steps, noNum}) => (
@@ -351,7 +388,7 @@ const NumTracker: React.FC<{no: string; total: number; style?: React.CSSProperti
 };
 
 /** 본문 공통 틀: 상단 로고, 라벨·제목·설명, 아래쪽 내용, 별 */
-const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; fill?: boolean; no?: string; noSub?: string; noTotal?: number; children?: React.ReactNode}> = ({no, noTotal, fill, count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
+const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index: number; total: number; brand?: string; label?: string; title: string; desc?: string; wide?: boolean; fill?: boolean; no?: string; noSub?: string; noTotal?: number; titleSize?: number; children?: React.ReactNode}> = ({no, noTotal, titleSize, fill, count, shape, frames, index, total, brand, label, title, desc, wide, children}) => {
   const p0 = useIn(2);
   const p1 = useIn(6);
   const stroke = useTitleStroke();
@@ -361,7 +398,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
         <div style={{position: 'relative', marginBottom: fill ? 20 : 48, textAlign: 'left'}}>
           {no && <NumTracker no={no} total={noTotal ?? 6} style={rise(p0)} />}
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
-          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 100, lineHeight: 1.3, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, wordBreak: 'keep-all', ...stroke, ...rise(p1)}}>
+          <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize ?? 100, lineHeight: 1.3, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, wordBreak: 'keep-all', ...stroke, ...rise(p1)}}>
             <Rich text={title} marker count={count} />
           </div>
           {!title.includes('[[') && !desc && <Wave style={{marginTop: 18}} />}
@@ -377,7 +414,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
 /** 스크립트의 한 컷(kind)을 라임 레이아웃으로 바꿔 그린다 */
 export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total: number; brand?: string}> = ({s, frames, index, total, brand}) => {
   const kind = s.kind ?? 'text';
-  const base = {frames, index, total, brand, shape: (s.shape as ShapeKind | undefined), no: s.no, noTotal: 6};
+  const base = {frames, index, total, brand, shape: (s.shape as ShapeKind | undefined), no: s.no, noTotal: 6, titleSize: s.titleSize};
   const label = clean(s.label ?? '');
   const items = (s.cards ?? []).map((c) => ({label: clean(c.big), detail: clean(c.small ?? '') || undefined}));
 
@@ -452,6 +489,13 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
     return (
       <Frame {...base} count label={label} title={`[[${clean(s.stat.big)}]]`} desc={clean(s.stat.sub ?? '')}>
         <InfoRows rows={(s.cards ?? []).map((c) => ({left: clean(c.big)}))} />
+      </Frame>
+    );
+  }
+  if (kind === 'table' && s.table && s.table.head.length >= 3) {
+    return (
+      <Frame {...base} title={label} desc={s.desc ? clean(s.desc) : undefined}>
+        <GridTable head={s.table.head} rows={s.table.rows} />
       </Frame>
     );
   }

@@ -30,6 +30,10 @@ export type Scene = {
   decoPos?: 'tl' | 'tr' | 'bl' | 'br';
   decoText?: string;
   label?: string;
+  /** 라임: 제목 아래 작은 설명 한 줄(3칸 이상 표 컷 등) */
+  desc?: string;
+  /** 라임: 본문 제목 글자 크기(기본 100) */
+  titleSize?: number;
   /** 라임 번호 칸(steps·list)의 시작 번호 보정(예: 1이면 02부터) */
   numStart?: number;
   /** 라임: 제목 위에 붙는 번호 배지(예: '01', '02·03', '덤')와 옆 작은 글자(예: '6가지 중') */
