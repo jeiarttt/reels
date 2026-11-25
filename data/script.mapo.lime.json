@@ -35,11 +35,11 @@
       "no": "대상",
       "label": "누가 신청해요?",
       "bg": {
-        "src": "stock/pexels-4818714.jpg",
+        "src": "stock/pexels-27675608.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.45,
+      "dim": 0.25,
       "table": {
         "head": [
           "구분",
@@ -72,11 +72,11 @@
       "no": "임대료",
       "label": "소득 50% 이하 임대료",
       "bg": {
-        "src": "stock/pexels-434139.jpg",
+        "src": "stock/pexels-19335249.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.45,
+      "dim": 0.25,
       "table": {
         "head": [
           "구분",
@@ -110,11 +110,11 @@
       "no": "신청",
       "text": "이렇게 신청해요",
       "bg": {
-        "src": "stock/pexels-10812868.jpg",
+        "src": "stock/pexels-13205708.jpg",
         "type": "image",
         "position": "50% 50%"
       },
-      "dim": 0.45,
+      "dim": 0.25,
       "cards": [
         {
           "big": "서류를 하나씩 스캔",
@@ -141,11 +141,11 @@
       "no": "선정",
       "label": "어떻게 뽑아요?",
       "bg": {
-        "src": "stock/pexels-358636.jpg",
+        "src": "stock/pexels-27675608.jpg",
         "type": "image",
-        "position": "50% 50%"
+        "position": "50% 100%"
       },
-      "dim": 0.45,
+      "dim": 0.25,
       "table": {
         "head": [
           "구분",
@@ -179,11 +179,11 @@
       "no": "유의",
       "text": "꼭 알아두세요",
       "bg": {
-        "src": "stock/pexels-18193138.jpg",
+        "src": "stock/pexels-19335249.jpg",
         "type": "image",
-        "position": "50% 50%"
+        "position": "50% 0%"
       },
-      "dim": 0.45,
+      "dim": 0.25,
       "cards": [
         {
           "big": "공동체 교육·활동에 참여해야 해요"
