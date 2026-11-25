@@ -512,7 +512,7 @@ const FollowCard: React.FC<{id: string; sub?: string; avatar?: string}> = ({id, 
   const f = useCurrentFrame();
   const pulse = 1 + 0.035 * Math.sin(Math.max(0, f - 40) / 6);
   return (
-    <div style={{marginTop: 56, width: '100%', boxSizing: 'border-box', background: '#000', borderRadius: 48, padding: '38px 44px', display: 'flex', alignItems: 'center', gap: 32, boxShadow: '0 10px 28px rgba(0,0,0,0.4)', ...rise(p)}}>
+    <div style={{marginTop: 56, width: '100%', boxSizing: 'border-box', background: '#000', borderRadius: 48, padding: '38px 44px', display: 'flex', alignItems: 'center', gap: 32, ...rise(p)}}>
       {avatar ? (
         <Img src={staticFile(avatar)} style={{width: 112, height: 112, borderRadius: '50%', objectFit: 'cover', flex: '0 0 112px'}} />
       ) : (
