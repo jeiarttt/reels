@@ -337,7 +337,7 @@ const Swap: React.FC<{from: string; to: string}> = ({from, to}) => {
 
 /** 번호 배지: 이 컷에 해당하는 번호만 라임 알약으로(예: 01 / 02 03 / 덤) */
 const NumTracker: React.FC<{no: string; total: number; style?: React.CSSProperties}> = ({no, style}) => {
-  const nums = no.match(/\d+/g);
+  const nums = /[가-힣]/.test(no) ? null : no.match(/\d+/g); // 한글이 섞인 글(예: '5가지 중 첫째')은 숫자만 뽑지 않고 그대로 보여 준다
   const labels = nums ? nums.map((n) => pad(Number(n))) : [no];
   return (
     <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 26, ...style}}>
