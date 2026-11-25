@@ -512,7 +512,7 @@ const FollowCard: React.FC<{id: string; sub?: string; avatar?: string}> = ({id, 
   const f = useCurrentFrame();
   const pulse = 1 + 0.035 * Math.sin(Math.max(0, f - 40) / 6);
   return (
-    <div style={{marginTop: 84, width: '100%', boxSizing: 'border-box', background: '#000', borderRadius: 48, padding: '38px 44px', display: 'flex', alignItems: 'center', gap: 32, boxShadow: '0 10px 28px rgba(0,0,0,0.4)', ...rise(p)}}>
+    <div style={{marginTop: 56, width: '100%', boxSizing: 'border-box', background: '#000', borderRadius: 48, padding: '38px 44px', display: 'flex', alignItems: 'center', gap: 32, boxShadow: '0 10px 28px rgba(0,0,0,0.4)', ...rise(p)}}>
       {avatar ? (
         <Img src={staticFile(avatar)} style={{width: 112, height: 112, borderRadius: '50%', objectFit: 'cover', flex: '0 0 112px'}} />
       ) : (
@@ -536,10 +536,10 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
   const fx = useContext(TitleFxContext);
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 80, right: 80, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
-        {brand && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
+      <div style={{position: 'absolute', left: 80, right: 80, top: 0, bottom: follow ? 110 : 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+        {brand && !follow && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
-          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 110, lineHeight: 1.4, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
+          <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: follow ? 96 : 110, lineHeight: 1.4, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
             <Rich text={text} fx={fx} fxStart={8} />
           </div>
           <Star w={92} kind="sparkle" style={{right: -70, top: -78}} delay={14} />
@@ -554,6 +554,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
             {clean(label)}
           </div>
         )}
+        {follow && brand && <div style={{marginTop: 40, color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 38, letterSpacing: '-0.02em', textShadow: SHADOW, ...rise(p2)}}>{clean(brand)}</div>}
         {follow && <FollowCard id={follow.id} sub={follow.sub} avatar={follow.avatar} />}
       </div>
     </Fade>
