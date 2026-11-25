@@ -12,7 +12,7 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 4.5,
+  "hookSec": 3.8,
   "ctaSec": 4,
   "hook": "[[내일 18시]] 마감\n양재동 청년 임대주택\n단 2호만 모집",
   "hookLabel": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 5,
+      "t": 4.2,
       "dim": 0.25,
       "kind": "table",
       "no": "대상",
@@ -65,7 +65,8 @@
         ]
       },
       "narration": "미혼 무주택 청년, 1인 세대 월 457만 6천 원 이하예요.",
-      "titleSize": 88
+      "titleSize": 88,
+      "voice": "voice/yangjae-1.mp3"
     },
     {
       "t": 5,
@@ -99,10 +100,11 @@
         ]
       },
       "narration": "보증금 8,820만 원이면 원룸이 월 30만 원대예요.",
-      "titleSize": 88
+      "titleSize": 88,
+      "voice": "voice/yangjae-2.mp3"
     },
     {
-      "t": 5,
+      "t": 4,
       "dim": 0.25,
       "kind": "box",
       "boxNum": true,
@@ -131,10 +133,11 @@
         }
       ],
       "narration": "홈페이지에 가입해서 서류 올리고, 설문까지 쓰세요.",
-      "titleSize": 88
+      "titleSize": 88,
+      "voice": "voice/yangjae-3.mp3"
     },
     {
-      "t": 5,
+      "t": 3.4,
       "dim": 0.25,
       "kind": "box",
       "boxNum": false,
@@ -160,10 +163,11 @@
         }
       ],
       "narration": "자격이 맞는 사람 중, 신청서와 설문 점수로 뽑아요.",
-      "titleSize": 88
+      "titleSize": 88,
+      "voice": "voice/yangjae-4.mp3"
     },
     {
-      "t": 5,
+      "t": 4.1,
       "dim": 0.25,
       "kind": "box",
       "boxNum": false,
@@ -189,7 +193,8 @@
         }
       ],
       "narration": "전세대출과 보증보험은 안 되고, 신청 후엔 취소도 못 해요.",
-      "titleSize": 88
+      "titleSize": 88,
+      "voice": "voice/yangjae-5.mp3"
     }
   ],
   "caption": "마포구 연남동 신혼부부·청년 맞춤형 공공임대(공동체주택) 8세대를 추가 모집해요!\n\n🏠 접수는 12/4(금) 18시까지 이메일로만 가능하고, 보낸 뒤 전화 확인도 꼭 해야 해요. 신청 자격·임대료·서류는 총정리로 정리했어요\n\n💌 총정리는 댓글을 남겨 주시면 DM으로 보내드려요!\n(2026년 11월 18일 마포구 공고 기준 · 일정과 기준은 변경될 수 있어요)\n\n#마포구 #공동체주택 #신혼부부 #청년주거 #청년혜택 #자취팁",
@@ -216,5 +221,7 @@
   "ctaNarration": "마감 놓치지 않게 저장하고, 총정리는 댓글로 받아가세요.",
   "followId": "rich_the_doggy",
   "followSub": "재테크•자취꿀팁•청년혜택",
-  "followAvatar": "profile/rich_the_doggy.jpg"
+  "followAvatar": "profile/rich_the_doggy.jpg",
+  "hookVoice": "voice/yangjae-hook.mp3",
+  "ctaVoice": "voice/yangjae-cta.mp3"
 }
