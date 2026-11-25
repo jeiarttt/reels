@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
@@ -506,8 +506,29 @@ export const LimeScene: React.FC<{s: Scene; frames: number; index: number; total
   return <Frame {...base} title={label} />;
 };
 
+/** 마지막 화면 팔로우 카드: 프로필 + 라임 팔로우 버튼(누를 수 없는 그림이라 손가락은 그리지 않는다) */
+const FollowCard: React.FC<{id: string; sub?: string; avatar?: string}> = ({id, sub, avatar}) => {
+  const p = useIn(26);
+  const f = useCurrentFrame();
+  const pulse = 1 + 0.035 * Math.sin(Math.max(0, f - 40) / 6);
+  return (
+    <div style={{marginTop: 64, width: '100%', boxSizing: 'border-box', background: CARD, borderRadius: 44, padding: '26px 36px', display: 'flex', alignItems: 'center', gap: 28, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', ...rise(p)}}>
+      {avatar ? (
+        <Img src={staticFile(avatar)} style={{width: 112, height: 112, borderRadius: '50%', objectFit: 'cover', flex: '0 0 112px'}} />
+      ) : (
+        <div style={{width: 112, height: 112, flex: '0 0 112px', borderRadius: '50%', background: ACCENT, border: `5px solid ${BG}`, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 56}}>{[...id][0]?.toUpperCase()}</div>
+      )}
+      <div style={{flex: 1, minWidth: 0, textAlign: 'left', wordBreak: 'keep-all'}}>
+        <div style={{color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 44, letterSpacing: '-0.02em', lineHeight: 1.2, whiteSpace: 'nowrap'}}>{id}</div>
+        {sub && <div style={{color: INK_SUB, fontWeight: 700, fontSize: 32, lineHeight: 1.3, marginTop: 6, letterSpacing: -0.5}}>{sub}</div>}
+      </div>
+      <div style={{flex: '0 0 auto', background: ACCENT, color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 44, letterSpacing: '-0.02em', padding: '20px 40px', borderRadius: 999, border: `4px solid ${INK}`, transform: `scale(${pulse})`}}>팔로우</div>
+    </div>
+  );
+};
+
 /** 마지막 화면: 화면 가운데 가운데 정렬 문구 + 라임 버튼 + 아래쪽 트랙 */
-export const LimeCta: React.FC<{frames: number; label?: string; text: string; brand?: string; icon?: 'bookmark' | 'comment'}> = ({frames, label, text, brand, icon = 'bookmark'}) => {
+export const LimeCta: React.FC<{frames: number; label?: string; text: string; brand?: string; icon?: 'bookmark' | 'comment'; follow?: {id: string; sub?: string; avatar?: string}}> = ({frames, label, text, brand, icon = 'bookmark', follow}) => {
   const p0 = useIn(2);
   const p1 = useIn(8);
   const p2 = useIn(16);
@@ -533,6 +554,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
             {clean(label)}
           </div>
         )}
+        {follow && <FollowCard id={follow.id} sub={follow.sub} avatar={follow.avatar} />}
       </div>
     </Fade>
   );

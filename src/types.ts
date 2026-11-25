@@ -93,6 +93,12 @@ export type Script = {
   voiceVolume?: number;
   /** 라임: 마지막 컷 위 작은 글자(없으면 brand). 예: "저장하고 팔로우" */
   ctaBrand?: string;
+  /** 라임: 마지막 컷 팔로우 카드(계정 아이디). 없으면 카드를 그리지 않는다 */
+  followId?: string;
+  /** 팔로우 카드 아래 한 줄 소개 */
+  followSub?: string;
+  /** 팔로우 카드 프로필 사진(public 기준 경로). 없으면 첫 글자 원 */
+  followAvatar?: string;
   cta: string;
   ctaBg?: Bg;
   /** 귀여운 테마: 배경 어둡기(0~0.6). 밝은 사진이면 낮춘다. 기본 0.3 */

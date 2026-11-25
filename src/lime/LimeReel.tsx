@@ -57,7 +57,7 @@ export const LimeReel: React.FC<{script: Script}> = ({script}) => {
   blocks.push(
     <Sequence key="cta" from={cursor} durationInFrames={ctaFrames}>
       <Backdrop bg={pick(script, script.ctaBg)} frames={ctaFrames} dim={dim} blur={script.bgBlur ?? 0} />
-      <LimeCta frames={ctaFrames} label={script.ctaLabel} text={script.cta} brand={script.ctaBrand ?? script.brand} icon={script.ctaIcon} />
+      <LimeCta frames={ctaFrames} label={script.ctaLabel} text={script.cta} brand={script.ctaBrand ?? script.brand} icon={script.ctaIcon} follow={script.followId ? {id: script.followId, sub: script.followSub, avatar: script.followAvatar} : undefined} />
       {script.ctaVoice && <Audio src={staticFile(script.ctaVoice)} volume={script.voiceVolume ?? 1} />}
     </Sequence>,
   );
