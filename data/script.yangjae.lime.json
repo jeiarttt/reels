@@ -18,15 +18,15 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-3137040.jpg",
+    "src": "stock/yj-34165409.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-28506754.jpg",
+    "src": "stock/yj-28506754.jpg",
     "type": "image",
-    "position": "50% 20%"
+    "position": "50% 50%"
   },
   "scenes": [
     {
@@ -36,7 +36,7 @@
       "no": "대상",
       "label": "누가 신청해요?",
       "bg": {
-        "src": "stock/pexels-4067525.jpg",
+        "src": "stock/yj-4067525.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -75,7 +75,7 @@
       "label": "보증금별 월세",
       "desc": "보증금을 늘리면 월세가 줄어요",
       "bg": {
-        "src": "stock/pexels-34165409.jpg",
+        "src": "stock/yj-323705.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -109,7 +109,7 @@
       "no": "신청",
       "text": "이렇게 신청해요",
       "bg": {
-        "src": "stock/pexels-323705.jpg",
+        "src": "stock/yj-34165409-m.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -141,7 +141,7 @@
       "no": "선정",
       "text": "어떻게 뽑아요?",
       "bg": {
-        "src": "stock/pexels-16846525.jpg",
+        "src": "stock/yj-4067525-m.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -170,7 +170,7 @@
       "no": "유의",
       "text": "꼭 알아두세요",
       "bg": {
-        "src": "stock/pexels-15476145.jpg",
+        "src": "stock/yj-323705-m.jpg",
         "type": "image",
         "position": "50% 50%"
       },
