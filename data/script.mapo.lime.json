@@ -12,8 +12,8 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 4.2,
-  "ctaSec": 4.0,
+  "hookSec": 5.1,
+  "ctaSec": 3.8,
   "hook": "[[12/4 18시]] 마감\n마포구 공동체주택\n이메일로만 접수",
   "hookLabel": "",
   "hookSub": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 5.0,
+      "t": 4.8,
       "kind": "table",
       "no": "대상",
       "label": "누가 신청해요?",
@@ -64,10 +64,11 @@
           ]
         ]
       },
-      "narration": "서울 무주택 청년·신혼부부, 월평균소득 70% 이하예요."
+      "narration": "서울 무주택 청년·신혼부부, 월평균소득 70% 이하예요.",
+      "voice": "voice/mapo-1.mp3"
     },
     {
-      "t": 5.4,
+      "t": 6.3,
       "kind": "table",
       "no": "임대료",
       "label": "소득 50% 이하 임대료",
@@ -101,10 +102,11 @@
           ]
         ]
       },
-      "narration": "소득 50% 이하면 보증금과 함께 청년 월 30만 원대, 신혼 월 37만 원부터예요."
+      "narration": "소득 50% 이하면 보증금과 함께 청년 월 30만 원대, 신혼 월 37만 원부터예요.",
+      "voice": "voice/mapo-2.mp3"
     },
     {
-      "t": 5.4,
+      "t": 3.7,
       "kind": "box",
       "boxNum": true,
       "no": "신청",
@@ -133,10 +135,11 @@
           "small": "우편·방문 접수는 안 돼요"
         }
       ],
-      "narration": "서류를 이메일로 보내고, 전화로 접수 확인까지 하세요."
+      "narration": "서류를 이메일로 보내고, 전화로 접수 확인까지 하세요.",
+      "voice": "voice/mapo-3.mp3"
     },
     {
-      "t": 4.6,
+      "t": 3.9,
       "kind": "table",
       "no": "선정",
       "label": "어떻게 뽑아요?",
@@ -170,10 +173,11 @@
           ]
         ]
       },
-      "narration": "마포구민이 1순위, 같은 순위는 점수 높은 순이에요."
+      "narration": "마포구민이 1순위, 같은 순위는 점수 높은 순이에요.",
+      "voice": "voice/mapo-4.mp3"
     },
     {
-      "t": 4.6,
+      "t": 3.2,
       "kind": "box",
       "boxNum": false,
       "no": "유의",
@@ -196,7 +200,8 @@
           "small": "확인 없이 신청한 책임은 본인에게 있어요"
         }
       ],
-      "narration": "입주하면 공동체 교육과 활동에 참여해야 해요."
+      "narration": "입주하면 공동체 교육과 활동에 참여해야 해요.",
+      "voice": "voice/mapo-5.mp3"
     }
   ],
   "caption": "마포구 연남동 신혼부부·청년 맞춤형 공공임대(공동체주택) 8세대를 추가 모집해요!\n\n🏠 접수는 12/4(금) 18시까지 이메일로만 가능하고, 보낸 뒤 전화 확인도 꼭 해야 해요. 신청 자격·임대료·서류는 총정리로 정리했어요\n\n💌 총정리는 댓글을 남겨 주시면 DM으로 보내드려요!\n(2026년 11월 18일 마포구 공고 기준 · 일정과 기준은 변경될 수 있어요)\n\n#마포구 #공동체주택 #신혼부부 #청년주거 #청년혜택 #자취팁",
@@ -223,5 +228,7 @@
   "ctaNarration": "마감 놓치지 않게 저장하고, 총정리는 댓글로 받아가세요.",
   "followId": "rich_the_doggy",
   "followSub": "재테크•자취꿀팁•청년혜택",
-  "followAvatar": "profile/rich_the_doggy.jpg"
+  "followAvatar": "profile/rich_the_doggy.jpg",
+  "hookVoice": "voice/mapo-hook.mp3",
+  "ctaVoice": "voice/mapo-cta.mp3"
 }
