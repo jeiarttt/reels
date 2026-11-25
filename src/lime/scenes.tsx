@@ -516,13 +516,13 @@ const FollowCard: React.FC<{id: string; sub?: string; avatar?: string}> = ({id, 
       {avatar ? (
         <Img src={staticFile(avatar)} style={{width: 112, height: 112, borderRadius: '50%', objectFit: 'cover', flex: '0 0 112px'}} />
       ) : (
-        <div style={{width: 112, height: 112, flex: '0 0 112px', borderRadius: '50%', background: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 56}}>{[...id][0]?.toUpperCase()}</div>
+        <div style={{width: 112, height: 112, flex: '0 0 112px', borderRadius: '50%', background: ACCENT, display: 'flex', alignItems: 'center', justifyContent: 'center', color: INK, fontFamily: FONT, fontWeight: 800, fontSize: 56, WebkitTextStroke: '0px transparent', textShadow: 'none'}}>{[...id][0]?.toUpperCase()}</div>
       )}
       <div style={{flex: 1, minWidth: 0, textAlign: 'left', wordBreak: 'keep-all'}}>
-        <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 44, letterSpacing: '-0.02em', lineHeight: 1.2, whiteSpace: 'nowrap'}}>{id}</div>
-        {sub && <div style={{color: DESC, fontWeight: 700, fontSize: 32, lineHeight: 1.3, marginTop: 6, letterSpacing: -0.5}}>{sub}</div>}
+        <div style={{color: TITLE, fontFamily: FONT, fontWeight: 800, fontSize: 44, letterSpacing: '-0.02em', lineHeight: 1.2, whiteSpace: 'nowrap', WebkitTextStroke: '0px transparent', textShadow: 'none'}}>{id}</div>
+        {sub && <div style={{color: DESC, fontWeight: 700, fontSize: 32, lineHeight: 1.3, marginTop: 6, letterSpacing: -0.5, WebkitTextStroke: '0px transparent', textShadow: 'none'}}>{sub}</div>}
       </div>
-      <div style={{flex: '0 0 auto', background: ACCENT, color: INK, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 44, letterSpacing: '-0.02em', padding: '20px 40px', borderRadius: 999, transform: `scale(${pulse})`}}>팔로우</div>
+      <div style={{flex: '0 0 auto', background: ACCENT, color: INK, fontFamily: FONT, fontWeight: 700, fontSize: 36, letterSpacing: '-0.02em', padding: '20px 40px', borderRadius: 999, WebkitTextStroke: '0px transparent', textShadow: 'none', transform: `scale(${pulse})`}}>팔로우</div>
     </div>
   );
 };
