@@ -60,10 +60,10 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const stroke = useTitleStroke();
   const fx = useContext(TitleFxContext);
   const fxAll = [...text.replace(/\[\[|\]\]/g, '').replace(/\s/g, '')].length;
-  const titleSize = Math.min(110, Math.floor(860 / (longest * 0.75)));
+  const titleSize = Math.min(110, Math.floor(830 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 84, right: 84, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+      <div style={{position: 'absolute', left: 100, right: 100, top: 0, bottom: 96, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && (
           <SoftBubble bg="#000" color={TITLE} fontSize={52} px={52} py={19} tail={43} shift={9} style={{marginBottom: 60, ...rise(pPill)}}>
             {clean(brand)}
@@ -357,7 +357,7 @@ const Frame: React.FC<{count?: boolean; shape?: ShapeKind; frames: number; index
   const stroke = useTitleStroke();
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 84, right: 84, top: fill ? 170 : 0, bottom: fill ? 210 : 96, display: 'flex', flexDirection: 'column', justifyContent: fill ? 'flex-start' : 'center'}}>
+      <div style={{position: 'absolute', left: 100, right: 100, top: fill ? 170 : 0, bottom: fill ? 210 : 96, display: 'flex', flexDirection: 'column', justifyContent: fill ? 'flex-start' : 'center'}}>
         <div style={{position: 'relative', marginBottom: fill ? 20 : 48, textAlign: 'left'}}>
           {no && <NumTracker no={no} total={noTotal ?? 6} style={rise(p0)} />}
           {label && <div style={{color: ACCENT, fontWeight: 800, fontSize: 44, lineHeight: 1.16, letterSpacing: -1.5, marginBottom: 28, textShadow: SHADOW, ...rise(p0)}}>{label}</div>}
@@ -536,7 +536,7 @@ export const LimeCta: React.FC<{frames: number; label?: string; text: string; br
   const fx = useContext(TitleFxContext);
   return (
     <Fade frames={frames}>
-      <div style={{position: 'absolute', left: 80, right: 80, top: 0, bottom: follow ? 110 : 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
+      <div style={{position: 'absolute', left: 96, right: 96, top: 0, bottom: follow ? 110 : 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center'}}>
         {brand && !follow && <div style={{color: ACCENT, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: 36, letterSpacing: '-0.02em', marginBottom: 48, textShadow: SHADOW, ...rise(p0)}}>{clean(brand)}</div>}
         <div style={{position: 'relative'}}>
           <div style={{color: CTA_TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: follow ? 96 : 110, lineHeight: 1.4, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
