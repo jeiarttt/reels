@@ -18,13 +18,13 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-28506754.jpg",
+    "src": "stock/pexels-4256870.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-33566793.jpg",
+    "src": "stock/pexels-4067525.jpg",
     "type": "image",
     "position": "50% 50%"
   },
