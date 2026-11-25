@@ -147,9 +147,14 @@ const tokens = new Set([
   ...(hookPlain.match(/20\d\d년?/g) ?? []),
   ...(hookPlain.match(/\d[\d,.]*(?:%|원|만원|일|개월|년|세|명|단계|가지|곳|배)/g) ?? []),
 ]);
+// '5가지' 같은 개수 약속은 컷 번호 칩이 '1/5 … 5/5'로 매겨져 있으면 본문에서 지킨 것으로 본다
+const countChipsOk = (t) => {
+  const m = t.match(/^(\d+)가지$/);
+  return !!m && (s.scenes ?? []).filter((sc) => new RegExp(`^\\d+\\s*/\\s*${m[1]}$`).test((sc.no ?? '').trim())).length >= Number(m[1]);
+};
 for (const t of tokens) {
   const core = t.replace(/년$/, '');
-  if (!body.includes(t.replace(/\s/g, '')) && !body.includes(core))
+  if (!body.includes(t.replace(/\s/g, '')) && !body.includes(core) && !countChipsOk(t))
     err(`후킹의 "${t}" 가 본문에 나오지 않아요. 후킹이 약속한 내용이 본문에 있어야 해요`);
 }
 const yearInHook = (hookPlain.match(/20\d\d/g) ?? [])[0];
