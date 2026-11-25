@@ -56,10 +56,10 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
   const p2 = useIn(12);
   const p3 = useIn(18);
   const lines = text.split('\n');
-  const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]/g, '')].length), 1);
+  const longest = Math.max(...lines.map((l) => [...l.replace(/\[\[|\]\]|\{\{|\}\}/g, '')].length), 1);
   const stroke = useTitleStroke();
   const fx = useContext(TitleFxContext);
-  const fxAll = [...text.replace(/\[\[|\]\]/g, '').replace(/\s/g, '')].length;
+  const fxAll = [...text.replace(/\[\[|\]\]|\{\{|\}\}/g, '').replace(/\s/g, '')].length;
   const titleSize = Math.min(110, Math.floor(830 / (longest * 0.75)));
   return (
     <Fade frames={frames}>
@@ -72,7 +72,7 @@ export const LimeCover: React.FC<{frames: number; label?: string; sub?: string; 
         <div style={{color: TITLE, fontFamily: FONT_TITLE, fontWeight: 900, fontSize: titleSize, lineHeight: 1.4, letterSpacing: '-0.03em', textShadow: SHADOW_SOFT, ...stroke, ...rise(p1)}}>
           {lines.map((ln, i) => (
             <div key={i} style={{position: 'relative', display: 'table', margin: '0 auto'}}>
-              <Rich text={ln} marker fx={fx} fxStart={8} fxTotal={fxAll} fxOffset={lines.slice(0, i).join('').replace(/\[\[|\]\]/g, '').replace(/\s/g, '').length} />
+              <Rich text={ln} marker fx={fx} fxStart={8} fxTotal={fxAll} fxOffset={lines.slice(0, i).join('').replace(/\[\[|\]\]|\{\{|\}\}/g, '').replace(/\s/g, '').length} />
               {i === 0 && <Star w={86} kind="sparkle" style={{left: -112, top: -46}} delay={14} />}
               {i === 0 && <Star w={96} kind="burst" style={{right: -124, top: 62}} delay={8} />}
               {i === 0 && mark && <MarkSticker ch={mark} size={210} style={{right: -140, top: -160}} />}

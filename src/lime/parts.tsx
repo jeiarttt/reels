@@ -69,7 +69,7 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
   const lines = text.split('\n');
   const wf = useCurrentFrame();
   const wig = 1.6 * Math.sin(wf / 7);
-  const plain = text.replace(/\[\[|\]\]/g, '').replace(/\s/g, '');
+  const plain = text.replace(/\[\[|\]\]|\{\{|\}\}/g, '').replace(/\s/g, '');
   const total = fxTotal ?? [...plain].length;
   const step = fx ? FX_STEP[fx] : 0;
   let k = fxOffset; // 지금까지 그린 글자 수(공백 제외)
@@ -98,8 +98,9 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
   return (
     <>
       {lines.map((line, li) => {
-        const parts = line.split(/(\[\[|\]\])/);
+        const parts = line.split(/(\[\[|\]\]|\{\{|\}\})/);
         let on = false;
+        let lime = false; // {{글자}}: 칸 없이 글자색만 라임
         return (
           <div key={li}>
             {parts.map((p, i) => {
@@ -111,12 +112,22 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
                 on = false;
                 return null;
               }
+              if (p === '{{') {
+                on = true;
+                lime = true;
+                return null;
+              }
+              if (p === '}}') {
+                on = false;
+                lime = false;
+                return null;
+              }
               if (!on) return <span key={i}>{fx ? chars(p) : wobble ? <Wob t={p} /> : p}</span>;
               if (fx) {
                 const first = k;
                 const n = [...p].filter((c) => !/\s/.test(c)).length;
                 const sw = Math.min(Math.max((wf - fxStart - first * step) / Math.max(n * step, 8), 0), 1);
-                return marker ? (
+                return marker && !lime ? (
                   <span key={i} style={{backgroundImage: `linear-gradient(${accent}, ${accent})`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left center', backgroundSize: `${(sw * 100).toFixed(1)}% 100%`, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', transform: `rotate(${wig}deg)`, transformOrigin: 'center', textShadow: 'none', WebkitTextStroke: '0px transparent', lineHeight: 1.25}}>
                     {chars(p)}
                   </span>
@@ -125,7 +136,7 @@ export const Rich: React.FC<{text: string; accent?: string; marker?: boolean; co
                 );
               }
               const inner = count ? <CountText text={p} /> : p;
-              return marker ? (
+              return marker && !lime ? (
                 <span key={i} style={{background: accent, color: INK, padding: '0 0.3em', margin: '0 0.1em', borderRadius: '0.18em', display: 'inline-block', transform: `rotate(${wig}deg)`, transformOrigin: 'center', textShadow: 'none', WebkitTextStroke: '0px transparent', lineHeight: 1.25}}>
                   {inner}
                 </span>
