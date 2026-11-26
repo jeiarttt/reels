@@ -24,7 +24,7 @@
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-27453291.jpg",
+    "src": "stock/pexels-2387542.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -37,7 +37,7 @@
       "no": "시간대",
       "label": "어느 시간에 타요?",
       "bg": {
-        "src": "stock/pexels-25806117.jpg",
+        "src": "stock/pexels-28751680.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -117,11 +117,11 @@
         "rows": [
           [
             "일반형",
-            "5만 5천 원 넘으면 전액"
+            "5만 5천 원 넘은 만큼 환급"
           ],
           [
             "플러스형",
-            "9만 원 넘으면 전액"
+            "9만 원 넘은 만큼 환급"
           ],
           [
             "적용",
