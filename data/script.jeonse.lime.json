@@ -12,8 +12,8 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 4.5,
-  "ctaSec": 4,
+  "hookSec": 4.9,
+  "ctaSec": 4.5,
   "hook": "청년 전세대출 보증\n만 34세 → [[만 39세]]\n대상이 {{넓어졌어요}}",
   "hookLabel": "",
   "hookSub": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 5,
+      "t": 4.2,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
@@ -60,10 +60,11 @@
         "src": "stock/pexels-4067525.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/jeonse-1.mp3"
     },
     {
-      "t": 5,
+      "t": 4.7,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
@@ -87,10 +88,11 @@
         "src": "stock/pexels-2020156.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/jeonse-2.mp3"
     },
     {
-      "t": 5,
+      "t": 4.5,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
@@ -121,10 +123,11 @@
         "src": "stock/pexels-3137040.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/jeonse-3.mp3"
     },
     {
-      "t": 5,
+      "t": 5.5,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
@@ -144,7 +147,8 @@
         "src": "stock/pexels-28506754.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/jeonse-4.mp3"
     }
   ],
   "caption": "청년 전세대출 보증 대상이 만 34세에서 39세로 넓어졌어요!\n\n🏠 만 39세 이하 무주택자, 연소득 7천만 원 이하면 최대 2억 원까지 보증받아요(신혼·자녀 가구 3억 원).\n요건이 맞아도 대출은 은행 심사에 따라 달라질 수 있어요.\n\n💌 댓글을 남겨 주시면 총정리를 DM으로 보내드려요! (신혼 기준·예정 상품 포함)\n\n#청년전세대출 #전세대출보증 #전세대출 #청년혜택 #자취\n※ 2026.8.13 금융위·10.8 HF 발표 기준이며 변경될 수 있어요. 신청 전 공식 안내를 꼭 확인해 주세요.",
@@ -170,5 +174,7 @@
   "ctaNarration": "내 나이와 소득이 맞는지 보려면 저장하고, 총정리는 댓글로 받아가세요.",
   "followId": "rich_the_doggy",
   "followSub": "재테크•자취꿀팁•청년혜택",
-  "followAvatar": "profile/rich_the_doggy.jpg"
+  "followAvatar": "profile/rich_the_doggy.jpg",
+  "hookVoice": "voice/jeonse-hook.mp3",
+  "ctaVoice": "voice/jeonse-cta.mp3"
 }
