@@ -18,7 +18,7 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-10812868.jpg",
+    "src": "stock/user2-1.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -58,7 +58,7 @@
       },
       "narration": "1억 5천만 원 넘으면 40%·7천만 원, 이하는 50%·6천만 원이에요.",
       "bg": {
-        "src": "stock/pexels-358636.jpg",
+        "src": "stock/user2-2.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -85,7 +85,7 @@
       ],
       "narration": "서울 거주 만 19~39세, 세대원 모두 무주택, 월 소득 약 457만 6천 원 이하예요.",
       "bg": {
-        "src": "stock/pexels-17166706.jpg",
+        "src": "stock/user2-4.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -115,7 +115,7 @@
       },
       "narration": "청약은 12/14~16, 서류는 24일까지 등기우편이에요.",
       "bg": {
-        "src": "stock/pexels-2394446.jpg",
+        "src": "stock/user2-5.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -143,7 +143,7 @@
       ],
       "narration": "서류 안 내면 탈락, 중복 지원 불가, 지원금은 퇴거 때 반납이에요.",
       "bg": {
-        "src": "stock/pexels-33566793.jpg",
+        "src": "stock/user2-3.jpg",
         "type": "image",
         "position": "50% 50%"
       }
