@@ -24,7 +24,7 @@
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-35113068.jpg",
+    "src": "stock/pexels-27453291.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -37,7 +37,7 @@
       "no": "시간대",
       "label": "어느 시간에 타요?",
       "bg": {
-        "src": "stock/pexels-36045854.jpg",
+        "src": "stock/pexels-25806117.jpg",
         "type": "image",
         "position": "50% 50%"
       },
