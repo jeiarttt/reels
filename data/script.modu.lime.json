@@ -18,13 +18,13 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-6156582.jpg",
+    "src": "stock/pexels-11581404.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-9175181.jpg",
+    "src": "stock/pexels-9049371.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -72,7 +72,7 @@
       "label": "환급률이 올라가요",
       "desc": "정률형 기준 · 12월 말까지",
       "bg": {
-        "src": "stock/pexels-8811580.jpg",
+        "src": "stock/pexels-32821942.jpg",
         "type": "image",
         "position": "50% 50%"
       },
