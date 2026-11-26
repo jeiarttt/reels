@@ -12,7 +12,7 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 4.9,
+  "hookSec": 4.7,
   "ctaSec": 4.5,
   "hook": "청년 전세대출 보증\n만 34세 → [[만 39세]]\n대상이 {{넓어졌어요}}",
   "hookLabel": "",
@@ -64,7 +64,7 @@
       "voice": "voice/jeonse-1.mp3"
     },
     {
-      "t": 4.7,
+      "t": 4.6,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
@@ -92,7 +92,7 @@
       "voice": "voice/jeonse-2.mp3"
     },
     {
-      "t": 4.5,
+      "t": 4.4,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
@@ -127,7 +127,7 @@
       "voice": "voice/jeonse-3.mp3"
     },
     {
-      "t": 5.5,
+      "t": 4.7,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
