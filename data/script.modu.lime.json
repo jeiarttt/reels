@@ -8,7 +8,7 @@
   "id": "20261126-모두의카드-lime",
   "brand": "출퇴근 시차시간",
   "ctaBrand": "12월 말 전에 저장하세요",
-  "bgDim": 0.15,
+  "bgDim": 0.18,
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
@@ -18,26 +18,26 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-35197263.jpg",
+    "src": "stock/pexels-6712383.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-2387542.jpg",
+    "src": "stock/pexels-7134995.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "scenes": [
     {
       "t": 5,
-      "dim": 0.25,
+      "dim": 0.22,
       "titleSize": 88,
       "kind": "table",
       "no": "시간대",
       "label": "어느 시간에 타요?",
       "bg": {
-        "src": "stock/pexels-28751680.jpg",
+        "src": "stock/pexels-11800919.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -65,14 +65,14 @@
     },
     {
       "t": 5,
-      "dim": 0.25,
+      "dim": 0.22,
       "titleSize": 88,
       "kind": "table",
       "no": "환급률",
       "label": "환급률이 올라가요",
       "desc": "정률형 기준 · 12월 말까지",
       "bg": {
-        "src": "stock/pexels-302428.jpg",
+        "src": "stock/pexels-6279955.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -99,13 +99,13 @@
     },
     {
       "t": 5,
-      "dim": 0.25,
+      "dim": 0.22,
       "titleSize": 88,
       "kind": "table",
       "no": "기준금액",
       "label": "수도권 청년 기준금액",
       "bg": {
-        "src": "stock/pexels-29017503.jpg",
+        "src": "stock/pexels-5764081.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -133,14 +133,14 @@
     },
     {
       "t": 5,
-      "dim": 0.25,
+      "dim": 0.22,
       "titleSize": 88,
       "kind": "box",
       "boxNum": false,
       "no": "조건",
       "text": "조건과 등록",
       "bg": {
-        "src": "stock/pexels-5949745.jpg",
+        "src": "stock/pexels-14776962.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -161,14 +161,14 @@
     },
     {
       "t": 5,
-      "dim": 0.25,
+      "dim": 0.22,
       "titleSize": 88,
       "kind": "box",
       "boxNum": false,
       "no": "12/1",
       "text": "청소년도 쓸 수 있어요",
       "bg": {
-        "src": "stock/pexels-16832288.jpg",
+        "src": "stock/pexels-4207776.jpg",
         "type": "image",
         "position": "50% 50%"
       },
