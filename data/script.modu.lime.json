@@ -13,7 +13,7 @@
   "titleFont": "Dunggeun",
   "titleFx": "pop",
   "hookSec": 4.5,
-  "ctaSec": 4,
+  "ctaSec": 4.3,
   "hook": "모두의카드\n월 5만 5천 원 넘으면\n넘은 만큼 [[전액]] 환급",
   "hookLabel": "",
   "hookSub": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 4.5,
+      "t": 5,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
@@ -62,10 +62,11 @@
         "src": "stock/user-2.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/modu-1.mp3"
     },
     {
-      "t": 4.5,
+      "t": 3.4,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
@@ -97,10 +98,11 @@
         "src": "stock/user-4.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/modu-2.mp3"
     },
     {
-      "t": 4.5,
+      "t": 4,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
@@ -121,10 +123,11 @@
         "src": "stock/user-3.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/modu-3.mp3"
     },
     {
-      "t": 4.5,
+      "t": 3.5,
       "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
@@ -147,7 +150,8 @@
         "src": "stock/user-5.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/modu-4.mp3"
     }
   ],
   "caption": "한 달 교통비가 5만 5천 원을 넘으면 넘은 만큼 돌려받아요! (모두의카드, 청년·수도권 일반형 기준)\n\n🚌 일반형 5만 5천 원, 플러스형 9만 원을 넘으면 초과분을 전액 환급해요(유리한 쪽 자동). 월 15회 이상 이용하고 카드를 앱에 등록해야 해요.\n출퇴근 혼잡시간 전후에 타면 청년 환급률이 60%로 올라요(12월 말까지).\n\n💌 댓글을 남겨 주시면 총정리를 DM으로 보내드려요! (신청 단계·시차시간 시간표·청소년 확대 포함)\n\n#모두의카드 #K패스 #교통비 #청년혜택 #자취\n※ 2026.9.28·11.25 국토부 발표 기준이며 변경될 수 있어요. 신청 전 공식 안내를 꼭 확인해 주세요.",
@@ -174,5 +178,7 @@
   "ctaNarration": "내 교통비가 넘는지 보려면 저장하고, 총정리는 댓글로 받아가세요.",
   "followId": "rich_the_doggy",
   "followSub": "재테크•자취꿀팁•청년혜택",
-  "followAvatar": "profile/rich_the_doggy.jpg"
+  "followAvatar": "profile/rich_the_doggy.jpg",
+  "hookVoice": "voice/modu-hook.mp3",
+  "ctaVoice": "voice/modu-cta.mp3"
 }
