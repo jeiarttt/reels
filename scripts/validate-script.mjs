@@ -16,7 +16,7 @@ try {
   process.exit(1);
 }
 
-const strip = (t = '') => t.replace(/\[\[|\]\]/g, '');
+const strip = (t = '') => t.replace(/\[\[|\]\]|\{\{|\}\}/g, '');
 const lines = (t = '') => strip(t).split('\n');
 const FORBIDDEN = ['무조건', '100%', '누구나', '반드시 받', '확실히', '대박', '충격', '절대 손해'];
 const KINDS = ['text', 'cards', 'table', 'steps', 'stat', 'compare', 'grid', 'checklist', 'flow', 'plain', 'list', 'timeline', 'split', 'scale', 'chat', 'swap', 'box'];
