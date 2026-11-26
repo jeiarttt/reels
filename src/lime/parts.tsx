@@ -178,6 +178,13 @@ export const useBounce = (delay = 0) => {
   return Math.max(spring({frame: frame - delay, fps, config: {damping: 8, stiffness: 150}}), 0);
 };
 
+/** 카드용 등장: 튕기지 않고 제자리에 부드럽게 멈춘다(다 올라온 뒤 다시 움직이지 않는다) */
+export const useSettle = (delay = 0) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  return Math.min(Math.max(spring({frame: frame - delay, fps, config: {damping: 22, stiffness: 140, overshootClamping: true}}), 0), 1);
+};
+
 export type ShapeKind = 'burst' | 'sparkle' | 'ring' | 'plus' | 'dots' | 'moon' | 'snow';
 /** 대본의 shapeKind 가 있으면 모든 장식 도형을 이 모양으로 바꾼다(예: 'snow' 눈 결정) */
 export const ShapeOverrideContext = createContext<ShapeKind | undefined>(undefined);

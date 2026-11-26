@@ -3,7 +3,7 @@ import {AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame} from 'remot
 import type {Scene} from '../types';
 import {useFadeOut} from '../cute/parts';
 import {ACCENT, BG, CARD, CTA_TITLE, DESC, FONT, FONT_TITLE, INK, INK_ACCENT, INK_SUB, MUTED, TITLE} from './theme';
-import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, Wave} from './parts';
+import {Check, clean, CountText, Rich, SHAPES, Star, useBounce, useIn, useSettle, Wave} from './parts';
 import {TitleFxContext, useTitleStroke} from './parts';
 import type {ShapeKind} from './parts';
 
@@ -114,7 +114,7 @@ const Em: React.FC<{text: string}> = ({text}) => (
 );
 
 const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
-  const p = useBounce(16 + i * 8);
+  const p = useSettle(16 + i * 8);
   const tilt = [-1.4, 1.1, -0.9, 1.3][i % 4];
   const single = r.right === undefined;
   return (
@@ -128,7 +128,7 @@ const InfoRow: React.FC<{r: Row; i: number}> = ({r, i}) => {
 
 /** 3칸 이상 표: 검정 머리줄 + 아이보리 카드 안에 줄마다 값을 나란히 보여 준다 */
 const GridTable: React.FC<{head: string[]; rows: string[][]}> = ({head, rows}) => {
-  const p0 = useBounce(14);
+  const p0 = useSettle(14);
   const cols = `${Math.round(880 * 0.2)}px repeat(${head.length - 1}, 1fr)`;
   return (
     <div style={{borderRadius: 30, background: CARD, boxShadow: '0 10px 28px rgba(0,0,0,0.28)', overflow: 'hidden', wordBreak: 'keep-all', ...rise(p0), transform: `translateY(${(1 - Math.min(p0, 1)) * 48}px)`}}>
@@ -145,9 +145,9 @@ const GridTable: React.FC<{head: string[]; rows: string[][]}> = ({head, rows}) =
 };
 
 const GridRow: React.FC<{r: string[]; ri: number; cols: string}> = ({r, ri, cols}) => {
-  const p = useBounce(24 + ri * 10);
+  const p = useSettle(24 + ri * 10);
   return (
-    <div style={{display: 'grid', gridTemplateColumns: cols, gap: 18, padding: '40px 34px', alignItems: 'center', borderTop: ri ? '3px solid rgba(20,23,19,0.1)' : undefined, opacity: Math.min(p, 1), transform: `translateY(${(1 - Math.min(p, 1)) * 28}px)`}}>
+    <div style={{display: 'grid', gridTemplateColumns: cols, gap: 18, padding: '40px 34px', alignItems: 'center', borderTop: ri ? '3px solid rgba(20,23,19,0.1)' : undefined, opacity: p}}>
       {r.map((c, ci) => {
         const lines = clean(c).split('\n');
         return (
@@ -240,7 +240,7 @@ const NumRow: React.FC<{it: {label: string; detail?: string}; i: number; no: num
 
 /** 카드 한 장 안에 항목을 묶는다. numbered면 라임 번호 동그라미(+작은 설명), 아니면 체크 줄 */
 const BoxCard: React.FC<{items: {label: string; detail?: string}[]; numbered?: boolean}> = ({items, numbered}) => {
-  const p = useBounce(14);
+  const p = useSettle(14);
   return (
     <div style={{borderRadius: 34, background: CARD, boxShadow: '0 12px 32px rgba(0,0,0,0.3)', padding: '20px 52px', wordBreak: 'keep-all', ...rise(p), transform: `translateY(${(1 - Math.min(p, 1)) * 48}px) rotate(-0.8deg)`}}>
       {items.map((it, i) => (
