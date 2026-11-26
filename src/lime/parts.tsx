@@ -168,14 +168,14 @@ export const Wave: React.FC<{w?: number; style?: React.CSSProperties; delay?: nu
 export const useIn = (delay = 0) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  return Math.max(spring({frame: frame - delay, fps, config: {damping: 16, stiffness: 120}}), 0);
+  return Math.max(spring({frame: frame - delay, fps, config: {damping: 22, stiffness: 140, overshootClamping: true}}), 0);
 };
 
-/** 통통 튀는 등장(살짝 넘쳤다가 돌아온다) */
+/** 등장(2026-11-26 사용자 요청: 튕김·넘침 없이 부드럽게 멈춘다) */
 export const useBounce = (delay = 0) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  return Math.max(spring({frame: frame - delay, fps, config: {damping: 8, stiffness: 150}}), 0);
+  return Math.max(spring({frame: frame - delay, fps, config: {damping: 22, stiffness: 140, overshootClamping: true}}), 0);
 };
 
 /** 카드용 등장: 튕기지 않고 제자리에 부드럽게 멈춘다(다 올라온 뒤 다시 움직이지 않는다) */
