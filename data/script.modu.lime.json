@@ -8,7 +8,7 @@
   "id": "20261126-모두의카드-lime",
   "brand": "출퇴근 시차시간",
   "ctaBrand": "12월 말 전에 저장하세요",
-  "bgDim": 0.12,
+  "bgDim": 0.1,
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
@@ -18,7 +18,7 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-8698322.jpg",
+    "src": "stock/user-1.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -31,13 +31,13 @@
   "scenes": [
     {
       "t": 5,
-      "dim": 0.18,
+      "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
       "no": "시간대",
       "label": "어느 시간에 타요?",
       "bg": {
-        "src": "stock/pexels-2986515.jpg",
+        "src": "stock/user-2.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -65,14 +65,14 @@
     },
     {
       "t": 5,
-      "dim": 0.18,
+      "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
       "no": "환급률",
       "label": "환급률이 올라가요",
       "desc": "정률형 기준 · 12월 말까지",
       "bg": {
-        "src": "stock/pexels-32821942.jpg",
+        "src": "stock/user-4.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -99,13 +99,13 @@
     },
     {
       "t": 5,
-      "dim": 0.18,
+      "dim": 0.15,
       "titleSize": 88,
       "kind": "table",
       "no": "기준금액",
       "label": "수도권 청년 기준금액",
       "bg": {
-        "src": "stock/pexels-27612868.jpg",
+        "src": "stock/user-3.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -133,14 +133,14 @@
     },
     {
       "t": 5,
-      "dim": 0.18,
+      "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
       "boxNum": false,
       "no": "조건",
       "text": "조건과 등록",
       "bg": {
-        "src": "stock/pexels-18839462.jpg",
+        "src": "stock/user-5.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -161,7 +161,7 @@
     },
     {
       "t": 5,
-      "dim": 0.18,
+      "dim": 0.15,
       "titleSize": 88,
       "kind": "box",
       "boxNum": false,
