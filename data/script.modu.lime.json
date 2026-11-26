@@ -8,7 +8,7 @@
   "id": "20261126-모두의카드-lime",
   "brand": "출퇴근 시차시간",
   "ctaBrand": "12월 말 전에 저장하세요",
-  "bgDim": 0.18,
+  "bgDim": 0.15,
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
@@ -18,13 +18,13 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-6712383.jpg",
+    "src": "stock/mc-9175181.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-7134995.jpg",
+    "src": "stock/mc-5949745.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -37,7 +37,7 @@
       "no": "시간대",
       "label": "어느 시간에 타요?",
       "bg": {
-        "src": "stock/pexels-11800919.jpg",
+        "src": "stock/pexels-8811580.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -72,7 +72,7 @@
       "label": "환급률이 올라가요",
       "desc": "정률형 기준 · 12월 말까지",
       "bg": {
-        "src": "stock/pexels-6279955.jpg",
+        "src": "stock/mc-4937605.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -105,7 +105,7 @@
       "no": "기준금액",
       "label": "수도권 청년 기준금액",
       "bg": {
-        "src": "stock/pexels-5764081.jpg",
+        "src": "stock/pexels-9865619.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -140,7 +140,7 @@
       "no": "조건",
       "text": "조건과 등록",
       "bg": {
-        "src": "stock/pexels-14776962.jpg",
+        "src": "stock/mc-2261702.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -168,7 +168,7 @@
       "no": "12/1",
       "text": "청소년도 쓸 수 있어요",
       "bg": {
-        "src": "stock/pexels-4207776.jpg",
+        "src": "stock/pexels-12290204.jpg",
         "type": "image",
         "position": "50% 50%"
       },
