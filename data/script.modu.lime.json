@@ -24,7 +24,7 @@
   },
   "cta": "[[댓글]] 남기면\n총정리를\nDM으로 보내드려요",
   "ctaBg": {
-    "src": "stock/pexels-35197263-m.jpg",
+    "src": "stock/pexels-35113068.jpg",
     "type": "image",
     "position": "50% 50%"
   },
@@ -37,7 +37,7 @@
       "no": "시간대",
       "label": "어느 시간에 타요?",
       "bg": {
-        "src": "stock/pexels-5949745.jpg",
+        "src": "stock/pexels-36045854.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -105,7 +105,7 @@
       "no": "기준금액",
       "label": "수도권 청년 기준금액",
       "bg": {
-        "src": "stock/pexels-5949745-m.jpg",
+        "src": "stock/pexels-29017503.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -140,7 +140,7 @@
       "no": "조건",
       "text": "조건과 등록",
       "bg": {
-        "src": "stock/pexels-11912850.jpg",
+        "src": "stock/pexels-5949745.jpg",
         "type": "image",
         "position": "50% 50%"
       },
@@ -168,7 +168,7 @@
       "no": "12/1",
       "text": "청소년도 쓸 수 있어요",
       "bg": {
-        "src": "stock/pexels-20837343.jpg",
+        "src": "stock/pexels-16832288.jpg",
         "type": "image",
         "position": "50% 50%"
       },
