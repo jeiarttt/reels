@@ -15,7 +15,7 @@ const Backdrop: React.FC<{bg?: Bg; frames: number; dim: number; blur?: number}> 
   <>
     {bg ? (
       <AbsoluteFill style={blur > 0 ? {filter: `blur(${blur}px)`, transform: 'scale(1.12)'} : undefined}>
-        <Background bg={bg} frames={frames} dim={0} veil={0} fade={3} />
+        <Background bg={bg} frames={frames} dim={0} veil={0} fade={0} />
       </AbsoluteFill>
     ) : (
       <AbsoluteFill style={{background: BG}} />

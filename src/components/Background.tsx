@@ -9,10 +9,14 @@ const isVideo = (bg: Bg) =>
 export const Background: React.FC<{bg?: Bg; frames: number; dim?: number; veil?: number; fade?: number}> = ({bg, frames, dim = 0.55, veil = 0, fade: fadeLen = 8}) => {
   const frame = useCurrentFrame();
   const scale = interpolate(frame, [0, frames], [1.0, 1.09], {extrapolateRight: 'clamp'});
-  const fade = interpolate(frame, [0, fadeLen, frames - fadeLen, frames], [0, 1, 1, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
+  // fade 가 0 이하이면 페이드 없이 바로 보인다(컷 사이에 어두운 화면이 깜빡이지 않게)
+  const fade =
+    fadeLen <= 0
+      ? 1
+      : interpolate(frame, [0, fadeLen, frames - fadeLen, frames], [0, 1, 1, 0], {
+          extrapolateLeft: 'clamp',
+          extrapolateRight: 'clamp',
+        });
 
   const fill: React.CSSProperties = {width: '100%', height: '100%', objectFit: 'cover', objectPosition: bg?.position ?? 'center'};
 
