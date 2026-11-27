@@ -12,8 +12,8 @@
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
-  "hookSec": 5,
-  "ctaSec": 3.5,
+  "hookSec": 3.4,
+  "ctaSec": 2.6,
   "hook": "내년 수도권 공공주택\n[[5만 6천 호]] 입주자 모집\n최근 5년 평균의 {{2배}}",
   "hookLabel": "",
   "hookSub": "",
@@ -30,7 +30,7 @@
   },
   "scenes": [
     {
-      "t": 5.5,
+      "t": 4.5,
       "dim": 0.03,
       "titleSize": 88,
       "kind": "table",
@@ -65,10 +65,11 @@
         "src": "stock/us5-cloud-teal.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/gonggong-1.mp3"
     },
     {
-      "t": 5.5,
+      "t": 4.9,
       "dim": 0.03,
       "titleSize": 88,
       "kind": "table",
@@ -104,10 +105,11 @@
         "src": "stock/us3-blue-glass.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/gonggong-2.mp3"
     },
     {
-      "t": 6,
+      "t": 3.9,
       "dim": 0.03,
       "titleSize": 88,
       "kind": "table",
@@ -142,10 +144,11 @@
         "src": "stock/us4-highrise-gray.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/gonggong-3.mp3"
     },
     {
-      "t": 5.5,
+      "t": 4.6,
       "dim": 0.03,
       "titleSize": 88,
       "kind": "box",
@@ -167,7 +170,8 @@
         "src": "stock/us3-white-tower.jpg",
         "type": "image",
         "position": "50% 50%"
-      }
+      },
+      "voice": "voice/gonggong-4.mp3"
     }
   ],
   "caption": "내년 수도권 공공주택 5만 6천 호 입주자를 모집해요! (국토교통부 발표)\n\n🏠 공공분양 3만 5천 호 + 공공임대 2만 1천 호로, 최근 5년 평균의 2배예요.\n지분적립형 분양 약 2,700호처럼 부담을 낮춘 물량도 있어요.\n공공임대는 일부가 입주 2년 6개월 전에 모집돼요(수도권 9천 호).\n\n📌 시기는 분기별 계획이고 모집 공고는 추후 나와요. 저장해 두고 공고를 확인하세요!\n\n#공공분양 #공공임대 #청년혜택 #내집마련 #수도권\n※ 2026.11.26 국토교통부 발표 기준 계획이며 변경될 수 있어요. 신청 전 모집 공고를 꼭 확인해 주세요.",
@@ -190,5 +194,7 @@
   "ctaNarration": "저장해 두고 공고 뜨면 바로 확인하세요.",
   "followId": "rich_the_doggy",
   "followSub": "재테크•자취꿀팁•청년혜택",
-  "followAvatar": "profile/rich_the_doggy.jpg"
+  "followAvatar": "profile/rich_the_doggy.jpg",
+  "hookVoice": "voice/gonggong-hook.mp3",
+  "ctaVoice": "voice/gonggong-cta.mp3"
 }
