@@ -24,9 +24,9 @@
   },
   "cta": "[[저장]]해 두고\n공고 뜨면\n바로 확인해요",
   "ctaBg": {
-    "src": "stock/us4-glass-lightblue.jpg",
+    "src": "stock/us5-sky-white.jpg",
     "type": "image",
-    "position": "50% 50%"
+    "position": "100% 50%"
   },
   "scenes": [
     {
@@ -62,7 +62,7 @@
       },
       "narration": "분양 3만 5천, 임대 2만 1천 호로 5년 평균의 2배예요.",
       "bg": {
-        "src": "stock/us4-white-teal.jpg",
+        "src": "stock/us5-cloud-teal.jpg",
         "type": "image",
         "position": "50% 50%"
       }
