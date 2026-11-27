@@ -18,15 +18,15 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/us-apartment-white.jpg",
+    "src": "stock/us2-hook-teal-building.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[저장]]해 두고\n공고 뜨면\n바로 확인해요",
   "ctaBg": {
-    "src": "stock/us-apartment-white.jpg",
+    "src": "stock/us2-sea-deep.jpg",
     "type": "image",
-    "position": "50% 0%"
+    "position": "50% 50%"
   },
   "scenes": [
     {
@@ -62,7 +62,7 @@
       },
       "narration": "분양 3만 5천, 임대 2만 1천 호로 5년 평균의 2배예요.",
       "bg": {
-        "src": "stock/us-clouds-pale.jpg",
+        "src": "stock/us2-blue-gradient.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -101,7 +101,7 @@
       },
       "narration": "경기가 가장 많아요. 분양 2만 7천, 임대 1만 7천 호예요.",
       "bg": {
-        "src": "stock/us-teal-corner.jpg",
+        "src": "stock/us2-blue-building.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -139,7 +139,7 @@
       },
       "narration": "분기별로 왕숙, 수원 당수, 제물포역 물량이 나와요.",
       "bg": {
-        "src": "stock/us-white-glass.jpg",
+        "src": "stock/us2-sky-sea.jpg",
         "type": "image",
         "position": "50% 50%"
       }
@@ -164,7 +164,7 @@
       ],
       "narration": "지분적립형 약 2천 7백 호, 이익공유형은 1천 호를 검토해요.",
       "bg": {
-        "src": "stock/us-sea-pale.jpg",
+        "src": "stock/us2-sea-gradient.jpg",
         "type": "image",
         "position": "50% 50%"
       }
