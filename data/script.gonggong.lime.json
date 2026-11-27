@@ -162,7 +162,7 @@
           "small": "법제화 뒤 분양 검토"
         }
       ],
-      "narration": "지분적립형 약 2천 7백 호, 이익공유형은 법제화 뒤 1천 호를 검토해요.",
+      "narration": "지분적립형 약 2천 7백 호, 이익공유형은 1천 호를 검토해요.",
       "bg": {
         "src": "stock/simple-sky-blue.jpg",
         "type": "image",
@@ -187,7 +187,7 @@
     "올리기 직전 모집 공고가 났거나 계획이 바뀌지 않았는지 재확인"
   ],
   "hookNarration": "내년 수도권 공공주택 5만 6천 호를 모집해요.",
-  "ctaNarration": "공고 놓치지 않게 저장해 두세요.",
+  "ctaNarration": "저장해 두고 공고 뜨면 바로 확인하세요.",
   "followId": "rich_the_doggy",
   "followSub": "재테크•자취꿀팁•청년혜택",
   "followAvatar": "profile/rich_the_doggy.jpg"
