@@ -8,7 +8,7 @@
   "id": "20261127-수도권공공주택-lime",
   "brand": "수도권 무주택자",
   "ctaBrand": "공고 놓치지 않게 저장하세요",
-  "bgDim": 0.1,
+  "bgDim": 0.03,
   "titleStroke": 3,
   "titleFont": "Dunggeun",
   "titleFx": "pop",
@@ -18,20 +18,20 @@
   "hookLabel": "",
   "hookSub": "",
   "hookBg": {
-    "src": "stock/pexels-11962493.jpg",
+    "src": "stock/simple-corner-sky.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "cta": "[[저장]]해 두고\n공고 뜨면\n바로 확인해요",
   "ctaBg": {
-    "src": "stock/pexels-1133505.jpg",
+    "src": "stock/simple-sky-deep.jpg",
     "type": "image",
     "position": "50% 50%"
   },
   "scenes": [
     {
       "t": 5.5,
-      "dim": 0.15,
+      "dim": 0.03,
       "titleSize": 88,
       "kind": "table",
       "no": "규모",
@@ -62,14 +62,14 @@
       },
       "narration": "분양 3만 5천, 임대 2만 1천 호로 5년 평균의 2배예요.",
       "bg": {
-        "src": "stock/yj-16846525.jpg",
+        "src": "stock/simple-cloud-teal.jpg",
         "type": "image",
         "position": "50% 50%"
       }
     },
     {
       "t": 5.5,
-      "dim": 0.15,
+      "dim": 0.03,
       "titleSize": 88,
       "kind": "table",
       "no": "지역",
@@ -101,14 +101,14 @@
       },
       "narration": "경기가 가장 많아요. 분양 2만 7천, 임대 1만 7천 호예요.",
       "bg": {
-        "src": "stock/pexels-29145562.jpg",
+        "src": "stock/simple-sky-pale.jpg",
         "type": "image",
         "position": "50% 50%"
       }
     },
     {
       "t": 6,
-      "dim": 0.15,
+      "dim": 0.03,
       "titleSize": 88,
       "kind": "table",
       "no": "시기",
@@ -139,14 +139,14 @@
       },
       "narration": "분기별로 왕숙, 수원 당수, 제물포역 물량이 나와요.",
       "bg": {
-        "src": "stock/pexels-17166706.jpg",
+        "src": "stock/simple-bright-sky-lamp.jpg",
         "type": "image",
         "position": "50% 50%"
       }
     },
     {
       "t": 5.5,
-      "dim": 0.15,
+      "dim": 0.03,
       "titleSize": 88,
       "kind": "box",
       "boxNum": false,
@@ -164,7 +164,7 @@
       ],
       "narration": "지분적립형 약 2천 7백 호, 이익공유형은 법제화 뒤 1천 호를 검토해요.",
       "bg": {
-        "src": "stock/pexels-30227710.jpg",
+        "src": "stock/simple-sky-blue.jpg",
         "type": "image",
         "position": "50% 50%"
       }
